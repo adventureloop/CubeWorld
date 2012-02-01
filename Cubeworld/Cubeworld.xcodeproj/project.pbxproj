@@ -17,6 +17,9 @@
 		DF840D7814D95C9A0022F193 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF840D5814D95C990022F193 /* Cocoa.framework */; };
 		DF840D8014D95C9A0022F193 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF840D7E14D95C9A0022F193 /* InfoPlist.strings */; };
 		DF840D8314D95C9A0022F193 /* CubeworldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF840D8214D95C9A0022F193 /* CubeworldTests.m */; };
+		DF840D8F14D95E2A0022F193 /* ShaderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DF840D8E14D95E2A0022F193 /* ShaderManager.m */; };
+		DF840D9214D95E860022F193 /* OpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF840D9114D95E860022F193 /* OpenGLView.m */; };
+		DF840D9414D95EAA0022F193 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF840D9314D95EAA0022F193 /* OpenGL.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,20 +38,25 @@
 		DF840D5B14D95C990022F193 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		DF840D5C14D95C990022F193 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		DF840D5D14D95C990022F193 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		DF840D6014D95C990022F193 /* Cubeworld-Info.plist */ = {isa = PBXFileReference; path = "Cubeworld-Info.plist"; sourceTree = "<group>"; };
+		DF840D6014D95C990022F193 /* Cubeworld-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Cubeworld-Info.plist"; sourceTree = "<group>"; };
 		DF840D6214D95C990022F193 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DF840D6414D95C990022F193 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		DF840D6614D95C990022F193 /* Cubeworld-Prefix.pch */ = {isa = PBXFileReference; path = "Cubeworld-Prefix.pch"; sourceTree = "<group>"; };
+		DF840D6614D95C990022F193 /* Cubeworld-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cubeworld-Prefix.pch"; sourceTree = "<group>"; };
 		DF840D6814D95C990022F193 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		DF840D6A14D95C990022F193 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		DF840D6A14D95C990022F193 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DF840D6B14D95C990022F193 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DF840D6E14D95C990022F193 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		DF840D7514D95C9A0022F193 /* CubeworldTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CubeworldTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF840D7614D95C9A0022F193 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		DF840D7D14D95C9A0022F193 /* CubeworldTests-Info.plist */ = {isa = PBXFileReference; path = "CubeworldTests-Info.plist"; sourceTree = "<group>"; };
+		DF840D7D14D95C9A0022F193 /* CubeworldTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CubeworldTests-Info.plist"; sourceTree = "<group>"; };
 		DF840D7F14D95C9A0022F193 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		DF840D8114D95C9A0022F193 /* CubeworldTests.h */ = {isa = PBXFileReference; path = CubeworldTests.h; sourceTree = "<group>"; };
+		DF840D8114D95C9A0022F193 /* CubeworldTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CubeworldTests.h; sourceTree = "<group>"; };
 		DF840D8214D95C9A0022F193 /* CubeworldTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CubeworldTests.m; sourceTree = "<group>"; };
+		DF840D8D14D95E2A0022F193 /* ShaderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderManager.h; sourceTree = "<group>"; };
+		DF840D8E14D95E2A0022F193 /* ShaderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShaderManager.m; sourceTree = "<group>"; };
+		DF840D9014D95E860022F193 /* OpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLView.h; sourceTree = "<group>"; };
+		DF840D9114D95E860022F193 /* OpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLView.m; sourceTree = "<group>"; };
+		DF840D9314D95EAA0022F193 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF840D9414D95EAA0022F193 /* OpenGL.framework in Frameworks */,
 				DF840D5914D95C990022F193 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -75,6 +84,7 @@
 		DF840D4914D95C990022F193 = {
 			isa = PBXGroup;
 			children = (
+				DF840D9314D95EAA0022F193 /* OpenGL.framework */,
 				DF840D5E14D95C990022F193 /* Cubeworld */,
 				DF840D7B14D95C9A0022F193 /* CubeworldTests */,
 				DF840D5714D95C990022F193 /* Frameworks */,
@@ -117,6 +127,9 @@
 				DF840D6A14D95C990022F193 /* AppDelegate.h */,
 				DF840D6B14D95C990022F193 /* AppDelegate.m */,
 				DF840D6D14D95C990022F193 /* MainMenu.xib */,
+				DF840D9014D95E860022F193 /* OpenGLView.h */,
+				DF840D9114D95E860022F193 /* OpenGLView.m */,
+				DF840D8C14D95DFF0022F193 /* Managers */,
 				DF840D5F14D95C990022F193 /* Supporting Files */,
 			);
 			path = Cubeworld;
@@ -151,6 +164,15 @@
 				DF840D7E14D95C9A0022F193 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DF840D8C14D95DFF0022F193 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				DF840D8D14D95E2A0022F193 /* ShaderManager.h */,
+				DF840D8E14D95E2A0022F193 /* ShaderManager.m */,
+			);
+			name = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,6 +284,8 @@
 			files = (
 				DF840D6514D95C990022F193 /* main.m in Sources */,
 				DF840D6C14D95C990022F193 /* AppDelegate.m in Sources */,
+				DF840D8F14D95E2A0022F193 /* ShaderManager.m in Sources */,
+				DF840D9214D95E860022F193 /* OpenGLView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
