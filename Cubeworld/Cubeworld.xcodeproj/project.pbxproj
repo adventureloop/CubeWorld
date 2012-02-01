@@ -1,0 +1,448 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DF840D5914D95C990022F193 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF840D5814D95C990022F193 /* Cocoa.framework */; };
+		DF840D6314D95C990022F193 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF840D6114D95C990022F193 /* InfoPlist.strings */; };
+		DF840D6514D95C990022F193 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DF840D6414D95C990022F193 /* main.m */; };
+		DF840D6914D95C990022F193 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = DF840D6714D95C990022F193 /* Credits.rtf */; };
+		DF840D6C14D95C990022F193 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF840D6B14D95C990022F193 /* AppDelegate.m */; };
+		DF840D6F14D95C990022F193 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF840D6D14D95C990022F193 /* MainMenu.xib */; };
+		DF840D7714D95C9A0022F193 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF840D7614D95C9A0022F193 /* SenTestingKit.framework */; };
+		DF840D7814D95C9A0022F193 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF840D5814D95C990022F193 /* Cocoa.framework */; };
+		DF840D8014D95C9A0022F193 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF840D7E14D95C9A0022F193 /* InfoPlist.strings */; };
+		DF840D8314D95C9A0022F193 /* CubeworldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF840D8214D95C9A0022F193 /* CubeworldTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DF840D7914D95C9A0022F193 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DF840D4B14D95C990022F193 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DF840D5314D95C990022F193;
+			remoteInfo = Cubeworld;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DF840D5414D95C990022F193 /* Cubeworld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cubeworld.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF840D5814D95C990022F193 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		DF840D5B14D95C990022F193 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		DF840D5C14D95C990022F193 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		DF840D5D14D95C990022F193 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DF840D6014D95C990022F193 /* Cubeworld-Info.plist */ = {isa = PBXFileReference; path = "Cubeworld-Info.plist"; sourceTree = "<group>"; };
+		DF840D6214D95C990022F193 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DF840D6414D95C990022F193 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DF840D6614D95C990022F193 /* Cubeworld-Prefix.pch */ = {isa = PBXFileReference; path = "Cubeworld-Prefix.pch"; sourceTree = "<group>"; };
+		DF840D6814D95C990022F193 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		DF840D6A14D95C990022F193 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		DF840D6B14D95C990022F193 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DF840D6E14D95C990022F193 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		DF840D7514D95C9A0022F193 /* CubeworldTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CubeworldTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF840D7614D95C9A0022F193 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		DF840D7D14D95C9A0022F193 /* CubeworldTests-Info.plist */ = {isa = PBXFileReference; path = "CubeworldTests-Info.plist"; sourceTree = "<group>"; };
+		DF840D7F14D95C9A0022F193 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DF840D8114D95C9A0022F193 /* CubeworldTests.h */ = {isa = PBXFileReference; path = CubeworldTests.h; sourceTree = "<group>"; };
+		DF840D8214D95C9A0022F193 /* CubeworldTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CubeworldTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DF840D5114D95C990022F193 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF840D5914D95C990022F193 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DF840D7114D95C9A0022F193 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF840D7714D95C9A0022F193 /* SenTestingKit.framework in Frameworks */,
+				DF840D7814D95C9A0022F193 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DF840D4914D95C990022F193 = {
+			isa = PBXGroup;
+			children = (
+				DF840D5E14D95C990022F193 /* Cubeworld */,
+				DF840D7B14D95C9A0022F193 /* CubeworldTests */,
+				DF840D5714D95C990022F193 /* Frameworks */,
+				DF840D5514D95C990022F193 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DF840D5514D95C990022F193 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DF840D5414D95C990022F193 /* Cubeworld.app */,
+				DF840D7514D95C9A0022F193 /* CubeworldTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DF840D5714D95C990022F193 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DF840D5814D95C990022F193 /* Cocoa.framework */,
+				DF840D7614D95C9A0022F193 /* SenTestingKit.framework */,
+				DF840D5A14D95C990022F193 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DF840D5A14D95C990022F193 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DF840D5B14D95C990022F193 /* AppKit.framework */,
+				DF840D5C14D95C990022F193 /* CoreData.framework */,
+				DF840D5D14D95C990022F193 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		DF840D5E14D95C990022F193 /* Cubeworld */ = {
+			isa = PBXGroup;
+			children = (
+				DF840D6A14D95C990022F193 /* AppDelegate.h */,
+				DF840D6B14D95C990022F193 /* AppDelegate.m */,
+				DF840D6D14D95C990022F193 /* MainMenu.xib */,
+				DF840D5F14D95C990022F193 /* Supporting Files */,
+			);
+			path = Cubeworld;
+			sourceTree = "<group>";
+		};
+		DF840D5F14D95C990022F193 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DF840D6014D95C990022F193 /* Cubeworld-Info.plist */,
+				DF840D6114D95C990022F193 /* InfoPlist.strings */,
+				DF840D6414D95C990022F193 /* main.m */,
+				DF840D6614D95C990022F193 /* Cubeworld-Prefix.pch */,
+				DF840D6714D95C990022F193 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DF840D7B14D95C9A0022F193 /* CubeworldTests */ = {
+			isa = PBXGroup;
+			children = (
+				DF840D8114D95C9A0022F193 /* CubeworldTests.h */,
+				DF840D8214D95C9A0022F193 /* CubeworldTests.m */,
+				DF840D7C14D95C9A0022F193 /* Supporting Files */,
+			);
+			path = CubeworldTests;
+			sourceTree = "<group>";
+		};
+		DF840D7C14D95C9A0022F193 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DF840D7D14D95C9A0022F193 /* CubeworldTests-Info.plist */,
+				DF840D7E14D95C9A0022F193 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DF840D5314D95C990022F193 /* Cubeworld */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DF840D8614D95C9A0022F193 /* Build configuration list for PBXNativeTarget "Cubeworld" */;
+			buildPhases = (
+				DF840D5014D95C990022F193 /* Sources */,
+				DF840D5114D95C990022F193 /* Frameworks */,
+				DF840D5214D95C990022F193 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Cubeworld;
+			productName = Cubeworld;
+			productReference = DF840D5414D95C990022F193 /* Cubeworld.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DF840D7414D95C9A0022F193 /* CubeworldTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DF840D8914D95C9A0022F193 /* Build configuration list for PBXNativeTarget "CubeworldTests" */;
+			buildPhases = (
+				DF840D7014D95C9A0022F193 /* Sources */,
+				DF840D7114D95C9A0022F193 /* Frameworks */,
+				DF840D7214D95C9A0022F193 /* Resources */,
+				DF840D7314D95C9A0022F193 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DF840D7A14D95C9A0022F193 /* PBXTargetDependency */,
+			);
+			name = CubeworldTests;
+			productName = CubeworldTests;
+			productReference = DF840D7514D95C9A0022F193 /* CubeworldTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DF840D4B14D95C990022F193 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = DF840D4E14D95C990022F193 /* Build configuration list for PBXProject "Cubeworld" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DF840D4914D95C990022F193;
+			productRefGroup = DF840D5514D95C990022F193 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DF840D5314D95C990022F193 /* Cubeworld */,
+				DF840D7414D95C9A0022F193 /* CubeworldTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DF840D5214D95C990022F193 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF840D6314D95C990022F193 /* InfoPlist.strings in Resources */,
+				DF840D6914D95C990022F193 /* Credits.rtf in Resources */,
+				DF840D6F14D95C990022F193 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DF840D7214D95C9A0022F193 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF840D8014D95C9A0022F193 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DF840D7314D95C9A0022F193 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DF840D5014D95C990022F193 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF840D6514D95C990022F193 /* main.m in Sources */,
+				DF840D6C14D95C990022F193 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DF840D7014D95C9A0022F193 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF840D8314D95C9A0022F193 /* CubeworldTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DF840D7A14D95C9A0022F193 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DF840D5314D95C990022F193 /* Cubeworld */;
+			targetProxy = DF840D7914D95C9A0022F193 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DF840D6114D95C990022F193 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DF840D6214D95C990022F193 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		DF840D6714D95C990022F193 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DF840D6814D95C990022F193 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		DF840D6D14D95C990022F193 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DF840D6E14D95C990022F193 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		DF840D7E14D95C9A0022F193 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DF840D7F14D95C9A0022F193 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DF840D8414D95C9A0022F193 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		DF840D8514D95C9A0022F193 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		DF840D8714D95C9A0022F193 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Cubeworld/Cubeworld-Prefix.pch";
+				INFOPLIST_FILE = "Cubeworld/Cubeworld-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		DF840D8814D95C9A0022F193 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Cubeworld/Cubeworld-Prefix.pch";
+				INFOPLIST_FILE = "Cubeworld/Cubeworld-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		DF840D8A14D95C9A0022F193 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Cubeworld.app/Contents/MacOS/Cubeworld";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Cubeworld/Cubeworld-Prefix.pch";
+				INFOPLIST_FILE = "CubeworldTests/CubeworldTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		DF840D8B14D95C9A0022F193 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Cubeworld.app/Contents/MacOS/Cubeworld";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Cubeworld/Cubeworld-Prefix.pch";
+				INFOPLIST_FILE = "CubeworldTests/CubeworldTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DF840D4E14D95C990022F193 /* Build configuration list for PBXProject "Cubeworld" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF840D8414D95C9A0022F193 /* Debug */,
+				DF840D8514D95C9A0022F193 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DF840D8614D95C9A0022F193 /* Build configuration list for PBXNativeTarget "Cubeworld" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF840D8714D95C9A0022F193 /* Debug */,
+				DF840D8814D95C9A0022F193 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		DF840D8914D95C9A0022F193 /* Build configuration list for PBXNativeTarget "CubeworldTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF840D8A14D95C9A0022F193 /* Debug */,
+				DF840D8B14D95C9A0022F193 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DF840D4B14D95C990022F193 /* Project object */;
+}
