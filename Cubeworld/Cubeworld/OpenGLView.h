@@ -9,5 +9,20 @@
 #import <Foundation/Foundation.h>
 
 @interface OpenGLView : NSOpenGLView
+{
+    GLuint _program;
+    GLuint vertexBufferObject;
+    GLuint vao;
+    
+    //Uniforms
+    GLuint offsetUniform;
+    GLuint perspectiveMatrixUnif;
+}
 
+-(void)setupOpenGL;
+
+- (BOOL)compileShader:(GLuint *)shader type:(GLenum)type file:(NSString *)file;
+- (BOOL)loadShaders;
+- (BOOL)linkProgram:(GLuint)prog;
+- (BOOL)validateProgram:(GLuint)prog;
 @end

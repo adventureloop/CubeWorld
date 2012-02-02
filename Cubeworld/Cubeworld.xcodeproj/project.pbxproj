@@ -17,9 +17,12 @@
 		DF840D7814D95C9A0022F193 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF840D5814D95C990022F193 /* Cocoa.framework */; };
 		DF840D8014D95C9A0022F193 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF840D7E14D95C9A0022F193 /* InfoPlist.strings */; };
 		DF840D8314D95C9A0022F193 /* CubeworldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF840D8214D95C9A0022F193 /* CubeworldTests.m */; };
-		DF840D8F14D95E2A0022F193 /* ShaderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DF840D8E14D95E2A0022F193 /* ShaderManager.m */; };
 		DF840D9214D95E860022F193 /* OpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF840D9114D95E860022F193 /* OpenGLView.m */; };
 		DF840D9414D95EAA0022F193 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF840D9314D95EAA0022F193 /* OpenGL.framework */; };
+		DF840DA314D9738A0022F193 /* Test.vsh in Sources */ = {isa = PBXBuildFile; fileRef = DF840DA214D9738A0022F193 /* Test.vsh */; };
+		DF840DA514D973980022F193 /* Test.fsh in Sources */ = {isa = PBXBuildFile; fileRef = DF840DA414D973980022F193 /* Test.fsh */; };
+		DF840DAB14D97CAF0022F193 /* Test.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DF840DA214D9738A0022F193 /* Test.vsh */; };
+		DF840DAC14D97CAF0022F193 /* Test.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DF840DA414D973980022F193 /* Test.fsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,11 +55,11 @@
 		DF840D7F14D95C9A0022F193 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DF840D8114D95C9A0022F193 /* CubeworldTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CubeworldTests.h; sourceTree = "<group>"; };
 		DF840D8214D95C9A0022F193 /* CubeworldTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CubeworldTests.m; sourceTree = "<group>"; };
-		DF840D8D14D95E2A0022F193 /* ShaderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderManager.h; sourceTree = "<group>"; };
-		DF840D8E14D95E2A0022F193 /* ShaderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShaderManager.m; sourceTree = "<group>"; };
 		DF840D9014D95E860022F193 /* OpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLView.h; sourceTree = "<group>"; };
 		DF840D9114D95E860022F193 /* OpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLView.m; sourceTree = "<group>"; };
 		DF840D9314D95EAA0022F193 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		DF840DA214D9738A0022F193 /* Test.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Test.vsh; sourceTree = "<group>"; };
+		DF840DA414D973980022F193 /* Test.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Test.fsh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +132,7 @@
 				DF840D6D14D95C990022F193 /* MainMenu.xib */,
 				DF840D9014D95E860022F193 /* OpenGLView.h */,
 				DF840D9114D95E860022F193 /* OpenGLView.m */,
+				DF840DA114D973510022F193 /* Shaders */,
 				DF840D8C14D95DFF0022F193 /* Managers */,
 				DF840D5F14D95C990022F193 /* Supporting Files */,
 			);
@@ -169,10 +173,17 @@
 		DF840D8C14D95DFF0022F193 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				DF840D8D14D95E2A0022F193 /* ShaderManager.h */,
-				DF840D8E14D95E2A0022F193 /* ShaderManager.m */,
 			);
 			name = Managers;
+			sourceTree = "<group>";
+		};
+		DF840DA114D973510022F193 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				DF840DA214D9738A0022F193 /* Test.vsh */,
+				DF840DA414D973980022F193 /* Test.fsh */,
+			);
+			name = Shaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +256,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF840DAB14D97CAF0022F193 /* Test.vsh in Resources */,
+				DF840DAC14D97CAF0022F193 /* Test.fsh in Resources */,
 				DF840D6314D95C990022F193 /* InfoPlist.strings in Resources */,
 				DF840D6914D95C990022F193 /* Credits.rtf in Resources */,
 				DF840D6F14D95C990022F193 /* MainMenu.xib in Resources */,
@@ -284,8 +297,9 @@
 			files = (
 				DF840D6514D95C990022F193 /* main.m in Sources */,
 				DF840D6C14D95C990022F193 /* AppDelegate.m in Sources */,
-				DF840D8F14D95E2A0022F193 /* ShaderManager.m in Sources */,
 				DF840D9214D95E860022F193 /* OpenGLView.m in Sources */,
+				DF840DA314D9738A0022F193 /* Test.vsh in Sources */,
+				DF840DA514D973980022F193 /* Test.fsh in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
