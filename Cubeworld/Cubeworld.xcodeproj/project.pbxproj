@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF073EFF14E12CE900BC506D /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = DF073EFE14E12CE900BC506D /* Scene.m */; };
 		DF840D5914D95C990022F193 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF840D5814D95C990022F193 /* Cocoa.framework */; };
 		DF840D6314D95C990022F193 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF840D6114D95C990022F193 /* InfoPlist.strings */; };
 		DF840D6514D95C990022F193 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DF840D6414D95C990022F193 /* main.m */; };
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DF073EFD14E12CE900BC506D /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
+		DF073EFE14E12CE900BC506D /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
 		DF840D5414D95C990022F193 /* Cubeworld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cubeworld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF840D5814D95C990022F193 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		DF840D5B14D95C990022F193 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -132,6 +135,8 @@
 				DF840D6D14D95C990022F193 /* MainMenu.xib */,
 				DF840D9014D95E860022F193 /* OpenGLView.h */,
 				DF840D9114D95E860022F193 /* OpenGLView.m */,
+				DF073EFD14E12CE900BC506D /* Scene.h */,
+				DF073EFE14E12CE900BC506D /* Scene.m */,
 				DF840DA114D973510022F193 /* Shaders */,
 				DF840D8C14D95DFF0022F193 /* Managers */,
 				DF840D5F14D95C990022F193 /* Supporting Files */,
@@ -300,6 +305,7 @@
 				DF840D9214D95E860022F193 /* OpenGLView.m in Sources */,
 				DF840DA314D9738A0022F193 /* Test.vsh in Sources */,
 				DF840DA514D973980022F193 /* Test.fsh in Sources */,
+				DF073EFF14E12CE900BC506D /* Scene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,6 +477,7 @@
 				DF840D8814D95C9A0022F193 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DF840D8914D95C9A0022F193 /* Build configuration list for PBXNativeTarget "CubeworldTests" */ = {
 			isa = XCConfigurationList;
@@ -479,6 +486,7 @@
 				DF840D8B14D95C9A0022F193 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
