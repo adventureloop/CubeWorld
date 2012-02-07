@@ -26,56 +26,61 @@
     return self;
 }
 
+-(void)awakeFromNib
+{
+    NSLog(@"Setting up opengl");   
+    //[self setupOpenGL];
+}
+
 const float vertexData[] = {
-    0.5f,  0.5f, 0.5f, 1.0f,
-    0.5f, -0.5f, 0.5f, 1.0f,
-	-0.5f,  0.5f, 0.5f, 1.0f,
     
-    0.5f, -0.5f, 0.5f, 1.0f,
-	-0.5f, -0.5f, 0.5f, 1.0f,
-	-0.5f,  0.5f, 0.5f, 1.0f,
-    
-    0.5f,  0.5f, -0.5f, 1.0f,
-	-0.5f,  0.5f, -0.5f, 1.0f,
-    0.5f, -0.5f, -0.5f, 1.0f,
-    
-    0.5f, -0.5f, -0.5f, 1.0f,
-	-0.5f,  0.5f, -0.5f, 1.0f,
-	-0.5f, -0.5f, -0.5f, 1.0f,
-    
-	-0.5f,  0.5f,  0.5f, 1.0f,
-	-0.5f, -0.5f,  0.5f, 1.0f,
-	-0.5f, -0.5f, -0.5f, 1.0f,
-    
-	-0.5f,  0.5f,  0.5f, 1.0f,
-	-0.5f, -0.5f, -0.5f, 1.0f,
-	-0.5f,  0.5f, -0.5f, 1.0f,
-    
-    0.5f,  0.5f,  0.5f, 1.0f,
-    0.5f, -0.5f, -0.5f, 1.0f,
-    0.5f, -0.5f,  0.5f, 1.0f,
-    
-    0.5f,  0.5f,  0.5f, 1.0f,
-    0.5f,  0.5f, -0.5f, 1.0f,
-    0.5f, -0.5f, -0.5f, 1.0f,
-    
-    0.5f,  0.5f, -0.5f, 1.0f,
-    0.5f,  0.5f,  0.5f, 1.0f,
-	-0.5f,  0.5f,  0.5f, 1.0f,
-    
-    0.5f,  0.5f, -0.5f, 1.0f,
-	-0.5f,  0.5f,  0.5f, 1.0f,
-	-0.5f,  0.5f, -0.5f, 1.0f,
-    
-    0.5f, -0.5f, -0.5f, 1.0f,
-	-0.5f, -0.5f,  0.5f, 1.0f,
-    0.5f, -0.5f,  0.5f, 1.0f,
-    
-    0.5f, -0.5f, -0.5f, 1.0f,
-	-0.5f, -0.5f, -0.5f, 1.0f,
-	-0.5f, -0.5f,  0.5f, 1.0f,
-    
-    
+      0.5f,  0.5f, 0.5f, 1.0f,
+      0.5f, -0.5f, 0.5f, 1.0f,
+     -0.5f,  0.5f, 0.5f, 1.0f,
+
+      0.5f, -0.5f, 0.5f, 1.0f,
+     -0.5f, -0.5f, 0.5f, 1.0f,
+     -0.5f,  0.5f, 0.5f, 1.0f,
+     
+      0.5f,  0.5f, -0.5f, 1.0f,
+     -0.5f,  0.5f, -0.5f, 1.0f,
+      0.5f, -0.5f, -0.5f, 1.0f,
+     
+      0.5f, -0.5f, -0.5f, 1.0f,
+     -0.5f,  0.5f, -0.5f, 1.0f,
+     -0.5f, -0.5f, -0.5f, 1.0f,
+     
+     -0.5f,  0.5f, 0.5f, 1.0f,
+     -0.5f, -0.5f, 0.5f, 1.0f,
+     -0.5f, -0.5f, -0.5f, 1.0f,
+     
+     -0.5f,  0.5f, 0.5f, 1.0f,
+     -0.5f, -0.5f, -0.5f, 1.0f,
+     -0.5f,  0.5f, -0.5f, 1.0f,
+     
+     0.5f,  0.5f, 0.5f, 1.0f,
+     0.5f, -0.5f, -0.5f, 1.0f,
+     0.5f, -0.5f, 0.5f, 1.0f,
+     
+     0.5f,  0.5f, 0.5f, 1.0f,
+     0.5f,  0.5f, -0.5f, 1.0f,
+     0.5f, -0.5f, -0.5f, 1.0f,
+     
+      0.5f,  0.5f, -0.5f, 1.0f,
+      0.5f,  0.5f, 0.5f, 1.0f,
+     -0.5f,  0.5f, 0.5f, 1.0f,
+     
+      0.5f,  0.5f, -0.5f, 1.0f,
+     -0.5f,  0.5f, 0.5f, 1.0f,
+     -0.5f,  0.5f, -0.5f, 1.0f,
+     
+      0.5f, -0.5f, -0.5f, 1.0f,
+     -0.5f, -0.5f, 0.5f, 1.0f,
+      0.5f, -0.5f, 0.5f, 1.0f,
+     
+      0.5f, -0.5f, -0.5f, 1.0f,
+     -0.5f, -0.5f, -0.5f, 1.0f,
+     -0.5f, -0.5f, 0.5f, 1.0f,
     
     
 	0.0f, 0.0f, 1.0f, 1.0f,
@@ -125,23 +130,35 @@ const float vertexData[] = {
 	0.0f, 1.0f, 1.0f, 1.0f,
 	0.0f, 1.0f, 1.0f, 1.0f,
 	0.0f, 1.0f, 1.0f, 1.0f,
-    
-    
 };
 
 -(void)drawRect:(NSRect)bounds
 {
+    [self render];
+}
+
+-(void)render 
+{
     if(_program == 0)
         [self setupOpenGL];
     
-    glViewport(0, 0, (GLsizei) bounds.size.width, (GLsizei) bounds.size.width);
+    int w = [self bounds ].size.width;
+    int h = [self bounds ].size.height;
+    
+    theMatrix[0] = 1.0f / (w / (float)h);;
+	theMatrix[5] = 1.0f;
+    
+	glUseProgram(_program);
+	glUniformMatrix4fv(perspectiveMatrixUnif, 1, GL_FALSE, theMatrix);
+	glUseProgram(0);
+    glViewport(0, 0, (GLsizei)w, (GLsizei)w);
     
     glClearColor(0.0, 0.0, 0.0, 0.0);
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glUseProgram(_program);
     
-    glUniform2f(offsetUniform, 0.5f, 0.5f);
+    glUniform3f(offsetUniform, offsetX, offsetY,offsetZ);
     
     size_t colorData = sizeof(vertexData) / 2;
 	glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
@@ -172,14 +189,14 @@ const float vertexData[] = {
 	glGenVertexArraysAPPLE(1, &vao);
 	glBindVertexArrayAPPLE(vao);
     
-    
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
 	glFrontFace(GL_CW);
+
+    fFrustumScale = 2.4f;
+    fzNear = 0.5f; 
+    fzFar = 3.0f;
     
-	float fFrustumScale = 1.0f; float fzNear = 0.5f; float fzFar = 3.0f;
-    
-	float theMatrix[16];
 	memset(theMatrix, 0, sizeof(float) * 16);
     
 	theMatrix[0] = fFrustumScale;
@@ -191,6 +208,46 @@ const float vertexData[] = {
 	glUseProgram(_program);
 	glUniformMatrix4fv(perspectiveMatrixUnif, 1, GL_FALSE, theMatrix);
 	glUseProgram(0);
+    
+    //Enable depth testing
+    glEnable(GL_DEPTH_TEST);
+    glDepthMask(GL_TRUE);
+    glDepthFunc(GL_LEQUAL);
+    glDepthRange(0.0f, 1.0f);
+    
+    //Manage the aspect ration and window scale
+    int w = [self bounds ].size.width;
+    int h = [self bounds ].size.height;
+    
+    theMatrix[0] = fFrustumScale / (w / (float)h);;
+	theMatrix[5] = fFrustumScale;
+    
+	glUseProgram(_program);
+	glUniformMatrix4fv(perspectiveMatrixUnif, 1, GL_FALSE, theMatrix);
+	glUseProgram(0);
+    glViewport(0, 0, (GLsizei)w, (GLsizei)w);
+    
+    //Init the offsets;
+    offsetX = 1.0;
+    offsetY = 1.0;
+    offsetZ = -2.0;
+    
+    //Set up the animation timer
+    self->animationTimer = [NSTimer scheduledTimerWithTimeInterval:1/30 target:self selector:@selector(render) userInfo:nil repeats:YES];
+}
+
+-(void)viewDidEndLiveResize
+{
+    int w = [self bounds ].size.width;
+    int h = [self bounds ].size.height;
+    
+    theMatrix[0] = fFrustumScale / (w / (float)h);;
+	theMatrix[5] = fFrustumScale;
+    
+	glUseProgram(_program);
+	glUniformMatrix4fv(perspectiveMatrixUnif, 1, GL_FALSE, theMatrix);
+	glUseProgram(0);
+    glViewport(0, 0, (GLsizei)w, (GLsizei)h);
 }
 
 #pragma mark -  OpenGL ES 2 shader compilation
@@ -275,6 +332,7 @@ const float vertexData[] = {
     return YES;
 }
 
+
 - (BOOL)compileShader:(GLuint *)shader type:(GLenum)type file:(NSString *)file
 {
     GLint status;
@@ -355,5 +413,41 @@ const float vertexData[] = {
     }
     
     return YES;
+}
+
+#pragma mark Handle keypresses
+- (BOOL)acceptsFirstResponder // required if you want to get keydown event in NSViews.
+{
+    return YES;
+}
+
+-(void)keyUp:(NSEvent*)event
+{
+    //NSLog(@"Key released: %@", event);
+}
+
+-(void)keyDown:(NSEvent*)event
+{   
+    // I added these based on the addition to your question :)
+    switch( [event keyCode] ) {
+        case 126:       // up arrow
+            offsetY += 0.1;
+            break;
+        case 125:       // down arrow
+            offsetY -= 0.1;
+            break;
+        case 124:       // right arrow
+            offsetX += 0.1;
+            break;
+        case 123:       // left arrow
+            offsetX -= 0.1;
+            break;
+            NSLog(@"Arrow key pressed!");
+            break;
+        default:
+            NSLog(@"Key pressed: %@", event);
+            break;
+    }
+    [self needsLayout];
 }
 @end
