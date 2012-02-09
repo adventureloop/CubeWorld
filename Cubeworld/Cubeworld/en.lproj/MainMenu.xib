@@ -1314,7 +1314,7 @@
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<object class="NSOpenGLPixelFormat" key="NSPixelFormat">
 								<object class="NSMutableData" key="NSPixelAttributes">
-									<bytes key="NS.bytes">AAAAYAAAAAA</bytes>
+									<bytes key="NS.bytes">AAAAYAAAAAwAAAAQAAAAAA</bytes>
 								</object>
 							</object>
 						</object>

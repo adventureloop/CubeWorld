@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		DF073EFF14E12CE900BC506D /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = DF073EFE14E12CE900BC506D /* Scene.m */; };
+		DF2945C214E1938E007D1A15 /* Voxel.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2945C114E1938E007D1A15 /* Voxel.m */; };
+		DF29471214E1A50D007D1A15 /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = DF29471114E1A50D007D1A15 /* Camera.m */; };
 		DF840D5914D95C990022F193 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF840D5814D95C990022F193 /* Cocoa.framework */; };
 		DF840D6314D95C990022F193 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF840D6114D95C990022F193 /* InfoPlist.strings */; };
 		DF840D6514D95C990022F193 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DF840D6414D95C990022F193 /* main.m */; };
@@ -24,6 +26,7 @@
 		DF840DA514D973980022F193 /* Test.fsh in Sources */ = {isa = PBXBuildFile; fileRef = DF840DA414D973980022F193 /* Test.fsh */; };
 		DF840DAB14D97CAF0022F193 /* Test.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DF840DA214D9738A0022F193 /* Test.vsh */; };
 		DF840DAC14D97CAF0022F193 /* Test.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DF840DA414D973980022F193 /* Test.fsh */; };
+		DFAD6C0814E402D0002AB62A /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAD6C0714E402D0002AB62A /* Accelerate.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +42,10 @@
 /* Begin PBXFileReference section */
 		DF073EFD14E12CE900BC506D /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
 		DF073EFE14E12CE900BC506D /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
+		DF2945C014E1938E007D1A15 /* Voxel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Voxel.h; sourceTree = "<group>"; };
+		DF2945C114E1938E007D1A15 /* Voxel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Voxel.m; sourceTree = "<group>"; };
+		DF29471014E1A50D007D1A15 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
+		DF29471114E1A50D007D1A15 /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Camera.m; sourceTree = "<group>"; };
 		DF840D5414D95C990022F193 /* Cubeworld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cubeworld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF840D5814D95C990022F193 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		DF840D5B14D95C990022F193 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -63,6 +70,7 @@
 		DF840D9314D95EAA0022F193 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		DF840DA214D9738A0022F193 /* Test.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Test.vsh; sourceTree = "<group>"; };
 		DF840DA414D973980022F193 /* Test.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Test.fsh; sourceTree = "<group>"; };
+		DFAD6C0714E402D0002AB62A /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFAD6C0814E402D0002AB62A /* Accelerate.framework in Frameworks */,
 				DF840D9414D95EAA0022F193 /* OpenGL.framework in Frameworks */,
 				DF840D5914D95C990022F193 /* Cocoa.framework in Frameworks */,
 			);
@@ -87,9 +96,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF2945BE14E19377007D1A15 /* World Elements */ = {
+			isa = PBXGroup;
+			children = (
+				DF2945C014E1938E007D1A15 /* Voxel.h */,
+				DF2945C114E1938E007D1A15 /* Voxel.m */,
+			);
+			name = "World Elements";
+			sourceTree = "<group>";
+		};
 		DF840D4914D95C990022F193 = {
 			isa = PBXGroup;
 			children = (
+				DFAD6C0714E402D0002AB62A /* Accelerate.framework */,
 				DF840D9314D95EAA0022F193 /* OpenGL.framework */,
 				DF840D5E14D95C990022F193 /* Cubeworld */,
 				DF840D7B14D95C9A0022F193 /* CubeworldTests */,
@@ -137,8 +156,10 @@
 				DF840D9114D95E860022F193 /* OpenGLView.m */,
 				DF073EFD14E12CE900BC506D /* Scene.h */,
 				DF073EFE14E12CE900BC506D /* Scene.m */,
+				DF29471014E1A50D007D1A15 /* Camera.h */,
+				DF29471114E1A50D007D1A15 /* Camera.m */,
 				DF840DA114D973510022F193 /* Shaders */,
-				DF840D8C14D95DFF0022F193 /* Managers */,
+				DF2945BE14E19377007D1A15 /* World Elements */,
 				DF840D5F14D95C990022F193 /* Supporting Files */,
 			);
 			path = Cubeworld;
@@ -173,13 +194,6 @@
 				DF840D7E14D95C9A0022F193 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		DF840D8C14D95DFF0022F193 /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Managers;
 			sourceTree = "<group>";
 		};
 		DF840DA114D973510022F193 /* Shaders */ = {
@@ -306,6 +320,8 @@
 				DF840DA314D9738A0022F193 /* Test.vsh in Sources */,
 				DF840DA514D973980022F193 /* Test.fsh in Sources */,
 				DF073EFF14E12CE900BC506D /* Scene.m in Sources */,
+				DF2945C214E1938E007D1A15 /* Voxel.m in Sources */,
+				DF29471214E1A50D007D1A15 /* Camera.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

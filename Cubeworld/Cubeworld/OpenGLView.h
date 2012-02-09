@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Voxel.h"
 
 @interface OpenGLView : NSOpenGLView
 {
@@ -28,6 +29,9 @@
     float fFrustumScale;
     float fzNear; 
     float fzFar;
+    
+    Voxel *v1;
+    Voxel *v2;
 }
 
 -(void)setupOpenGL;

@@ -10,77 +10,55 @@
 #include <OpenGL/gl.h>
 
 @implementation OpenGLView
--(id)initWithFrame:(NSRect)frameRect pixelFormat:(NSOpenGLPixelFormat *)format
-{
-    if(self = [super initWithFrame:frameRect pixelFormat:format]) {
-        [self loadShaders];
-    }
-    
-    return self;
-}
-
--(id)initWithFrame:(NSRect)frameRect
-{
-    if(self = [super initWithFrame:frameRect])
-        [self setupOpenGL];
-    return self;
-}
-
--(void)awakeFromNib
-{
-    NSLog(@"Setting up opengl");   
-    //[self setupOpenGL];
-}
-
 const float vertexData[] = {
     
-      0.5f,  0.5f, 0.5f, 1.0f,
-      0.5f, -0.5f, 0.5f, 1.0f,
-     -0.5f,  0.5f, 0.5f, 1.0f,
-
-      0.5f, -0.5f, 0.5f, 1.0f,
-     -0.5f, -0.5f, 0.5f, 1.0f,
-     -0.5f,  0.5f, 0.5f, 1.0f,
-     
-      0.5f,  0.5f, -0.5f, 1.0f,
-     -0.5f,  0.5f, -0.5f, 1.0f,
-      0.5f, -0.5f, -0.5f, 1.0f,
-     
-      0.5f, -0.5f, -0.5f, 1.0f,
-     -0.5f,  0.5f, -0.5f, 1.0f,
-     -0.5f, -0.5f, -0.5f, 1.0f,
-     
-     -0.5f,  0.5f, 0.5f, 1.0f,
-     -0.5f, -0.5f, 0.5f, 1.0f,
-     -0.5f, -0.5f, -0.5f, 1.0f,
-     
-     -0.5f,  0.5f, 0.5f, 1.0f,
-     -0.5f, -0.5f, -0.5f, 1.0f,
-     -0.5f,  0.5f, -0.5f, 1.0f,
-     
-     0.5f,  0.5f, 0.5f, 1.0f,
-     0.5f, -0.5f, -0.5f, 1.0f,
-     0.5f, -0.5f, 0.5f, 1.0f,
-     
-     0.5f,  0.5f, 0.5f, 1.0f,
-     0.5f,  0.5f, -0.5f, 1.0f,
-     0.5f, -0.5f, -0.5f, 1.0f,
-     
-      0.5f,  0.5f, -0.5f, 1.0f,
-      0.5f,  0.5f, 0.5f, 1.0f,
-     -0.5f,  0.5f, 0.5f, 1.0f,
-     
-      0.5f,  0.5f, -0.5f, 1.0f,
-     -0.5f,  0.5f, 0.5f, 1.0f,
-     -0.5f,  0.5f, -0.5f, 1.0f,
-     
-      0.5f, -0.5f, -0.5f, 1.0f,
-     -0.5f, -0.5f, 0.5f, 1.0f,
-      0.5f, -0.5f, 0.5f, 1.0f,
-     
-      0.5f, -0.5f, -0.5f, 1.0f,
-     -0.5f, -0.5f, -0.5f, 1.0f,
-     -0.5f, -0.5f, 0.5f, 1.0f,
+    0.5f,  0.5f, 0.5f, 1.0f,
+    0.5f, -0.5f, 0.5f, 1.0f,
+    -0.5f,  0.5f, 0.5f, 1.0f,
+    
+    0.5f, -0.5f, 0.5f, 1.0f,
+    -0.5f, -0.5f, 0.5f, 1.0f,
+    -0.5f,  0.5f, 0.5f, 1.0f,
+    
+    0.5f,  0.5f, -0.5f, 1.0f,
+    -0.5f,  0.5f, -0.5f, 1.0f,
+    0.5f, -0.5f, -0.5f, 1.0f,
+    
+    0.5f, -0.5f, -0.5f, 1.0f,
+    -0.5f,  0.5f, -0.5f, 1.0f,
+    -0.5f, -0.5f, -0.5f, 1.0f,
+    
+    -0.5f,  0.5f, 0.5f, 1.0f,
+    -0.5f, -0.5f, 0.5f, 1.0f,
+    -0.5f, -0.5f, -0.5f, 1.0f,
+    
+    -0.5f,  0.5f, 0.5f, 1.0f,
+    -0.5f, -0.5f, -0.5f, 1.0f,
+    -0.5f,  0.5f, -0.5f, 1.0f,
+    
+    0.5f,  0.5f, 0.5f, 1.0f,
+    0.5f, -0.5f, -0.5f, 1.0f,
+    0.5f, -0.5f, 0.5f, 1.0f,
+    
+    0.5f,  0.5f, 0.5f, 1.0f,
+    0.5f,  0.5f, -0.5f, 1.0f,
+    0.5f, -0.5f, -0.5f, 1.0f,
+    
+    0.5f,  0.5f, -0.5f, 1.0f,
+    0.5f,  0.5f, 0.5f, 1.0f,
+    -0.5f,  0.5f, 0.5f, 1.0f,
+    
+    0.5f,  0.5f, -0.5f, 1.0f,
+    -0.5f,  0.5f, 0.5f, 1.0f,
+    -0.5f,  0.5f, -0.5f, 1.0f,
+    
+    0.5f, -0.5f, -0.5f, 1.0f,
+    -0.5f, -0.5f, 0.5f, 1.0f,
+    0.5f, -0.5f, 0.5f, 1.0f,
+    
+    0.5f, -0.5f, -0.5f, 1.0f,
+    -0.5f, -0.5f, -0.5f, 1.0f,
+    -0.5f, -0.5f, 0.5f, 1.0f,
     
     
 	0.0f, 0.0f, 1.0f, 1.0f,
@@ -132,6 +110,28 @@ const float vertexData[] = {
 	0.0f, 1.0f, 1.0f, 1.0f,
 };
 
+-(id)initWithFrame:(NSRect)frameRect pixelFormat:(NSOpenGLPixelFormat *)format
+{
+    if(self = [super initWithFrame:frameRect pixelFormat:format]) {
+        [self loadShaders];
+    }
+    
+    return self;
+}
+
+-(id)initWithFrame:(NSRect)frameRect
+{
+    if(self = [super initWithFrame:frameRect])
+        [self setupOpenGL];
+    return self;
+}
+
+-(void)awakeFromNib
+{
+    NSLog(@"Setting up opengl");   
+    //[self setupOpenGL];
+}
+
 -(void)drawRect:(NSRect)bounds
 {
     [self render];
@@ -154,23 +154,17 @@ const float vertexData[] = {
     glViewport(0, 0, (GLsizei)w, (GLsizei)w);
     
     glClearColor(0.0, 0.0, 0.0, 0.0);
+    glClearDepth(1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glUseProgram(_program);
     
     glUniform3f(offsetUniform, offsetX, offsetY,offsetZ);
+    [v1 render];
     
-    size_t colorData = sizeof(vertexData) / 2;
-	glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
-	glEnableVertexAttribArray(0);
-	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, 0);
-	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, (void*)colorData);
+    glUniform3f(offsetUniform, offsetX - 1.05, offsetY,offsetZ);
+    [v2 render];
     
-	glDrawArrays(GL_TRIANGLES, 0, 36);
-    
-	glDisableVertexAttribArray(0);
-	glDisableVertexAttribArray(1);
 	glUseProgram(0);
     
     glSwapAPPLE();
@@ -179,15 +173,6 @@ const float vertexData[] = {
 -(void)setupOpenGL
 {
     [self loadShaders];   
- 
-	glGenBuffers(1, &vertexBufferObject);
-    
-	glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-    
-	glGenVertexArraysAPPLE(1, &vao);
-	glBindVertexArrayAPPLE(vao);
     
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
@@ -234,6 +219,9 @@ const float vertexData[] = {
     
     //Set up the animation timer
     self->animationTimer = [NSTimer scheduledTimerWithTimeInterval:1/30 target:self selector:@selector(render) userInfo:nil repeats:YES];
+    
+    v1 = [[Voxel alloc]init];
+    v2 = [[Voxel alloc]init];
 }
 
 -(void)viewDidEndLiveResize
