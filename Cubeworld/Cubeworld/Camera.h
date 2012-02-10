@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#include "VectorMath.h"
 
 @interface Camera : NSObject
 {
@@ -22,11 +23,5 @@
 -(void)resolveCameraPosition;
 -(void)calculateLookAtMatrix;
 
--(void)multiplyVector1:(float *)v1 byVector2:(float *)v2 result:(float *)r1;
--(void)normaliseVector:(float *)v1;
--(void)subtractVector1:(float *)v1 vector2:(float *)v2;
-
--(void)multiplyMatrix1:(float *)m1 byMatrix2:(float *)m2 result:(float *)r2;
-
-float degToRad(float);
+-(float *)lookAtMatrix;
 @end

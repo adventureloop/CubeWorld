@@ -46,6 +46,7 @@
 		DF2945C114E1938E007D1A15 /* Voxel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Voxel.m; sourceTree = "<group>"; };
 		DF29471014E1A50D007D1A15 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		DF29471114E1A50D007D1A15 /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Camera.m; sourceTree = "<group>"; };
+		DF64F3AA14E55A870003630A /* VectorMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VectorMath.h; sourceTree = "<group>"; };
 		DF840D5414D95C990022F193 /* Cubeworld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cubeworld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF840D5814D95C990022F193 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		DF840D5B14D95C990022F193 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -149,6 +150,7 @@
 		DF840D5E14D95C990022F193 /* Cubeworld */ = {
 			isa = PBXGroup;
 			children = (
+				DF64F3AA14E55A870003630A /* VectorMath.h */,
 				DF840D6A14D95C990022F193 /* AppDelegate.h */,
 				DF840D6B14D95C990022F193 /* AppDelegate.m */,
 				DF840D6D14D95C990022F193 /* MainMenu.xib */,

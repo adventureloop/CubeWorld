@@ -15,14 +15,28 @@
     if(self = [super init]){
         cameraSpherePos = calloc( 3,sizeof(float));
         cameraTarget = calloc(3,sizeof(float));
+        upVec = calloc(3, sizeof(float));
         
         lookAtMatrix = calloc(16,sizeof(float));
+        
+        cameraTarget[0] = 0.0f;
+        cameraTarget[1] = 0.4f;
+        cameraTarget[2] = 0.0f;
+        
+        cameraSpherePos[0] = 67.5f;
+        cameraSpherePos[1] = -46.0f;
+        cameraSpherePos[2] = 150.f;
+        
+        upVec[0] = 0.0f;
+        upVec[1] = 1.0f;
+        upVec[2] = 0.0f;
     }
     return self;
 }
 
 -(void)dealloc
 {
+    free(upVec);
     free(cameraTarget);
     free(cameraSpherePos);
     free(lookAtMatrix);
@@ -30,60 +44,76 @@
 
 -(void)update
 {
-    
+    [self resolveCameraPosition];
 }
 
 -(void)resolveCameraPosition
 {
-  /*  float phi = degToRad(xPos);
-    float theta = degToRad(yPos + 90.0f);
+    float phi = degToRad(cameraSpherePos[0]);
+    float theta = degToRad(cameraSpherePos[1] + 90.0f);
     
     float fSinTheta = sinf(theta);
 	float fCosTheta = cosf(theta);
 	float fCosPhi = cosf(phi);
 	float fSinPhi = sinf(phi);
     
-    float camPos[3];
+    float *camPos = calloc(3, sizeof(float));
     
     camPos[0] = fSinTheta * fCosPhi;
     camPos[1] = fCosTheta;
     camPos[2] = fSinTheta * fSinPhi;
     
-    camPos[0] *= zPos;
-    camPos[1] *= zPos;
-    camPos[2] *= zPos;
+    vecByScalarV3(camPos, cameraSpherePos[2], camPos);
     
-    camPos[0] += camTargetV3[0];
-    camPos[1] += camTargetV3[1];
-    camPos[2] += camTargetV3[2];
+    addV3(camPos, cameraTarget, camPos);
 
-    //CalcLookAtMatrix(camPos, g_camTarget, glm::vec3(0.0f, 1.0f, 0.0f)
-    // CalcLookAtMatrix(const glm::vec3 &cameraPt, const glm::vec3 &lookPt, const glm::vec3 &upPt)    
+    float *lookDir = calloc(3, sizeof(float));
+    float *upDir = calloc(3, sizeof(float));
     
-	glm::vec3 lookDir = glm::normalize(lookPt - cameraPt);
-	glm::vec3 upDir = glm::normalize(upPt);
+    subtractV3(cameraTarget, camPos, lookDir);
+    normalizeV3(lookDir, lookDir);
     
-	glm::vec3 rightDir = glm::normalize(glm::cross(lookDir, upDir));
-	glm::vec3 perpUpDir = glm::cross(rightDir, lookDir);
+    normalizeV3(upVec, upDir);
     
-	glm::mat4 rotMat(1.0f);
-	rotMat[0] = glm::vec4(rightDir, 0.0f);
-	rotMat[1] = glm::vec4(perpUpDir, 0.0f);
-	rotMat[2] = glm::vec4(-lookDir, 0.0f);
+    float *rightDir = calloc(3, sizeof(float));
+    float *perpUpDir = calloc(3, sizeof(float));
     
-	rotMat = glm::transpose(rotMat);
+    crossV3(lookDir, upDir, rightDir);
+    normalizeV3(rightDir, rightDir);
     
-	glm::mat4 transMat(1.0f);
-	transMat[3] = glm::vec4(-cameraPt, 1.0f);
+    crossV3(rightDir, lookDir, perpUpDir);
     
-	return rotMat * transMat;*/
+    vecByScalarV3(lookDir, -1.0f, lookDir);
+    vecByScalarV3(camPos, -1.0f, camPos);
+    
+    float *rotMat = calloc(16,sizeof(float));
+    matrixSetScalarM4(rotMat, 1.0f);
+    
+    matrixSetVectorV3M4(rotMat, rightDir, 0);
+    matrixSetVectorV3M4(rotMat, perpUpDir, 4);
+    matrixSetVectorV3M4(rotMat, lookDir, 8);
+    
+    transposeMatM4(rotMat);
+    
+    float *transMat = calloc(16,sizeof(float));
+    
+    matrixSetScalarM4(transMat, 1.0f);
+    matrixSetVectorV3M4(transMat, camPos, 12);
+    
+    multiplyMatM4(rotMat, transMat, lookAtMatrix);
+    
+    free(transMat);
+    free(rotMat);
+    free(camPos);
+    free(rightDir);
+    free(perpUpDir);
+    free(lookDir);
+    free(upDir);
 }
 
-float degToRad(float fAngDeg)
+-(float *)lookAtMatrix
 {
-    const float fDegToRad = 3.14159f * 2.0f / 360.0f;
-    return fAngDeg * fDegToRad;
+    return lookAtMatrix;
 }
 
-float normalize(float *invec, float *outvec);
 @end
