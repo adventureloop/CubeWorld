@@ -21,11 +21,15 @@
     float offsetY;
     float offsetZ;
     
-    //Uniforms
-    GLuint offsetUniform;
-    GLuint perspectiveMatrixUnif;
+    //Uniforms for mattrixes
+    GLuint cameraToClipMatrixUnif;
+    GLuint worldToCameraMatrixUnif;
+    GLuint modelToWorldMatrixUnif;
     
-    float theMatrix[16];
+    float *cameraToClipMatrix;
+    float *worldToCameraMatrix;
+    float *modelToWorldMatrix;
+    
     float fFrustumScale;
     float fzNear; 
     float fzFar;

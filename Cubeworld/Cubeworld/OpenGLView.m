@@ -177,21 +177,25 @@ const float vertexData[] = {
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
 	glFrontFace(GL_CW);
+    
+    cameraToClipMatrix = calloc(16,sizeof(float));
+    worldToCameraMatrix = calloc(16,sizeof(float));
+    modelToWorldMatrix = calloc(16,sizeof(float));
 
     fFrustumScale = 2.4f;
     fzNear = 0.5f; 
     fzFar = 3.0f;
     
-	memset(theMatrix, 0, sizeof(float) * 16);
+	/*memset(theMatrix, 0, sizeof(float) * 16);
     
 	theMatrix[0] = fFrustumScale;
 	theMatrix[5] = fFrustumScale;
 	theMatrix[10] = (fzFar + fzNear) / (fzNear - fzFar);
 	theMatrix[14] = (2 * fzFar * fzNear) / (fzNear - fzFar);
-	theMatrix[11] = -1.0f;
+	theMatrix[11] = -1.0f;*/
     
 	glUseProgram(_program);
-	glUniformMatrix4fv(perspectiveMatrixUnif, 1, GL_FALSE, theMatrix);
+//	glUniformMatrix4fv(perspectiveMatrixUnif, 1, GL_FALSE, theMatrix);
 	glUseProgram(0);
     
     //Enable depth testing
@@ -204,11 +208,11 @@ const float vertexData[] = {
     int w = [self bounds ].size.width;
     int h = [self bounds ].size.height;
     
-    theMatrix[0] = fFrustumScale / (w / (float)h);;
-	theMatrix[5] = fFrustumScale;
+   // theMatrix[0] = fFrustumScale / (w / (float)h);;
+//	theMatrix[5] = fFrustumScale;
     
 	glUseProgram(_program);
-	glUniformMatrix4fv(perspectiveMatrixUnif, 1, GL_FALSE, theMatrix);
+//	glUniformMatrix4fv(perspectiveMatrixUnif, 1, GL_FALSE, theMatrix);
 	glUseProgram(0);
     glViewport(0, 0, (GLsizei)w, (GLsizei)w);
     
@@ -216,9 +220,6 @@ const float vertexData[] = {
     offsetX = 1.0;
     offsetY = 1.0;
     offsetZ = -2.0;
-    
-    //Set up the animation timer
-    self->animationTimer = [NSTimer scheduledTimerWithTimeInterval:1/30 target:self selector:@selector(render) userInfo:nil repeats:YES];
     
     v1 = [[Voxel alloc]init];
     v2 = [[Voxel alloc]init];
@@ -229,11 +230,11 @@ const float vertexData[] = {
     int w = [self bounds ].size.width;
     int h = [self bounds ].size.height;
     
-    theMatrix[0] = fFrustumScale / (w / (float)h);;
-	theMatrix[5] = fFrustumScale;
+ //   theMatrix[0] = fFrustumScale / (w / (float)h);;
+//	theMatrix[5] = fFrustumScale;
     
 	glUseProgram(_program);
-	glUniformMatrix4fv(perspectiveMatrixUnif, 1, GL_FALSE, theMatrix);
+//	glUniformMatrix4fv(perspectiveMatrixUnif, 1, GL_FALSE, theMatrix);
 	glUseProgram(0);
     glViewport(0, 0, (GLsizei)w, (GLsizei)h);
 }
@@ -303,9 +304,9 @@ const float vertexData[] = {
     // Get uniform locations.
    /* uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX] = glGetUniformLocation(_program, "modelViewProjectionMatrix");
     uniforms[UNIFORM_NORMAL_MATRIX] = glGetUniformLocation(_program, "normalMatrix");*/
-    offsetUniform = glGetUniformLocation(_program, "offset");
-
-    perspectiveMatrixUnif = glGetUniformLocation(_program, "perspectiveMatrix");
+    cameraToClipMatrixUnif = glGetUniformLocation(_program, "cameraToClipMatrix");
+    worldToCameraMatrixUnif = glGetUniformLocation(_program, "worldToClipMatrix");
+    modelToWorldMatrixUnif = glGetUniformLocation(_program, "modelToWorldMatrix");
     
     // Release vertex and fragment shaders.
     if (vertShader) {
