@@ -141,32 +141,26 @@ const float vertexData[] = {
 {
     if(_program == 0)
         [self setupOpenGL];
+    [camera update];
     
-    int w = [self bounds ].size.width;
-    int h = [self bounds ].size.height;
-    
-    theMatrix[0] = 1.0f / (w / (float)h);;
-	theMatrix[5] = 1.0f;
-    
-	glUseProgram(_program);
-	glUniformMatrix4fv(perspectiveMatrixUnif, 1, GL_FALSE, theMatrix);
-	glUseProgram(0);
-    glViewport(0, 0, (GLsizei)w, (GLsizei)w);
-    
+    //Clear the colour and depth buffers
     glClearColor(0.0, 0.0, 0.0, 0.0);
     glClearDepth(1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-    glUseProgram(_program);
     
-    glUniform3f(offsetUniform, offsetX, offsetY,offsetZ);
+	glUseProgram(_program);
+    
+    //Set the camera matrix
+    glUniformMatrix4fv(worldToCameraMatrixUnif, 1, GL_FALSE, [camera lookAtMatrix]);
+    glUniformMatrix4fv(cameraToClipMatrixUnif, 1, GL_FALSE, [camera perspectiveMatrix]);
+    
+    //Use the model matrix(identity currently)
+    glUniformMatrix4fv(modelToWorldMatrixUnif, 1, GL_FALSE, modelToWorldMatrix);
+    
     [v1 render];
-    
-    glUniform3f(offsetUniform, offsetX - 1.05, offsetY,offsetZ);
-    [v2 render];
+  //  [v2 render];
     
 	glUseProgram(0);
-    
     glSwapAPPLE();
 }
 
@@ -178,25 +172,13 @@ const float vertexData[] = {
 	glCullFace(GL_BACK);
 	glFrontFace(GL_CW);
     
-    cameraToClipMatrix = calloc(16,sizeof(float));
-    worldToCameraMatrix = calloc(16,sizeof(float));
+    camera = [[Camera alloc]init];
+    
     modelToWorldMatrix = calloc(16,sizeof(float));
-
-    fFrustumScale = 2.4f;
-    fzNear = 0.5f; 
-    fzFar = 3.0f;
-    
-	/*memset(theMatrix, 0, sizeof(float) * 16);
-    
-	theMatrix[0] = fFrustumScale;
-	theMatrix[5] = fFrustumScale;
-	theMatrix[10] = (fzFar + fzNear) / (fzNear - fzFar);
-	theMatrix[14] = (2 * fzFar * fzNear) / (fzNear - fzFar);
-	theMatrix[11] = -1.0f;*/
-    
-	glUseProgram(_program);
-//	glUniformMatrix4fv(perspectiveMatrixUnif, 1, GL_FALSE, theMatrix);
-	glUseProgram(0);
+    modelToWorldMatrix[0] = 1.0f;
+    modelToWorldMatrix[5] = 1.0f;
+    modelToWorldMatrix[10] = 1.0f;
+    modelToWorldMatrix[15] = 1.0f;
     
     //Enable depth testing
     glEnable(GL_DEPTH_TEST);
@@ -204,25 +186,22 @@ const float vertexData[] = {
     glDepthFunc(GL_LEQUAL);
     glDepthRange(0.0f, 1.0f);
     
-    //Manage the aspect ration and window scale
+    //Manage the aspect ratio and window scale
     int w = [self bounds ].size.width;
     int h = [self bounds ].size.height;
     
-   // theMatrix[0] = fFrustumScale / (w / (float)h);;
-//	theMatrix[5] = fFrustumScale;
+    [camera resolvePerspectiveForWidth:w Height:h];
     
 	glUseProgram(_program);
-//	glUniformMatrix4fv(perspectiveMatrixUnif, 1, GL_FALSE, theMatrix);
+	glUniformMatrix4fv(cameraToClipMatrixUnif, 1, GL_FALSE,[camera perspectiveMatrix]);
 	glUseProgram(0);
-    glViewport(0, 0, (GLsizei)w, (GLsizei)w);
-    
-    //Init the offsets;
-    offsetX = 1.0;
-    offsetY = 1.0;
-    offsetZ = -2.0;
+    glViewport(0, 0, (GLsizei)w, (GLsizei)h);
     
     v1 = [[Voxel alloc]init];
     v2 = [[Voxel alloc]init];
+    
+    self->animationTimer = [NSTimer scheduledTimerWithTimeInterval:1/30 target:self selector:@selector(render) userInfo:nil repeats:YES];
+    
 }
 
 -(void)viewDidEndLiveResize
@@ -230,11 +209,10 @@ const float vertexData[] = {
     int w = [self bounds ].size.width;
     int h = [self bounds ].size.height;
     
- //   theMatrix[0] = fFrustumScale / (w / (float)h);;
-//	theMatrix[5] = fFrustumScale;
+    [camera resolvePerspectiveForWidth:w Height:h];
     
 	glUseProgram(_program);
-//	glUniformMatrix4fv(perspectiveMatrixUnif, 1, GL_FALSE, theMatrix);
+	glUniformMatrix4fv(cameraToClipMatrixUnif, 1, GL_FALSE,[camera perspectiveMatrix]);
 	glUseProgram(0);
     glViewport(0, 0, (GLsizei)w, (GLsizei)h);
 }
@@ -417,26 +395,7 @@ const float vertexData[] = {
 
 -(void)keyDown:(NSEvent*)event
 {   
-    // I added these based on the addition to your question :)
-    switch( [event keyCode] ) {
-        case 126:       // up arrow
-            offsetY += 0.1;
-            break;
-        case 125:       // down arrow
-            offsetY -= 0.1;
-            break;
-        case 124:       // right arrow
-            offsetX += 0.1;
-            break;
-        case 123:       // left arrow
-            offsetX -= 0.1;
-            break;
-            NSLog(@"Arrow key pressed!");
-            break;
-        default:
-            NSLog(@"Key pressed: %@", event);
-            break;
-    }
+    [camera keyDown:[event keyCode]];
     [self needsLayout];
 }
 @end

@@ -7,7 +7,8 @@
 //
 
 #import "Camera.h"
-#include <Accelerate/Accelerate.h>
+
+#include "VectorMath.h"
 
 @implementation Camera
 -(id)init
@@ -18,6 +19,7 @@
         upVec = calloc(3, sizeof(float));
         
         lookAtMatrix = calloc(16,sizeof(float));
+        perspectiveMatrix = calloc(16, sizeof(float));
         
         cameraTarget[0] = 0.0f;
         cameraTarget[1] = 0.4f;
@@ -30,6 +32,13 @@
         upVec[0] = 0.0f;
         upVec[1] = 1.0f;
         upVec[2] = 0.0f;
+        
+        matrixDiagMatrixM4(lookAtMatrix, 1.0f);
+        [self update];
+        
+        frustumScale = 2.4f;
+        zNear = 0.5f; 
+        zFar = 3.0f;
     }
     return self;
 }
@@ -40,6 +49,7 @@
     free(cameraTarget);
     free(cameraSpherePos);
     free(lookAtMatrix);
+    free(perspectiveMatrix);
 }
 
 -(void)update
@@ -49,6 +59,8 @@
 
 -(void)resolveCameraPosition
 {
+    
+    //Calculate Position for the camera
     float phi = degToRad(cameraSpherePos[0]);
     float theta = degToRad(cameraSpherePos[1] + 90.0f);
     
@@ -67,6 +79,12 @@
     
     addV3(camPos, cameraTarget, camPos);
 
+    
+    camPos[0] = 1.0f;
+    camPos[1] = 1.0f;
+    camPos[2] = 1.0f;
+    
+    //Calculate Look At Matrix
     float *lookDir = calloc(3, sizeof(float));
     float *upDir = calloc(3, sizeof(float));
     
@@ -87,7 +105,7 @@
     vecByScalarV3(camPos, -1.0f, camPos);
     
     float *rotMat = calloc(16,sizeof(float));
-    matrixSetScalarM4(rotMat, 1.0f);
+    matrixDiagMatrixM4(rotMat, 1.0f);
     
     matrixSetVectorV3M4(rotMat, rightDir, 0);
     matrixSetVectorV3M4(rotMat, perpUpDir, 4);
@@ -97,11 +115,16 @@
     
     float *transMat = calloc(16,sizeof(float));
     
-    matrixSetScalarM4(transMat, 1.0f);
-    matrixSetVectorV3M4(transMat, camPos, 12);
+    matrixDiagMatrixM4(transMat, 1.0f);
+//    matrixSetVectorV3M4(transMat, camPos, 12);
+    
+    transMat[3] = camPos[0];
+    transMat[7] = camPos[1];
+    transMat[11] = camPos[2];
     
     multiplyMatM4(rotMat, transMat, lookAtMatrix);
     
+    //Release the vectors and matracies used in the calculation
     free(transMat);
     free(rotMat);
     free(camPos);
@@ -111,9 +134,47 @@
     free(upDir);
 }
 
+-(void)resolvePerspectiveForWidth:(int)width Height:(int)height
+{
+	perspectiveMatrix[0] = frustumScale / (width / (float)height);
+	perspectiveMatrix[5] = frustumScale;
+	perspectiveMatrix[10] = (zFar + zNear) / (zNear - zFar);
+	perspectiveMatrix[14] = (2 * zFar * zNear) / (zNear - zFar);
+	perspectiveMatrix[11] = -1.0f;
+}
+
+
 -(float *)lookAtMatrix
 {
     return lookAtMatrix;
 }
 
+-(float *)perspectiveMatrix
+{
+    return perspectiveMatrix;
+}
+
+-(void)keyDown:(int)keyCode
+{
+    switch( keyCode ) {
+        case 126:       // up arrow
+            cameraTarget[1] += 0.1;
+            break;
+        case 125:       // down arrow
+            cameraTarget[1] -= 0.1;
+            break;
+        case 124:       // right arrow
+            cameraTarget[0] += 0.1;
+            break;
+        case 123:       // left arrow
+            cameraTarget[0] -= 0.1;
+            break;
+            
+            break;
+        default:
+            break;
+            
+    }
+    NSLog(@"Looking at\t%fx,%fy,%fz",cameraTarget[0],cameraTarget[1],cameraTarget[2]);
+}
 @end

@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#include "VectorMath.h"
-
 @interface Camera : NSObject
 {
     float *cameraSpherePos;
@@ -17,11 +15,19 @@
     float *upVec;
     
     float *lookAtMatrix;
+    float *perspectiveMatrix;
+    
+    float frustumScale;
+    float zFar;
+    float zNear;
 }
 
 -(void)update;
 -(void)resolveCameraPosition;
--(void)calculateLookAtMatrix;
+-(void)resolvePerspectiveForWidth:(int)width Height:(int)height;
 
 -(float *)lookAtMatrix;
+-(float *)perspectiveMatrix;
+
+-(void)keyDown:(int)keyCode;
 @end

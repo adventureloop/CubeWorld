@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "Voxel.h"
+#import "Camera.h"
+
 
 @interface OpenGLView : NSOpenGLView
 {
@@ -36,6 +38,8 @@
     
     Voxel *v1;
     Voxel *v2;
+    
+    Camera *camera;
 }
 
 -(void)setupOpenGL;

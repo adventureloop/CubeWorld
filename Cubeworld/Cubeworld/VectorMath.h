@@ -8,6 +8,20 @@
 
 #include <Accelerate/Accelerate.h>
 
+float degToRad(float);
+float magnitudeV3(float *);
+void normalizeV3(float *, float *);
+void subtractV3(float *, float *, float *);
+
+void crossV3(float *, float *, float *);
+void vecByScalarV3(float *,float scalar,float *);
+void addV3(float *,float *invec2,float *);
+void matrixDiagMatrixM4(float *,float);
+void matrixSetAllToScalarM4(float *, float );
+void matrixSetVectorV3M4(float *, float *, int );
+void multiplyMatM4(float *, float *,float *);
+void transposeMatM4(float *mat);
+
 float degToRad(float fAngDeg)
 {
     const float fDegToRad = 3.14159f * 2.0f / 360.0f;
@@ -31,6 +45,7 @@ void normalizeV3(float *invec, float *outvec)
 }
 
 //Substract invec2 from invec1, store result in outvec
+
 void subtractV3(float *invec1, float *invec2, float *outvec)
 {
     outvec[0] = invec1[0] - invec2[0];
@@ -63,7 +78,7 @@ void addV3(float *invec1,float *invec2,float *outvec)
     
 }
 
-void matrixSetScalarM4(float *mat,float scalar)
+void matrixDiagMatrixM4(float *mat,float scalar)
 {
     mat[0] = scalar;
     mat[5] = scalar;
