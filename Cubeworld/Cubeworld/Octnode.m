@@ -55,9 +55,9 @@
     tmp->face1.vertex1.c.blue = 1.0f;
     tmp->face1.vertex1.c.alpha = 1.0f;
     
-    tmp->face1.vertex1.n.x = 1.0f;
-    tmp->face1.vertex1.n.y = 1.0f;
-    tmp->face1.vertex1.n.z = 1.0f;
+    tmp->face1.vertex1.n.x = 0.0f;
+    tmp->face1.vertex1.n.y = 0.0f;
+    tmp->face1.vertex1.n.z = -1.0f;
     
     //Vertex 2
     tmp->face1.vertex2.v.x = origin.x + offset;
@@ -70,9 +70,9 @@
     tmp->face1.vertex2.c.blue = 1.0f;
     tmp->face1.vertex2.c.alpha = 1.0f;
     
-    tmp->face1.vertex2.n.x = 1.0f;
-    tmp->face1.vertex2.n.y = 1.0f;
-    tmp->face1.vertex2.n.z = 1.0f;
+    tmp->face1.vertex2.n.x = 0.0f;
+    tmp->face1.vertex2.n.y = 0.0f;
+    tmp->face1.vertex2.n.z = -1.0f;
     
     //Vertex 3
     tmp->face1.vertex3.v.x = origin.x + offset;
@@ -85,9 +85,9 @@
     tmp->face1.vertex3.c.blue = 1.0f;
     tmp->face1.vertex3.c.alpha = 1.0f;
     
-    tmp->face1.vertex3.n.x = 1.0f;
-    tmp->face1.vertex3.n.y = 1.0f;
-    tmp->face1.vertex3.n.z = 1.0f;
+    tmp->face1.vertex3.n.x = 0.0f;
+    tmp->face1.vertex3.n.y = 0.0f;
+    tmp->face1.vertex3.n.z = -1.0f;
     
     //Vertex 4
     tmp->face1.vertex4.v.x = origin.x - offset;
@@ -100,9 +100,9 @@
     tmp->face1.vertex4.c.blue = 1.0f;
     tmp->face1.vertex4.c.alpha = 1.0f;
     
-    tmp->face1.vertex4.n.x = 1.0f;
-    tmp->face1.vertex4.n.y = 1.0f;
-    tmp->face1.vertex4.n.z = 1.0f;
+    tmp->face1.vertex4.n.x = 0.0f;
+    tmp->face1.vertex4.n.y = 0.0f;
+    tmp->face1.vertex4.n.z = -1.0f;
     
     //Face 2
     //Vertex 1
@@ -116,8 +116,8 @@
     tmp->face2.vertex1.c.blue = 1.0f;
     tmp->face2.vertex1.c.alpha = 1.0f;
     
-    tmp->face2.vertex1.n.x = 1.0f;
-    tmp->face2.vertex1.n.y = 1.0f;
+    tmp->face2.vertex1.n.x = 0.0f;
+    tmp->face2.vertex1.n.y = 0.0f;
     tmp->face2.vertex1.n.z = 1.0f;
     
     //Vertex 2
@@ -131,8 +131,8 @@
     tmp->face2.vertex2.c.blue = 1.0f;
     tmp->face2.vertex2.c.alpha = 1.0f;
     
-    tmp->face2.vertex2.n.x = 1.0f;
-    tmp->face2.vertex2.n.y = 1.0f;
+    tmp->face2.vertex2.n.x = 0.0f;
+    tmp->face2.vertex2.n.y = 0.0f;
     tmp->face2.vertex2.n.z = 1.0f;
     
     //Vertex 3
@@ -146,8 +146,8 @@
     tmp->face2.vertex3.c.blue = 1.0f;
     tmp->face2.vertex3.c.alpha = 1.0f;
     
-    tmp->face2.vertex3.n.x = 1.0f;
-    tmp->face2.vertex3.n.y = 1.0f;
+    tmp->face2.vertex3.n.x = 0.0f;
+    tmp->face2.vertex3.n.y = 0.0f;
     tmp->face2.vertex3.n.z = 1.0f;
     
     //Vertex 4
@@ -161,8 +161,8 @@
     tmp->face2.vertex4.c.blue = 1.0f;
     tmp->face2.vertex4.c.alpha = 1.0f;
     
-    tmp->face2.vertex4.n.x = 1.0f;
-    tmp->face2.vertex4.n.y = 1.0f;
+    tmp->face2.vertex4.n.x = 0.0f;
+    tmp->face2.vertex4.n.y = 0.0f;
     tmp->face2.vertex4.n.z = 1.0f; 
     
     //Face 3
@@ -177,9 +177,9 @@
     tmp->face3.vertex1.c.blue = 1.0f;
     tmp->face3.vertex1.c.alpha = 1.0f;
     
-    tmp->face3.vertex1.n.x = 1.0f;
-    tmp->face3.vertex1.n.y = 1.0f;
-    tmp->face3.vertex1.n.z = 1.0f;
+    tmp->face3.vertex1.n.x = -1.0f;
+    tmp->face3.vertex1.n.y = 0.0f;
+    tmp->face3.vertex1.n.z = 0.0f;
     
     //Vertex 2
     tmp->face3.vertex2.v.x = origin.x - offset;
@@ -192,9 +192,9 @@
     tmp->face3.vertex2.c.blue = 1.0f;
     tmp->face3.vertex2.c.alpha = 1.0f;
     
-    tmp->face3.vertex2.n.x = 1.0f;
-    tmp->face3.vertex2.n.y = 1.0f;
-    tmp->face3.vertex2.n.z = 1.0f;
+    tmp->face3.vertex2.n.x = -1.0f;
+    tmp->face3.vertex2.n.y = 0.0f;
+    tmp->face3.vertex2.n.z = 0.0f;
     
     //Vertex 3
     tmp->face3.vertex3.v.x = origin.x - offset;
@@ -207,9 +207,9 @@
     tmp->face3.vertex3.c.blue = 1.0f;
     tmp->face3.vertex3.c.alpha = 1.0f;
     
-    tmp->face3.vertex3.n.x = 1.0f;
-    tmp->face3.vertex3.n.y = 1.0f;
-    tmp->face3.vertex3.n.z = 1.0f;
+    tmp->face3.vertex3.n.x = -1.0f;
+    tmp->face3.vertex3.n.y = 0.0f;
+    tmp->face3.vertex3.n.z = 0.0f;
     
     //Vertex 4
     tmp->face3.vertex4.v.x = origin.x - offset;
@@ -222,9 +222,9 @@
     tmp->face3.vertex4.c.blue = 1.0f;
     tmp->face3.vertex4.c.alpha = 1.0f;
     
-    tmp->face3.vertex4.n.x = 1.0f;
-    tmp->face3.vertex4.n.y = 1.0f;
-    tmp->face3.vertex4.n.z = 1.0f; 
+    tmp->face3.vertex4.n.x = -1.0f;
+    tmp->face3.vertex4.n.y = 0.0f;
+    tmp->face3.vertex4.n.z = 0.0f; 
     
     //Face 4
     //Vertex 1
@@ -239,8 +239,8 @@
     tmp->face4.vertex1.c.alpha = 1.0f;
     
     tmp->face4.vertex1.n.x = 1.0f;
-    tmp->face4.vertex1.n.y = 1.0f;
-    tmp->face4.vertex1.n.z = 1.0f;
+    tmp->face4.vertex1.n.y = 0.0f;
+    tmp->face4.vertex1.n.z = 0.0f;
     
     //Vertex 2
     tmp->face4.vertex2.v.x = origin.x + offset;
@@ -254,8 +254,8 @@
     tmp->face4.vertex2.c.alpha = 1.0f;
     
     tmp->face4.vertex2.n.x = 1.0f;
-    tmp->face4.vertex2.n.y = 1.0f;
-    tmp->face4.vertex2.n.z = 1.0f;
+    tmp->face4.vertex2.n.y = 0.0f;
+    tmp->face4.vertex2.n.z = 0.0f;
     
     //Vertex 3
     tmp->face4.vertex3.v.x = origin.x + offset;
@@ -269,8 +269,8 @@
     tmp->face4.vertex3.c.alpha = 1.0f;
     
     tmp->face4.vertex3.n.x = 1.0f;
-    tmp->face4.vertex3.n.y = 1.0f;
-    tmp->face4.vertex3.n.z = 1.0f;
+    tmp->face4.vertex3.n.y = 0.0f;
+    tmp->face4.vertex3.n.z = 0.0f;
     
     //Vertex 4
     tmp->face4.vertex4.v.x = origin.x + offset;
@@ -284,8 +284,8 @@
     tmp->face4.vertex4.c.alpha = 1.0f;
     
     tmp->face4.vertex4.n.x = 1.0f;
-    tmp->face4.vertex4.n.y = 1.0f;
-    tmp->face4.vertex4.n.z = 1.0f; 
+    tmp->face4.vertex4.n.y = 0.0f;
+    tmp->face4.vertex4.n.z = 0.0f; 
     
     //Face 5
     //Vertex 1
@@ -299,9 +299,9 @@
     tmp->face5.vertex1.c.blue = 1.0f;
     tmp->face5.vertex1.c.alpha = 1.0f;
     
-    tmp->face5.vertex1.n.x = 1.0f;
+    tmp->face5.vertex1.n.x = 0.0f;
     tmp->face5.vertex1.n.y = 1.0f;
-    tmp->face5.vertex1.n.z = 1.0f;
+    tmp->face5.vertex1.n.z = 0.0f;
     
     //Vertex 2
     tmp->face5.vertex2.v.x = origin.x + offset;
@@ -314,9 +314,9 @@
     tmp->face5.vertex2.c.blue = 1.0f;
     tmp->face5.vertex2.c.alpha = 1.0f;
     
-    tmp->face5.vertex2.n.x = 1.0f;
+    tmp->face5.vertex2.n.x = 0.0f;
     tmp->face5.vertex2.n.y = 1.0f;
-    tmp->face5.vertex2.n.z = 1.0f;
+    tmp->face5.vertex2.n.z = 0.0f;
     
     //Vertex 3
     tmp->face5.vertex3.v.x = origin.x - offset;
@@ -329,9 +329,9 @@
     tmp->face5.vertex3.c.blue = 1.0f;
     tmp->face5.vertex3.c.alpha = 1.0f;
     
-    tmp->face5.vertex3.n.x = 1.0f;
+    tmp->face5.vertex3.n.x = 0.0f;
     tmp->face5.vertex3.n.y = 1.0f;
-    tmp->face5.vertex3.n.z = 1.0f;
+    tmp->face5.vertex3.n.z = 0.0f;
     
     //Vertex 4
     tmp->face5.vertex4.v.x = origin.x + offset;
@@ -344,9 +344,9 @@
     tmp->face5.vertex4.c.blue = 1.0f;
     tmp->face5.vertex4.c.alpha = 1.0f;
     
-    tmp->face5.vertex4.n.x = 1.0f;
+    tmp->face5.vertex4.n.x = 0.0f;
     tmp->face5.vertex4.n.y = 1.0f;
-    tmp->face5.vertex4.n.z = 1.0f; 
+    tmp->face5.vertex4.n.z = 0.0f; 
     
     //Face 6
     //Vertex 1
@@ -360,9 +360,9 @@
     tmp->face6.vertex1.c.blue = 1.0f;
     tmp->face6.vertex1.c.alpha = 1.0f;
     
-    tmp->face6.vertex1.n.x = 1.0f;
-    tmp->face6.vertex1.n.y = 1.0f;
-    tmp->face6.vertex1.n.z = 1.0f;
+    tmp->face6.vertex1.n.x = 0.0f;
+    tmp->face6.vertex1.n.y = -1.0f;
+    tmp->face6.vertex1.n.z = 0.0f;
     
     //Vertex 2
     tmp->face6.vertex2.v.x = origin.x + offset;
@@ -375,9 +375,9 @@
     tmp->face6.vertex2.c.blue = 1.0f;
     tmp->face6.vertex2.c.alpha = 1.0f;
     
-    tmp->face6.vertex2.n.x = 1.0f;
-    tmp->face6.vertex2.n.y = 1.0f;
-    tmp->face6.vertex2.n.z = 1.0f;
+    tmp->face6.vertex2.n.x = 0.0f;
+    tmp->face6.vertex2.n.y = -1.0f;
+    tmp->face6.vertex2.n.z = 0.0f;
     
     //Vertex 3
     tmp->face6.vertex3.v.x = origin.x - offset;
@@ -390,9 +390,9 @@
     tmp->face6.vertex3.c.blue = 1.0f;
     tmp->face6.vertex3.c.alpha = 1.0f;
     
-    tmp->face6.vertex3.n.x = 1.0f;
-    tmp->face6.vertex3.n.y = 1.0f;
-    tmp->face6.vertex3.n.z = 1.0f;
+    tmp->face6.vertex3.n.x = 0.0f;
+    tmp->face6.vertex3.n.y = -1.0f;
+    tmp->face6.vertex3.n.z = 0.0f;
     
     //Vertex 4
     tmp->face6.vertex4.v.x = origin.x + offset;
@@ -405,9 +405,13 @@
     tmp->face6.vertex4.c.blue = 1.0f;
     tmp->face6.vertex4.c.alpha = 1.0f;
     
-    tmp->face6.vertex4.n.x = 1.0f;
-    tmp->face6.vertex4.n.y = 1.0f;
-    tmp->face6.vertex4.n.z = 1.0f; 
+    tmp->face6.vertex4.n.x = 0.0f;
+    tmp->face6.vertex4.n.y = -1.0f;
+    tmp->face6.vertex4.n.z = 0.0f; 
+    
+    
+    //Copy tmp data into the vbo ptr provided
+    memcpy(voxelPtr,tmp,sizeof(voxelData));
     
 }
 @end
