@@ -34,9 +34,105 @@
 
 -(void)createSubnodes
 {
+    vec4 newOrigin,offsetVec;
+    float scale = size/4;
+    int newHeight = height-1;
+    float newSize = size/2;
+    voxelData *memPtr = voxelPtr;
+    
+    nodes = [[NSMutableArray alloc]init];
+    
+    //Top Nodes
+    //Front Left
+    offsetVec.x = -1.0;
+    offsetVec.y = 1.0;
+    offsetVec.z = -1.0;
+    
+    [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
+    [nodes addObject:[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]];
+    
+    //Back left
+    //Adjust the memory pointer to the next 8th of data.
+    memPtr += ((int)pow(8.0, height) * sizeof(voxelData));
+    
+    offsetVec.x = -1.0;
+    offsetVec.y = 1.0;
+    offsetVec.z = 1.0;
+    
+    [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
+    [nodes addObject:[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]];
+    
+    //Front Right
+    //Adjust the memory pointer to the next 8th of data.
+    memPtr += ((int)pow(8.0, height) * sizeof(voxelData));
+    
+    offsetVec.x = 1.0;
+    offsetVec.y = 1.0;
+    offsetVec.z = -1.0;
+    
+    [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
+    [nodes addObject:[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]];
+    
+    //Back right
+    //Adjust the memory pointer to the next 8th of data.
+    memPtr += ((int)pow(8.0, height) * sizeof(voxelData));
+    
+    offsetVec.x = 1.0;
+    offsetVec.y = 1.0;
+    offsetVec.z = 1.0;
+    
+    [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
+    [nodes addObject:[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]];
+    
+    //Bottom Nodes
+    //Front left
+    //Adjust the memory pointer to the next 8th of data.
+    memPtr += ((int)pow(8.0, height) * sizeof(voxelData));
+    
+    offsetVec.x = -1.0;
+    offsetVec.y = 1.0;
+    offsetVec.z = -1.0;
+    
+    [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
+    [nodes addObject:[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]];
+    
+    //Back left
+    //Adjust the memory pointer to the next 8th of data.
+    memPtr += ((int)pow(8.0, height) * sizeof(voxelData));
+    
+    offsetVec.x = -1.0;
+    offsetVec.y = 1.0;
+    offsetVec.z = 1.0;
+    
+    [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
+    [nodes addObject:[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]];
+    
+    //Front right
+    //Adjust the memory pointer to the next 8th of data.
+    memPtr += ((int)pow(8.0, height) * sizeof(voxelData));
+    
+    offsetVec.x = 1.0;
+    offsetVec.y = 1.0;
+    offsetVec.z = -1.0;
+    
+    [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
+    [nodes addObject:[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]];
+        
+    //Back right
+    //Adjust the memory pointer to the next 8th of data.
+    memPtr += ((int)pow(8.0, height) * sizeof(voxelData));
+    
+    offsetVec.x = 1.0;
+    offsetVec.y = 1.0;
+    offsetVec.z = 1.0;
+    
+    [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
+    [nodes addObject:[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]];
     return;
 }
 
+
+//Add the voxel data for this part of the tree to the vbo
 -(void)addVoxelData
 {
     voxelData *tmp = calloc(1,sizeof(voxelData));
@@ -48,7 +144,7 @@
     tmp->face1.vertex1.v.x = origin.x - offset;
     tmp->face1.vertex1.v.y = origin.y + offset;
     tmp->face1.vertex1.v.z = origin.z + offset;
-    tmp->face1.vertex1.v.w = 0.0f;
+    tmp->face1.vertex1.v.w = 1.0f;
     
     tmp->face1.vertex1.c.red = 1.0f;
     tmp->face1.vertex1.c.green = 1.0f;
@@ -63,7 +159,7 @@
     tmp->face1.vertex2.v.x = origin.x + offset;
     tmp->face1.vertex2.v.y = origin.y + offset;
     tmp->face1.vertex2.v.z = origin.z + offset;
-    tmp->face1.vertex2.v.w = 0.0f;
+    tmp->face1.vertex2.v.w = 1.0f;
     
     tmp->face1.vertex2.c.red = 1.0f;
     tmp->face1.vertex2.c.green = 1.0f;
@@ -78,7 +174,7 @@
     tmp->face1.vertex3.v.x = origin.x + offset;
     tmp->face1.vertex3.v.y = origin.y - offset;
     tmp->face1.vertex3.v.z = origin.z + offset;
-    tmp->face1.vertex3.v.w = 0.0f;
+    tmp->face1.vertex3.v.w = 1.0f;
     
     tmp->face1.vertex3.c.red = 1.0f;
     tmp->face1.vertex3.c.green = 1.0f;
@@ -93,7 +189,7 @@
     tmp->face1.vertex4.v.x = origin.x - offset;
     tmp->face1.vertex4.v.y = origin.y - offset;
     tmp->face1.vertex4.v.z = origin.z + offset;
-    tmp->face1.vertex4.v.w = 0.0f;
+    tmp->face1.vertex4.v.w = 1.0f;
     
     tmp->face1.vertex4.c.red = 1.0f;
     tmp->face1.vertex4.c.green = 1.0f;
@@ -109,7 +205,7 @@
     tmp->face2.vertex1.v.x = origin.x - offset;
     tmp->face2.vertex1.v.y = origin.y + offset;
     tmp->face2.vertex1.v.z = origin.z - offset;
-    tmp->face2.vertex1.v.w = 0.0f;
+    tmp->face2.vertex1.v.w = 1.0f;
     
     tmp->face2.vertex1.c.red = 1.0f;
     tmp->face2.vertex1.c.green = 1.0f;
@@ -124,7 +220,7 @@
     tmp->face2.vertex2.v.x = origin.x + offset;
     tmp->face2.vertex2.v.y = origin.y + offset;
     tmp->face2.vertex2.v.z = origin.z - offset;
-    tmp->face2.vertex2.v.w = 0.0f;
+    tmp->face2.vertex2.v.w = 1.0f;
     
     tmp->face2.vertex2.c.red = 1.0f;
     tmp->face2.vertex2.c.green = 1.0f;
@@ -139,7 +235,7 @@
     tmp->face2.vertex3.v.x = origin.x + offset;
     tmp->face2.vertex3.v.y = origin.y - offset;
     tmp->face2.vertex3.v.z = origin.z - offset;
-    tmp->face2.vertex3.v.w = 0.0f;
+    tmp->face2.vertex3.v.w = 1.0f;
     
     tmp->face2.vertex3.c.red = 1.0f;
     tmp->face2.vertex3.c.green = 1.0f;
@@ -154,7 +250,7 @@
     tmp->face2.vertex4.v.x = origin.x - offset;
     tmp->face2.vertex4.v.y = origin.y - offset;
     tmp->face2.vertex4.v.z = origin.z - offset;
-    tmp->face2.vertex4.v.w = 0.0f;
+    tmp->face2.vertex4.v.w = 1.0f;
     
     tmp->face2.vertex4.c.red = 1.0f;
     tmp->face2.vertex4.c.green = 1.0f;
@@ -170,7 +266,7 @@
     tmp->face3.vertex1.v.x = origin.x - offset;
     tmp->face3.vertex1.v.y = origin.y + offset;
     tmp->face3.vertex1.v.z = origin.z + offset;
-    tmp->face3.vertex1.v.w = 0.0f;
+    tmp->face3.vertex1.v.w = 1.0f;
     
     tmp->face3.vertex1.c.red = 1.0f;
     tmp->face3.vertex1.c.green = 1.0f;
@@ -185,7 +281,7 @@
     tmp->face3.vertex2.v.x = origin.x - offset;
     tmp->face3.vertex2.v.y = origin.y - offset;
     tmp->face3.vertex2.v.z = origin.z + offset;
-    tmp->face3.vertex2.v.w = 0.0f;
+    tmp->face3.vertex2.v.w = 1.0f;
     
     tmp->face3.vertex2.c.red = 1.0f;
     tmp->face3.vertex2.c.green = 1.0f;
@@ -200,7 +296,7 @@
     tmp->face3.vertex3.v.x = origin.x - offset;
     tmp->face3.vertex3.v.y = origin.y + offset;
     tmp->face3.vertex3.v.z = origin.z - offset;
-    tmp->face3.vertex3.v.w = 0.0f;
+    tmp->face3.vertex3.v.w = 1.0f;
     
     tmp->face3.vertex3.c.red = 1.0f;
     tmp->face3.vertex3.c.green = 1.0f;
@@ -215,7 +311,7 @@
     tmp->face3.vertex4.v.x = origin.x - offset;
     tmp->face3.vertex4.v.y = origin.y - offset;
     tmp->face3.vertex4.v.z = origin.z - offset;
-    tmp->face3.vertex4.v.w = 0.0f;
+    tmp->face3.vertex4.v.w = 1.0f;
     
     tmp->face3.vertex4.c.red = 1.0f;
     tmp->face3.vertex4.c.green = 1.0f;
@@ -231,7 +327,7 @@
     tmp->face4.vertex1.v.x = origin.x + offset;
     tmp->face4.vertex1.v.y = origin.y + offset;
     tmp->face4.vertex1.v.z = origin.z + offset;
-    tmp->face4.vertex1.v.w = 0.0f;
+    tmp->face4.vertex1.v.w = 1.0f;
     
     tmp->face4.vertex1.c.red = 1.0f;
     tmp->face4.vertex1.c.green = 1.0f;
@@ -246,7 +342,7 @@
     tmp->face4.vertex2.v.x = origin.x + offset;
     tmp->face4.vertex2.v.y = origin.y - offset;
     tmp->face4.vertex2.v.z = origin.z + offset;
-    tmp->face4.vertex2.v.w = 0.0f;
+    tmp->face4.vertex2.v.w = 1.0f;
     
     tmp->face4.vertex2.c.red = 1.0f;
     tmp->face4.vertex2.c.green = 1.0f;
@@ -261,7 +357,7 @@
     tmp->face4.vertex3.v.x = origin.x + offset;
     tmp->face4.vertex3.v.y = origin.y + offset;
     tmp->face4.vertex3.v.z = origin.z - offset;
-    tmp->face4.vertex3.v.w = 0.0f;
+    tmp->face4.vertex3.v.w = 1.0f;
     
     tmp->face4.vertex3.c.red = 1.0f;
     tmp->face4.vertex3.c.green = 1.0f;
@@ -276,7 +372,7 @@
     tmp->face4.vertex4.v.x = origin.x + offset;
     tmp->face4.vertex4.v.y = origin.y - offset;
     tmp->face4.vertex4.v.z = origin.z - offset;
-    tmp->face4.vertex4.v.w = 0.0f;
+    tmp->face4.vertex4.v.w = 1.0f;
     
     tmp->face4.vertex4.c.red = 1.0f;
     tmp->face4.vertex4.c.green = 1.0f;
@@ -292,7 +388,7 @@
     tmp->face5.vertex1.v.x = origin.x - offset;
     tmp->face5.vertex1.v.y = origin.y + offset;
     tmp->face5.vertex1.v.z = origin.z + offset;
-    tmp->face5.vertex1.v.w = 0.0f;
+    tmp->face5.vertex1.v.w = 1.0f;
     
     tmp->face5.vertex1.c.red = 1.0f;
     tmp->face5.vertex1.c.green = 1.0f;
@@ -307,7 +403,7 @@
     tmp->face5.vertex2.v.x = origin.x + offset;
     tmp->face5.vertex2.v.y = origin.y + offset;
     tmp->face5.vertex2.v.z = origin.z + offset;
-    tmp->face5.vertex2.v.w = 0.0f;
+    tmp->face5.vertex2.v.w = 1.0f;
     
     tmp->face5.vertex2.c.red = 1.0f;
     tmp->face5.vertex2.c.green = 1.0f;
@@ -322,7 +418,7 @@
     tmp->face5.vertex3.v.x = origin.x - offset;
     tmp->face5.vertex3.v.y = origin.y + offset;
     tmp->face5.vertex3.v.z = origin.z - offset;
-    tmp->face5.vertex3.v.w = 0.0f;
+    tmp->face5.vertex3.v.w = 1.0f;
     
     tmp->face5.vertex3.c.red = 1.0f;
     tmp->face5.vertex3.c.green = 1.0f;
@@ -337,7 +433,7 @@
     tmp->face5.vertex4.v.x = origin.x + offset;
     tmp->face5.vertex4.v.y = origin.y + offset;
     tmp->face5.vertex4.v.z = origin.z - offset;
-    tmp->face5.vertex4.v.w = 0.0f;
+    tmp->face5.vertex4.v.w = 1.0f;
     
     tmp->face5.vertex4.c.red = 1.0f;
     tmp->face5.vertex4.c.green = 1.0f;
@@ -353,7 +449,7 @@
     tmp->face6.vertex1.v.x = origin.x - offset;
     tmp->face6.vertex1.v.y = origin.y - offset;
     tmp->face6.vertex1.v.z = origin.z + offset;
-    tmp->face6.vertex1.v.w = 0.0f;
+    tmp->face6.vertex1.v.w = 1.0f;
     
     tmp->face6.vertex1.c.red = 1.0f;
     tmp->face6.vertex1.c.green = 1.0f;
@@ -368,7 +464,7 @@
     tmp->face6.vertex2.v.x = origin.x + offset;
     tmp->face6.vertex2.v.y = origin.y - offset;
     tmp->face6.vertex2.v.z = origin.z + offset;
-    tmp->face6.vertex2.v.w = 0.0f;
+    tmp->face6.vertex2.v.w = 1.0f;
     
     tmp->face6.vertex2.c.red = 1.0f;
     tmp->face6.vertex2.c.green = 1.0f;
@@ -383,7 +479,7 @@
     tmp->face6.vertex3.v.x = origin.x - offset;
     tmp->face6.vertex3.v.y = origin.y - offset;
     tmp->face6.vertex3.v.z = origin.z - offset;
-    tmp->face6.vertex3.v.w = 0.0f;
+    tmp->face6.vertex3.v.w = 1.0f;
     
     tmp->face6.vertex3.c.red = 1.0f;
     tmp->face6.vertex3.c.green = 1.0f;
@@ -398,7 +494,7 @@
     tmp->face6.vertex4.v.x = origin.x + offset;
     tmp->face6.vertex4.v.y = origin.y - offset;
     tmp->face6.vertex4.v.z = origin.z - offset;
-    tmp->face6.vertex4.v.w = 0.0f;
+    tmp->face6.vertex4.v.w = 1.0f;
     
     tmp->face6.vertex4.c.red = 1.0f;
     tmp->face6.vertex4.c.green = 1.0f;
@@ -412,6 +508,16 @@
     
     //Copy tmp data into the vbo ptr provided
     memcpy(voxelPtr,tmp,sizeof(voxelData));
+}
+
+-(void)calculateNewOrigin:(vec4 *)v1 OldOrigin:(vec4 *)v2 offsetVec:(vec4 *)offvec scale:(float)scale
+{
+    v1->x = 0;
+    v1->y = 0;
+    v1->z = 0;
     
+    v1->x = v2->x + (offvec->x * scale);
+    v1->y = v2->y + (offvec->y * scale);
+    v1->z = v2->z + (offvec->z * scale);
 }
 @end
