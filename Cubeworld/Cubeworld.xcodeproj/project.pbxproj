@@ -27,6 +27,7 @@
 		DF840DAB14D97CAF0022F193 /* Test.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DF840DA214D9738A0022F193 /* Test.vsh */; };
 		DF840DAC14D97CAF0022F193 /* Test.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DF840DA414D973980022F193 /* Test.fsh */; };
 		DF974A1E14ED19EF00147274 /* Octnode.m in Sources */ = {isa = PBXBuildFile; fileRef = DF974A1D14ED19EF00147274 /* Octnode.m */; };
+		DF974A2214ED4DDF00147274 /* Chunk.m in Sources */ = {isa = PBXBuildFile; fileRef = DF974A2114ED4DDF00147274 /* Chunk.m */; };
 		DFAD6C0814E402D0002AB62A /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAD6C0714E402D0002AB62A /* Accelerate.framework */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +76,8 @@
 		DF974A1C14ED19EF00147274 /* Octnode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Octnode.h; sourceTree = "<group>"; };
 		DF974A1D14ED19EF00147274 /* Octnode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Octnode.m; sourceTree = "<group>"; };
 		DF974A1F14ED1C7F00147274 /* Structures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Structures.h; sourceTree = "<group>"; };
+		DF974A2014ED4DDF00147274 /* Chunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chunk.h; sourceTree = "<group>"; };
+		DF974A2114ED4DDF00147274 /* Chunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chunk.m; sourceTree = "<group>"; };
 		DFAD6C0714E402D0002AB62A /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -104,6 +107,8 @@
 		DF2945BE14E19377007D1A15 /* World Elements */ = {
 			isa = PBXGroup;
 			children = (
+				DF974A2014ED4DDF00147274 /* Chunk.h */,
+				DF974A2114ED4DDF00147274 /* Chunk.m */,
 				DF974A1C14ED19EF00147274 /* Octnode.h */,
 				DF974A1D14ED19EF00147274 /* Octnode.m */,
 				DF2945C014E1938E007D1A15 /* Voxel.h */,
@@ -332,6 +337,7 @@
 				DF2945C214E1938E007D1A15 /* Voxel.m in Sources */,
 				DF29471214E1A50D007D1A15 /* Camera.m in Sources */,
 				DF974A1E14ED19EF00147274 /* Octnode.m in Sources */,
+				DF974A2214ED4DDF00147274 /* Chunk.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
