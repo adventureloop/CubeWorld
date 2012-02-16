@@ -60,7 +60,7 @@
     glUniformMatrix4fv(modelToWorldMatrixUnif, 1, GL_FALSE, modelToWorldMatrix);
     
     [v1 render];
-  //  [v2 render];
+    [c render];
     
 	glUseProgram(0);
     glSwapAPPLE();
@@ -101,6 +101,8 @@
     
     v1 = [[Voxel alloc]init];
     v2 = [[Voxel alloc]init];
+    
+    c = [[Chunk alloc]init];
     
     self->animationTimer = [NSTimer scheduledTimerWithTimeInterval:1/30 target:self selector:@selector(render) userInfo:nil repeats:YES];
     

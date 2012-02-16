@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Voxel.h"
 #import "Camera.h"
+#import "Chunk.h"
 
 
 @interface OpenGLView : NSOpenGLView
@@ -40,6 +41,8 @@
     Voxel *v2;
     
     Camera *camera;
+    
+    Chunk *c;
 }
 
 -(void)setupOpenGL;

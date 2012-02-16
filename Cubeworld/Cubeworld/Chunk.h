@@ -13,10 +13,12 @@
 {
     GLuint vertexBufferObject;
     GLuint vertexArrayObject;
+    GLuint indexBufferObject;
     
     Octnode *node;
     
     float *vertexData;
+    int *indexArray;
 }
 
 -(void)render;

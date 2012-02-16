@@ -23,13 +23,71 @@
         
         voxelPtr = mem;
         
-        if(size)
+        if(height > 0)
             [self createSubnodes];
         else
             [self addVoxelData];
         
     }
     return self;
+}
+
+-(void)renderElements:(int *)elements offset:(int)offset
+{
+    int i = 0;
+    int *nelements = calloc(36, sizeof(int));
+    
+    nelements[i++] = 0;
+    nelements[i++] = 1;
+    nelements[i++] = 2;
+    
+    nelements[i++] = 3;
+    nelements[i++] = 2;
+    nelements[i++] = 1;
+    
+    nelements[i++] = 4;
+    nelements[i++] = 5;
+    nelements[i++] = 6;
+    
+    nelements[i++] = 6;
+    nelements[i++] = 7;
+    nelements[i++] = 5;
+    
+    nelements[i++] = 8;
+    nelements[i++] = 9;
+    nelements[i++] = 10;
+    
+    nelements[i++] = 10;
+    nelements[i++] = 11;
+    nelements[i++] = 8;
+    
+    nelements[i++] = 12;
+    nelements[i++] = 13;
+    nelements[i++] = 14;
+    
+    nelements[i++] = 15;
+    nelements[i++] = 13;
+    nelements[i++] = 14;
+    
+    nelements[i++] = 16;
+    nelements[i++] = 17;
+    nelements[i++] = 18;
+    
+    nelements[i++] = 19;
+    nelements[i++] = 18;
+    nelements[i++] = 17;
+    
+    nelements[i++] = 20;
+    nelements[i++] = 21;
+    nelements[i++] = 22;
+    
+    nelements[i++] = 23;
+    nelements[i++] = 22;
+    nelements[i++] = 21;
+    
+    memcpy(elements, nelements, sizeof(int) * 36);
+    
+    free(nelements);
 }
 
 -(void)createSubnodes
