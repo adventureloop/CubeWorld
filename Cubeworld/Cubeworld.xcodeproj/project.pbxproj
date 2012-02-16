@@ -26,8 +26,8 @@
 		DF840DA514D973980022F193 /* Test.fsh in Sources */ = {isa = PBXBuildFile; fileRef = DF840DA414D973980022F193 /* Test.fsh */; };
 		DF840DAB14D97CAF0022F193 /* Test.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DF840DA214D9738A0022F193 /* Test.vsh */; };
 		DF840DAC14D97CAF0022F193 /* Test.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DF840DA414D973980022F193 /* Test.fsh */; };
+		DF974A1E14ED19EF00147274 /* Octnode.m in Sources */ = {isa = PBXBuildFile; fileRef = DF974A1D14ED19EF00147274 /* Octnode.m */; };
 		DFAD6C0814E402D0002AB62A /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAD6C0714E402D0002AB62A /* Accelerate.framework */; };
-		DFE75DF214E963D100A52B0C /* Octree.m in Sources */ = {isa = PBXBuildFile; fileRef = DFE75DF114E963D100A52B0C /* Octree.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,9 +72,10 @@
 		DF840D9314D95EAA0022F193 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		DF840DA214D9738A0022F193 /* Test.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Test.vsh; sourceTree = "<group>"; };
 		DF840DA414D973980022F193 /* Test.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Test.fsh; sourceTree = "<group>"; };
+		DF974A1C14ED19EF00147274 /* Octnode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Octnode.h; sourceTree = "<group>"; };
+		DF974A1D14ED19EF00147274 /* Octnode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Octnode.m; sourceTree = "<group>"; };
+		DF974A1F14ED1C7F00147274 /* Structures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Structures.h; sourceTree = "<group>"; };
 		DFAD6C0714E402D0002AB62A /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		DFE75DF014E963D100A52B0C /* Octree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Octree.h; sourceTree = "<group>"; };
-		DFE75DF114E963D100A52B0C /* Octree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Octree.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,8 +104,8 @@
 		DF2945BE14E19377007D1A15 /* World Elements */ = {
 			isa = PBXGroup;
 			children = (
-				DFE75DF014E963D100A52B0C /* Octree.h */,
-				DFE75DF114E963D100A52B0C /* Octree.m */,
+				DF974A1C14ED19EF00147274 /* Octnode.h */,
+				DF974A1D14ED19EF00147274 /* Octnode.m */,
 				DF2945C014E1938E007D1A15 /* Voxel.h */,
 				DF2945C114E1938E007D1A15 /* Voxel.m */,
 			);
@@ -156,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				DF64F3AA14E55A870003630A /* VectorMath.h */,
+				DF974A1F14ED1C7F00147274 /* Structures.h */,
 				DF840D6A14D95C990022F193 /* AppDelegate.h */,
 				DF840D6B14D95C990022F193 /* AppDelegate.m */,
 				DF840D6D14D95C990022F193 /* MainMenu.xib */,
@@ -329,7 +331,7 @@
 				DF073EFF14E12CE900BC506D /* Scene.m in Sources */,
 				DF2945C214E1938E007D1A15 /* Voxel.m in Sources */,
 				DF29471214E1A50D007D1A15 /* Camera.m in Sources */,
-				DFE75DF214E963D100A52B0C /* Octree.m in Sources */,
+				DF974A1E14ED19EF00147274 /* Octnode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
