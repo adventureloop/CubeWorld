@@ -30,13 +30,13 @@ typedef struct
     float x;
     float y;
     float z;
-} normal;
+} vertexNormal;
 
 typedef struct 
 {
     vertex v;
     colour c;
-    normal n;
+    vertexNormal n;
 } colouredNormalVertex;
 
 typedef struct 
@@ -56,4 +56,19 @@ typedef struct
     face face5;
     face face6;
 }voxelData;
+
+typedef struct
+{
+    float x;
+    float y;
+    float z;
+} vec3;
+
+typedef struct
+{
+    float x;
+    float y;
+    float z;
+    float w;
+}vec4;
 #endif

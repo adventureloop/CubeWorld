@@ -12,12 +12,15 @@
 @interface Octnode : NSObject
 {
     id nodes[8];
-    float *origin;
+    vec4 origin;
+    colour ncolour;
     float size;
     int height;
     
     voxelData *voxelPtr;
 }
 
--(id)initWithTreeHeight:(int)nodeHeight nodeSize:(float)nodeSize orign:(float *)nodeOrigin;
+-(id)initWithTreeHeight:(int)nodeHeight nodeSize:(float)nodeSize orign:(vec4 *)nodeOrigin memoryPointer:(void *)mem;
+-(void)createSubnodes;
+-(void)addVoxelData;
 @end
