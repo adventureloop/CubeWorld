@@ -20,6 +20,8 @@
     float *vertexData;
     unsigned int *indexArray;
 }
+-(id)initWithNumberOfTrees:(int)trees treeHeight:(int)treeHeight;
 
 -(void)render;
+-(int)voxelsToRender;
 @end

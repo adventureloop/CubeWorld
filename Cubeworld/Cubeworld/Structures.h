@@ -72,5 +72,5 @@ typedef struct
     float w;
 }vec4;
 
-#define VOXEL_INDICES_NUM 36
+#define VOXEL_INDICES_COUNT 36
 #endif

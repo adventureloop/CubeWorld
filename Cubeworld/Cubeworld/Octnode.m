@@ -32,64 +32,6 @@
     return self;
 }
 
--(void)renderElements:(int *)elements offset:(int)offset
-{
-    int i = 0;
-    int *nelements = calloc(36, sizeof(int));
-    
-    nelements[i++] = 0;
-    nelements[i++] = 1;
-    nelements[i++] = 2;
-    
-    nelements[i++] = 3;
-    nelements[i++] = 2;
-    nelements[i++] = 1;
-    
-    nelements[i++] = 4;
-    nelements[i++] = 5;
-    nelements[i++] = 6;
-    
-    nelements[i++] = 6;
-    nelements[i++] = 7;
-    nelements[i++] = 5;
-    
-    nelements[i++] = 8;
-    nelements[i++] = 9;
-    nelements[i++] = 10;
-    
-    nelements[i++] = 10;
-    nelements[i++] = 11;
-    nelements[i++] = 8;
-    
-    nelements[i++] = 12;
-    nelements[i++] = 13;
-    nelements[i++] = 14;
-    
-    nelements[i++] = 15;
-    nelements[i++] = 13;
-    nelements[i++] = 14;
-    
-    nelements[i++] = 16;
-    nelements[i++] = 17;
-    nelements[i++] = 18;
-    
-    nelements[i++] = 19;
-    nelements[i++] = 18;
-    nelements[i++] = 17;
-    
-    nelements[i++] = 20;
-    nelements[i++] = 21;
-    nelements[i++] = 22;
-    
-    nelements[i++] = 23;
-    nelements[i++] = 22;
-    nelements[i++] = 21;
-    
-    memcpy(elements, nelements, sizeof(int) * 36);
-    
-    free(nelements);
-}
-
 -(void)createSubnodes
 {
     vec4 newOrigin,offsetVec;
@@ -97,6 +39,7 @@
     int newHeight = height-1;
     float newSize = size/2;
     voxelData *memPtr = voxelPtr;
+    int offset = (int)pow(8.0, height);
     
     nodes = [[NSMutableArray alloc]init];
     
@@ -111,7 +54,7 @@
     
     //Back left
     //Adjust the memory pointer to the next 8th of data.
-    memPtr += ((int)pow(8.0, height) * sizeof(voxelData));
+    memPtr += offset;
     
     offsetVec.x = -1.0;
     offsetVec.y = 1.0;
@@ -122,7 +65,7 @@
     
     //Front Right
     //Adjust the memory pointer to the next 8th of data.
-    memPtr += ((int)pow(8.0, height) * sizeof(voxelData));
+    memPtr += offset;
     
     offsetVec.x = 1.0;
     offsetVec.y = 1.0;
@@ -133,7 +76,7 @@
     
     //Back right
     //Adjust the memory pointer to the next 8th of data.
-    memPtr += ((int)pow(8.0, height) * sizeof(voxelData));
+    memPtr += offset;
     
     offsetVec.x = 1.0;
     offsetVec.y = 1.0;
@@ -145,7 +88,7 @@
     //Bottom Nodes
     //Front left
     //Adjust the memory pointer to the next 8th of data.
-    memPtr += ((int)pow(8.0, height) * sizeof(voxelData));
+    memPtr += offset;
     
     offsetVec.x = -1.0;
     offsetVec.y = 1.0;
@@ -156,7 +99,7 @@
     
     //Back left
     //Adjust the memory pointer to the next 8th of data.
-    memPtr += ((int)pow(8.0, height) * sizeof(voxelData));
+    memPtr += offset;
     
     offsetVec.x = -1.0;
     offsetVec.y = 1.0;
@@ -167,7 +110,7 @@
     
     //Front right
     //Adjust the memory pointer to the next 8th of data.
-    memPtr += ((int)pow(8.0, height) * sizeof(voxelData));
+    memPtr += offset;
     
     offsetVec.x = 1.0;
     offsetVec.y = 1.0;
@@ -178,7 +121,7 @@
         
     //Back right
     //Adjust the memory pointer to the next 8th of data.
-    memPtr += ((int)pow(8.0, height) * sizeof(voxelData));
+    memPtr += offset;
     
     offsetVec.x = 1.0;
     offsetVec.y = 1.0;
@@ -566,6 +509,78 @@
     
     //Copy tmp data into the vbo ptr provided
     memcpy(voxelPtr,tmp,sizeof(voxelData));
+}
+
+-(void)renderElements:(unsigned int *)elements offset:(int)offset
+{
+    if(height < 0) {
+        int memOffset = (int)pow(8.0, height);
+        int indexOffset = memOffset * 36;
+        
+        for(Octnode *n in nodes) {
+            [n renderElements:elements offset:offset];
+            elements = elements + memOffset;
+            offset = offset + indexOffset;
+        }
+    } else {
+        int i = 0;
+        unsigned int *nelements = calloc(36, sizeof(unsigned int));
+        
+        nelements[i++] = 0;
+        nelements[i++] = 1;
+        nelements[i++] = 2;
+        
+        nelements[i++] = 2;
+        nelements[i++] = 3;
+        nelements[i++] = 0;
+        
+        nelements[i++] = 4;
+        nelements[i++] = 5;
+        nelements[i++] = 6;
+        
+        nelements[i++] = 6;
+        nelements[i++] = 7;
+        nelements[i++] = 4;
+        
+        nelements[i++] = 8;
+        nelements[i++] = 9;
+        nelements[i++] = 10;
+        
+        nelements[i++] = 10;
+        nelements[i++] = 11;
+        nelements[i++] = 8;
+        
+        nelements[i++] = 12;
+        nelements[i++] = 13;
+        nelements[i++] = 14;
+        
+        nelements[i++] = 14;
+        nelements[i++] = 15;
+        nelements[i++] = 12;
+        
+        nelements[i++] = 16;
+        nelements[i++] = 17;
+        nelements[i++] = 18;
+        
+        nelements[i++] = 18;
+        nelements[i++] = 19;
+        nelements[i++] = 16;
+        
+        nelements[i++] = 20;
+        nelements[i++] = 21;
+        nelements[i++] = 22;
+        
+        nelements[i++] = 22;
+        nelements[i++] = 23;
+        nelements[i++] = 20;
+        
+        for(i = 0;i < 36;i++)
+            nelements[i] += offset;
+        
+        memcpy(elements, nelements, sizeof(unsigned int) * 36);
+        
+        free(nelements);
+    }
 }
 
 -(void)calculateNewOrigin:(vec4 *)v1 OldOrigin:(vec4 *)v2 offsetVec:(vec4 *)offvec scale:(float)scale

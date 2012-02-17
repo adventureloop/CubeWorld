@@ -10,36 +10,38 @@
 #import <OpenGL/gl.h>
 
 @implementation Chunk
-
 -(id)init
+{
+    return [self initWithNumberOfTrees:1 treeHeight:1];
+}
+
+-(id)initWithNumberOfTrees:(int)trees treeHeight:(int)treeHeight
 {        
     if(self = [super init]) {
-        indexArray = calloc(VOXEL_INDICES_NUM, sizeof(unsigned int));
-        vertexData = calloc(1, sizeof(voxelData));
         
-        indexArray[0] = 0;
-        indexArray[1] = 1;
-        indexArray[2] = 2;
-        
-        indexArray[3] = 2;
-        indexArray[4] = 3;
-        indexArray[5] = 0;
+        int numVoxels = trees * ((int)pow(8, treeHeight));
+        int numElements = numVoxels * VOXEL_INDICES_COUNT;
+
+        vertexData = calloc(numVoxels, sizeof(voxelData));
+        indexArray = calloc(numElements, sizeof(unsigned int));
         
         vec4 origin;
         origin.x = 0.0;
         origin.y = 0.0;
         origin.z = 0.0;
         
-        node = [[Octnode alloc]initWithTreeHeight:0 nodeSize:1.0 orign:&origin memoryPointer:vertexData];
+        //Create each sub tree we want
+        node = [[Octnode alloc]initWithTreeHeight:1 nodeSize:1.0 orign:&origin memoryPointer:vertexData];
+        [node renderElements:indexArray offset:0];
     
         glGenBuffers(1, &vertexBufferObject);
         glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(voxelData), vertexData, GL_DYNAMIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER,numVoxels * sizeof(voxelData), vertexData, GL_DYNAMIC_DRAW);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         
         glGenBuffers(1, &indexBufferObject);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferObject);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, 36 * sizeof(unsigned int), indexArray, GL_DYNAMIC_DRAW);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, numElements * sizeof(unsigned int), indexArray, GL_DYNAMIC_DRAW);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
         
         glGenVertexArraysAPPLE(1, &vertexArrayObject);
@@ -64,10 +66,22 @@
 
 -(void)render;
 {
+    int numElements = [self voxelsToRender] * VOXEL_INDICES_COUNT;
+    
+    [node renderElements:indexArray offset:0];
+    
     glBindVertexArrayAPPLE(vertexArrayObject);
     
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, numElements, GL_UNSIGNED_INT, 0);
 
     glBindVertexArrayAPPLE(0);
+}
+
+-(int)voxelsToRender
+{
+    int tmp;
+    tmp = [node numberOfVoxels];
+    
+    return tmp;
 }
 @end
