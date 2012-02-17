@@ -71,4 +71,6 @@ typedef struct
     float z;
     float w;
 }vec4;
+
+#define VOXEL_INDICES_NUM 36
 #endif

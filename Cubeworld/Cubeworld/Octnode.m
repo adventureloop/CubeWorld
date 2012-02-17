@@ -578,4 +578,9 @@
     v1->y = v2->y + (offvec->y * scale);
     v1->z = v2->z + (offvec->z * scale);
 }
+
+-(int)numberOfVoxels
+{
+    return (int)pow(8, height);
+}
 @end

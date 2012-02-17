@@ -14,28 +14,32 @@
 -(id)init
 {        
     if(self = [super init]) {
-        indexArray = calloc(36, sizeof(int));
+        indexArray = calloc(VOXEL_INDICES_NUM, sizeof(unsigned int));
         vertexData = calloc(1, sizeof(voxelData));
         
-        indexArray[0] = 1;
-        indexArray[1] = 2;
-        indexArray[2] = 0;
+        indexArray[0] = 0;
+        indexArray[1] = 1;
+        indexArray[2] = 2;
+        
+        indexArray[3] = 2;
+        indexArray[4] = 3;
+        indexArray[5] = 0;
         
         vec4 origin;
         origin.x = 0.0;
         origin.y = 0.0;
-        origin.z = -2.0;
+        origin.z = 0.0;
         
         node = [[Octnode alloc]initWithTreeHeight:0 nodeSize:1.0 orign:&origin memoryPointer:vertexData];
     
         glGenBuffers(1, &vertexBufferObject);
         glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_DYNAMIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(voxelData), vertexData, GL_DYNAMIC_DRAW);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         
         glGenBuffers(1, &indexBufferObject);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferObject);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, 36 * sizeof(int), indexArray, GL_DYNAMIC_DRAW);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, 36 * sizeof(unsigned int), indexArray, GL_DYNAMIC_DRAW);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
         
         glGenVertexArraysAPPLE(1, &vertexArrayObject);
@@ -54,8 +58,6 @@
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferObject);
         
         glBindVertexArrayAPPLE(0);
-        
-
     }
     return self;
 }
@@ -64,9 +66,8 @@
 {
     glBindVertexArrayAPPLE(vertexArrayObject);
     
-    glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
-    
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
     glBindVertexArrayAPPLE(0);
 }
 @end

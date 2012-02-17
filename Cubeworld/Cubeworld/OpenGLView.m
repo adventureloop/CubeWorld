@@ -58,8 +58,8 @@
     
     //Use the model matrix(identity currently)
     glUniformMatrix4fv(modelToWorldMatrixUnif, 1, GL_FALSE, modelToWorldMatrix);
-    
-    [v1 render];
+
+  //  [v1 render];
     [c render];
     
 	glUseProgram(0);

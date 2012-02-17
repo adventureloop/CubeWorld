@@ -18,7 +18,7 @@
     Octnode *node;
     
     float *vertexData;
-    int *indexArray;
+    unsigned int *indexArray;
 }
 
 -(void)render;

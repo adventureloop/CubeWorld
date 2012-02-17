@@ -28,4 +28,6 @@
 -(void)calculateNewOrigin:(vec4 *)v1 OldOrigin:(vec4 *)v2 offsetVec:(vec4 *)offvec scale:(float) scale;
 
 -(void)renderElements:(int *)elements;
+
+-(int)numberOfVoxels;
 @end
