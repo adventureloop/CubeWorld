@@ -40,7 +40,7 @@
     int newHeight = height-1;
     float newSize = size/2;
     voxelData *memPtr = voxelPtr;
-    int offset = (int)pow(8.0, height);
+    int offset = ((int)pow(8.0, height)) / 8;
     
     nodes = [[NSMutableArray alloc]init];
     
@@ -92,7 +92,7 @@
     memPtr += offset;
     
     offsetVec.x = -1.0;
-    offsetVec.y = 1.0;
+    offsetVec.y = -1.0;
     offsetVec.z = -1.0;
     
     [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
@@ -103,7 +103,7 @@
     memPtr += offset;
     
     offsetVec.x = -1.0;
-    offsetVec.y = 1.0;
+    offsetVec.y = -1.0;
     offsetVec.z = 1.0;
     
     [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
@@ -114,7 +114,7 @@
     memPtr += offset;
     
     offsetVec.x = 1.0;
-    offsetVec.y = 1.0;
+    offsetVec.y = -1.0;
     offsetVec.z = -1.0;
     
     [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
@@ -125,7 +125,7 @@
     memPtr += offset;
     
     offsetVec.x = 1.0;
-    offsetVec.y = 1.0;
+    offsetVec.y = -1.0;
     offsetVec.z = 1.0;
     
     [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
@@ -137,7 +137,7 @@
 //Add the voxel data for this part of the tree to the vbo
 -(void)addVoxelData
 {
-    NSLog(@"Adding data to voxel array");
+    NSLog(@"Adding data to voxel array at orign (%f,%f,%f)",origin.x,origin.y,origin.z);
     voxelData *tmp = calloc(1,sizeof(voxelData));
     
     float offset = size/2;
@@ -516,7 +516,7 @@
 -(void)renderElements:(unsigned int *)elements offset:(int)offset
 {
     if(height > 0) {
-        NSLog(@"Getting elements from subnodes");
+       // NSLog(@"Getting elements from subnodes");
         int memOffset = ((int)pow(8.0, height)) / 8;
         int indexOffset =  memOffset * 36;
         
@@ -529,8 +529,9 @@
         int i = 0;
         unsigned int *nelements = calloc(36, sizeof(unsigned int));
         
-        NSLog(@"Adding elements from offset %d",offset);
+       // NSLog(@"Adding elements from offset %d",offset);
         
+        //Face 1
         nelements[i++] = 0;
         nelements[i++] = 1;
         nelements[i++] = 2;
@@ -539,6 +540,7 @@
         nelements[i++] = 3;
         nelements[i++] = 0;
         
+        //Face 2
         nelements[i++] = 4;
         nelements[i++] = 5;
         nelements[i++] = 6;
@@ -547,6 +549,7 @@
         nelements[i++] = 7;
         nelements[i++] = 4;
         
+        //Face 3
         nelements[i++] = 8;
         nelements[i++] = 9;
         nelements[i++] = 10;
@@ -555,6 +558,7 @@
         nelements[i++] = 11;
         nelements[i++] = 8;
         
+        //Face 4
         nelements[i++] = 12;
         nelements[i++] = 13;
         nelements[i++] = 14;
@@ -563,6 +567,7 @@
         nelements[i++] = 15;
         nelements[i++] = 12;
         
+        //Face 5
         nelements[i++] = 16;
         nelements[i++] = 17;
         nelements[i++] = 18;
@@ -571,6 +576,8 @@
         nelements[i++] = 19;
         nelements[i++] = 16;
         
+        
+        //Face 6
         nelements[i++] = 20;
         nelements[i++] = 21;
         nelements[i++] = 22;

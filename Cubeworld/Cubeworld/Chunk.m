@@ -31,7 +31,7 @@
         origin.z = 0.0;
         
         //Create each sub tree we want
-        node = [[Octnode alloc]initWithTreeHeight:1 nodeSize:1.0 orign:&origin memoryPointer:vertexData];
+        node = [[Octnode alloc]initWithTreeHeight:treeHeight nodeSize:1.0 orign:&origin memoryPointer:vertexData];
         [node renderElements:indexArray offset:0];
     
         glGenBuffers(1, &vertexBufferObject);
