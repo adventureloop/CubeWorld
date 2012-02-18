@@ -34,6 +34,7 @@
 
 -(void)createSubnodes
 {
+    NSLog(@"Creating subnodes");
     vec4 newOrigin,offsetVec;
     float scale = size/4;
     int newHeight = height-1;
@@ -136,6 +137,7 @@
 //Add the voxel data for this part of the tree to the vbo
 -(void)addVoxelData
 {
+    NSLog(@"Adding data to voxel array");
     voxelData *tmp = calloc(1,sizeof(voxelData));
     
     float offset = size/2;
@@ -513,18 +515,21 @@
 
 -(void)renderElements:(unsigned int *)elements offset:(int)offset
 {
-    if(height < 0) {
-        int memOffset = (int)pow(8.0, height);
-        int indexOffset = memOffset * 36;
+    if(height > 0) {
+        NSLog(@"Getting elements from subnodes");
+        int memOffset = ((int)pow(8.0, height)) / 8;
+        int indexOffset =  memOffset * 36;
         
         for(Octnode *n in nodes) {
             [n renderElements:elements offset:offset];
-            elements = elements + memOffset;
+            elements = elements + indexOffset;
             offset = offset + indexOffset;
         }
     } else {
         int i = 0;
         unsigned int *nelements = calloc(36, sizeof(unsigned int));
+        
+        NSLog(@"Adding elements from offset %d",offset);
         
         nelements[i++] = 0;
         nelements[i++] = 1;
