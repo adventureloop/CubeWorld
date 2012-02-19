@@ -17,7 +17,6 @@
     if(self = [super initWithFrame:frameRect pixelFormat:format]) {
         [self loadShaders];
     }
-    
     return self;
 }
 
@@ -58,8 +57,7 @@
     
     //Use the model matrix(identity currently)
     glUniformMatrix4fv(modelToWorldMatrixUnif, 1, GL_FALSE, modelToWorldMatrix);
-
-  //  [v1 render];
+    
     [c render];
     
 	glUseProgram(0);
@@ -105,7 +103,6 @@
     c = [[Chunk alloc]init];
     
     self->animationTimer = [NSTimer scheduledTimerWithTimeInterval:1/30 target:self selector:@selector(render) userInfo:nil repeats:YES];
-    
 }
 
 -(void)viewDidEndLiveResize

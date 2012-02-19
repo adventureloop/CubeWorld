@@ -7,32 +7,34 @@
 //
 
 #import "Camera.h"
-
 #include "VectorMath.h"
 
 @implementation Camera
 -(id)init
 {
     if(self = [super init]){
-        cameraSpherePos = calloc( 3,sizeof(float));
+        cameraPos = calloc( 3,sizeof(float));
         cameraTarget = calloc(3,sizeof(float));
         upVec = calloc(3, sizeof(float));
         
         lookAtMatrix = calloc(16,sizeof(float));
         perspectiveMatrix = calloc(16, sizeof(float));
         
+        //Look at the origin
         cameraTarget[0] = 0.0f;
-        cameraTarget[1] = 0.4f;
-        cameraTarget[2] = 0.0f;
+        cameraTarget[1] = 0.0f;
+        cameraTarget[2] = -1.0f;
         
-        cameraSpherePos[0] = 67.5f;
-        cameraSpherePos[1] = -46.0f;
-        cameraSpherePos[2] = 150.f;
+        cameraPos[0] = 0.0f;
+        cameraPos[1] = 5.0f;
+        cameraPos[2] = 1.0f;
         
+        //The directio of up
         upVec[0] = 0.0f;
         upVec[1] = 1.0f;
         upVec[2] = 0.0f;
         
+        //Set the lookAtMatrix to identity
         matrixDiagMatrixM4(lookAtMatrix, 1.0f);
         [self update];
         
@@ -47,9 +49,11 @@
 {
     free(upVec);
     free(cameraTarget);
-    free(cameraSpherePos);
+    free(cameraPos);
     free(lookAtMatrix);
     free(perspectiveMatrix);
+    
+    [super dealloc];
 }
 
 -(void)update
@@ -59,79 +63,120 @@
 
 -(void)resolveCameraPosition
 {
+    //Look at eyePos, AtPos, UpVec
+    float *zaxis = calloc(3, sizeof(float));
+    float *xaxis = calloc(3,sizeof(float));
+    float *yaxis = calloc(3,sizeof(float));
     
-    //Calculate Position for the camera
-    float phi = degToRad(cameraSpherePos[0]);
-    float theta = degToRad(cameraSpherePos[1] + 90.0f);
+    //zaxis = normal(at - eye)
+    subtractV3(cameraTarget, cameraPos, zaxis);
+    normalizeV3(zaxis, zaxis);
     
-    float fSinTheta = sinf(theta);
-	float fCosTheta = cosf(theta);
-	float fCosPhi = cosf(phi);
-	float fSinPhi = sinf(phi);
+    //xaxis = normal(cross(up,zaxis))
+    crossV3(upVec, zaxis, xaxis);
+    normalizeV3(xaxis, xaxis);
     
-    float *camPos = calloc(3, sizeof(float));
+    //yaxis = cross(zaxis,xaxis)
+    crossV3(zaxis, xaxis, yaxis);
     
-    camPos[0] = fSinTheta * fCosPhi;
-    camPos[1] = fCosTheta;
-    camPos[2] = fSinTheta * fSinPhi;
     
-    vecByScalarV3(camPos, cameraSpherePos[2], camPos);
+    //Set lookAtMatrix to an identity Matrix
+    matrixDiagMatrixM4(lookAtMatrix, 1.0);
     
-    addV3(camPos, cameraTarget, camPos);
-
+    lookAtMatrix[0] = xaxis[0];
+    lookAtMatrix[4] = xaxis[1];
+    lookAtMatrix[8] = xaxis[2];
+    lookAtMatrix[12] = -dotV3(xaxis,cameraTarget);
     
-    camPos[0] = 1.0f;
-    camPos[1] = 1.0f;
-    camPos[2] = 1.0f;
+    lookAtMatrix[1] = yaxis[0];
+    lookAtMatrix[5] = yaxis[1];
+    lookAtMatrix[9] = yaxis[2];
+    lookAtMatrix[13] = -dotV3(yaxis,cameraTarget);
     
-    //Calculate Look At Matrix
-    float *lookDir = calloc(3, sizeof(float));
-    float *upDir = calloc(3, sizeof(float));
+    lookAtMatrix[2] = zaxis[0];
+    lookAtMatrix[6] = zaxis[1];
+    lookAtMatrix[10] = zaxis[2];
+    lookAtMatrix[14] = -dotV3(zaxis,cameraTarget);
     
-    subtractV3(cameraTarget, camPos, lookDir);
-    normalizeV3(lookDir, lookDir);
+    //matrixLoadIdentity(lookAtMatrix);
     
-    normalizeV3(upVec, upDir);
+    free(zaxis);
+    free(xaxis);
+    free(yaxis);
     
-    float *rightDir = calloc(3, sizeof(float));
-    float *perpUpDir = calloc(3, sizeof(float));
-    
-    crossV3(lookDir, upDir, rightDir);
-    normalizeV3(rightDir, rightDir);
-    
-    crossV3(rightDir, lookDir, perpUpDir);
-    
-    vecByScalarV3(lookDir, -1.0f, lookDir);
-    vecByScalarV3(camPos, -1.0f, camPos);
-    
-    float *rotMat = calloc(16,sizeof(float));
-    matrixDiagMatrixM4(rotMat, 1.0f);
-    
-    matrixSetVectorV3M4(rotMat, rightDir, 0);
-    matrixSetVectorV3M4(rotMat, perpUpDir, 4);
-    matrixSetVectorV3M4(rotMat, lookDir, 8);
-    
-    transposeMatM4(rotMat);
-    
-    float *transMat = calloc(16,sizeof(float));
-    
-    matrixDiagMatrixM4(transMat, 1.0f);
-//    matrixSetVectorV3M4(transMat, camPos, 12);
-    
-    transMat[3] = camPos[0];
-    transMat[7] = camPos[1];
-    transMat[11] = camPos[2];
-    
-    multiplyMatM4(rotMat, transMat, lookAtMatrix);
-    
-    //Release the vectors and matracies used in the calculation
-    free(transMat);
-    free(rotMat);
-    free(camPos);
-    free(rightDir);
-    free(perpUpDir);
-    free(lookDir);
-    free(upDir);
+//    
+//    //Calculate Position for the camera
+//    float phi = degToRad(cameraSpherePos[0]);
+//    float theta = degToRad(cameraSpherePos[1] + 90.0f);
+//    
+//    float fSinTheta = sinf(theta);
+//	float fCosTheta = cosf(theta);
+//	float fCosPhi = cosf(phi);
+//	float fSinPhi = sinf(phi);
+//    
+//    float *camPos = calloc(3, sizeof(float));
+//    
+//    camPos[0] = fSinTheta * fCosPhi;
+//    camPos[1] = fCosTheta;
+//    camPos[2] = fSinTheta * fSinPhi;
+//    
+//    vecByScalarV3(camPos, cameraSpherePos[2], camPos);
+//    
+//    addV3(camPos, cameraTarget, camPos);
+//
+////    
+//    camPos[0] = 0.0f;
+//    camPos[1] = 0.0f;
+//    camPos[2] = -1.0f;
+//    
+//    //Calculate Look At Matrix
+//    float *lookDir = calloc(3, sizeof(float));
+//    float *upDir = calloc(3, sizeof(float));
+//    
+//    subtractV3(cameraTarget, camPos, lookDir);
+//    normalizeV3(lookDir, lookDir);
+//    
+//    normalizeV3(upVec, upDir);
+//    
+//    float *rightDir = calloc(3, sizeof(float));
+//    float *perpUpDir = calloc(3, sizeof(float));
+//    
+//    crossV3(lookDir, upDir, rightDir);
+//    normalizeV3(rightDir, rightDir);
+//    
+//    crossV3(rightDir, lookDir, perpUpDir);
+//    
+//    vecByScalarV3(lookDir, -1.0f, lookDir);
+//    vecByScalarV3(camPos, -1.0f, camPos);
+//    
+//    float *rotMat = calloc(16,sizeof(float));
+//    matrixDiagMatrixM4(rotMat, 1.0f);
+//    
+//    matrixSetVectorV3M4(rotMat, rightDir, 0);
+//    matrixSetVectorV3M4(rotMat, perpUpDir, 4);
+//    matrixSetVectorV3M4(rotMat, lookDir, 8);
+//    
+//    transposeMatM4(rotMat);
+//    
+//    float *transMat = calloc(16,sizeof(float));
+//    
+//    matrixDiagMatrixM4(transMat, 1.0f);
+////    matrixSetVectorV3M4(transMat, camPos, 12);
+//    
+//    transMat[3] = camPos[0];
+//    transMat[7] = camPos[1];
+//    transMat[11] = camPos[2];
+//    
+//    multiplyMatM4(rotMat, transMat, lookAtMatrix);
+//    
+//    //Release the vectors and matracies used in the calculation
+//    free(transMat);
+//    free(rotMat);
+//    free(camPos);
+//    free(rightDir);
+//    free(perpUpDir);
+//    free(lookDir);
+//    free(upDir);
 }
 
 -(void)resolvePerspectiveForWidth:(int)width Height:(int)height

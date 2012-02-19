@@ -14,9 +14,11 @@ void normalizeV3(float *, float *);
 void subtractV3(float *, float *, float *);
 
 void crossV3(float *, float *, float *);
+float dotV3(float *,float *);
 void vecByScalarV3(float *,float scalar,float *);
 void addV3(float *,float *invec2,float *);
 void matrixDiagMatrixM4(float *,float);
+void matrixLoadIdentity(float *);
 void matrixSetAllToScalarM4(float *, float );
 void matrixSetVectorV3M4(float *, float *, int );
 void multiplyMatM4(float *, float *,float *);
@@ -32,7 +34,6 @@ float magnitudeV3(float *invec)
 {
     return sqrt( (invec[0] * invec[0]) + (invec[1] * invec[1]) + (invec[2] * invec[2]));
 }
-
 
 //Normalize invec, store result in outvec
 void normalizeV3(float *invec, float *outvec)
@@ -62,6 +63,11 @@ void crossV3(float *invec1, float *invec2, float *outvec)
     outvec[2] = invec1[0] * invec2[1] - invec1[1] * invec2[0];
 }
 
+//Calculate the dot product of invec1 and invec2
+float dotV3(float *invec1,float *invec2)
+{
+    return (invec1[0] * invec2[0]) + (invec1[1] * invec2[1]) + (invec1[2] * invec2[2]);
+}
 
 void vecByScalarV3(float *invec,float scalar,float *outvec)
 {
@@ -84,6 +90,13 @@ void matrixDiagMatrixM4(float *mat,float scalar)
     mat[5] = scalar;
     mat[10] = scalar;
     mat[15] = scalar;
+}
+
+void matrixLoadIdentity(float *mat)
+{
+    memset(mat, 0, sizeof(float));
+    
+    matrixDiagMatrixM4(mat, 1.0);
 }
 
 void matrixSetAllToScalarM4(float *mat, float scalar)

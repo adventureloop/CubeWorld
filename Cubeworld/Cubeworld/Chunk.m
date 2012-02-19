@@ -12,7 +12,7 @@
 @implementation Chunk
 -(id)init
 {
-    return [self initWithNumberOfTrees:1 treeHeight:1];
+    return [self initWithNumberOfTrees:1 treeHeight:3];
 }
 
 -(id)initWithNumberOfTrees:(int)trees treeHeight:(int)treeHeight

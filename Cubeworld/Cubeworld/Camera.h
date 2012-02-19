@@ -10,7 +10,7 @@
 
 @interface Camera : NSObject
 {
-    float *cameraSpherePos;
+    float *cameraPos;
     float *cameraTarget;
     float *upVec;
     
