@@ -22,12 +22,12 @@
     voxelData *voxelPtr;
 }
 
--(id)initWithTreeHeight:(int)nodeHeight nodeSize:(float)nodeSize orign:(vec4 *)nodeOrigin memoryPointer:(void *)mem;
+-(id)initWithTreeHeight:(unsigned int)nodeHeight nodeSize:(float)nodeSize orign:(vec4 *)nodeOrigin memoryPointer:(void *)mem;
 -(void)createSubnodes;
 -(void)addVoxelData;
 -(void)calculateNewOrigin:(vec4 *)v1 OldOrigin:(vec4 *)v2 offsetVec:(vec4 *)offvec scale:(float) scale;
 
--(void)renderElements:(unsigned int *)elements offset:(int)offset;
+-(void)renderElements:(unsigned int *)elements offset:(unsigned int)offset;
 
 -(int)numberOfVoxels;
 @end

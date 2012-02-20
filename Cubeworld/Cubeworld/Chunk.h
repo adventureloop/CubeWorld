@@ -16,6 +16,7 @@
     GLuint indexBufferObject;
     
     Octnode *node;
+    NSMutableArray *nodes;
     
     float *vertexData;
     unsigned int *indexArray;

@@ -10,7 +10,7 @@
 
 @implementation Octnode
 
--(id)initWithTreeHeight:(int)nodeHeight nodeSize:(float)nodeSize orign:(vec4 *)nodeOrigin memoryPointer:(void *)mem
+-(id)initWithTreeHeight:(unsigned int)nodeHeight nodeSize:(float)nodeSize orign:(vec4 *)nodeOrigin memoryPointer:(void *)mem
 {
     if(self = [super init]) {
         height = nodeHeight;
@@ -34,7 +34,7 @@
 
 -(void)createSubnodes
 {
-    NSLog(@"Creating subnodes");
+  //  NSLog(@"Creating subnodes");
     vec4 newOrigin,offsetVec;
     float scale = size/4;
     int newHeight = height-1;
@@ -137,7 +137,7 @@
 //Add the voxel data for this part of the tree to the VBO
 -(void)addVoxelData
 {
-    NSLog(@"Adding data to voxel array at orign (%f,%f,%f)",origin.x,origin.y,origin.z);
+   // NSLog(@"Adding data to voxel array at orign (%f,%f,%f)",origin.x,origin.y,origin.z);
     voxelData *tmp = calloc(1,sizeof(voxelData));
     
     float offset = size/2;

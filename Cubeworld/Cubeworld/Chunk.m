@@ -12,28 +12,43 @@
 @implementation Chunk
 -(id)init
 {
-    return [self initWithNumberOfTrees:1 treeHeight:3];
+    return [self initWithNumberOfTrees:8 treeHeight:1];
 }
 
 -(id)initWithNumberOfTrees:(int)trees treeHeight:(int)treeHeight
 {        
     if(self = [super init]) {
+        nodes = [[NSMutableArray alloc]initWithCapacity:8];
         
-        int numVoxels = trees * ((int)pow(8, treeHeight));
-        int numElements = numVoxels * VOXEL_INDICES_COUNT;
+        
+        unsigned int numVoxels = trees * ((int)pow(8, treeHeight));
+        unsigned int numElements = numVoxels * VOXEL_INDICES_COUNT;
+        
+        float nodeSize = 1.0;
+        int offset = ((int)pow(8.0, treeHeight)) / 8;
 
         vertexData = calloc(numVoxels, sizeof(voxelData));
         indexArray = calloc(numElements, sizeof(unsigned int));
         
         vec4 origin;
-        origin.x = 0.0;
-        origin.y = 0.0;
-        origin.z = 0.0;
+        origin.x = 0.0 + (nodeSize / 2);
+        origin.y = 0.0 + (nodeSize / 2);
+        origin.z = 0.0 + (nodeSize / 2);
         
         //Create each sub tree we want
-        node = [[Octnode alloc]initWithTreeHeight:treeHeight nodeSize:1.0 orign:&origin memoryPointer:vertexData];
+        node = [[Octnode alloc]initWithTreeHeight:treeHeight nodeSize:nodeSize orign:&origin memoryPointer:vertexData];
         [node renderElements:indexArray offset:0];
-    
+        
+//        for(int i = 0;i < 8;i++) {
+//            origin.y = (i * nodeSize) + (nodeSize/2);
+//            int memOffset = i * offset;
+//            
+//            Octnode *tmp = [[Octnode alloc] initWithTreeHeight:treeHeight nodeSize:nodeSize orign:&origin memoryPointer:vertexData+memOffset];
+//            [node renderElements:indexArray+memOffset offset:memOffset];
+//            
+//            [nodes addObject:tmp];
+//        }
+        
         glGenBuffers(1, &vertexBufferObject);
         glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
         glBufferData(GL_ARRAY_BUFFER,numVoxels * sizeof(voxelData), vertexData, GL_DYNAMIC_DRAW);
