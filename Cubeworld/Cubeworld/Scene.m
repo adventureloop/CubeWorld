@@ -281,4 +281,13 @@
     
     return YES;
 }
+
+#pragma mark Handle key presses
+-(void)keyDown:(int)keyCode
+{
+}
+
+-(void)keyUp:(int)keyCode
+{
+}
 @end

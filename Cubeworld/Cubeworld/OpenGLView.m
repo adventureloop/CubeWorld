@@ -47,10 +47,11 @@
 
 -(void)keyUp:(NSEvent*)event
 {
-    //NSLog(@"Key released: %@", event);
+    [scene keyUp:[event keyCode]];
 }
 
 -(void)keyDown:(NSEvent*)event
 {   
+    [scene keyDown:[event keyCode]];
 }
 @end
