@@ -7,15 +7,55 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Voxel.h"
+#import "Camera.h"
+#import "Chunk.h"
 
 @interface Scene : NSObject
 {
-    NSTimer *updateTimer;
-    NSTimer *renderTimer;
+    NSTimer *animationTimer;
+    
+    GLuint _program;
+    GLuint vertexBufferObject;
+    GLuint vao;
+    
+    float offsetX;
+    float offsetY;
+    float offsetZ;
+    
+    //Uniforms for mattrixes
+    GLuint cameraToClipMatrixUnif;
+    GLuint worldToCameraMatrixUnif;
+    GLuint modelToWorldMatrixUnif;
+    
+    float *cameraToClipMatrix;
+    float *worldToCameraMatrix;
+    float *modelToWorldMatrix;
+    
+    float fFrustumScale;
+    float fzNear; 
+    float fzFar;
+    
+    Voxel *v1;
+    Voxel *v2;
+    
+    Camera *camera;
+    
+    Chunk *c;
 }
 
 -(void)startAnimating;
 -(void)stopAnimating;
 -(void)update;
 -(void)render;
+
+-(void)setupOpenGL;
+-(void)didResizeTo:(CGRect)newBounds;
+
+- (BOOL)compileShader:(GLuint *)shader type:(GLenum)type file:(NSString *)file;
+- (BOOL)loadShaders;
+- (BOOL)linkProgram:(GLuint)prog;
+- (BOOL)validateProgram:(GLuint)prog;
+
+@property CGRect bounds;
 @end
