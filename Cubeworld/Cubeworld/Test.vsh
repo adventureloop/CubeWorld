@@ -16,5 +16,7 @@ void main()
 //    temp = worldToCameraMatrix * temp;
     gl_Position = cameraToClipMatrix *  temp;
     
+    
+    
 	outColor = inColor + vec4(normal,1.0);
 }

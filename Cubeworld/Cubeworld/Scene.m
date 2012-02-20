@@ -12,6 +12,15 @@
 @implementation Scene
 @synthesize bounds;
 
+-(id)initWithBounds:(CGRect)newBounds
+{
+    if(self = [super init]) {
+        [self setBounds:newBounds];
+        [self setupOpenGL];
+    }
+    return self;
+}
+
 -(void)startAnimating
 {
 }

@@ -44,6 +44,8 @@
     Chunk *c;
 }
 
+-(id)initWithBounds:(CGRect) newBounds;
+
 -(void)startAnimating;
 -(void)stopAnimating;
 -(void)update;
@@ -51,6 +53,9 @@
 
 -(void)setupOpenGL;
 -(void)didResizeTo:(CGRect)newBounds;
+
+-(void)keyDown:(int)keyCode;
+-(void)keyUp:(int)keyCode;
 
 - (BOOL)compileShader:(GLuint *)shader type:(GLenum)type file:(NSString *)file;
 - (BOOL)loadShaders;

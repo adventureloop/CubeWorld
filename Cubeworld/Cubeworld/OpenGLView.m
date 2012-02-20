@@ -22,16 +22,21 @@
 -(void)awakeFromNib
 {
     NSLog(@"Setting up opengl");   
-    //[self setupOpenGL];
+    
 }
 
 -(void)drawRect:(NSRect)bounds
 {
+    [scene render];
+    
+    if(scene == nil)
+        scene = [[Scene alloc]initWithBounds:[self bounds]];
+    [scene render];
 }
 
 -(void)viewDidEndLiveResize
 {
-    //Update scene size here
+    [scene didResizeTo:[self bounds]];
 }
 
 #pragma mark Handle keypresses

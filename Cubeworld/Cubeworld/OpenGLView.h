@@ -11,6 +11,7 @@
 
 @interface OpenGLView : NSOpenGLView
 {
+    Scene *scene;
 }
 
 @end
