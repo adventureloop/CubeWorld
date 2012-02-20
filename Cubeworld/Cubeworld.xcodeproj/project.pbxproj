@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF01127614F2F4AE0041F25A /* Matrix4.m in Sources */ = {isa = PBXBuildFile; fileRef = DF01127514F2F4AE0041F25A /* Matrix4.m */; };
+		DF01127914F2F5B70041F25A /* Vector4.m in Sources */ = {isa = PBXBuildFile; fileRef = DF01127814F2F5B70041F25A /* Vector4.m */; };
+		DF01127C14F2F7910041F25A /* MatrixStack.m in Sources */ = {isa = PBXBuildFile; fileRef = DF01127B14F2F7910041F25A /* MatrixStack.m */; };
 		DF073EFF14E12CE900BC506D /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = DF073EFE14E12CE900BC506D /* Scene.m */; };
 		DF2945C214E1938E007D1A15 /* Voxel.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2945C114E1938E007D1A15 /* Voxel.m */; };
 		DF29471214E1A50D007D1A15 /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = DF29471114E1A50D007D1A15 /* Camera.m */; };
@@ -42,6 +45,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DF01127414F2F4AE0041F25A /* Matrix4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix4.h; sourceTree = "<group>"; };
+		DF01127514F2F4AE0041F25A /* Matrix4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Matrix4.m; sourceTree = "<group>"; };
+		DF01127714F2F5B70041F25A /* Vector4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector4.h; sourceTree = "<group>"; };
+		DF01127814F2F5B70041F25A /* Vector4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vector4.m; sourceTree = "<group>"; };
+		DF01127A14F2F7910041F25A /* MatrixStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatrixStack.h; sourceTree = "<group>"; };
+		DF01127B14F2F7910041F25A /* MatrixStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatrixStack.m; sourceTree = "<group>"; };
 		DF073EFD14E12CE900BC506D /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
 		DF073EFE14E12CE900BC506D /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
 		DF2945C014E1938E007D1A15 /* Voxel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Voxel.h; sourceTree = "<group>"; };
@@ -104,6 +113,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF01127114F2F4740041F25A /* Maths Stuff */ = {
+			isa = PBXGroup;
+			children = (
+				DF01127A14F2F7910041F25A /* MatrixStack.h */,
+				DF01127B14F2F7910041F25A /* MatrixStack.m */,
+				DF01127414F2F4AE0041F25A /* Matrix4.h */,
+				DF01127514F2F4AE0041F25A /* Matrix4.m */,
+				DF01127714F2F5B70041F25A /* Vector4.h */,
+				DF01127814F2F5B70041F25A /* Vector4.m */,
+			);
+			name = "Maths Stuff";
+			sourceTree = "<group>";
+		};
 		DF2945BE14E19377007D1A15 /* World Elements */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +194,7 @@
 				DF073EFE14E12CE900BC506D /* Scene.m */,
 				DF29471014E1A50D007D1A15 /* Camera.h */,
 				DF29471114E1A50D007D1A15 /* Camera.m */,
+				DF01127114F2F4740041F25A /* Maths Stuff */,
 				DF840DA114D973510022F193 /* Shaders */,
 				DF2945BE14E19377007D1A15 /* World Elements */,
 				DF840D5F14D95C990022F193 /* Supporting Files */,
@@ -338,6 +361,9 @@
 				DF29471214E1A50D007D1A15 /* Camera.m in Sources */,
 				DF974A1E14ED19EF00147274 /* Octnode.m in Sources */,
 				DF974A2214ED4DDF00147274 /* Chunk.m in Sources */,
+				DF01127614F2F4AE0041F25A /* Matrix4.m in Sources */,
+				DF01127914F2F5B70041F25A /* Vector4.m in Sources */,
+				DF01127C14F2F7910041F25A /* MatrixStack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

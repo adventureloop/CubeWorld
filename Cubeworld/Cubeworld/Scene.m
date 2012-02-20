@@ -256,7 +256,6 @@
     if (status == 0) {
         return NO;
     }
-    
     return YES;
 }
 
