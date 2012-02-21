@@ -13,7 +13,7 @@ uniform mat4 modelToWorldMatrix;
 void main()
 {
     vec4 temp = modelToWorldMatrix *  (position + vec4(0.25,-1.5,-5.0,1.0)); //Shift position to avoid clipping 
-//    temp = worldToCameraMatrix * temp;
+    temp = worldToCameraMatrix * temp;
     gl_Position = cameraToClipMatrix *  temp;
     
     
