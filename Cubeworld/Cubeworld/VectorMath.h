@@ -94,7 +94,8 @@ void matrixDiagMatrixM4(float *mat,float scalar)
 
 void matrixLoadIdentity(float *mat)
 {
-    memset(mat, 0, sizeof(float));
+    for(int i = 0;i < 16;i++)
+        mat[i] = 0.0f;
     
     matrixDiagMatrixM4(mat, 1.0);
 }

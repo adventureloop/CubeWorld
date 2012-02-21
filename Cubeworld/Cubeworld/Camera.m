@@ -98,7 +98,7 @@
     lookAtMatrix[10] = zaxis[2];
     lookAtMatrix[14] = -dotV3(zaxis,cameraTarget);
     
-    //matrixLoadIdentity(lookAtMatrix);
+    matrixLoadIdentity(lookAtMatrix);
     
     free(zaxis);
     free(xaxis);
