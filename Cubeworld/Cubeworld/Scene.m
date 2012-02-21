@@ -8,6 +8,7 @@
 
 #import "Scene.h"
 #include <OpenGL/gl.h>
+#import <Carbon/Carbon.h>
 
 @implementation Scene
 @synthesize bounds;
@@ -284,6 +285,43 @@
 #pragma mark Handle key presses
 -(void)keyDown:(int)keyCode
 {
+    NSLog(@"Scene receieved key press %d",keyCode);
+    switch( keyCode ) {
+        case kVK_Space:       
+            [camera moveCameraUp];
+            break;
+        case kVK_Shift:       
+            [camera moveCameraDown];
+            break;
+        case kVK_ANSI_D:      
+            [camera moveCameraRight];
+            break;
+        case kVK_ANSI_A:      
+            [camera moveCameraLeft];
+            break;
+        case kVK_ANSI_W:
+            [camera moveCameraForward];
+            break;
+        case kVK_ANSI_S:
+            [camera moveCameraBack];
+            
+            //Move the camera targer
+        case kVK_UpArrow:
+            [camera moveCameraTargetUp];
+            break;
+        case kVK_DownArrow:
+            [camera moveCameraTargetDown];
+            break;
+        case kVK_RightArrow:
+            [camera moveCameraTargetRight];
+            break;
+        case kVK_LeftArrow:
+            [camera moveCameraTargetLeft];
+            break;
+        default:
+            break;
+    }
+    NSLog(@"%@",[camera description]);
 }
 
 -(void)keyUp:(int)keyCode

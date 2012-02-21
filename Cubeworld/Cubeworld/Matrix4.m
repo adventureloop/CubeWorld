@@ -7,7 +7,7 @@
 //
 
 #import "Matrix4.h"
-#include "VectorMath.h"
+//#include "VectorMath.h"
 
 @implementation Matrix4
 

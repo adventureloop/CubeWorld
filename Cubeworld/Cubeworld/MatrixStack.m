@@ -7,7 +7,7 @@
 //
 
 #import "MatrixStack.h"
-#import "VectorMath.h"
+//#import "VectorMath.h"
 
 @implementation MatrixStack
 -(id)init

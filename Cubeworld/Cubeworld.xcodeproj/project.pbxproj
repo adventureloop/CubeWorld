@@ -10,6 +10,7 @@
 		DF01127614F2F4AE0041F25A /* Matrix4.m in Sources */ = {isa = PBXBuildFile; fileRef = DF01127514F2F4AE0041F25A /* Matrix4.m */; };
 		DF01127914F2F5B70041F25A /* Vector4.m in Sources */ = {isa = PBXBuildFile; fileRef = DF01127814F2F5B70041F25A /* Vector4.m */; };
 		DF01127C14F2F7910041F25A /* MatrixStack.m in Sources */ = {isa = PBXBuildFile; fileRef = DF01127B14F2F7910041F25A /* MatrixStack.m */; };
+		DF01127E14F3AD350041F25A /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF01127D14F3AD350041F25A /* Carbon.framework */; };
 		DF073EFF14E12CE900BC506D /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = DF073EFE14E12CE900BC506D /* Scene.m */; };
 		DF2945C214E1938E007D1A15 /* Voxel.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2945C114E1938E007D1A15 /* Voxel.m */; };
 		DF29471214E1A50D007D1A15 /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = DF29471114E1A50D007D1A15 /* Camera.m */; };
@@ -51,6 +52,7 @@
 		DF01127814F2F5B70041F25A /* Vector4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vector4.m; sourceTree = "<group>"; };
 		DF01127A14F2F7910041F25A /* MatrixStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatrixStack.h; sourceTree = "<group>"; };
 		DF01127B14F2F7910041F25A /* MatrixStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatrixStack.m; sourceTree = "<group>"; };
+		DF01127D14F3AD350041F25A /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		DF073EFD14E12CE900BC506D /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
 		DF073EFE14E12CE900BC506D /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
 		DF2945C014E1938E007D1A15 /* Voxel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Voxel.h; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF01127E14F3AD350041F25A /* Carbon.framework in Frameworks */,
 				DFAD6C0814E402D0002AB62A /* Accelerate.framework in Frameworks */,
 				DF840D9414D95EAA0022F193 /* OpenGL.framework in Frameworks */,
 				DF840D5914D95C990022F193 /* Cocoa.framework in Frameworks */,
@@ -142,6 +145,7 @@
 		DF840D4914D95C990022F193 = {
 			isa = PBXGroup;
 			children = (
+				DF01127D14F3AD350041F25A /* Carbon.framework */,
 				DFAD6C0714E402D0002AB62A /* Accelerate.framework */,
 				DF840D9314D95EAA0022F193 /* OpenGL.framework */,
 				DF840D5E14D95C990022F193 /* Cubeworld */,

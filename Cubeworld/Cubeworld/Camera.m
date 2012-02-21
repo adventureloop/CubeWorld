@@ -199,27 +199,70 @@
     return perspectiveMatrix;
 }
 
--(void)keyDown:(int)keyCode
+#pragma mark Move the camera and camera target
+-(void)moveCameraUp
 {
-    switch( keyCode ) {
-        case 126:       // up arrow
-            cameraTarget[1] += 0.1;
-            break;
-        case 125:       // down arrow
-            cameraTarget[1] -= 0.1;
-            break;
-        case 124:       // right arrow
-            cameraTarget[0] += 0.1;
-            break;
-        case 123:       // left arrow
-            cameraTarget[0] -= 0.1;
-            break;
-            
-            break;
-        default:
-            break;
-            
-    }
-    NSLog(@"Looking at\t%fx,%fy,%fz",cameraTarget[0],cameraTarget[1],cameraTarget[2]);
+    cameraPos[1] += 0.1;
+}
+
+-(void)moveCameraDown
+{
+    cameraPos[1] -= 0.1;
+}
+
+-(void)moveCameraLeft
+{
+    cameraPos[0] -= 0.1;
+}
+
+-(void)moveCameraRight
+{
+    cameraPos[0] += 0.1;
+}
+
+-(void)moveCameraForward
+{
+    cameraPos[2] += 0.1;
+}
+
+-(void)moveCameraBack
+{
+    cameraPos[2] -= 0.1;
+}
+
+-(void)moveCameraTargetUp
+{
+    cameraTarget[1] += 0.1;
+}
+
+-(void)moveCameraTargetDown
+{
+    cameraTarget[1] -= 0.1;
+}
+
+-(void)moveCameraTargetLeft
+{
+    cameraTarget[0] -= 0.1;
+}
+
+-(void)moveCameraTargetRight
+{
+    cameraTarget[0] += 0.1;
+}
+
+-(void)moveCameraTargetForward
+{
+    cameraTarget[2] += 0.1;
+}
+
+-(void)moveCameraTargetBack
+{
+    cameraTarget[2] -= 0.1;
+}
+
+-(NSString *)description
+{
+    return [NSString stringWithFormat:@"Camera at (%f,%f,%f) looking at (%f,%f,%f)",cameraPos[0],cameraPos[1],cameraPos[2],
+            cameraTarget[0],cameraTarget[1],cameraTarget[2]];
 }
 @end

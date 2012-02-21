@@ -29,5 +29,18 @@
 -(float *)lookAtMatrix;
 -(float *)perspectiveMatrix;
 
--(void)keyDown:(int)keyCode;
+
+-(void)moveCameraUp;
+-(void)moveCameraDown;
+-(void)moveCameraLeft;
+-(void)moveCameraRight;
+-(void)moveCameraForward;
+-(void)moveCameraBack;
+
+-(void)moveCameraTargetUp;
+-(void)moveCameraTargetDown;
+-(void)moveCameraTargetLeft;
+-(void)moveCameraTargetRight;
+-(void)moveCameraTargetForward;
+-(void)moveCameraTargetBack;
 @end
