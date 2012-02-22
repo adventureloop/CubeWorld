@@ -12,7 +12,7 @@
 @implementation Chunk
 -(id)init
 {
-    return [self initWithNumberOfTrees:1 treeHeight:1];
+    return [self initWithNumberOfTrees:1 treeHeight:0];
 }
 
 -(id)initWithNumberOfTrees:(int)ntrees treeHeight:(int)ntreeHeight
@@ -26,11 +26,11 @@
         unsigned int numVoxels = trees * ((int)pow(8, treeHeight));
         unsigned int numElements = numVoxels * VOXEL_INDICES_COUNT;
         
-        float nodeSize = 1.0;
-        int offset = ((int)pow(8.0, treeHeight));
-
         vertexData = calloc(numVoxels, sizeof(voxelData));
         indexArray = calloc(numElements, sizeof(unsigned int));
+        
+        float nodeSize = 1.0;
+        int offset = ((int)pow(8.0, treeHeight));
         
         vec4 origin;
         origin.x = 0.0 + (nodeSize / 2);
@@ -46,7 +46,7 @@
                                              nodeSize:nodeSize 
                                                 orign:&origin 
                                         memoryPointer:vertexData];
-            [tmp renderElements:indexArray+memOffset offset:indexOffset];
+            [tmp renderElements:indexArray+indexOffset offset:indexOffset];
             
             [nodes addObject:tmp];
         }

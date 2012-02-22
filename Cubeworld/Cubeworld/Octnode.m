@@ -20,7 +20,6 @@
         origin.y = nodeOrigin->y;
         origin.z = nodeOrigin->z;
         origin.w = nodeOrigin->w;
-        
         voxelPtr = mem;
         
         if(height > 0)
@@ -34,7 +33,8 @@
 
 -(void)createSubnodes
 {
-  //  NSLog(@"Creating subnodes");
+    NSLog(@"Creating subnodes");
+    NSLog(@"Origin (%f,%f,%f)",origin.x,origin.y,origin.z);
     vec4 newOrigin,offsetVec;
     float scale = size/4;
     int newHeight = height-1;
@@ -45,7 +45,7 @@
     nodes = [[NSMutableArray alloc]init];
     
     //Top Nodes
-    //Front Left
+    //Back left
     offsetVec.x = -1.0;
     offsetVec.y = 1.0;
     offsetVec.z = -1.0;
@@ -53,10 +53,10 @@
     [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
     [nodes addObject:[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]];
     
-    //Back left
     //Adjust the memory pointer to the next 8th of data.
     memPtr += offset;
     
+    //Back Right
     offsetVec.x = 1.0;
     offsetVec.y = 1.0;
     offsetVec.z = -1.0;
@@ -64,10 +64,9 @@
     [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
     [nodes addObject:[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]];
     
-    //Front Right
-    //Adjust the memory pointer to the next 8th of data.
     memPtr += offset;
     
+    //Front left
     offsetVec.x = -1.0;
     offsetVec.y = 1.0;
     offsetVec.z = 1.0;
@@ -75,10 +74,9 @@
     [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
     [nodes addObject:[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]];
     
-    //Back right
-    //Adjust the memory pointer to the next 8th of data.
     memPtr += offset;
     
+    //Front right
     offsetVec.x = 1.0;
     offsetVec.y = 1.0;
     offsetVec.z = 1.0;
@@ -87,10 +85,9 @@
     [nodes addObject:[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]];
     
     //Bottom Nodes
-    //Front left
-    //Adjust the memory pointer to the next 8th of data.
     memPtr += offset;
     
+    //Back left
     offsetVec.x = -1.0;
     offsetVec.y = -1.0;
     offsetVec.z = -1.0;
@@ -98,35 +95,32 @@
     [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
     [nodes addObject:[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]];
     
-    //Back left
-    //Adjust the memory pointer to the next 8th of data.
     memPtr += offset;
     
-    offsetVec.x = -1.0;
+    //Front left
+    offsetVec.x = 1.0;
     offsetVec.y = -1.0;
-    offsetVec.z = 1.0;
+    offsetVec.z = -1.0;
     
     [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
     [nodes addObject:[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]];
     
-    //Front right
-    //Adjust the memory pointer to the next 8th of data.
     memPtr += offset;
     
-    offsetVec.x = 1.0;
+    //Front Right
+    offsetVec.x = -1.0;
     offsetVec.y = -1.0;
     offsetVec.z = 1.0;
     
     [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
     [nodes addObject:[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]];
         
-    //Back right
-    //Adjust the memory pointer to the next 8th of data.
     memPtr += offset;
     
+    //Back Right
     offsetVec.x = 1.0;
     offsetVec.y = -1.0;
-    offsetVec.z = -1.0;
+    offsetVec.z = 1.0;
     
     [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
     [nodes addObject:[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]];
