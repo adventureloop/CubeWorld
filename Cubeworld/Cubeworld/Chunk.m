@@ -12,20 +12,22 @@
 @implementation Chunk
 -(id)init
 {
-    return [self initWithNumberOfTrees:8 treeHeight:1];
+    return [self initWithNumberOfTrees:1 treeHeight:1];
 }
 
--(id)initWithNumberOfTrees:(int)trees treeHeight:(int)treeHeight
+-(id)initWithNumberOfTrees:(int)ntrees treeHeight:(int)ntreeHeight
 {        
     if(self = [super init]) {
-        nodes = [[NSMutableArray alloc]initWithCapacity:8];
+        trees = ntrees;
+        treeHeight = ntreeHeight;
         
+        nodes = [[NSMutableArray alloc]initWithCapacity:8];
         
         unsigned int numVoxels = trees * ((int)pow(8, treeHeight));
         unsigned int numElements = numVoxels * VOXEL_INDICES_COUNT;
         
         float nodeSize = 1.0;
-        int offset = ((int)pow(8.0, treeHeight)) / 8;
+        int offset = ((int)pow(8.0, treeHeight));
 
         vertexData = calloc(numVoxels, sizeof(voxelData));
         indexArray = calloc(numElements, sizeof(unsigned int));
@@ -35,19 +37,19 @@
         origin.y = 0.0 + (nodeSize / 2);
         origin.z = 0.0 + (nodeSize / 2);
         
-        //Create each sub tree we want
-        node = [[Octnode alloc]initWithTreeHeight:treeHeight nodeSize:nodeSize orign:&origin memoryPointer:vertexData];
-        [node renderElements:indexArray offset:0];
-        
-//        for(int i = 0;i < 8;i++) {
-//            origin.y = (i * nodeSize) + (nodeSize/2);
-//            int memOffset = i * offset;
-//            
-//            Octnode *tmp = [[Octnode alloc] initWithTreeHeight:treeHeight nodeSize:nodeSize orign:&origin memoryPointer:vertexData+memOffset];
-//            [node renderElements:indexArray+memOffset offset:memOffset];
-//            
-//            [nodes addObject:tmp];
-//        }
+        for(int i = 0;i < trees;i++) {
+            origin.y = (i * nodeSize) + (nodeSize/2);
+            int memOffset = i * offset;
+            int indexOffset = memOffset * VOXEL_INDICES_COUNT;
+            
+            Octnode *tmp = [[Octnode alloc]initWithTreeHeight:treeHeight 
+                                             nodeSize:nodeSize 
+                                                orign:&origin 
+                                        memoryPointer:vertexData];
+            [tmp renderElements:indexArray+memOffset offset:indexOffset];
+            
+            [nodes addObject:tmp];
+        }
         
         glGenBuffers(1, &vertexBufferObject);
         glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
@@ -83,8 +85,6 @@
 {
     int numElements = [self voxelsToRender] * VOXEL_INDICES_COUNT;
     
-    [node renderElements:indexArray offset:0];
-    
     glBindVertexArrayAPPLE(vertexArrayObject);
     
     glDrawElements(GL_TRIANGLES, numElements, GL_UNSIGNED_INT, 0);
@@ -94,9 +94,6 @@
 
 -(int)voxelsToRender
 {
-    int tmp;
-    tmp = [node numberOfVoxels];
-    
-    return tmp;
+    return trees * ((int)pow(8, treeHeight));
 }
 @end

@@ -513,10 +513,9 @@
     memcpy(voxelPtr,tmp,sizeof(voxelData));
 }
 
--(void)renderElements:(unsigned int *)elements offset:(int)offset
+-(void)renderElements:(unsigned int *)elements offset:(unsigned int)offset
 {
     if(height > 0) {
-       // NSLog(@"Getting elements from subnodes");
         int memOffset = ((int)pow(8.0, height)) / 8;
         int indexOffset =  memOffset * 36;
         
@@ -528,8 +527,6 @@
     } else {
         int i = 0;
         unsigned int *nelements = calloc(36, sizeof(unsigned int));
-        
-        //NSLog(@"Adding elements from offset %d",offset);
         
         //Face 1
         nelements[i++] = 0;

@@ -10,6 +10,7 @@
 #import "Voxel.h"
 #import "Camera.h"
 #import "Chunk.h"
+#import "MatrixStack.h"
 
 @interface Scene : NSObject
 {
@@ -42,6 +43,8 @@
     Camera *camera;
     
     Chunk *c;
+    
+    MatrixStack *modelMatrix;
 }
 
 -(id)initWithBounds:(CGRect) newBounds;

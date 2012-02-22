@@ -90,6 +90,8 @@
     
 	glUseProgram(_program);
 	glUniformMatrix4fv(cameraToClipMatrixUnif, 1, GL_FALSE,[camera perspectiveMatrix]);
+    glUniformMatrix4fv(worldToCameraMatrixUnif, 1, GL_FALSE, [camera lookAtMatrix]);
+    glUniformMatrix4fv(modelToWorldMatrixUnif, 1, GL_FALSE, modelToWorldMatrix);
 	glUseProgram(0);
     glViewport(0, 0, (GLsizei)w, (GLsizei)h);
     
@@ -97,6 +99,9 @@
     v2 = [[Voxel alloc]init];
     
     c = [[Chunk alloc]init];
+    
+//    modelMatrix = [[MatrixStack alloc]init];
+//    [modelMatrix loadIndentity];
     
     self->animationTimer = [NSTimer scheduledTimerWithTimeInterval:1/30 target:self selector:@selector(render) userInfo:nil repeats:YES];
 }
@@ -153,8 +158,6 @@
     
     // Bind attribute locations.
     // This needs to be done prior to linking.
-    /*glBindAttribLocation(_program, ATTRIB_VERTEX, "position");
-     glBindAttribLocation(_program, ATTRIB_NORMAL, "normal");*/
     
     glBindAttribLocation(_program, 0, "position");
     glBindAttribLocation(_program, 1, "inColor");
@@ -181,8 +184,7 @@
     }
     
     // Get uniform locations.
-    /* uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX] = glGetUniformLocation(_program, "modelViewProjectionMatrix");
-     uniforms[UNIFORM_NORMAL_MATRIX] = glGetUniformLocation(_program, "normalMatrix");*/
+    
     cameraToClipMatrixUnif = glGetUniformLocation(_program, "cameraToClipMatrix");
     worldToCameraMatrixUnif = glGetUniformLocation(_program, "worldToClipMatrix");
     modelToWorldMatrixUnif = glGetUniformLocation(_program, "modelToWorldMatrix");

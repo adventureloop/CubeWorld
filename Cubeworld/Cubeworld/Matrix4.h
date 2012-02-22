@@ -20,4 +20,7 @@
 -(void)translateByVec4:(Vector4 *)vec;
 -(void)uniformScale:(float) scale;
 -(void)rotateByVec4:(Vector4 *)vec;
+
+-(void)translateByFloat:(float *)vec;
+-(void)loadIndentity;
 @end
