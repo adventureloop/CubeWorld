@@ -593,6 +593,135 @@
     }
 }
 
+-(void)updateColours:(colour *)newColour
+{
+    
+    if(height > 0) {
+        for(Octnode *n in nodes)
+            [n updateColours:newColour];
+    } else {
+        voxelPtr->face1.vertex1.c.red = newColour->red;
+        voxelPtr->face1.vertex1.c.green = newColour->green;
+        voxelPtr->face1.vertex1.c.blue = newColour->blue;
+        voxelPtr->face1.vertex1.c.alpha = newColour->alpha;
+        
+        voxelPtr->face1.vertex2.c.red = newColour->red;
+        voxelPtr->face1.vertex2.c.green = newColour->green;
+        voxelPtr->face1.vertex2.c.blue = newColour->blue;
+        voxelPtr->face1.vertex2.c.alpha = newColour->alpha;
+        
+        voxelPtr->face1.vertex3.c.red = newColour->red;
+        voxelPtr->face1.vertex3.c.green = newColour->green;
+        voxelPtr->face1.vertex3.c.blue = newColour->blue;
+        voxelPtr->face1.vertex3.c.alpha = newColour->alpha;
+        
+        voxelPtr->face1.vertex4.c.red = newColour->red;
+        voxelPtr->face1.vertex4.c.green = newColour->green;
+        voxelPtr->face1.vertex4.c.blue = newColour->blue;
+        voxelPtr->face1.vertex4.c.alpha = newColour->alpha;
+        
+        voxelPtr->face2.vertex1.c.red = newColour->red;
+        voxelPtr->face2.vertex1.c.green = newColour->green;
+        voxelPtr->face2.vertex1.c.blue = newColour->blue;
+        voxelPtr->face2.vertex1.c.alpha = newColour->alpha;
+        
+        voxelPtr->face2.vertex2.c.red = newColour->red;
+        voxelPtr->face2.vertex2.c.green = newColour->green;
+        voxelPtr->face2.vertex2.c.blue = newColour->blue;
+        voxelPtr->face2.vertex2.c.alpha = newColour->alpha;
+        
+        voxelPtr->face2.vertex3.c.red = newColour->red;
+        voxelPtr->face2.vertex3.c.green = newColour->green;
+        voxelPtr->face2.vertex3.c.blue = newColour->blue;
+        voxelPtr->face2.vertex3.c.alpha = newColour->alpha;
+        
+        voxelPtr->face2.vertex4.c.red = newColour->red;
+        voxelPtr->face2.vertex4.c.green = newColour->green;
+        voxelPtr->face2.vertex4.c.blue = newColour->blue;
+        voxelPtr->face2.vertex4.c.alpha = newColour->alpha;
+        
+        voxelPtr->face3.vertex1.c.red = newColour->red;
+        voxelPtr->face3.vertex1.c.green = newColour->green;
+        voxelPtr->face3.vertex1.c.blue = newColour->blue;
+        voxelPtr->face3.vertex1.c.alpha = newColour->alpha;
+        
+        voxelPtr->face3.vertex2.c.red = newColour->red;
+        voxelPtr->face3.vertex2.c.green = newColour->green;
+        voxelPtr->face3.vertex2.c.blue = newColour->blue;
+        voxelPtr->face3.vertex2.c.alpha = newColour->alpha;
+        
+        voxelPtr->face3.vertex3.c.red = newColour->red;
+        voxelPtr->face3.vertex3.c.green = newColour->green;
+        voxelPtr->face3.vertex3.c.blue = newColour->blue;
+        voxelPtr->face3.vertex3.c.alpha = newColour->alpha;
+        
+        voxelPtr->face3.vertex4.c.red = newColour->red;
+        voxelPtr->face3.vertex4.c.green = newColour->green;
+        voxelPtr->face3.vertex4.c.blue = newColour->blue;
+        voxelPtr->face3.vertex4.c.alpha = newColour->alpha;
+        
+        voxelPtr->face4.vertex1.c.red = newColour->red;
+        voxelPtr->face4.vertex1.c.green = newColour->green;
+        voxelPtr->face4.vertex1.c.blue = newColour->blue;
+        voxelPtr->face4.vertex1.c.alpha = newColour->alpha;
+        
+        voxelPtr->face4.vertex2.c.red = newColour->red;
+        voxelPtr->face4.vertex2.c.green = newColour->green;
+        voxelPtr->face4.vertex2.c.blue = newColour->blue;
+        voxelPtr->face4.vertex2.c.alpha = newColour->alpha;
+        
+        voxelPtr->face4.vertex3.c.red = newColour->red;
+        voxelPtr->face4.vertex3.c.green = newColour->green;
+        voxelPtr->face4.vertex3.c.blue = newColour->blue;
+        voxelPtr->face4.vertex3.c.alpha = newColour->alpha;
+        
+        voxelPtr->face4.vertex4.c.red = newColour->red;
+        voxelPtr->face4.vertex4.c.green = newColour->green;
+        voxelPtr->face4.vertex4.c.blue = newColour->blue;
+        voxelPtr->face4.vertex4.c.alpha = newColour->alpha;
+        
+        voxelPtr->face5.vertex1.c.red = newColour->red;
+        voxelPtr->face5.vertex1.c.green = newColour->green;
+        voxelPtr->face5.vertex1.c.blue = newColour->blue;
+        voxelPtr->face5.vertex1.c.alpha = newColour->alpha;
+        
+        voxelPtr->face5.vertex2.c.red = newColour->red;
+        voxelPtr->face5.vertex2.c.green = newColour->green;
+        voxelPtr->face5.vertex2.c.blue = newColour->blue;
+        voxelPtr->face5.vertex2.c.alpha = newColour->alpha;
+        
+        voxelPtr->face5.vertex3.c.red = newColour->red;
+        voxelPtr->face5.vertex3.c.green = newColour->green;
+        voxelPtr->face5.vertex3.c.blue = newColour->blue;
+        voxelPtr->face5.vertex3.c.alpha = newColour->alpha;
+        
+        voxelPtr->face5.vertex4.c.red = newColour->red;
+        voxelPtr->face5.vertex4.c.green = newColour->green;
+        voxelPtr->face5.vertex4.c.blue = newColour->blue;
+        voxelPtr->face5.vertex4.c.alpha = newColour->alpha;
+        
+        voxelPtr->face6.vertex1.c.red = newColour->red;
+        voxelPtr->face6.vertex1.c.green = newColour->green;
+        voxelPtr->face6.vertex1.c.blue = newColour->blue;
+        voxelPtr->face6.vertex1.c.alpha = newColour->alpha;
+        
+        voxelPtr->face6.vertex2.c.red = newColour->red;
+        voxelPtr->face6.vertex2.c.green = newColour->green;
+        voxelPtr->face6.vertex2.c.blue = newColour->blue;
+        voxelPtr->face6.vertex2.c.alpha = newColour->alpha;
+        
+        voxelPtr->face6.vertex3.c.red = newColour->red;
+        voxelPtr->face6.vertex3.c.green = newColour->green;
+        voxelPtr->face6.vertex3.c.blue = newColour->blue;
+        voxelPtr->face6.vertex3.c.alpha = newColour->alpha;
+        
+        voxelPtr->face6.vertex4.c.red = newColour->red;
+        voxelPtr->face6.vertex4.c.green = newColour->green;
+        voxelPtr->face6.vertex4.c.blue = newColour->blue;
+        voxelPtr->face6.vertex4.c.alpha = newColour->alpha;
+    }
+}
+
 -(void)calculateNewOrigin:(vec4 *)v1 OldOrigin:(vec4 *)v2 offsetVec:(vec4 *)offvec scale:(float)scale
 {
     v1->x = 0;

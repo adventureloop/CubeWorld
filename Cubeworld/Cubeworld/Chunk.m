@@ -53,6 +53,16 @@
             memPtr += offset;
         }
         
+        colour newColour;
+        newColour.red = 0.0;
+        newColour.green = 0.0;
+        newColour.blue = 1.0;
+        newColour.alpha = 1.0;
+        
+        [[nodes objectAtIndex:0] updateColours:&newColour];
+        [[nodes objectAtIndex:2] updateColours:&newColour];
+        [[nodes objectAtIndex:4] updateColours:&newColour];
+        
         glGenBuffers(1, &vertexBufferObject);
         glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
         glBufferData(GL_ARRAY_BUFFER,numVoxels * sizeof(voxelData), vertexData, GL_DYNAMIC_DRAW);

@@ -15,7 +15,7 @@
     NSMutableArray *nodes;
     
     vec4 origin;
-    colour ncolour;
+    colour colour;
     float size;
     int height;
     
@@ -30,4 +30,8 @@
 -(void)renderElements:(unsigned int *)elements offset:(unsigned int)offset;
 
 -(int)numberOfVoxels;
+
+-(void)updateColours:(colour *)newColour;
+
+-(bool)collidesWithPoint:(vec4 *)point;
 @end
