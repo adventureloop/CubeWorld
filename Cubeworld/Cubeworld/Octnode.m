@@ -33,8 +33,8 @@
 
 -(void)createSubnodes
 {
-    NSLog(@"Creating subnodes");
-    NSLog(@"Origin (%f,%f,%f)",origin.x,origin.y,origin.z);
+   // NSLog(@"Creating subnodes");
+    
     vec4 newOrigin,offsetVec;
     float scale = size/4;
     int newHeight = height-1;
@@ -500,7 +500,7 @@
     
     tmp->face6.vertex4.n.x = 0.0f;
     tmp->face6.vertex4.n.y = -1.0f;
-    tmp->face6.vertex4.n.z = 0.0f; 
+    tmp->face6.vertex4.n.z = 0.0f;
     
     
     //Copy tmp data into the vbo ptr provided
@@ -510,15 +510,22 @@
 -(void)renderElements:(unsigned int *)elements offset:(unsigned int)offset
 {
     if(height > 0) {
+        unsigned int *memPtr = elements;
         int memOffset = ((int)pow(8.0, height)) / 8;
         int indexOffset =  memOffset * 36;
         
+       // NSLog(@"Offset is %d",indexOffset);
+        
         for(Octnode *n in nodes) {
-            [n renderElements:elements offset:offset];
-            elements = elements + indexOffset;
+            [n renderElements:memPtr offset:offset];
+            memPtr += indexOffset;
             offset = offset + indexOffset;
+            //NSLog(@"Draw offset to %d",offset);
         }
     } else {
+       // NSLog(@"Origin (%f,%f,%f)",origin.x,origin.y,origin.z);
+      //  NSLog(@"Index off set %d",offset);
+        
         int i = 0;
         unsigned int *nelements = calloc(36, sizeof(unsigned int));
         

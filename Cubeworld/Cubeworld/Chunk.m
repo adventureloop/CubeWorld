@@ -12,7 +12,7 @@
 @implementation Chunk
 -(id)init
 {
-    return [self initWithNumberOfTrees:1 treeHeight:0];
+    return [self initWithNumberOfTrees:8 treeHeight:4];
 }
 
 -(id)initWithNumberOfTrees:(int)ntrees treeHeight:(int)ntreeHeight
@@ -31,6 +31,7 @@
         
         float nodeSize = 1.0;
         int offset = ((int)pow(8.0, treeHeight));
+        voxelData *memPtr = (voxelData *)vertexData;
         
         vec4 origin;
         origin.x = 0.0 + (nodeSize / 2);
@@ -45,10 +46,11 @@
             Octnode *tmp = [[Octnode alloc]initWithTreeHeight:treeHeight 
                                              nodeSize:nodeSize 
                                                 orign:&origin 
-                                        memoryPointer:vertexData];
+                                        memoryPointer:memPtr];          //Fix broked somehow
             [tmp renderElements:indexArray+indexOffset offset:indexOffset];
-            
             [nodes addObject:tmp];
+            
+            memPtr += offset;
         }
         
         glGenBuffers(1, &vertexBufferObject);
@@ -88,7 +90,6 @@
     glBindVertexArrayAPPLE(vertexArrayObject);
     
     glDrawElements(GL_TRIANGLES, numElements, GL_UNSIGNED_INT, 0);
-
     glBindVertexArrayAPPLE(0);
 }
 
