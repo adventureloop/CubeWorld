@@ -511,21 +511,19 @@
 {
     if(height > 0) {
         unsigned int *memPtr = elements;
-        int memOffset = ((int)pow(8.0, height)) / 8;
-        int indexOffset =  memOffset * 36;
+        int memOffset = (((int)pow(8.0, height)) / 8) * 36;
+        int indexOffset =  (((int)pow(8.0, height)) / 8) * 24;
         
        // NSLog(@"Offset is %d",indexOffset);
         
         for(Octnode *n in nodes) {
+            NSLog(@"Draw offset to %d",offset);
             [n renderElements:memPtr offset:offset];
-            memPtr += indexOffset;
+            memPtr += memOffset;
             offset = offset + indexOffset;
-            //NSLog(@"Draw offset to %d",offset);
+            
         }
     } else {
-       // NSLog(@"Origin (%f,%f,%f)",origin.x,origin.y,origin.z);
-      //  NSLog(@"Index off set %d",offset);
-        
         int i = 0;
         unsigned int *nelements = calloc(36, sizeof(unsigned int));
         

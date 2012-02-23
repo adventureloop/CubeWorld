@@ -12,7 +12,7 @@
 @implementation Chunk
 -(id)init
 {
-    return [self initWithNumberOfTrees:8 treeHeight:4];
+    return [self initWithNumberOfTrees:1 treeHeight:4];
 }
 
 -(id)initWithNumberOfTrees:(int)ntrees treeHeight:(int)ntreeHeight
@@ -42,12 +42,13 @@
             origin.y = (i * nodeSize) + (nodeSize/2);
             int memOffset = i * offset;
             int indexOffset = memOffset * VOXEL_INDICES_COUNT;
+            int arrayOffset = memOffset * 24;
             
             Octnode *tmp = [[Octnode alloc]initWithTreeHeight:treeHeight 
                                              nodeSize:nodeSize 
                                                 orign:&origin 
-                                        memoryPointer:memPtr];          //Fix broked somehow
-            [tmp renderElements:indexArray+indexOffset offset:indexOffset];
+                                        memoryPointer:memPtr];
+            [tmp renderElements:indexArray+indexOffset offset:arrayOffset];
             [nodes addObject:tmp];
             
             memPtr += offset;
@@ -59,10 +60,10 @@
         newColour.blue = 1.0;
         newColour.alpha = 1.0;
         
-        [[nodes objectAtIndex:0] updateColours:&newColour];
-        [[nodes objectAtIndex:2] updateColours:&newColour];
-        [[nodes objectAtIndex:4] updateColours:&newColour];
+       // [[nodes objectAtIndex:0] updateColours:&newColour];
         
+        
+        /* Set up vertex buffer and array objects */
         glGenBuffers(1, &vertexBufferObject);
         glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
         glBufferData(GL_ARRAY_BUFFER,numVoxels * sizeof(voxelData), vertexData, GL_DYNAMIC_DRAW);
