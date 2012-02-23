@@ -514,10 +514,7 @@
         int memOffset = (((int)pow(8.0, height)) / 8) * 36;
         int indexOffset =  (((int)pow(8.0, height)) / 8) * 24;
         
-       // NSLog(@"Offset is %d",indexOffset);
-        
         for(Octnode *n in nodes) {
-            NSLog(@"Draw offset to %d",offset);
             [n renderElements:memPtr offset:offset];
             memPtr += memOffset;
             offset = offset + indexOffset;
@@ -718,6 +715,38 @@
         voxelPtr->face6.vertex4.c.blue = newColour->blue;
         voxelPtr->face6.vertex4.c.alpha = newColour->alpha;
     }
+}
+
+-(bool)updatePoint:(vec4 *)point withColour:(colour *)newColour
+{
+    if([self collidesWithPoint:point]) {
+        if(height > 0) {
+            for(Octnode *n in nodes)
+                if([n collidesWithPoint:point])
+                    return [n updatePoint:point withColour:newColour];
+        } else {
+            [self updateColours:newColour];
+            return YES;
+        }
+    }else {
+        return NO;
+    }
+    return NO;
+}
+
+-(bool)collidesWithPoint:(vec4 *)point
+{
+    float offset = size/2;
+    if(!(point->x > (origin.x + offset) || point->x < (origin.x - offset)))
+        return NO;
+    
+    if(!(point->y > (origin.y + offset) || point->y < (origin.y - offset)))
+        return NO;
+    
+    if(!(point->z > (origin.z + offset) || point->z < (origin.z - offset)))
+        return NO;
+    NSLog(@"Collision!!!");
+    return YES;
 }
 
 -(void)calculateNewOrigin:(vec4 *)v1 OldOrigin:(vec4 *)v2 offsetVec:(vec4 *)offvec scale:(float)scale

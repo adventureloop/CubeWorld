@@ -12,7 +12,7 @@
 @implementation Chunk
 -(id)init
 {
-    return [self initWithNumberOfTrees:1 treeHeight:4];
+    return [self initWithNumberOfTrees:1 treeHeight:1];
 }
 
 -(id)initWithNumberOfTrees:(int)ntrees treeHeight:(int)ntreeHeight
@@ -60,7 +60,11 @@
         newColour.blue = 1.0;
         newColour.alpha = 1.0;
         
-       // [[nodes objectAtIndex:0] updateColours:&newColour];
+        origin.x = -0.4;
+        origin.z = -0.4;
+        origin.y = -0.4;
+        
+        [[nodes objectAtIndex:0] updatePoint:&origin withColour:&newColour];
         
         
         /* Set up vertex buffer and array objects */

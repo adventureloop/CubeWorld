@@ -34,4 +34,5 @@
 -(void)updateColours:(colour *)newColour;
 
 -(bool)collidesWithPoint:(vec4 *)point;
+-(bool)updatePoint:(vec4 *)point withColour:(colour *)newColour;
 @end
