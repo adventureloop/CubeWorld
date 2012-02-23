@@ -7,6 +7,6 @@ Ensuring changes go through.
 
 Lastest Screenshot
 
-![latest image](jones.freeshell.org/latest.png)
+![latest image](http://jones.freeshell.org/latest.png)
 
 **Tom Jones**
