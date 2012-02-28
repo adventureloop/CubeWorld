@@ -90,7 +90,7 @@
     
 	glUseProgram(_program);
 	glUniformMatrix4fv(cameraToClipMatrixUnif, 1, GL_FALSE,[camera perspectiveMatrix]);
-    glUniformMatrix4fv(worldToCameraMatrixUnif, 1, GL_FALSE, [camera lookAtMatrix]);
+    glUniformMatrix4fv(worldToCameraMatrixUnif, 1, GL_FALSE,modelToWorldMatrix);
     glUniformMatrix4fv(modelToWorldMatrixUnif, 1, GL_FALSE, modelToWorldMatrix);
 	glUseProgram(0);
     glViewport(0, 0, (GLsizei)w, (GLsizei)h);
@@ -186,7 +186,7 @@
     // Get uniform locations.
     
     cameraToClipMatrixUnif = glGetUniformLocation(_program, "cameraToClipMatrix");
-    worldToCameraMatrixUnif = glGetUniformLocation(_program, "worldToClipMatrix");
+    worldToCameraMatrixUnif = glGetUniformLocation(_program, "worldToCameraMatrix");
     modelToWorldMatrixUnif = glGetUniformLocation(_program, "modelToWorldMatrix");
     
     // Release vertex and fragment shaders.
