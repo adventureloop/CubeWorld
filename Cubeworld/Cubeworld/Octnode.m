@@ -736,14 +736,15 @@
 
 -(bool)collidesWithPoint:(vec4 *)point
 {
+    //NSLog(@"Voxel with origin (%f,%f,%f) checking for collision with (%f,%f,%f)",origin.x,origin.y,origin.z,point->x,point->y,point->z);
     float offset = size/2;
-    if(!(point->x > (origin.x + offset) || point->x < (origin.x - offset)))
+    if((point->x > (origin.x + offset) || point->x < (origin.x - offset)))
         return NO;
     
-    if(!(point->y > (origin.y + offset) || point->y < (origin.y - offset)))
+    if((point->y > (origin.y + offset) || point->y < (origin.y - offset)))
         return NO;
     
-    if(!(point->z > (origin.z + offset) || point->z < (origin.z - offset)))
+    if((point->z > (origin.z + offset) || point->z < (origin.z - offset)))
         return NO;
     NSLog(@"Collision!!!");
     return YES;

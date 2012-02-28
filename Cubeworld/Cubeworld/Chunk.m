@@ -12,7 +12,7 @@
 @implementation Chunk
 -(id)init
 {
-    return [self initWithNumberOfTrees:1 treeHeight:1];
+    return [self initWithNumberOfTrees:3 treeHeight:1];
 }
 
 -(id)initWithNumberOfTrees:(int)ntrees treeHeight:(int)ntreeHeight
@@ -34,9 +34,9 @@
         voxelData *memPtr = (voxelData *)vertexData;
         
         vec4 origin;
-        origin.x = 0.0 + (nodeSize / 2);
-        origin.y = 0.0 + (nodeSize / 2);
-        origin.z = 0.0 + (nodeSize / 2);
+        origin.x = 0.0;
+        origin.y = (nodeSize / 2);
+        origin.z = -3.0;
         
         for(int i = 0;i < trees;i++) {
             origin.y = (i * nodeSize) + (nodeSize/2);
