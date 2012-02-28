@@ -12,7 +12,7 @@
 @implementation Chunk
 -(id)init
 {
-    return [self initWithNumberOfTrees:3 treeHeight:1];
+    return [self initWithNumberOfTrees:1 treeHeight:1];
 }
 
 -(id)initWithNumberOfTrees:(int)ntrees treeHeight:(int)ntreeHeight
@@ -34,12 +34,13 @@
         voxelData *memPtr = (voxelData *)vertexData;
         
         vec4 origin;
-        origin.x = 0.0;
+        origin.x = 1.0;
         origin.y = (nodeSize / 2);
         origin.z = -3.0;
         
         for(int i = 0;i < trees;i++) {
             origin.y = (i * nodeSize) + (nodeSize/2);
+            
             int memOffset = i * offset;
             int indexOffset = memOffset * VOXEL_INDICES_COUNT;
             int arrayOffset = memOffset * 24;
@@ -60,9 +61,9 @@
         newColour.blue = 1.0;
         newColour.alpha = 1.0;
         
-        origin.x = -0.4;
-        origin.z = -0.4;
-        origin.y = -0.4;
+        origin.x = 0.6;
+        origin.z = -3.4;
+        origin.y = 0.4;
         
         [[nodes objectAtIndex:0] updatePoint:&origin withColour:&newColour];
         

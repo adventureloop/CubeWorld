@@ -23,11 +23,11 @@
         //Look at the origin
         cameraTarget[0] = 0.0f;
         cameraTarget[1] = 0.0f;
-        cameraTarget[2] = -1.0f;
+        cameraTarget[2] = 0.0f;
         
         cameraPos[0] = 0.0f;
-        cameraPos[1] = 5.0f;
-        cameraPos[2] = 1.0f;
+        cameraPos[1] = 0.0f;
+        cameraPos[2] = -2.0f;
         
         //The directio of up
         upVec[0] = 0.0f;
@@ -98,7 +98,7 @@
     lookAtMatrix[10] = zaxis[2];
     lookAtMatrix[14] = -dotV3(zaxis,cameraTarget);
     
-    matrixLoadIdentity(lookAtMatrix);
+    //matrixLoadIdentity(lookAtMatrix);
     
     free(zaxis);
     free(xaxis);
@@ -129,21 +129,25 @@
 -(void)moveCameraUp
 {
     cameraPos[1] += 0.1;
+    cameraTarget[1] += -0.1;
 }
 
 -(void)moveCameraDown
 {
     cameraPos[1] -= 0.1;
+    cameraTarget[1] -= -0.1;
 }
 
 -(void)moveCameraLeft
 {
     cameraPos[0] -= 0.1;
+    cameraTarget[0] -= -0.1;
 }
 
 -(void)moveCameraRight
 {
     cameraPos[0] += 0.1;
+    cameraTarget[0] += -0.1;
 }
 
 -(void)moveCameraForward
