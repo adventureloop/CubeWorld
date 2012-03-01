@@ -40,7 +40,7 @@
         
         frustumScale = 2.4f;
         zNear = 0.5f; 
-        zFar = 3.0f;
+        zFar = 100.0f;
     }
     return self;
 }
