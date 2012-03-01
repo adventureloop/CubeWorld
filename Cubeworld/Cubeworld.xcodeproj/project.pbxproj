@@ -14,6 +14,7 @@
 		DF073EFF14E12CE900BC506D /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = DF073EFE14E12CE900BC506D /* Scene.m */; };
 		DF2945C214E1938E007D1A15 /* Voxel.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2945C114E1938E007D1A15 /* Voxel.m */; };
 		DF29471214E1A50D007D1A15 /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = DF29471114E1A50D007D1A15 /* Camera.m */; };
+		DF35EACA14FF81C000AE8A60 /* ChunkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DF35EAC914FF81C000AE8A60 /* ChunkManager.m */; };
 		DF840D5914D95C990022F193 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF840D5814D95C990022F193 /* Cocoa.framework */; };
 		DF840D6314D95C990022F193 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF840D6114D95C990022F193 /* InfoPlist.strings */; };
 		DF840D6514D95C990022F193 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DF840D6414D95C990022F193 /* main.m */; };
@@ -30,6 +31,7 @@
 		DF840DA514D973980022F193 /* Test.fsh in Sources */ = {isa = PBXBuildFile; fileRef = DF840DA414D973980022F193 /* Test.fsh */; };
 		DF840DAB14D97CAF0022F193 /* Test.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DF840DA214D9738A0022F193 /* Test.vsh */; };
 		DF840DAC14D97CAF0022F193 /* Test.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DF840DA414D973980022F193 /* Test.fsh */; };
+		DF93A0EF14FE7F5400F201D7 /* Region.m in Sources */ = {isa = PBXBuildFile; fileRef = DF93A0EE14FE7F5400F201D7 /* Region.m */; };
 		DF974A1E14ED19EF00147274 /* Octnode.m in Sources */ = {isa = PBXBuildFile; fileRef = DF974A1D14ED19EF00147274 /* Octnode.m */; };
 		DF974A2214ED4DDF00147274 /* Chunk.m in Sources */ = {isa = PBXBuildFile; fileRef = DF974A2114ED4DDF00147274 /* Chunk.m */; };
 		DFAD6C0814E402D0002AB62A /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAD6C0714E402D0002AB62A /* Accelerate.framework */; };
@@ -59,6 +61,8 @@
 		DF2945C114E1938E007D1A15 /* Voxel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Voxel.m; sourceTree = "<group>"; };
 		DF29471014E1A50D007D1A15 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		DF29471114E1A50D007D1A15 /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Camera.m; sourceTree = "<group>"; };
+		DF35EAC814FF81C000AE8A60 /* ChunkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChunkManager.h; sourceTree = "<group>"; };
+		DF35EAC914FF81C000AE8A60 /* ChunkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChunkManager.m; sourceTree = "<group>"; };
 		DF64F3AA14E55A870003630A /* VectorMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VectorMath.h; sourceTree = "<group>"; };
 		DF840D5414D95C990022F193 /* Cubeworld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cubeworld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF840D5814D95C990022F193 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -84,6 +88,8 @@
 		DF840D9314D95EAA0022F193 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		DF840DA214D9738A0022F193 /* Test.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Test.vsh; sourceTree = "<group>"; };
 		DF840DA414D973980022F193 /* Test.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Test.fsh; sourceTree = "<group>"; };
+		DF93A0ED14FE7F5400F201D7 /* Region.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Region.h; sourceTree = "<group>"; };
+		DF93A0EE14FE7F5400F201D7 /* Region.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Region.m; sourceTree = "<group>"; };
 		DF974A1C14ED19EF00147274 /* Octnode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Octnode.h; sourceTree = "<group>"; };
 		DF974A1D14ED19EF00147274 /* Octnode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Octnode.m; sourceTree = "<group>"; };
 		DF974A1F14ED1C7F00147274 /* Structures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Structures.h; sourceTree = "<group>"; };
@@ -132,6 +138,8 @@
 		DF2945BE14E19377007D1A15 /* World Elements */ = {
 			isa = PBXGroup;
 			children = (
+				DF93A0ED14FE7F5400F201D7 /* Region.h */,
+				DF93A0EE14FE7F5400F201D7 /* Region.m */,
 				DF974A2014ED4DDF00147274 /* Chunk.h */,
 				DF974A2114ED4DDF00147274 /* Chunk.m */,
 				DF974A1C14ED19EF00147274 /* Octnode.h */,
@@ -198,9 +206,10 @@
 				DF073EFE14E12CE900BC506D /* Scene.m */,
 				DF29471014E1A50D007D1A15 /* Camera.h */,
 				DF29471114E1A50D007D1A15 /* Camera.m */,
+				DF2945BE14E19377007D1A15 /* World Elements */,
+				DF93A0EC14FE7B5100F201D7 /* World Generation */,
 				DF01127114F2F4740041F25A /* Maths Stuff */,
 				DF840DA114D973510022F193 /* Shaders */,
-				DF2945BE14E19377007D1A15 /* World Elements */,
 				DF840D5F14D95C990022F193 /* Supporting Files */,
 			);
 			path = Cubeworld;
@@ -244,6 +253,15 @@
 				DF840DA414D973980022F193 /* Test.fsh */,
 			);
 			name = Shaders;
+			sourceTree = "<group>";
+		};
+		DF93A0EC14FE7B5100F201D7 /* World Generation */ = {
+			isa = PBXGroup;
+			children = (
+				DF35EAC814FF81C000AE8A60 /* ChunkManager.h */,
+				DF35EAC914FF81C000AE8A60 /* ChunkManager.m */,
+			);
+			name = "World Generation";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -368,6 +386,8 @@
 				DF01127614F2F4AE0041F25A /* Matrix4.m in Sources */,
 				DF01127914F2F5B70041F25A /* Vector4.m in Sources */,
 				DF01127C14F2F7910041F25A /* MatrixStack.m in Sources */,
+				DF93A0EF14FE7F5400F201D7 /* Region.m in Sources */,
+				DF35EACA14FF81C000AE8A60 /* ChunkManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
