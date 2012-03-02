@@ -16,4 +16,6 @@
 
 -(void)push;
 -(void)pop;
+
++(MatrixStack *)sharedMatrixStack;
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "MatrixStack.h"
-//#import "VectorMath.h"
 
 @implementation MatrixStack
 -(id)init
@@ -21,7 +20,19 @@
         
     }
     return self;
+}
+
++(MatrixStack *)sharedMatrixStack
+{
+    static MatrixStack *shared;
+    
+    @synchronized(self)
+    {
+        if (!shared)
+            shared = [[MatrixStack alloc] init];
         
+        return shared;
+    }
 }
 
 -(void)push
@@ -29,7 +40,8 @@
     if(++index > 15)
         index = 15;
     mat = stack[index];
-    matrixLoadIdentity(mat);
+
+    memcpy(stack[index], stack[index-1], 16);
 }
 
 -(void)pop
@@ -37,8 +49,6 @@
     if(--index < 0)
         index = 0;
     mat = stack[index];
-    
-    
 }
 
 -(void)dealloc

@@ -17,7 +17,7 @@
 -(float *)mat;
 
 -(void)transpose;
--(void)translateByVec4:(Vector4 *)vec;
+-(void)translateByVec3:(vec3 *)vec;
 -(void)uniformScale:(float) scale;
 -(void)rotateByVec4:(Vector4 *)vec;
 

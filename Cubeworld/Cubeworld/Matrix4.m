@@ -7,7 +7,6 @@
 //
 
 #import "Matrix4.h"
-//#include "VectorMath.h"
 
 @implementation Matrix4
 
@@ -22,8 +21,11 @@
 {
 }
 
--(void)translateByVec4:(Vector4 *)vec
+-(void)translateByVec3:(vec3 *)vec
 {
+    mat[3] = vec->x;
+    mat[7] = vec->y;
+    mat[11] = vec->z;
 }
 
 -(float *)mat
