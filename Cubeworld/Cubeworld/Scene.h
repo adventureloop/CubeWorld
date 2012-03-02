@@ -20,30 +20,13 @@
     GLuint vertexBufferObject;
     GLuint vao;
     
-    float offsetX;
-    float offsetY;
-    float offsetZ;
-    
     //Uniforms for mattrixes
     GLuint cameraToClipMatrixUnif;
     GLuint worldToCameraMatrixUnif;
     GLuint modelToWorldMatrixUnif;
     
-    float *cameraToClipMatrix;
-    float *worldToCameraMatrix;
-    float *modelToWorldMatrix;
-    
-    float fFrustumScale;
-    float fzNear; 
-    float fzFar;
-    
-    Voxel *v1;
-    Voxel *v2;
-    
     Camera *camera;
-    
     Chunk *c;
-    
     MatrixStack *modelMatrix;
 }
 

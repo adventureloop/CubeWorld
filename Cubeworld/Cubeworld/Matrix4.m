@@ -7,6 +7,7 @@
 //
 
 #import "Matrix4.h"
+//#import "VectorMath.h"
 
 @implementation Matrix4
 
@@ -26,6 +27,11 @@
     mat[3] = vec->x;
     mat[7] = vec->y;
     mat[11] = vec->z;
+}
+
+-(void)loadIndentity
+{
+    matrixLoadIdentity(mat);
 }
 
 -(float *)mat

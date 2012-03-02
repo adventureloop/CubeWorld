@@ -7,7 +7,7 @@
 //
 
 #import "Camera.h"
-#include "VectorMath.h"
+#import "VectorMath.h"
 
 @implementation Camera
 -(id)init

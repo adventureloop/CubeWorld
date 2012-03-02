@@ -52,7 +52,7 @@
     glUniformMatrix4fv(cameraToClipMatrixUnif, 1, GL_FALSE, [camera perspectiveMatrix]);
     
     //Use the model matrix(identity currently)
-    glUniformMatrix4fv(modelToWorldMatrixUnif, 1, GL_FALSE, modelToWorldMatrix);
+    glUniformMatrix4fv(modelToWorldMatrixUnif, 1, GL_FALSE, [modelMatrix mat]);
     
     [c render];
     
@@ -70,11 +70,8 @@
     
     camera = [[Camera alloc]init];
     
-    modelToWorldMatrix = calloc(16,sizeof(float));
-    modelToWorldMatrix[0] = 1.0f;
-    modelToWorldMatrix[5] = 1.0f;
-    modelToWorldMatrix[10] = 1.0f;
-    modelToWorldMatrix[15] = 1.0f;
+    modelMatrix = [[MatrixStack alloc]init];
+    [modelMatrix loadIndentity];
     
     //Enable depth testing
     glEnable(GL_DEPTH_TEST);
@@ -90,18 +87,15 @@
     
 	glUseProgram(_program);
 	glUniformMatrix4fv(cameraToClipMatrixUnif, 1, GL_FALSE,[camera perspectiveMatrix]);
-    glUniformMatrix4fv(worldToCameraMatrixUnif, 1, GL_FALSE,modelToWorldMatrix);
-    glUniformMatrix4fv(modelToWorldMatrixUnif, 1, GL_FALSE, modelToWorldMatrix);
+    glUniformMatrix4fv(worldToCameraMatrixUnif, 1, GL_FALSE,[camera lookAtMatrix]);
+    glUniformMatrix4fv(modelToWorldMatrixUnif, 1, GL_FALSE, [modelMatrix mat]);
 	glUseProgram(0);
     glViewport(0, 0, (GLsizei)w, (GLsizei)h);
-    
-    v1 = [[Voxel alloc]init];
-    v2 = [[Voxel alloc]init];
+
     
     c = [[Chunk alloc]init];
     
-//    modelMatrix = [[MatrixStack alloc]init];
-//    [modelMatrix loadIndentity];
+
     
     self->animationTimer = [NSTimer scheduledTimerWithTimeInterval:1/30 target:self selector:@selector(render) userInfo:nil repeats:YES];
 }
