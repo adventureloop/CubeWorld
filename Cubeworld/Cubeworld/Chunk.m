@@ -33,13 +33,13 @@
         int offset = ((int)pow(8.0, treeHeight));
         voxelData *memPtr = (voxelData *)vertexData;
         
-        vec4 origin;
-        origin.x = 1.0;
-        origin.y = (nodeSize / 2);
-        origin.z = -3.0;
+        vec4 localOrigin;
+        localOrigin.x = 0.0;
+        localOrigin.y = (nodeSize / 2);
+        localOrigin.z = 0.0;
         
         for(int i = 0;i < trees;i++) {
-            origin.y = (i * nodeSize) + (nodeSize/2);
+            localOrigin.y = (i * nodeSize) + (nodeSize/2);
             
             int memOffset = i * offset;
             int indexOffset = memOffset * VOXEL_INDICES_COUNT;
@@ -47,7 +47,7 @@
             
             Octnode *tmp = [[Octnode alloc]initWithTreeHeight:treeHeight 
                                              nodeSize:nodeSize 
-                                                orign:&origin 
+                                                orign:&localOrigin 
                                         memoryPointer:memPtr];
             [tmp renderElements:indexArray+indexOffset offset:arrayOffset];
             [nodes addObject:tmp];
@@ -61,11 +61,11 @@
         newColour.blue = 1.0;
         newColour.alpha = 1.0;
         
-        origin.x = 0.6;
-        origin.z = -3.4;
-        origin.y = 0.4;
+        localOrigin.x = 0.1;
+        localOrigin.z = 0.1;
+        localOrigin.y = 0.6;
         
-        [[nodes objectAtIndex:0] updatePoint:&origin withColour:&newColour];
+        [[nodes objectAtIndex:0] updatePoint:&localOrigin withColour:&newColour];
         
         
         /* Set up vertex buffer and array objects */
@@ -112,5 +112,17 @@
 -(int)voxelsToRender
 {
     return trees * ((int)pow(8, treeHeight));
+}
+
+-(vec3 *)origin
+{
+    return &origin;
+}
+
+-(void)setOrigin:(vec3 *)newOrigin
+{
+    origin.x = newOrigin->x;
+    origin.y = newOrigin->y;
+    origin.z = newOrigin->z;
 }
 @end

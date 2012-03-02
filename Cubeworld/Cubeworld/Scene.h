@@ -11,6 +11,7 @@
 #import "Camera.h"
 #import "Chunk.h"
 #import "MatrixStack.h"
+#import "Region.h"
 
 @interface Scene : NSObject
 {
@@ -26,8 +27,11 @@
     GLuint modelToWorldMatrixUnif;
     
     Camera *camera;
-    Chunk *c;
     MatrixStack *modelMatrix;
+    
+    Chunk *c;
+
+    Region *r;
 }
 
 -(id)initWithBounds:(CGRect) newBounds;
@@ -43,10 +47,10 @@
 -(void)keyDown:(int)keyCode;
 -(void)keyUp:(int)keyCode;
 
-- (BOOL)compileShader:(GLuint *)shader type:(GLenum)type file:(NSString *)file;
-- (BOOL)loadShaders;
-- (BOOL)linkProgram:(GLuint)prog;
-- (BOOL)validateProgram:(GLuint)prog;
+-(BOOL)compileShader:(GLuint *)shader type:(GLenum)type file:(NSString *)file;
+-(BOOL)loadShaders;
+-(BOOL)linkProgram:(GLuint)prog;
+-(BOOL)validateProgram:(GLuint)prog;
 
 @property CGRect bounds;
 @end

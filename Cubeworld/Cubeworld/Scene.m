@@ -54,7 +54,8 @@
     //Use the model matrix(identity currently)
     glUniformMatrix4fv(modelToWorldMatrixUnif, 1, GL_FALSE, [modelMatrix mat]);
     
-    [c render];
+  //  [c render];
+    [r render];
     
 	glUseProgram(0);
     glSwapAPPLE();
@@ -70,7 +71,7 @@
     
     camera = [[Camera alloc]init];
     
-    modelMatrix = [[MatrixStack alloc]init];
+    modelMatrix = [MatrixStack sharedMatrixStack];
     [modelMatrix loadIndentity];
     
     //Enable depth testing
@@ -92,10 +93,9 @@
 	glUseProgram(0);
     glViewport(0, 0, (GLsizei)w, (GLsizei)h);
 
-    
     c = [[Chunk alloc]init];
     
-
+    r = [[Region alloc]initWithMatrixUnifLocation:modelToWorldMatrixUnif program:_program];
     
     self->animationTimer = [NSTimer scheduledTimerWithTimeInterval:1/30 target:self selector:@selector(render) userInfo:nil repeats:YES];
 }

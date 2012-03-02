@@ -23,9 +23,13 @@
     
     int trees;
     int treeHeight;
+    
+    vec3 origin;
 }
 -(id)initWithNumberOfTrees:(int)ntrees treeHeight:(int)ntreeHeight;
 
 -(void)render;
 -(int)voxelsToRender;
+-(vec3 *)origin;
+-(void)setOrigin:(vec3 *)newOrigin;
 @end

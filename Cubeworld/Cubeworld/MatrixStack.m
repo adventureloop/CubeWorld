@@ -7,6 +7,7 @@
 //
 
 #import "MatrixStack.h"
+#import <OpenGL/gl.h>
 
 @implementation MatrixStack
 -(id)init
@@ -25,12 +26,10 @@
 +(MatrixStack *)sharedMatrixStack
 {
     static MatrixStack *shared;
-    
     @synchronized(self)
     {
         if (!shared)
             shared = [[MatrixStack alloc] init];
-        
         return shared;
     }
 }
