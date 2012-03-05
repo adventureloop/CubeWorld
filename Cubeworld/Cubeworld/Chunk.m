@@ -8,6 +8,7 @@
 
 #import "Chunk.h"
 #import <OpenGL/gl.h>
+#import "BlockTypes.h"
 
 @implementation Chunk
 -(id)init
@@ -28,6 +29,9 @@
         
         vertexData = calloc(numVoxels, sizeof(voxelData));
         indexArray = calloc(numElements, sizeof(unsigned int));
+        int *tmpIndexArray = calloc(numElements, sizeof(long));
+        
+        memset(tmpIndexArray, -1, numElements * sizeof(int));
         
         float nodeSize = 1.0;
         int offset = ((int)pow(8.0, treeHeight));
@@ -36,7 +40,7 @@
         vec4 localOrigin;
         localOrigin.x = 0.0;
         localOrigin.y = (nodeSize / 2);
-        localOrigin.z = 0.0;
+        localOrigin.z = -3.0;
         
         for(int i = 0;i < trees;i++) {
             localOrigin.y = (i * nodeSize) + (nodeSize/2);
@@ -49,11 +53,18 @@
                                              nodeSize:nodeSize 
                                                 orign:&localOrigin 
                                         memoryPointer:memPtr];
-            [tmp renderElements:indexArray+indexOffset offset:arrayOffset];
+            [tmp renderElements:tmpIndexArray+indexOffset offset:arrayOffset];
             [nodes addObject:tmp];
             
             memPtr += offset;
         }
+        
+        for(int i = 0,j = 0;i < numElements;i++) 
+            if(tmpIndexArray[i] >= 0)
+                indexArray[j++] = tmpIndexArray[i];
+            
+        
+        /* This code needs moved*/
         
         colour newColour;
         newColour.red = 0.0;
@@ -62,10 +73,31 @@
         newColour.alpha = 1.0;
         
         localOrigin.x = 0.1;
-        localOrigin.z = 0.1;
+        localOrigin.z = -3.1;
         localOrigin.y = 0.6;
         
-        [[nodes objectAtIndex:0] updatePoint:&localOrigin withColour:&newColour];
+        [[nodes objectAtIndex:0] updatePoint:&localOrigin withBlockType:BLOCK_AIR];
+        
+        memset(tmpIndexArray, -1, numElements * sizeof(int));
+        
+        for(int i = 0;i < trees;i++) {
+            localOrigin.y = (i * nodeSize) + (nodeSize/2);
+            
+            int memOffset = i * offset;
+            int indexOffset = memOffset * VOXEL_INDICES_COUNT;
+            int arrayOffset = memOffset * 24;
+            
+            Octnode *tmp = [nodes objectAtIndex:i];
+            [tmp renderElements:tmpIndexArray+indexOffset offset:arrayOffset];
+            [nodes addObject:tmp];
+            
+            memPtr += offset;
+        }
+        for(int i = 0,j = 0;i < numElements;i++) 
+            if(tmpIndexArray[i] >= 0)
+                indexArray[j++] = tmpIndexArray[i];
+        
+        /*Testing code to be removed ends*/
         
         
         /* Set up vertex buffer and array objects */

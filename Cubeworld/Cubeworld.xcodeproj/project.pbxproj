@@ -88,6 +88,7 @@
 		DF840D9314D95EAA0022F193 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		DF840DA214D9738A0022F193 /* Test.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Test.vsh; sourceTree = "<group>"; };
 		DF840DA414D973980022F193 /* Test.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Test.fsh; sourceTree = "<group>"; };
+		DF90B5081504E62F00617F66 /* BlockTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockTypes.h; sourceTree = "<group>"; };
 		DF93A0ED14FE7F5400F201D7 /* Region.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Region.h; sourceTree = "<group>"; };
 		DF93A0EE14FE7F5400F201D7 /* Region.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Region.m; sourceTree = "<group>"; };
 		DF974A1C14ED19EF00147274 /* Octnode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Octnode.h; sourceTree = "<group>"; };
@@ -197,6 +198,7 @@
 			children = (
 				DF64F3AA14E55A870003630A /* VectorMath.h */,
 				DF974A1F14ED1C7F00147274 /* Structures.h */,
+				DF90B5081504E62F00617F66 /* BlockTypes.h */,
 				DF840D6A14D95C990022F193 /* AppDelegate.h */,
 				DF840D6B14D95C990022F193 /* AppDelegate.m */,
 				DF840D6D14D95C990022F193 /* MainMenu.xib */,

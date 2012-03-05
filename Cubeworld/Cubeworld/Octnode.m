@@ -7,6 +7,7 @@
 //
 
 #import "Octnode.h"
+#import "BlockTypes.h"
 
 @implementation Octnode
 
@@ -21,6 +22,8 @@
         origin.z = nodeOrigin->z;
         origin.w = nodeOrigin->w;
         voxelPtr = mem;
+        
+        blockType = BLOCK_SOLID;
         
         if(height > 0)
             [self createSubnodes];
@@ -520,7 +523,9 @@
             offset = offset + indexOffset;
             
         }
-    } else {
+    } else  {
+        if(blockType != BLOCK_SOLID)
+            return;
         int i = 0;
         unsigned int *nelements = calloc(36, sizeof(unsigned int));
         
@@ -717,6 +722,11 @@
     }
 }
 
+-(void)updateType:(int)type
+{
+    blockType = type;
+}
+
 -(bool)updatePoint:(vec4 *)point withColour:(colour *)newColour
 {
     if([self collidesWithPoint:point]) {
@@ -726,6 +736,23 @@
                     return [n updatePoint:point withColour:newColour];
         } else {
             [self updateColours:newColour];
+            return YES;
+        }
+    }else {
+        return NO;
+    }
+    return NO;
+}
+
+-(bool)updatePoint:(vec4 *)point withBlockType:(int)type
+{
+    if([self collidesWithPoint:point]) {
+        if(height > 0) {
+            for(Octnode *n in nodes)
+                if([n collidesWithPoint:point])
+                    return [n updatePoint:point withBlockType:type];
+        } else {
+            [self updateType:type];
             return YES;
         }
     }else {

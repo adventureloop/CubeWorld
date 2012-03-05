@@ -20,6 +20,8 @@
     int height;
     
     voxelData *voxelPtr;
+    
+    int blockType;
 }
 
 -(id)initWithTreeHeight:(unsigned int)nodeHeight nodeSize:(float)nodeSize orign:(vec4 *)nodeOrigin memoryPointer:(void *)mem;
@@ -35,4 +37,6 @@
 
 -(bool)collidesWithPoint:(vec4 *)point;
 -(bool)updatePoint:(vec4 *)point withColour:(colour *)newColour;
+-(void)updateType:(int)type;
+-(bool)updatePoint:(vec4 *)point withBlockType:(int)type;
 @end

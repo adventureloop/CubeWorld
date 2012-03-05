@@ -40,7 +40,7 @@
         index = 15;
     mat = stack[index];
 
-    memcpy(stack[index], stack[index-1], 16);
+    memcpy(stack[index], stack[index-1], 16 * sizeof(float));
 }
 
 -(void)pop

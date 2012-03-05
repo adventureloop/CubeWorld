@@ -19,8 +19,8 @@
         
         chunks = [[NSMutableArray alloc]init];
         
-        focusPoint.x = 0;
-        focusPoint.z = -3.0;
+        focusPoint.x = 0.0;
+        focusPoint.z = -5.0;
         focusPoint.y = 0;
         
         [chunks addObject:[[Chunk alloc]init]];
@@ -38,7 +38,7 @@
         glUseProgram(_program);
         
         [modelMatrix push];
-        [modelMatrix translateByVec3:[c origin]];
+        //[modelMatrix translateByVec3:[c origin]];
         
         glUniformMatrix4fv(modelMatrixUnif, 1, GL_FALSE, [modelMatrix mat]);
         
