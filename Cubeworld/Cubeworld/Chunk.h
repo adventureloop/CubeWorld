@@ -24,6 +24,7 @@
     
     int trees;
     int treeHeight;
+    float nodeSize;
     
     vec3 origin;
 }
@@ -35,4 +36,7 @@
 -(void)setOrigin:(vec3 *)newOrigin;
 
 -(void)update;
+
+-(BOOL)updateBlockType:(int) type forPoint:(vec3 *)point;
+-(bool)collidesWithPoint:(vec3 *)point;
 @end

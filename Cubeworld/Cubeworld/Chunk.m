@@ -34,11 +34,11 @@
         
         memset(tmpIndexArray, -1, numElements * sizeof(int));
         
-        float nodeSize = 1.0;
+        nodeSize = 1.0;
         int offset = ((int)pow(8.0, treeHeight));
         voxelData *memPtr = (voxelData *)vertexData;
         
-        vec4 localOrigin;
+        vec3 localOrigin;
         localOrigin.x = 0.0;
         localOrigin.y = (nodeSize / 2);
         localOrigin.z = -3.0;
@@ -159,6 +159,32 @@
 -(int)voxelsToRender
 {
     return trees * ((int)pow(8, treeHeight));
+}
+
+-(BOOL)updateBlockType:(int)type forPoint:(vec3 *)point
+{
+    if([self collidesWithPoint:point])
+            for(Octnode *n in nodes)
+                if([n collidesWithPoint:point])
+                    return [n updatePoint:point withBlockType:type];
+    return NO;
+}
+
+-(bool)collidesWithPoint:(vec3 *)point
+{
+    float offset = nodeSize/2;
+    if((point->x > (origin.x + offset) || point->x < (origin.x - offset)))
+        return NO;
+    
+    if((point->z > (origin.z + offset) || point->z < (origin.z - offset)))
+        return NO;
+    
+    offset = ([nodes count] * nodeSize)/2;
+    if((point->y > (origin.y + offset) || point->y < (origin.y - offset)))
+        return NO;
+    
+    NSLog(@"Collision!!!");
+    return YES;
 }
 
 -(vec3 *)origin

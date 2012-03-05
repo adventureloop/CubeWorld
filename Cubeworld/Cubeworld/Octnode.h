@@ -14,7 +14,7 @@
 //    id nodes[8];
     NSMutableArray *nodes;
     
-    vec4 origin;
+    vec3 origin;
     colour colour;
     float size;
     int height;
@@ -24,10 +24,10 @@
     int blockType;
 }
 
--(id)initWithTreeHeight:(unsigned int)nodeHeight nodeSize:(float)nodeSize orign:(vec4 *)nodeOrigin memoryPointer:(void *)mem;
+-(id)initWithTreeHeight:(unsigned int)nodeHeight nodeSize:(float)nodeSize orign:(vec3 *)nodeOrigin memoryPointer:(void *)mem;
 -(void)createSubnodes;
 -(void)addVoxelData;
--(void)calculateNewOrigin:(vec4 *)v1 OldOrigin:(vec4 *)v2 offsetVec:(vec4 *)offvec scale:(float) scale;
+-(void)calculateNewOrigin:(vec3 *)v1 OldOrigin:(vec3 *)v2 offsetVec:(vec3 *)offvec scale:(float) scale;
 
 -(void)renderElements:(unsigned int *)elements offset:(unsigned int)offset;
 
@@ -35,8 +35,8 @@
 
 -(void)updateColours:(colour *)newColour;
 
--(bool)collidesWithPoint:(vec4 *)point;
--(bool)updatePoint:(vec4 *)point withColour:(colour *)newColour;
+-(bool)collidesWithPoint:(vec3 *)point;
+-(bool)updatePoint:(vec3 *)point withColour:(colour *)newColour;
 -(void)updateType:(int)type;
--(bool)updatePoint:(vec4 *)point withBlockType:(int)type;
+-(bool)updatePoint:(vec3 *)point withBlockType:(int)type;
 @end

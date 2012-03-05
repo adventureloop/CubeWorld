@@ -11,7 +11,7 @@
 
 @implementation Octnode
 
--(id)initWithTreeHeight:(unsigned int)nodeHeight nodeSize:(float)nodeSize orign:(vec4 *)nodeOrigin memoryPointer:(void *)mem
+-(id)initWithTreeHeight:(unsigned int)nodeHeight nodeSize:(float)nodeSize orign:(vec3 *)nodeOrigin memoryPointer:(void *)mem
 {
     if(self = [super init]) {
         height = nodeHeight;
@@ -20,7 +20,6 @@
         origin.x = nodeOrigin->x;
         origin.y = nodeOrigin->y;
         origin.z = nodeOrigin->z;
-        origin.w = nodeOrigin->w;
         voxelPtr = mem;
         
         blockType = BLOCK_SOLID;
@@ -38,7 +37,7 @@
 {
    // NSLog(@"Creating subnodes");
     
-    vec4 newOrigin,offsetVec;
+    vec3 newOrigin,offsetVec;
     float scale = size/4;
     int newHeight = height-1;
     float newSize = size/2;
@@ -727,7 +726,7 @@
     blockType = type;
 }
 
--(bool)updatePoint:(vec4 *)point withColour:(colour *)newColour
+-(bool)updatePoint:(vec3 *)point withColour:(colour *)newColour
 {
     if([self collidesWithPoint:point]) {
         if(height > 0) {
@@ -744,7 +743,7 @@
     return NO;
 }
 
--(bool)updatePoint:(vec4 *)point withBlockType:(int)type
+-(bool)updatePoint:(vec3 *)point withBlockType:(int)type
 {
     if([self collidesWithPoint:point]) {
         if(height > 0) {
@@ -761,7 +760,7 @@
     return NO;
 }
 
--(bool)collidesWithPoint:(vec4 *)point
+-(bool)collidesWithPoint:(vec3 *)point
 {
     NSLog(@"Voxel with origin (%f,%f,%f) checking for collision with (%f,%f,%f)",origin.x,origin.y,origin.z,point->x,point->y,point->z);
     float offset = size/2;
@@ -777,7 +776,7 @@
     return YES;
 }
 
--(void)calculateNewOrigin:(vec4 *)v1 OldOrigin:(vec4 *)v2 offsetVec:(vec4 *)offvec scale:(float)scale
+-(void)calculateNewOrigin:(vec3 *)v1 OldOrigin:(vec3 *)v2 offsetVec:(vec3 *)offvec scale:(float)scale
 {
     v1->x = 0;
     v1->y = 0;
