@@ -20,6 +20,7 @@
     
     float *vertexData;
     unsigned int *indexArray;
+    int *tmpIndexArray;
     
     int trees;
     int treeHeight;
@@ -32,4 +33,6 @@
 -(int)voxelsToRender;
 -(vec3 *)origin;
 -(void)setOrigin:(vec3 *)newOrigin;
+
+-(void)update;
 @end

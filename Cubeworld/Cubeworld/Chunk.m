@@ -27,9 +27,10 @@
         unsigned int numVoxels = trees * ((int)pow(8, treeHeight));
         unsigned int numElements = numVoxels * VOXEL_INDICES_COUNT;
         
+        
         vertexData = calloc(numVoxels, sizeof(voxelData));
         indexArray = calloc(numElements, sizeof(unsigned int));
-        int *tmpIndexArray = calloc(numElements, sizeof(long));
+        tmpIndexArray = calloc(numElements, sizeof(long));
         
         memset(tmpIndexArray, -1, numElements * sizeof(int));
         
@@ -78,24 +79,7 @@
         
         [[nodes objectAtIndex:0] updatePoint:&localOrigin withBlockType:BLOCK_AIR];
         
-        memset(tmpIndexArray, -1, numElements * sizeof(int));
-        
-        for(int i = 0;i < trees;i++) {
-            localOrigin.y = (i * nodeSize) + (nodeSize/2);
-            
-            int memOffset = i * offset;
-            int indexOffset = memOffset * VOXEL_INDICES_COUNT;
-            int arrayOffset = memOffset * 24;
-            
-            Octnode *tmp = [nodes objectAtIndex:i];
-            [tmp renderElements:tmpIndexArray+indexOffset offset:arrayOffset];
-            [nodes addObject:tmp];
-            
-            memPtr += offset;
-        }
-        for(int i = 0,j = 0;i < numElements;i++) 
-            if(tmpIndexArray[i] >= 0)
-                indexArray[j++] = tmpIndexArray[i];
+        [self update];
         
         /*Testing code to be removed ends*/
         
@@ -127,6 +111,9 @@
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferObject);
         
         glBindVertexArrayAPPLE(0);
+        
+        free(tmpIndexArray);
+        tmpIndexArray = nil;
     }
     return self;
 }
@@ -139,6 +126,34 @@
     
     glDrawElements(GL_TRIANGLES, numElements, GL_UNSIGNED_INT, 0);
     glBindVertexArrayAPPLE(0);
+}
+
+-(void)update
+{
+    unsigned int numVoxels = trees * ((int)pow(8, treeHeight));
+    unsigned int numElements = numVoxels * VOXEL_INDICES_COUNT;
+    int offset = ((int)pow(8.0, treeHeight));
+    
+    if(tmpIndexArray == nil)
+        tmpIndexArray = calloc(numElements, sizeof(long));
+        
+    memset(tmpIndexArray, -1, numElements * sizeof(int));
+    
+    for(int i = 0;i < trees;i++) {
+        
+        int memOffset = i * offset;
+        int indexOffset = memOffset * VOXEL_INDICES_COUNT;
+        int arrayOffset = memOffset * 24;
+        
+        Octnode *tmp = [nodes objectAtIndex:i];
+        [tmp renderElements:tmpIndexArray+indexOffset offset:arrayOffset];
+        [nodes addObject:tmp];
+    }
+    for(int i = 0,j = 0;i < numElements;i++) 
+        if(tmpIndexArray[i] >= 0)
+            indexArray[j++] = tmpIndexArray[i];
+    free(tmpIndexArray);
+    tmpIndexArray = nil;
 }
 
 -(int)voxelsToRender
