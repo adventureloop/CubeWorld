@@ -281,12 +281,11 @@
 #pragma mark Handle key presses
 -(void)keyDown:(int)keyCode
 {
-    NSLog(@"Scene receieved key press %d",keyCode);
     switch( keyCode ) {
         case kVK_Space:       
             [camera moveCameraUp];
             break;
-        case kVK_Shift:       
+        case kVK_ANSI_Z:       
             [camera moveCameraDown];
             break;
         case kVK_ANSI_D:      
@@ -301,7 +300,7 @@
         case kVK_ANSI_S:
             [camera moveCameraBack];
             
-            //Move the camera targer
+            //Move the camera target
         case kVK_UpArrow:
             [camera moveCameraTargetUp];
             break;
@@ -317,7 +316,7 @@
         default:
             break;
     }
-    NSLog(@"%@",[camera description]);
+    //NSLog(@"%@",[camera description]);
 }
 
 -(void)keyUp:(int)keyCode

@@ -153,11 +153,13 @@
 -(void)moveCameraForward
 {
     cameraPos[2] += 0.1;
+    cameraTarget[2] += 0.1;
 }
 
 -(void)moveCameraBack
 {
     cameraPos[2] -= 0.1;
+    cameraTarget[2] -= 0.1;
 }
 
 -(void)moveCameraTargetUp
