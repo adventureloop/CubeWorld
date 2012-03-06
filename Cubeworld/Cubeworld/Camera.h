@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Matrix4.h"
 
 @interface Camera : NSObject
 {
@@ -14,12 +15,15 @@
     float *cameraTarget;
     float *upVec;
     
-    float *lookAtMatrix;
+    Matrix4 *lookAtMatrix;
     float *perspectiveMatrix;
     
     float frustumScale;
     float zFar;
     float zNear;
+    
+    vec3 position;
+    vec3 angles;        
 }
 
 -(void)update;
@@ -29,6 +33,8 @@
 -(float *)lookAtMatrix;
 -(float *)perspectiveMatrix;
 
+-(void)directXCamera;
+-(void)erikCamera;
 
 -(void)moveCameraUp;
 -(void)moveCameraDown;

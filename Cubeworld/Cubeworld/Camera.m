@@ -35,7 +35,17 @@
         upVec[2] = 0.0f;
         
         //Set the lookAtMatrix to identity
-        matrixDiagMatrixM4(lookAtMatrix, 1.0f);
+        lookAtMatrix = [[Matrix4 alloc]init];
+        [lookAtMatrix loadIndentity];
+        
+        position.x = 0.0;
+        position.y = 0.0;
+        position.z = -2.0;
+        
+        angles.x = 0.0;
+        angles.y = 90.0;
+        angles.z = 0.0;
+        
         [self update];
         
         frustumScale = 2.4f;
@@ -63,6 +73,28 @@
 
 -(void)resolveCameraPosition
 {
+    [self directXCamera];
+    [self erikCamera];
+}
+
+-(void)erikCamera
+{
+    [lookAtMatrix loadIndentity];
+    [lookAtMatrix rotateByAngle:angles.y axisX:1.0f Y:0.0f Z:0.0f];
+    [lookAtMatrix rotateByAngle:angles.x axisX:0.0f Y:1.0f Z:0.0f];
+    
+    vec3 playerPos;
+    playerPos.x = -1 * position.x;
+    playerPos.y = -1 * position.y;
+    playerPos.z = -1 * position.z;
+    
+    [lookAtMatrix translateByVec3:&playerPos];
+}
+
+-(void)directXCamera
+{
+    float *mat = [lookAtMatrix mat];
+    
     //Look at eyePos, AtPos, UpVec
     float *zaxis = calloc(3, sizeof(float));
     float *xaxis = calloc(3,sizeof(float));
@@ -81,24 +113,22 @@
     
     
     //Set lookAtMatrix to an identity Matrix
-    matrixDiagMatrixM4(lookAtMatrix, 1.0);
+    matrixDiagMatrixM4(mat, 1.0);
     
-    lookAtMatrix[0] = xaxis[0];
-    lookAtMatrix[4] = xaxis[1];
-    lookAtMatrix[8] = xaxis[2];
-    lookAtMatrix[12] = -dotV3(xaxis,cameraTarget);
+    mat[0] = xaxis[0];
+    mat[4] = xaxis[1];
+    mat[8] = xaxis[2];
+    mat[12] = -dotV3(xaxis,cameraTarget);
     
-    lookAtMatrix[1] = yaxis[0];
-    lookAtMatrix[5] = yaxis[1];
-    lookAtMatrix[9] = yaxis[2];
-    lookAtMatrix[13] = -dotV3(yaxis,cameraTarget);
+    mat[1] = yaxis[0];
+    mat[5] = yaxis[1];
+    mat[9] = yaxis[2];
+    mat[13] = -dotV3(yaxis,cameraTarget);
     
-    lookAtMatrix[2] = zaxis[0];
-    lookAtMatrix[6] = zaxis[1];
-    lookAtMatrix[10] = zaxis[2];
-    lookAtMatrix[14] = -dotV3(zaxis,cameraTarget);
-    
-    //matrixLoadIdentity(lookAtMatrix);
+    mat[2] = zaxis[0];
+    mat[6] = zaxis[1];
+    mat[10] = zaxis[2];
+    mat[14] = -dotV3(zaxis,cameraTarget);
     
     free(zaxis);
     free(xaxis);
@@ -117,7 +147,7 @@
 
 -(float *)lookAtMatrix
 {
-    return lookAtMatrix;
+    return [lookAtMatrix mat];
 }
 
 -(float *)perspectiveMatrix

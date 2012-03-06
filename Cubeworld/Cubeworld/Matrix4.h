@@ -19,7 +19,8 @@
 -(void)transpose;
 -(void)translateByVec3:(vec3 *)vec;
 -(void)uniformScale:(float) scale;
--(void)rotateByVec4:(Vector4 *)vec;
+
+-(void)rotateByAngle:(float) angle axisX:(float)x Y:(float)y Z:(float)z;
 
 -(void)translateByFloat:(float *)vec;
 -(void)loadIndentity;
