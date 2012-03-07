@@ -22,6 +22,7 @@
 -(void)awakeFromNib
 {
     NSLog(@"Setting up opengl");   
+    captureMouse = YES;
     
 }
 
@@ -53,5 +54,23 @@
 -(void)keyDown:(NSEvent*)event
 {   
     [scene keyDown:[event keyCode]];
+}
+
+-(void)mouseMoved:(NSEvent *)theEvent
+{
+   // NSLog(@"%@",theEvent);
+    
+    if(captureMouse)
+        [scene mouseMovedByX:[theEvent deltaX] Y:[theEvent deltaY]];
+}
+
+-(void)mouseEntered:(NSEvent *)theEvent
+{
+    captureMouse = YES;
+}
+
+-(void)mouseExited:(NSEvent *)theEvent
+{
+    captureMouse = NO;
 }
 @end

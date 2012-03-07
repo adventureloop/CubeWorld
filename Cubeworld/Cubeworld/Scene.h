@@ -46,6 +46,7 @@
 
 -(void)keyDown:(int)keyCode;
 -(void)keyUp:(int)keyCode;
+-(void)mouseMovedByX:(int)x Y:(int)y;
 
 -(BOOL)compileShader:(GLuint *)shader type:(GLenum)type file:(NSString *)file;
 -(BOOL)loadShaders;

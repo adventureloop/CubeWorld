@@ -316,10 +316,24 @@
         default:
             break;
     }
-    //NSLog(@"%@",[camera description]);
+    NSLog(@"%@",[camera description]);
 }
 
 -(void)keyUp:(int)keyCode
 {
+}
+
+#pragma mark Mouse handling stuff
+-(void)mouseMovedByX:(int)x Y:(int)y
+{
+    if(x > 0)
+        [camera moveCameraTargetLeft];
+    else if(x < 0)
+        [camera moveCameraTargetRight];
+    
+    if(y > 0)
+        [camera moveCameraTargetUp];
+    else if(y < 0)
+        [camera moveCameraTargetDown];
 }
 @end
