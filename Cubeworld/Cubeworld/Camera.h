@@ -23,7 +23,9 @@
     float zNear;
     
     vec3 position;
-    vec3 angles;        
+    vec3 angels;        
+    
+    float moveSpeed;
 }
 
 -(void)update;
@@ -34,7 +36,8 @@
 -(float *)perspectiveMatrix;
 
 -(void)directXCamera;
--(void)erikCamera;
+-(void)gooslingCamera;
+-(void)bookCamera;
 
 -(void)moveCameraUp;
 -(void)moveCameraDown;

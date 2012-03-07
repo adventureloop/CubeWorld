@@ -40,17 +40,19 @@
         
         position.x = 0.0;
         position.y = 0.0;
-        position.z = -2.0;
+        position.z = 0.0;
         
-        angles.x = 0.0;
-        angles.y = 90.0;
-        angles.z = 0.0;
+        angels.x = 0.0;
+        angels.y = 0.0;
+        angels.z = 0.0;
         
         [self update];
         
         frustumScale = 2.4f;
         zNear = 0.5f; 
         zFar = 100.0f;
+        
+        moveSpeed = 0.05;
     }
     return self;
 }
@@ -60,7 +62,7 @@
     free(upVec);
     free(cameraTarget);
     free(cameraPos);
-    free(lookAtMatrix);
+//    free(lookAtMatrix);
     free(perspectiveMatrix);
     
     [super dealloc];
@@ -73,15 +75,14 @@
 
 -(void)resolveCameraPosition
 {
-    [self directXCamera];
-    [self erikCamera];
+    [self bookCamera];
 }
 
--(void)erikCamera
+-(void)gooslingCamera
 {
     [lookAtMatrix loadIndentity];
-    [lookAtMatrix rotateByAngle:angles.y axisX:1.0f Y:0.0f Z:0.0f];
-    [lookAtMatrix rotateByAngle:angles.x axisX:0.0f Y:1.0f Z:0.0f];
+    [lookAtMatrix rotateByAngle:angels.y axisX:1.0f Y:0.0f Z:0.0f];
+    [lookAtMatrix rotateByAngle:angels.x axisX:0.0f Y:1.0f Z:0.0f];
     
     vec3 playerPos;
     playerPos.x = -1 * position.x;
@@ -135,6 +136,86 @@
     free(yaxis);
 }
 
+-(void)bookCamera
+{    
+    //Calculate Position for the camera
+    float phi = degToRad(cameraPos[0]);
+    float theta = degToRad(cameraPos[1] + 90.0f);
+    
+    float fSinTheta = sinf(theta);
+	float fCosTheta = cosf(theta);
+	float fCosPhi = cosf(phi);
+	float fSinPhi = sinf(phi);
+    
+    float *camPos = calloc(3, sizeof(float));
+    
+    camPos[0] = fSinTheta * fCosPhi;
+    camPos[1] = fCosTheta;
+    camPos[2] = fSinTheta * fSinPhi;
+    
+    vecByScalarV3(camPos, cameraPos[2], camPos);
+    
+    addV3(camPos, cameraTarget, camPos);
+    
+    
+    camPos[0] = 1.0f;
+    camPos[1] = 1.0f;
+    camPos[2] = 1.0f;
+    
+    //Calculate Look At Matrix
+    float *lookDir = calloc(3, sizeof(float));
+    float *upDir = calloc(3, sizeof(float));
+    
+    subtractV3(cameraTarget, camPos, lookDir);
+    normalizeV3(lookDir, lookDir);
+    
+    normalizeV3(upVec, upDir);
+    
+    float *rightDir = calloc(3, sizeof(float));
+    float *perpUpDir = calloc(3, sizeof(float));
+    
+    crossV3(lookDir, upDir, rightDir);
+    normalizeV3(rightDir, rightDir);
+    
+    crossV3(rightDir, lookDir, perpUpDir);
+    
+    vecByScalarV3(lookDir, -1.0f, lookDir);
+    vecByScalarV3(camPos, -1.0f, camPos);
+    
+    float *rotMat = calloc(16,sizeof(float));
+    matrixDiagMatrixM4(rotMat, 1.0f);
+    
+    matrixSetVectorV3M4(rotMat, rightDir, 0);
+    matrixSetVectorV3M4(rotMat, perpUpDir, 4);
+    matrixSetVectorV3M4(rotMat, lookDir, 8);
+    
+    transposeMatM4(rotMat);
+    
+    float *transMat = calloc(16,sizeof(float));
+    
+    matrixDiagMatrixM4(transMat, 1.0f);
+    //    matrixSetVectorV3M4(transMat, camPos, 12);
+    
+    transMat[3] = camPos[0];
+    transMat[7] = camPos[1];
+    transMat[11] = camPos[2];
+    
+    float *mat = [lookAtMatrix mat];
+    
+    multiplyMatM4(rotMat, transMat, mat);
+    
+//    [lookAtMatrix loadIndentity];
+    
+    //Release the vectors and matracies used in the calculation
+    free(transMat);
+    free(rotMat);
+    free(camPos);
+    free(rightDir);
+    free(perpUpDir);
+    free(lookDir);
+    free(upDir);
+}
+
 -(void)resolvePerspectiveForWidth:(int)width Height:(int)height
 {
 	perspectiveMatrix[0] = frustumScale / (width / (float)height);
@@ -158,73 +239,78 @@
 #pragma mark Move the camera and camera target
 -(void)moveCameraUp
 {
-    cameraPos[1] += 0.1;
-    cameraTarget[1] += -0.1;
+    cameraPos[1] += moveSpeed;
 }
 
 -(void)moveCameraDown
 {
-    cameraPos[1] -= 0.1;
-    cameraTarget[1] -= -0.1;
+    cameraPos[1] -= moveSpeed;
 }
 
 -(void)moveCameraLeft
 {
-    cameraPos[0] -= 0.1;
-    cameraTarget[0] -= -0.1;
+    cameraPos[0] -= moveSpeed;
+//    cameraTarget[0] -= -moveSpeed;
 }
 
 -(void)moveCameraRight
 {
-    cameraPos[0] += 0.1;
-    cameraTarget[0] += -0.1;
+    cameraPos[0] += moveSpeed;
+//    cameraTarget[0] += -moveSpeed;
 }
 
 -(void)moveCameraForward
 {
-    cameraPos[2] += 0.1;
-    cameraTarget[2] += 0.1;
+    cameraPos[2] += moveSpeed;
+  //  cameraTarget[2] += moveSpeed;
 }
 
 -(void)moveCameraBack
 {
-    cameraPos[2] -= 0.1;
-    cameraTarget[2] -= 0.1;
+    cameraPos[2] -= moveSpeed;
+ //   cameraTarget[2] -= moveSpeed;
 }
 
 -(void)moveCameraTargetUp
 {
-    cameraTarget[1] += 0.1;
+    cameraTarget[1] += moveSpeed;
+    angels.y += 1.0;
 }
 
 -(void)moveCameraTargetDown
 {
-    cameraTarget[1] -= 0.1;
+    cameraTarget[1] -= moveSpeed;
+    angels.y -= 1.0;
 }
 
 -(void)moveCameraTargetLeft
 {
-    cameraTarget[0] -= 0.1;
+    cameraTarget[0] -= moveSpeed;
+    angels.x -= moveSpeed;
 }
 
 -(void)moveCameraTargetRight
 {
-    cameraTarget[0] += 0.1;
+    cameraTarget[0] += moveSpeed;
+    angels.x += moveSpeed;
 }
 
 -(void)moveCameraTargetForward
 {
-    cameraTarget[2] += 0.1;
+    cameraTarget[2] += moveSpeed;
 }
 
 -(void)moveCameraTargetBack
 {
-    cameraTarget[2] -= 0.1;
+    cameraTarget[2] -= moveSpeed;
 }
 
 -(NSString *)description
 {
     return [NSString stringWithFormat:@"Camera at (%f,%f,%f) looking at (%f,%f,%f)",cameraPos[0],cameraPos[1],cameraPos[2],
             cameraTarget[0],cameraTarget[1],cameraTarget[2]];
+    
+//    return [NSString stringWithFormat:@"Camera at (%f,%f,%f) with angles (%f,%f,%f)",position.x,position.y,position.z,
+//            angels.x,angels.y,angels.z];
 }
 @end
