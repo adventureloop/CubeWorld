@@ -13,7 +13,7 @@
 @implementation Chunk
 -(id)init
 {
-    return [self initWithNumberOfTrees:8 treeHeight:1];
+    return [self initWithNumberOfTrees:1 treeHeight:1];
 }
 
 -(id)initWithNumberOfTrees:(int)ntrees treeHeight:(int)ntreeHeight
@@ -21,6 +21,10 @@
     if(self = [super init]) {
         trees = ntrees;
         treeHeight = ntreeHeight;
+        
+        //Find the cube root of the number voxels in a node
+        //this gives the x and z widths of the chunk
+        chunkWidth = pow(pow(8,treeHeight),1.0/3.0);
         
         nodes = [[NSMutableArray alloc]initWithCapacity:8];
         
@@ -77,7 +81,10 @@
         localOrigin.z = -3.1;
         localOrigin.y = 0.6;
         
-        [[nodes objectAtIndex:0] updatePoint:&localOrigin withBlockType:BLOCK_AIR];
+        [self updateBlockType:BLOCK_AIR forPoint:&localOrigin];
+    //    [self updateBlockType:BLOCK_AIR forX:0 Y:0 Z:0];
+        
+        //[[nodes objectAtIndex:0] updatePoint:&localOrigin withBlockType:BLOCK_AIR];
         
         [self update];
         
@@ -168,6 +175,42 @@
                 if([n collidesWithPoint:point])
                     return [n updatePoint:point withBlockType:type];
     return NO;
+}
+
+-(BOOL)updateBlockType:(int)type forX:(float)x Y:(float)y Z:(float)z
+{
+    if(x > chunkWidth || x < 0)
+        return NO;
+    if(z > chunkWidth || z < 0)
+        return NO;
+    if(y > (chunkWidth * trees) || y < 0)
+        return NO;
+    
+    
+    float voxelSize = chunkWidth / nodeSize;
+    
+    x *= voxelSize;
+    z *= voxelSize;
+    
+    y = (int)y % (int)trees;
+    y *= voxelSize;
+    
+    //Shift each poit by half of nodeSize to account for centered origin
+    x -= nodeSize/2.0;
+    y -= nodeSize/2.0;
+    z -= nodeSize/2.0;
+    
+    vec3 point;
+    point.x = x;
+    point.y = y;
+    point.z = z;
+    
+    point.x += 0.4;
+    point.y -= 0.1;
+    point.x *= -1;
+    point.y *= -1;
+    point.z -= 2.6;    
+    return [self updateBlockType:type forPoint:&point];
 }
 
 -(bool)collidesWithPoint:(vec3 *)point

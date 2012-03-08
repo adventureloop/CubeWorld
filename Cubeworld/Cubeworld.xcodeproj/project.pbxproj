@@ -14,6 +14,7 @@
 		DF073EFF14E12CE900BC506D /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = DF073EFE14E12CE900BC506D /* Scene.m */; };
 		DF2945C214E1938E007D1A15 /* Voxel.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2945C114E1938E007D1A15 /* Voxel.m */; };
 		DF29471214E1A50D007D1A15 /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = DF29471114E1A50D007D1A15 /* Camera.m */; };
+		DF2FD5C11509068B0073E1FF /* Generator.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2FD5C01509068B0073E1FF /* Generator.m */; };
 		DF35EACA14FF81C000AE8A60 /* ChunkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DF35EAC914FF81C000AE8A60 /* ChunkManager.m */; };
 		DF840D5914D95C990022F193 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF840D5814D95C990022F193 /* Cocoa.framework */; };
 		DF840D6314D95C990022F193 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF840D6114D95C990022F193 /* InfoPlist.strings */; };
@@ -61,6 +62,8 @@
 		DF2945C114E1938E007D1A15 /* Voxel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Voxel.m; sourceTree = "<group>"; };
 		DF29471014E1A50D007D1A15 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		DF29471114E1A50D007D1A15 /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Camera.m; sourceTree = "<group>"; };
+		DF2FD5BF1509068B0073E1FF /* Generator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Generator.h; sourceTree = "<group>"; };
+		DF2FD5C01509068B0073E1FF /* Generator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Generator.m; sourceTree = "<group>"; };
 		DF35EAC814FF81C000AE8A60 /* ChunkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChunkManager.h; sourceTree = "<group>"; };
 		DF35EAC914FF81C000AE8A60 /* ChunkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChunkManager.m; sourceTree = "<group>"; };
 		DF64F3AA14E55A870003630A /* VectorMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VectorMath.h; sourceTree = "<group>"; };
@@ -262,6 +265,8 @@
 			children = (
 				DF35EAC814FF81C000AE8A60 /* ChunkManager.h */,
 				DF35EAC914FF81C000AE8A60 /* ChunkManager.m */,
+				DF2FD5BF1509068B0073E1FF /* Generator.h */,
+				DF2FD5C01509068B0073E1FF /* Generator.m */,
 			);
 			name = "World Generation";
 			sourceTree = "<group>";
@@ -390,6 +395,7 @@
 				DF01127C14F2F7910041F25A /* MatrixStack.m in Sources */,
 				DF93A0EF14FE7F5400F201D7 /* Region.m in Sources */,
 				DF35EACA14FF81C000AE8A60 /* ChunkManager.m in Sources */,
+				DF2FD5C11509068B0073E1FF /* Generator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
