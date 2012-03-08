@@ -11,6 +11,7 @@
 #import "ChunkManager.h"
 #import "MatrixStack.h"
 #import <OpenGL/gl.h>
+#import "ChunkManager.h"
 
 @interface Region : NSObject
 {

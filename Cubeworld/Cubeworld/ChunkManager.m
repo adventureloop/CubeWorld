@@ -22,4 +22,9 @@
 {
     return [chunkStore lastObject];
 }
+
+-(Chunk *)chunkForX:(float)x Z:(float)z
+{
+    return [chunkStore lastObject];
+}
 @end

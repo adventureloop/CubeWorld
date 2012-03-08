@@ -204,7 +204,7 @@
     
     multiplyMatM4(rotMat, transMat, mat);
     
-//    [lookAtMatrix loadIndentity];
+   // [lookAtMatrix loadIndentity];
     
     //Release the vectors and matracies used in the calculation
     free(transMat);

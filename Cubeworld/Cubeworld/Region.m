@@ -23,10 +23,20 @@
         focusPoint.y = 0.0;
         focusPoint.z = 0.0;
         
-        [chunks addObject:[[Chunk alloc]init]];
+        [chunks addObject:[chunkManager chunkForX:0 Z:0]];
         [[chunks lastObject] setOrigin:&focusPoint];
         
-//        focusPoint.x = 2.0;
+//        focusPoint.x = 6.0;
+//        
+//        [chunks addObject:[[Chunk alloc]init]];
+//        [[chunks lastObject] setOrigin:&focusPoint];
+//        
+//        focusPoint.x = 3.0;
+//        
+//        [chunks addObject:[[Chunk alloc]init]];
+//        [[chunks lastObject] setOrigin:&focusPoint];        
+//        
+//        focusPoint.x = 5.0;
 //        
 //        [chunks addObject:[[Chunk alloc]init]];
 //        [[chunks lastObject] setOrigin:&focusPoint];

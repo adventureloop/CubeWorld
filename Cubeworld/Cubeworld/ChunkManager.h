@@ -15,4 +15,5 @@
 }
 
 -(Chunk *)chunkForPoint:(vec3 *)point;
+-(Chunk *)chunkForX:(float)x Z:(float)z;
 @end
