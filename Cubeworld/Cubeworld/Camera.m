@@ -21,13 +21,13 @@
         perspectiveMatrix = calloc(16, sizeof(float));
         
         //Look at the origin
-        cameraTarget[0] = 0.0f;
-        cameraTarget[1] = 0.0f;
+        cameraTarget[0] = 1.3f;
+        cameraTarget[1] = 1.15f;
         cameraTarget[2] = 0.0f;
         
-        cameraPos[0] = 0.0f;
-        cameraPos[1] = 0.0f;
-        cameraPos[2] = -2.0f;
+        cameraPos[0] = 1.0f;
+        cameraPos[1] = 1.0f;
+        cameraPos[2] = 1.0f;
         
         //The directio of up
         upVec[0] = 0.0f;
@@ -157,10 +157,13 @@
     
     addV3(camPos, cameraTarget, camPos);
     
+//    camPos[0] = 1.0f;
+//    camPos[1] = 1.0f;
+//    camPos[2] = 1.0f;
     
-    camPos[0] = 1.0f;
-    camPos[1] = 1.0f;
-    camPos[2] = 1.0f;
+    camPos[0] = cameraPos[0];
+    camPos[1] = cameraPos[1];
+    camPos[2] = cameraPos[2];
     
     //Calculate Look At Matrix
     float *lookDir = calloc(3, sizeof(float));

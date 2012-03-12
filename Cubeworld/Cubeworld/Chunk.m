@@ -67,10 +67,8 @@
         for(int i = 0,j = 0;i < numElements;i++) 
             if(tmpIndexArray[i] >= 0)
                 indexArray[j++] = tmpIndexArray[i];
-            
         
         /* This code needs moved*/
-        
         colour newColour;
         newColour.red = 0.0;
         newColour.green = 0.0;
@@ -78,13 +76,11 @@
         newColour.alpha = 1.0;
         
         localOrigin.x = 0.1;
-        localOrigin.z = -3.1;
         localOrigin.y = 0.6;
+        localOrigin.z = -3.1;
         
-        [self updateBlockType:BLOCK_AIR forPoint:&localOrigin];
-    //    [self updateBlockType:BLOCK_AIR forX:0 Y:0 Z:0];
-        
-        //[[nodes objectAtIndex:0] updatePoint:&localOrigin withBlockType:BLOCK_AIR];
+       // [self updateBlockType:BLOCK_AIR forPoint:&localOrigin];
+        [self updateBlockType:BLOCK_AIR forX:0.0 Y:0.0 Z:0.0];
         
         [self update];
         
@@ -187,34 +183,29 @@
         return NO;
     
     
-    float voxelSize = chunkWidth / nodeSize;
-    
-    x *= voxelSize;
-    z *= voxelSize;
-    
+    float voxelSize = (nodeSize / chunkWidth);
+    float shift = ((chunkWidth * voxelSize)/2);
+//    
     y = (int)y % (int)trees;
-    y *= voxelSize;
     
-    //Shift each poit by half of nodeSize to account for centered origin
-    x -= nodeSize/2.0;
-    y -= nodeSize/2.0;
-    z -= nodeSize/2.0;
+    x = (x + voxelSize/2) - shift;
+    y = (y + voxelSize/2) - shift;
+    z = (z + voxelSize/2) - shift;    
     
     vec3 point;
     point.x = x;
     point.y = y;
     point.z = z;
     
-    point.x += 0.4;
-    point.y -= 0.1;
-    point.x *= -1;
-    point.y *= -1;
-    point.z -= 2.6;    
+    point.z += -3;
+    point.y += 0.5;
+    
     return [self updateBlockType:type forPoint:&point];
 }
 
 -(bool)collidesWithPoint:(vec3 *)point
 {
+    return YES;
     float offset = nodeSize/2;
     if((point->x > (origin.x + offset) || point->x < (origin.x - offset)))
         return NO;

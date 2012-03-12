@@ -8,12 +8,21 @@ uniform mat4 modelToWorldMatrix;
 uniform mat4 worldToCameraMatrix;
 uniform mat4 cameraToClipMatrix;
 
+//uniform mat3 normalMatrix;
+
 void main()
 {
     vec4 temp = modelToWorldMatrix * position;
     temp = worldToCameraMatrix * temp;
     gl_Position = cameraToClipMatrix * temp;
-    
-    
-	outColor = inColor + vec4(normal,1.0);
+//    
+//    mat3 normalMatrix = mat3(1.0);
+//    
+//    vec3 normCap = normalize(normalMatrix * normal);
+//    
+//    float cosAng = dot(normCap,vec3(0.75,0.75,0.0));
+//    //cosAng = clamp(cosAng,0,1);
+//    
+//	outColor = (inColor * vec4(1.0,1.0,1.0,1.0) * cosAng) + (inColor * vec4(0.5,0.5,0.5,0.5));
+    outColor = inColor + vec4(normal,1.0);
 }
