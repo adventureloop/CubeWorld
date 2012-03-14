@@ -13,7 +13,7 @@
 @implementation Chunk
 -(id)init
 {
-    return [self initWithNumberOfTrees:1 treeHeight:1];
+    return [self initWithNumberOfTrees:8 treeHeight:4];
 }
 
 -(id)initWithNumberOfTrees:(int)ntrees treeHeight:(int)ntreeHeight
@@ -38,14 +38,14 @@
         
         memset(tmpIndexArray, -1, numElements * sizeof(int));
         
-        nodeSize = 1.0;
+        nodeSize = 16.0;
         int offset = ((int)pow(8.0, treeHeight));
         voxelData *memPtr = (voxelData *)vertexData;
         
         vec3 localOrigin;
         localOrigin.x = 0.0;
         localOrigin.y = (nodeSize / 2);
-        localOrigin.z = -3.0;
+        localOrigin.z = 0.0;
         
         for(int i = 0;i < trees;i++) {
             localOrigin.y = (i * nodeSize) + (nodeSize/2);

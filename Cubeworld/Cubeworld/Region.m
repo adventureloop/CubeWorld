@@ -11,7 +11,7 @@
 
 @implementation Region
 
--(id)initWithMatrixUnifLocation:(GLuint)unifLocation program:(GLuint)programLocation
+-(id)initWithMatrixUnifLocation:(GLuint)unifLocation translationLocation:(GLuint)transLoc program:(GLuint)programLocation
 {
     if(self = [super init]) {
         chunkManager = [[ChunkManager alloc]init];
@@ -26,10 +26,11 @@
         [chunks addObject:[chunkManager chunkForX:0 Z:0]];
         [[chunks lastObject] setOrigin:&focusPoint];
         
-//        focusPoint.x = 6.0;
-//        
-//        [chunks addObject:[[Chunk alloc]init]];
-//        [[chunks lastObject] setOrigin:&focusPoint];
+        focusPoint.x = 16.0;
+        focusPoint.y = 0.0;
+        
+        [chunks addObject:[[Chunk alloc]init]];
+        [[chunks lastObject] setOrigin:&focusPoint];
 //        
 //        focusPoint.x = 3.0;
 //        
@@ -42,6 +43,7 @@
 //        [[chunks lastObject] setOrigin:&focusPoint];
         
         modelMatrixUnif = unifLocation;
+        transLationUnif = transLoc;
         _program = programLocation;
     }
     return self;
@@ -53,9 +55,12 @@
         glUseProgram(_program);
         
         [modelMatrix push];
-        [modelMatrix translateByVec3:[c origin]];
+      //  [modelMatrix translateByVec3:[c origin]];
+        
+        vec3 *trans = [c origin];
         
         glUniformMatrix4fv(modelMatrixUnif, 1, GL_FALSE, [modelMatrix mat]);
+        glUniform3f(transLationUnif,trans->x,trans->y,trans->z);
         
         [c render];
         

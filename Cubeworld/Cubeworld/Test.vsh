@@ -8,12 +8,18 @@ uniform mat4 modelToWorldMatrix;
 uniform mat4 worldToCameraMatrix;
 uniform mat4 cameraToClipMatrix;
 
+uniform vec3 translation;
+
 //uniform mat3 normalMatrix;
 
 void main()
 {
-    vec4 temp = modelToWorldMatrix * position;
+    //®vec4 temp = modelToWorldMatrix * position;
+    
+    vec4 temp = position + vec4(translation,1.0);
+    
     temp = worldToCameraMatrix * temp;
+    
     gl_Position = cameraToClipMatrix * temp;
 //    
 //    mat3 normalMatrix = mat3(1.0);

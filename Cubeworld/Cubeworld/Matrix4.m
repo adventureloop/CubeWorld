@@ -29,6 +29,13 @@
     mat[11] = vec->z;
 }
 
+-(void)uniformScale:(float)scale
+{
+    mat[0] *= scale;
+    mat[5] *= scale;
+    mat[10] *= scale;
+}
+
 -(void)loadIndentity
 {
     matrixLoadIdentity(mat);
@@ -61,6 +68,14 @@
 -(float *)mat
 {
     return mat;
+}
+
+-(NSString *)description
+{
+    return [NSString stringWithFormat:@"\n%f\t%f\t%f\t%f\n%f\t%f\t%f\t%f\n%f\t%f\t%f\t%f\n%f\t%f\t%f\t%f\n",mat[0],mat[1],mat[2],mat[3],
+                                                                                            mat[4],mat[5],mat[6],mat[7],
+            mat[8],mat[9],mat[10],mat[11],
+            mat[12],mat[13],mat[14],mat[15]];
 }
 
 -(void)dealloc

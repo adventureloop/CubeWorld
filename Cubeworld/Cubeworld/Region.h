@@ -24,8 +24,9 @@
     
     GLuint _program;
     GLuint modelMatrixUnif;
+    GLuint transLationUnif;
 }
--(id)initWithMatrixUnifLocation:(GLuint) unifLocation program:(GLuint) programLocation;
+-(id)initWithMatrixUnifLocation:(GLuint) unifLocation translationLocation:(GLuint) transLoc program:(GLuint) programLocation;
 -(void)render;
 -(void)updateWithFocusPoint:(vec3 *)point;
 @end

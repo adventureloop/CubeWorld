@@ -92,10 +92,8 @@
     glUniformMatrix4fv(modelToWorldMatrixUnif, 1, GL_FALSE, [modelMatrix mat]);
 	glUseProgram(0);
     glViewport(0, 0, (GLsizei)w, (GLsizei)h);
-
-    c = [[Chunk alloc]init];
     
-    r = [[Region alloc]initWithMatrixUnifLocation:modelToWorldMatrixUnif program:_program];
+    r = [[Region alloc]initWithMatrixUnifLocation:modelToWorldMatrixUnif translationLocation:transLocationUnif program:_program];
     
     self->animationTimer = [NSTimer scheduledTimerWithTimeInterval:1/30 target:self selector:@selector(render) userInfo:nil repeats:YES];
 }
@@ -182,6 +180,8 @@
     cameraToClipMatrixUnif = glGetUniformLocation(_program, "cameraToClipMatrix");
     worldToCameraMatrixUnif = glGetUniformLocation(_program, "worldToCameraMatrix");
     modelToWorldMatrixUnif = glGetUniformLocation(_program, "modelToWorldMatrix");
+    
+    transLocationUnif = glGetUniformLocation(_program, "translation");
     
     // Release vertex and fragment shaders.
     if (vertShader) {

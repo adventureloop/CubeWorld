@@ -26,6 +26,8 @@
     GLuint worldToCameraMatrixUnif;
     GLuint modelToWorldMatrixUnif;
     
+    GLuint transLocationUnif;
+    
     Camera *camera;
     MatrixStack *modelMatrix;
     
