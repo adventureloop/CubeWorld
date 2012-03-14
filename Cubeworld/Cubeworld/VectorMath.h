@@ -9,20 +9,22 @@
 #include <Accelerate/Accelerate.h>
 
 float degToRad(float);
-float magnitudeV3(float *);
-void normalizeV3(float *, float *);
-void subtractV3(float *, float *, float *);
+float magnitudeV3(vec3 *);
+void normalizeV3(vec3 *, vec3 *);
+void subtractV3(vec3 *, vec3 *, vec3 *);
 
-void crossV3(float *, float *, float *);
-float dotV3(float *,float *);
-void vecByScalarV3(float *,float scalar,float *);
-void addV3(float *,float *invec2,float *);
+void crossV3(vec3 *, vec3 *, vec3 *);
+float dotV3(vec3 *,vec3 *);
+void vecByScalarV3(vec3 *,float scalar,vec3 *);
+void addV3(vec3 *,vec3 *invec2,vec3 *);
+
 void matrixDiagMatrixM4(float *,float);
 void matrixLoadIdentity(float *);
 void matrixSetAllToScalarM4(float *, float );
-void matrixSetVectorV3M4(float *, float *, int );
+void matrixSetVectorV3M4(float *, vec3 *, int );
 void multiplyMatM4(float *, float *,float *);
 void transposeMatM4(float *mat);
+
 
 float degToRad(float fAngDeg)
 {
@@ -30,59 +32,60 @@ float degToRad(float fAngDeg)
     return fAngDeg * fDegToRad;
 }
 
-float magnitudeV3(float *invec)
+float magnitudeV3(vec3 *invec)
 {
-    return sqrt( (invec[0] * invec[0]) + (invec[1] * invec[1]) + (invec[2] * invec[2]));
+    return sqrt( (invec->x * invec->x) + (invec->y * invec->y) + (invec->z * invec->z));
 }
 
 //Normalize invec, store result in outvec
-void normalizeV3(float *invec, float *outvec)
+void normalizeV3(vec3 *invec, vec3 *outvec)
 {
     float len = magnitudeV3(invec);
     
-    outvec[0] = invec[0] / len;
-    outvec[1] = invec[1] / len;
-    outvec[2] = invec[2] / len;
+    outvec->x = invec->x / len;
+    outvec->y = invec->y / len;
+    outvec->z = invec->z / len;
 }
 
 //Substract invec2 from invec1, store result in outvec
 
-void subtractV3(float *invec1, float *invec2, float *outvec)
+void subtractV3(vec3 *invec1, vec3 *invec2, vec3 *outvec)
 {
-    outvec[0] = invec1[0] - invec2[0];
-    outvec[1] = invec1[1] - invec2[1]; 
-    outvec[2] = invec1[2] - invec2[2];
+    outvec->x = invec1->x - invec2->x;
+    outvec->y = invec1->y - invec2->y; 
+    outvec->z = invec1->z - invec2->z;
 }
 
 
 //Calculate the cross product of invec1 and invec2, store in outvec
-void crossV3(float *invec1, float *invec2, float *outvec)
+void crossV3(vec3 *invec1, vec3 *invec2, vec3 *outvec)
 {
-    outvec[0] = invec1[1] * invec2[2] - invec1[2] * invec2[1];
-    outvec[1] = invec1[2] * invec2[0] - invec1[0] * invec2[2];
-    outvec[2] = invec1[0] * invec2[1] - invec1[1] * invec2[0];
+    outvec->x = invec1->y * invec2->z - invec1->z * invec2->y;
+    outvec->y = invec1->z * invec2->x - invec1->x * invec2->z;
+    outvec->z = invec1->x * invec2->y - invec1->y * invec2->x;
 }
 
 //Calculate the dot product of invec1 and invec2
-float dotV3(float *invec1,float *invec2)
+float dotV3(vec3 *invec1,vec3 *invec2)
 {
-    return (invec1[0] * invec2[0]) + (invec1[1] * invec2[1]) + (invec1[2] * invec2[2]);
+    return (invec1->x * invec2->x) + (invec1->y * invec2->y) + (invec1->z * invec2->z);
 }
 
-void vecByScalarV3(float *invec,float scalar,float *outvec)
+void vecByScalarV3(vec3 *invec,float scalar,vec3 *outvec)
 {
-	outvec[0] = invec[0] * scalar;   
-	outvec[1] = invec[1] * scalar;   
-	outvec[2] = invec[2] * scalar;   
+	outvec->x = invec->x * scalar;   
+	outvec->y = invec->y * scalar;   
+	outvec->z = invec->z * scalar;   
 }
 
-void addV3(float *invec1,float *invec2,float *outvec)
+void addV3(vec3 *invec1,vec3 *invec2,vec3 *outvec)
 {
-	outvec[0] = invec1[0] + invec2[0];
-	outvec[1] = invec1[1] + invec2[1];
-	outvec[2] = invec1[2] + invec2[2];
+	outvec->x = invec1->x + invec2->x;
+	outvec->y = invec1->y + invec2->y;
+	outvec->z = invec1->z + invec2->z;
     
 }
+
 
 void matrixDiagMatrixM4(float *mat,float scalar)
 {
@@ -107,11 +110,11 @@ void matrixSetAllToScalarM4(float *mat, float scalar)
         mat[i] = scalar;
 }
 
-void matrixSetVectorV3M4(float *mat, float *vec, int index)
+void matrixSetVectorV3M4(float *mat, vec3 *vec, int index)
 {
-    mat[index++] = vec[0];
-    mat[index++] = vec[1];
-    mat[index++] = vec[2];
+    mat[index++] = vec->x;
+    mat[index++] = vec->y;
+    mat[index++] = vec->z;
     mat[index++] = 0.0f;
 }
 
