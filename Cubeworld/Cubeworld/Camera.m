@@ -20,13 +20,13 @@
         zFar = 100.0f;
         
         //Look at the origin
-        cameraTarget.x = 1.3f;
-        cameraTarget.y = 1.15f;
+        cameraTarget.x = 0.0f;
+        cameraTarget.y = 10.0f;
         cameraTarget.z = 0.0f;
         
-        cameraSpherePos.x = 1.0f;
+        cameraSpherePos.x = 90.0f;
         cameraSpherePos.y = 1.0f;
-        cameraSpherePos.z = 1.0f;
+        cameraSpherePos.z = 66.0f;
         
         //The directio of up
         upVec.x = 0.0f;
@@ -37,7 +37,8 @@
         lookAtMatrix = [[Matrix4 alloc]init];
         [lookAtMatrix loadIndentity];
         
-        moveSpeed = 0.05;
+        moveSpeed = 5.0;
+        angleMoveSpeed = 5.0;
         
         [self update];
     }
@@ -134,9 +135,9 @@
     
     
     //The following code is an indightment of our justice system
-    camPos.x = cameraSpherePos.x;
-    camPos.y = cameraSpherePos.y;
-    camPos.z = cameraSpherePos.z;
+//    camPos.x = cameraSpherePos.x;
+//    camPos.y = cameraSpherePos.y;
+//    camPos.z = cameraSpherePos.z;
     
     //Calculate Look At Matrix
     subtractV3(&cameraTarget, &camPos, &lookDir);
@@ -156,21 +157,17 @@
     matrixLoadIdentity(rotMat);
     
     matrixSetVectorV3M4(rotMat, &rightDir, 0);
-    matrixSetVectorV3M4(rotMat, &perpUpDir, 4);
+    matrixSetVectorV3M4(rotMat, &perpUpDir, 1);
     
     vecByScalarV3(&camPos, -1.0f, &camPos);
-    matrixSetVectorV3M4(rotMat, &lookDir, 8);
+    matrixSetVectorV3M4(rotMat, &lookDir, 2);
     
     transposeMatM4(rotMat);
     
     float *transMat = calloc(16,sizeof(float));
     
     matrixLoadIdentity(transMat);
-    matrixSetVectorV3M4(transMat, &camPos, 12);
-    
-//    transMat[3] = camPos[0];
-//    transMat[7] = camPos[1];
-//    transMat[11] = camPos[2];
+    matrixSetVectorV3M4(transMat, &camPos, 3);
     
     float *mat = [lookAtMatrix mat];
     
@@ -206,62 +203,62 @@
 #pragma mark Move the camera and camera target
 -(void)moveCameraUp
 {
-    cameraSpherePos.x += moveSpeed;
+    cameraTarget.x += moveSpeed;
 }
 
 -(void)moveCameraDown
 {
-    cameraSpherePos.y -= moveSpeed;
+    cameraTarget.y -= moveSpeed;
 }
 
 -(void)moveCameraLeft
 {
-    cameraSpherePos.x -= moveSpeed;
+    cameraTarget.x -= moveSpeed;
 }
 
 -(void)moveCameraRight
 {
-    cameraSpherePos.x += moveSpeed;
+    cameraTarget.x += moveSpeed;
 }
 
 -(void)moveCameraForward
 {
-    cameraSpherePos.z += moveSpeed;
+    cameraTarget.z += moveSpeed;
 }
 
 -(void)moveCameraBack
 {
-    cameraSpherePos.z -= moveSpeed;
+    cameraTarget.z -= moveSpeed;
 }
 
 -(void)moveCameraTargetUp
 {
-    cameraTarget.y += moveSpeed;
+    cameraSpherePos.y += angleMoveSpeed;
 }
 
 -(void)moveCameraTargetDown
 {
-    cameraTarget.y -= moveSpeed;
+    cameraSpherePos.y -= angleMoveSpeed;
 }
 
 -(void)moveCameraTargetLeft
 {
-    cameraTarget.x -= moveSpeed;
+    cameraSpherePos.x -= angleMoveSpeed;
 }
 
 -(void)moveCameraTargetRight
 {
-    cameraTarget.x += moveSpeed;
+    cameraSpherePos.x += angleMoveSpeed;
 }
 
 -(void)moveCameraTargetForward
 {
-    cameraTarget.x += moveSpeed;
+    cameraSpherePos.x += angleMoveSpeed;
 }
 
 -(void)moveCameraTargetBack
 {
-    cameraTarget.z -= moveSpeed;
+    cameraSpherePos.z -= angleMoveSpeed;
 }
 
 -(NSString *)description

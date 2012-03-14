@@ -23,6 +23,7 @@
     float zNear;       
     
     float moveSpeed;
+    float angleMoveSpeed;
 }
 
 -(void)update;
