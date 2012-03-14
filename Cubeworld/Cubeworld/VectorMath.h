@@ -112,10 +112,10 @@ void matrixSetAllToScalarM4(float *mat, float scalar)
 
 void matrixSetVectorV3M4(float *mat, vec3 *vec, int index)
 {
-    mat[index++] = vec->x;
-    mat[index++] = vec->y;
-    mat[index++] = vec->z;
-    mat[index++] = 0.0f;
+    mat[index] = vec->x;
+    mat[index+4] = vec->y;
+    mat[index+8] = vec->z;
+    mat[index+12] = 1.0f;
 }
 
 void multiplyMatM4(float *inmat1, float *inmat2,float *resMat)
