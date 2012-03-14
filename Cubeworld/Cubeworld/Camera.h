@@ -11,19 +11,16 @@
 
 @interface Camera : NSObject
 {
-    float *cameraPos;
-    float *cameraTarget;
-    float *upVec;
+    vec3 cameraSpherePos;
+    vec3 cameraTarget;
+    vec3 upVec;
     
     Matrix4 *lookAtMatrix;
     float *perspectiveMatrix;
     
     float frustumScale;
     float zFar;
-    float zNear;
-    
-    vec3 position;
-    vec3 angels;        
+    float zNear;       
     
     float moveSpeed;
 }
@@ -36,7 +33,6 @@
 -(float *)perspectiveMatrix;
 
 -(void)directXCamera;
--(void)gooslingCamera;
 -(void)bookCamera;
 
 -(void)moveCameraUp;
