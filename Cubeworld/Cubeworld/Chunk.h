@@ -27,6 +27,8 @@
     float nodeSize;
     float chunkWidth;
     
+    BOOL needsUpdate;
+    
     vec3 origin;
 }
 -(id)initWithNumberOfTrees:(int)ntrees treeHeight:(int)ntreeHeight;
@@ -39,6 +41,8 @@
 -(void)update;
 
 -(BOOL)updateBlockType:(int) type forPoint:(vec3 *)point;
--(BOOL)updateBlockType:(int)type forX:(float)x Y:(float)y Z:(float)z;
+-(void)updateBlockType:(int)type forX:(float)x Y:(float)y Z:(float)z;
 -(bool)collidesWithPoint:(vec3 *)point;
+
+-(float)chunkDimensions;
 @end

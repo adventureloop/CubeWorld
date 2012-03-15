@@ -13,7 +13,7 @@
 @implementation Chunk
 -(id)init
 {
-    return [self initWithNumberOfTrees:8 treeHeight:4];
+    return [self initWithNumberOfTrees:8 treeHeight:1];
 }
 
 -(id)initWithNumberOfTrees:(int)ntrees treeHeight:(int)ntreeHeight
@@ -68,23 +68,7 @@
             if(tmpIndexArray[i] >= 0)
                 indexArray[j++] = tmpIndexArray[i];
         
-        /* This code needs moved*/
-        colour newColour;
-        newColour.red = 0.0;
-        newColour.green = 0.0;
-        newColour.blue = 1.0;
-        newColour.alpha = 1.0;
-        
-        localOrigin.x = 0.1;
-        localOrigin.y = 0.6;
-        localOrigin.z = -3.1;
-        
-       // [self updateBlockType:BLOCK_AIR forPoint:&localOrigin];
-        [self updateBlockType:BLOCK_AIR forX:0.0 Y:0.0 Z:0.0];
-        
         [self update];
-        
-        /*Testing code to be removed ends*/
         
         
         /* Set up vertex buffer and array objects */
@@ -123,6 +107,11 @@
 
 -(void)render;
 {
+    if(needsUpdate) {
+        [self update];
+        needsUpdate = NO;
+    }
+    
     int numElements = [self voxelsToRender] * VOXEL_INDICES_COUNT;
     
     glBindVertexArrayAPPLE(vertexArrayObject);
@@ -173,19 +162,19 @@
     return NO;
 }
 
--(BOOL)updateBlockType:(int)type forX:(float)x Y:(float)y Z:(float)z
+-(void)updateBlockType:(int)type forX:(float)x Y:(float)y Z:(float)z
 {
     if(x > chunkWidth || x < 0)
-        return NO;
+        return;
     if(z > chunkWidth || z < 0)
-        return NO;
+        return;
     if(y > (chunkWidth * trees) || y < 0)
-        return NO;
+        return;
     
     
     float voxelSize = (nodeSize / chunkWidth);
     float shift = ((chunkWidth * voxelSize)/2);
-//    
+    
     y = (int)y % (int)trees;
     
     x = (x + voxelSize/2) - shift;
@@ -200,7 +189,8 @@
     point.z += -3;
     point.y += 0.5;
     
-    return [self updateBlockType:type forPoint:&point];
+    if([self updateBlockType:type forPoint:&point])
+        needsUpdate = YES;
 }
 
 -(bool)collidesWithPoint:(vec3 *)point
@@ -217,7 +207,7 @@
     if((point->y > (origin.y + offset) || point->y < (origin.y - offset)))
         return NO;
     
-    NSLog(@"Collision!!!");
+    //NSLog(@"Collision!!!");
     return YES;
 }
 
@@ -231,5 +221,10 @@
     origin.x = newOrigin->x;
     origin.y = newOrigin->y;
     origin.z = newOrigin->z;
+}
+
+-(float)chunkDimensions
+{
+    return nodeSize * chunkWidth;
 }
 @end

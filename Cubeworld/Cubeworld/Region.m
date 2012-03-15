@@ -19,28 +19,30 @@
         
         chunks = [[NSMutableArray alloc]init];
         
-        focusPoint.x = 0.0;
+        focusPoint.x = 8.0;
         focusPoint.y = 0.0;
-        focusPoint.z = 0.0;
+        focusPoint.z = 8.0;
         
         [chunks addObject:[chunkManager chunkForX:0 Z:0]];
         [[chunks lastObject] setOrigin:&focusPoint];
         
-        focusPoint.x = 16.0;
-        focusPoint.y = 0.0;
+        focusPoint.x = -8.0;
+        focusPoint.z = 8.0;
         
         [chunks addObject:[[Chunk alloc]init]];
         [[chunks lastObject] setOrigin:&focusPoint];
-//        
-//        focusPoint.x = 3.0;
-//        
-//        [chunks addObject:[[Chunk alloc]init]];
-//        [[chunks lastObject] setOrigin:&focusPoint];        
-//        
-//        focusPoint.x = 5.0;
-//        
-//        [chunks addObject:[[Chunk alloc]init]];
-//        [[chunks lastObject] setOrigin:&focusPoint];
+        
+        focusPoint.x = 8.0;
+        focusPoint.z = -8.0;
+        
+        [chunks addObject:[[Chunk alloc]init]];
+        [[chunks lastObject] setOrigin:&focusPoint];
+        
+        focusPoint.x = -8.0;
+        focusPoint.z = -8.0;
+        
+        [chunks addObject:[[Chunk alloc]init]];
+        [[chunks lastObject] setOrigin:&focusPoint];
         
         modelMatrixUnif = unifLocation;
         transLationUnif = transLoc;
@@ -51,6 +53,8 @@
 
 -(void)render
 {
+    float width = 8;
+    
     for(Chunk *c in chunks) {
         glUseProgram(_program);
         
@@ -58,6 +62,8 @@
       //  [modelMatrix translateByVec3:[c origin]];
         
         vec3 *trans = [c origin];
+//        trans->x *= width;
+//        trans->z *= width;
         
         glUniformMatrix4fv(modelMatrixUnif, 1, GL_FALSE, [modelMatrix mat]);
         glUniform3f(transLationUnif,trans->x,trans->y,trans->z);
