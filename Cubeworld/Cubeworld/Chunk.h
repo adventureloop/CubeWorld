@@ -29,14 +29,15 @@
     
     BOOL needsUpdate;
     
-    vec3 origin;
+    vec3 localOrigin;
+    vec3 worldOrigin;
 }
 -(id)initWithNumberOfTrees:(int)ntrees treeHeight:(int)ntreeHeight;
 
 -(void)render;
 -(int)voxelsToRender;
--(vec3 *)origin;
--(void)setOrigin:(vec3 *)newOrigin;
+-(vec3 *)worldOrigin;
+-(void)setWorldOrigin:(vec3 *)newOrigin;
 
 -(void)update;
 

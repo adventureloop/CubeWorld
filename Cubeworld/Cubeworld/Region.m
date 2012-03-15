@@ -24,25 +24,25 @@
         focusPoint.z = 8.0;
         
         [chunks addObject:[chunkManager chunkForX:0 Z:0]];
-        [[chunks lastObject] setOrigin:&focusPoint];
-        
-        focusPoint.x = -8.0;
-        focusPoint.z = 8.0;
-        
-        [chunks addObject:[[Chunk alloc]init]];
-        [[chunks lastObject] setOrigin:&focusPoint];
-        
-        focusPoint.x = 8.0;
-        focusPoint.z = -8.0;
-        
-        [chunks addObject:[[Chunk alloc]init]];
-        [[chunks lastObject] setOrigin:&focusPoint];
-        
-        focusPoint.x = -8.0;
-        focusPoint.z = -8.0;
-        
-        [chunks addObject:[[Chunk alloc]init]];
-        [[chunks lastObject] setOrigin:&focusPoint];
+        [[chunks lastObject] setWorldOrigin:&focusPoint];
+//        
+//        focusPoint.x = -8.0;
+//        focusPoint.z = 8.0;
+//        
+//        [chunks addObject:[[Chunk alloc]init]];
+//        [[chunks lastObject] setOrigin:&focusPoint];
+//        
+//        focusPoint.x = 8.0;
+//        focusPoint.z = -8.0;
+//        
+//        [chunks addObject:[[Chunk alloc]init]];
+//        [[chunks lastObject] setOrigin:&focusPoint];
+//        
+//        focusPoint.x = -8.0;
+//        focusPoint.z = -8.0;
+//        
+//        [chunks addObject:[[Chunk alloc]init]];
+//        [[chunks lastObject] setOrigin:&focusPoint];
         
         modelMatrixUnif = unifLocation;
         transLationUnif = transLoc;
@@ -61,7 +61,7 @@
         [modelMatrix push];
       //  [modelMatrix translateByVec3:[c origin]];
         
-        vec3 *trans = [c origin];
+        vec3 *trans = [c worldOrigin];
 //        trans->x *= width;
 //        trans->z *= width;
         

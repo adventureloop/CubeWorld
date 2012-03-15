@@ -13,7 +13,7 @@
 @implementation Chunk
 -(id)init
 {
-    return [self initWithNumberOfTrees:8 treeHeight:1];
+    return [self initWithNumberOfTrees:8 treeHeight:4];
 }
 
 -(id)initWithNumberOfTrees:(int)ntrees treeHeight:(int)ntreeHeight
@@ -42,7 +42,7 @@
         int offset = ((int)pow(8.0, treeHeight));
         voxelData *memPtr = (voxelData *)vertexData;
         
-        vec3 localOrigin;
+
         localOrigin.x = 0.0;
         localOrigin.y = (nodeSize / 2);
         localOrigin.z = 0.0;
@@ -67,9 +67,6 @@
         for(int i = 0,j = 0;i < numElements;i++) 
             if(tmpIndexArray[i] >= 0)
                 indexArray[j++] = tmpIndexArray[i];
-        
-        [self update];
-        
         
         /* Set up vertex buffer and array objects */
         glGenBuffers(1, &vertexBufferObject);
@@ -146,6 +143,14 @@
             indexArray[j++] = tmpIndexArray[i];
     free(tmpIndexArray);
     tmpIndexArray = nil;
+    
+    //Update the buffers on the GPU
+    glBindVertexArrayAPPLE(vertexArrayObject);
+    
+    glBufferSubData(GL_ARRAY_BUFFER, 0, numVoxels * sizeof(voxelData), vertexData);
+    glBufferSubData(GL_ELEMENT_ARRAY_BUFFER,0, numElements * sizeof(unsigned int), indexArray);
+    
+    glBindVertexArrayAPPLE(0);
 }
 
 -(int)voxelsToRender
@@ -162,6 +167,7 @@
     return NO;
 }
 
+//Probably works
 -(void)updateBlockType:(int)type forX:(float)x Y:(float)y Z:(float)z
 {
     if(x > chunkWidth || x < 0)
@@ -175,52 +181,51 @@
     float voxelSize = (nodeSize / chunkWidth);
     float shift = ((chunkWidth * voxelSize)/2);
     
-    y = (int)y % (int)trees;
+    //y = (int)y % (int)trees;
     
     x = (x + voxelSize/2) - shift;
     y = (y + voxelSize/2) - shift;
-    z = (z + voxelSize/2) - shift;    
+    z = (z + voxelSize/2) - shift;
     
     vec3 point;
     point.x = x;
-    point.y = y;
+    point.y = y + (shift);
     point.z = z;
     
-    point.z += -3;
-    point.y += 0.5;
-    
-    if([self updateBlockType:type forPoint:&point])
-        needsUpdate = YES;
+    for(Octnode *n in nodes)
+        if([n collidesWithPoint:&point]) {
+            [n updatePoint:&point withBlockType:type];
+            needsUpdate = YES;
+        }
 }
 
 -(bool)collidesWithPoint:(vec3 *)point
 {
     return YES;
     float offset = nodeSize/2;
-    if((point->x > (origin.x + offset) || point->x < (origin.x - offset)))
+    if((point->x > (worldOrigin.x + offset) || point->x < (worldOrigin.x - offset)))
         return NO;
     
-    if((point->z > (origin.z + offset) || point->z < (origin.z - offset)))
+    if((point->z > (worldOrigin.z + offset) || point->z < (worldOrigin.z - offset)))
         return NO;
     
     offset = ([nodes count] * nodeSize)/2;
-    if((point->y > (origin.y + offset) || point->y < (origin.y - offset)))
+    if((point->y > (worldOrigin.y + offset) || point->y < (worldOrigin.y - offset)))
         return NO;
     
-    //NSLog(@"Collision!!!");
     return YES;
 }
 
--(vec3 *)origin
+-(vec3 *)worldOrigin
 {
-    return &origin;
+    return &worldOrigin;
 }
 
--(void)setOrigin:(vec3 *)newOrigin
+-(void)setWorldOrigin:(vec3 *)newOrigin
 {
-    origin.x = newOrigin->x;
-    origin.y = newOrigin->y;
-    origin.z = newOrigin->z;
+    worldOrigin.x = newOrigin->x;
+    worldOrigin.y = newOrigin->y;
+    worldOrigin.z = newOrigin->z;
 }
 
 -(float)chunkDimensions
