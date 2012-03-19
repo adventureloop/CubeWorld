@@ -39,4 +39,6 @@
 -(bool)updatePoint:(vec3 *)point withColour:(colour *)newColour;
 -(void)updateType:(int)type;
 -(bool)updatePoint:(vec3 *)point withBlockType:(int)type;
+
+-(vec3 *)origin;
 @end

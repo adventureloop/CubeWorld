@@ -789,4 +789,9 @@
 {
     return (int)pow(8, height);
 }
+
+-(vec3 *)origin
+{
+    return &origin;
+}
 @end
