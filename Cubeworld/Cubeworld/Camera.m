@@ -38,7 +38,7 @@
         [lookAtMatrix loadIndentity];
         
         moveSpeed = 5.0;
-        angleMoveSpeed = 5.0;
+        angleMoveSpeed = 1.0;
         
         [self update];
     }
