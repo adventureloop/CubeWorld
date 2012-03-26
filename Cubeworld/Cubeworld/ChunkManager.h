@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "Chunk.h"
+#import "Generator.h"
 
 @interface ChunkManager : NSObject
 {
-    NSMutableArray *chunkStore;
+    NSMutableDictionary *chunkStore;
+    Generator *generator;
 }
 
 -(Chunk *)chunkForPoint:(vec3 *)point;

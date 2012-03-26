@@ -25,24 +25,24 @@
         
         [chunks addObject:[chunkManager chunkForX:0 Z:0]];
         [[chunks lastObject] setWorldOrigin:&focusPoint];
-//        
-//        focusPoint.x = -8.0;
-//        focusPoint.z = 8.0;
-//        
-//        [chunks addObject:[[Chunk alloc]init]];
-//        [[chunks lastObject] setOrigin:&focusPoint];
-//        
-//        focusPoint.x = 8.0;
-//        focusPoint.z = -8.0;
-//        
-//        [chunks addObject:[[Chunk alloc]init]];
-//        [[chunks lastObject] setOrigin:&focusPoint];
-//        
-//        focusPoint.x = -8.0;
-//        focusPoint.z = -8.0;
-//        
-//        [chunks addObject:[[Chunk alloc]init]];
-//        [[chunks lastObject] setOrigin:&focusPoint];
+        
+        focusPoint.x = -8.0;
+        focusPoint.z = 8.0;
+        
+        [chunks addObject:[chunkManager chunkForX:0 Z:0]];
+        [[chunks lastObject] setWorldOrigin:&focusPoint];
+        
+        focusPoint.x = 8.0;
+        focusPoint.z = -8.0;
+        
+        [chunks addObject:[chunkManager chunkForX:0 Z:0]];
+        [[chunks lastObject] setWorldOrigin:&focusPoint];
+        
+        focusPoint.x = -8.0;
+        focusPoint.z = -8.0;
+        
+        [chunks addObject:[chunkManager chunkForX:0 Z:0]];
+        [[chunks lastObject] setWorldOrigin:&focusPoint];
         
         modelMatrixUnif = unifLocation;
         transLationUnif = transLoc;

@@ -100,6 +100,7 @@
 		DF974A2014ED4DDF00147274 /* Chunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chunk.h; sourceTree = "<group>"; };
 		DF974A2114ED4DDF00147274 /* Chunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chunk.m; sourceTree = "<group>"; };
 		DFAD6C0714E402D0002AB62A /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		DFFD279C1520F92300A6A812 /* PerlinNoise.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PerlinNoise.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +200,7 @@
 		DF840D5E14D95C990022F193 /* Cubeworld */ = {
 			isa = PBXGroup;
 			children = (
+				DFFD279C1520F92300A6A812 /* PerlinNoise.h */,
 				DF64F3AA14E55A870003630A /* VectorMath.h */,
 				DF90B5081504E62F00617F66 /* BlockTypes.h */,
 				DF840D6A14D95C990022F193 /* AppDelegate.h */,

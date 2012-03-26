@@ -12,32 +12,27 @@
 -(id)init
 {
     if(self = [super init]) {
-        chunkStore = [[NSMutableArray alloc]init];
-        [chunkStore addObject:[[Chunk alloc]init]];
-      
-        
-        [[chunkStore lastObject] updateBlockType:BLOCK_AIR forX:0 Y:0 Z:0];
-        [[chunkStore lastObject] updateBlockType:BLOCK_AIR forX:1 Y:0 Z:0];
-        [[chunkStore lastObject] updateBlockType:BLOCK_AIR forX:0 Y:0 Z:1];
-        [[chunkStore lastObject] updateBlockType:BLOCK_AIR forX:1 Y:0 Z:1];
-        
-        [[chunkStore lastObject] updateBlockType:BLOCK_AIR forX:0 Y:1 Z:0];
-        [[chunkStore lastObject] updateBlockType:BLOCK_AIR forX:1 Y:1 Z:0];
-        [[chunkStore lastObject] updateBlockType:BLOCK_AIR forX:0 Y:1 Z:1];
-        [[chunkStore lastObject] updateBlockType:BLOCK_AIR forX:1 Y:1 Z:1];
-        
-     }
+        chunkStore = [[NSMutableDictionary alloc]init];
+        generator = [[Generator alloc]init];
+    }
     return self;
-
-   }
+   
+}
 
 -(Chunk *)chunkForPoint:(vec3 *)point
 {
-    return [chunkStore lastObject];
+    return nil;//[chunkStore lastObject];
 }
 
 -(Chunk *)chunkForX:(float)x Z:(float)z
 {
-    return [chunkStore lastObject];
+    NSString *key = [NSString stringWithFormat:@"%d:%d",x,z];
+    Chunk *res = [chunkStore objectForKey:key];
+    
+    if(res == nil) {
+        res = [generator chunkForX:x Z:z];
+        [chunkStore setValue:res forKey:key];
+    }
+    return res;
 }
 @end
