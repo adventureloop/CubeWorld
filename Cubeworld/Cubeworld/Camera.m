@@ -22,10 +22,10 @@
         //Look at the origin
         cameraTarget.x = 0.0f;
         cameraTarget.y = 10.0f;
-        cameraTarget.z = 0.0f;
+        cameraTarget.z = -40.0f;
         
-        cameraSpherePos.x = 90.0f;
-        cameraSpherePos.y = 1.0f;
+        cameraSpherePos.x = 87.0f;
+        cameraSpherePos.y = -4.0f;
         cameraSpherePos.z = 66.0f;
         
         //The directio of up
