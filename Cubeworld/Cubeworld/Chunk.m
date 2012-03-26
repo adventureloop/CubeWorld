@@ -138,17 +138,27 @@
         [tmp renderElements:tmpIndexArray+indexOffset offset:arrayOffset];
         [nodes addObject:tmp];
     }
+    
+    memset(indexArray, 0, numElements * sizeof(int));
+    
     for(int i = 0,j = 0;i < numElements;i++) 
         if(tmpIndexArray[i] >= 0)
             indexArray[j++] = tmpIndexArray[i];
+    
     free(tmpIndexArray);
     tmpIndexArray = nil;
     
     //Update the buffers on the GPU
     glBindVertexArrayAPPLE(vertexArrayObject);
     
+//    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferObject);
+//    glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
+    
     glBufferSubData(GL_ARRAY_BUFFER, 0, numVoxels * sizeof(voxelData), vertexData);
     glBufferSubData(GL_ELEMENT_ARRAY_BUFFER,0, numElements * sizeof(unsigned int), indexArray);
+    
+//    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+//    glBindBuffer(GL_ARRAY_BUFFER, 0);
     
     glBindVertexArrayAPPLE(0);
 }
@@ -177,25 +187,33 @@
     if(y > (chunkWidth * trees) || y < 0)
         return;
     
+    int node = (int)y / (int)chunkWidth;
+    
+    y = (int)y % (int)chunkWidth;
+    
+    vec3 *origin = [[nodes objectAtIndex:node] origin];
     
     float voxelSize = (nodeSize / chunkWidth);
-    float shift = ((chunkWidth * voxelSize)/2);
+    float shift = 0.5 * chunkWidth * voxelSize;
     
-    //y = (int)y % (int)trees;
+    x = (x * voxelSize) + (0.5 * voxelSize);
+    y = (y * voxelSize) + (0.5 * voxelSize);
+    z = (z * voxelSize) + (0.5 * voxelSize);
     
-    x = (x + voxelSize/2) - shift;
-    y = (y + voxelSize/2) - shift;
-    z = (z + voxelSize/2) - shift;
+    x -= shift;
+    y -= shift;
+    z -= shift;
     
     vec3 point;
-    point.x = x;
-    point.y = y + (shift);
-    point.z = z;
+    point.x = origin->x + x;
+    point.y = origin->y + y;
+    point.z = origin->z + z;
     
     for(Octnode *n in nodes)
         if([n collidesWithPoint:&point]) {
             [n updatePoint:&point withBlockType:type];
             needsUpdate = YES;
+            break;
         }
 }
 
