@@ -17,33 +17,6 @@
         chunkManager = [[ChunkManager alloc]init];
         modelMatrix = [MatrixStack sharedMatrixStack];
         
-        chunks = [[NSMutableArray alloc]init];
-        
-        focusPoint.x = 8.0;
-        focusPoint.y = 0.0;
-        focusPoint.z = 8.0;
-        
-        [chunks addObject:[chunkManager chunkForX:1 Z:0]];
-        [[chunks lastObject] setWorldOrigin:&focusPoint];
-        
-        focusPoint.x = -8.0;
-        focusPoint.z = 8.0;
-        
-        [chunks addObject:[chunkManager chunkForX:1 Z:1]];
-        [[chunks lastObject] setWorldOrigin:&focusPoint];
-        
-        focusPoint.x = 8.0;
-        focusPoint.z = -8.0;
-        
-        [chunks addObject:[chunkManager chunkForX:-1 Z:0]];
-        [[chunks lastObject] setWorldOrigin:&focusPoint];
-        
-        focusPoint.x = -8.0;
-        focusPoint.z = -8.0;
-        
-        [chunks addObject:[chunkManager chunkForX:-1 Z:-1]];
-        [[chunks lastObject] setWorldOrigin:&focusPoint];
-        
         modelMatrixUnif = unifLocation;
         transLationUnif = transLoc;
         _program = programLocation;
