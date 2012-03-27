@@ -36,6 +36,10 @@
 		DF974A1E14ED19EF00147274 /* Octnode.m in Sources */ = {isa = PBXBuildFile; fileRef = DF974A1D14ED19EF00147274 /* Octnode.m */; };
 		DF974A2214ED4DDF00147274 /* Chunk.m in Sources */ = {isa = PBXBuildFile; fileRef = DF974A2114ED4DDF00147274 /* Chunk.m */; };
 		DFAD6C0814E402D0002AB62A /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAD6C0714E402D0002AB62A /* Accelerate.framework */; };
+		DFEECA911521CEED00EAD1ED /* Ambient.vsh in Sources */ = {isa = PBXBuildFile; fileRef = DFEECA901521CEED00EAD1ED /* Ambient.vsh */; };
+		DFEECA941521CEFE00EAD1ED /* Ambient.fsh in Sources */ = {isa = PBXBuildFile; fileRef = DFEECA931521CEFE00EAD1ED /* Ambient.fsh */; };
+		DFEECA951521D09E00EAD1ED /* Ambient.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DFEECA901521CEED00EAD1ED /* Ambient.vsh */; };
+		DFEECA961521D09E00EAD1ED /* Ambient.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DFEECA931521CEFE00EAD1ED /* Ambient.fsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +104,8 @@
 		DF974A2014ED4DDF00147274 /* Chunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chunk.h; sourceTree = "<group>"; };
 		DF974A2114ED4DDF00147274 /* Chunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chunk.m; sourceTree = "<group>"; };
 		DFAD6C0714E402D0002AB62A /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		DFEECA901521CEED00EAD1ED /* Ambient.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Ambient.vsh; sourceTree = "<group>"; };
+		DFEECA931521CEFE00EAD1ED /* Ambient.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Ambient.fsh; sourceTree = "<group>"; };
 		DFFD279C1520F92300A6A812 /* PerlinNoise.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PerlinNoise.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -258,6 +264,8 @@
 			children = (
 				DF840DA214D9738A0022F193 /* Test.vsh */,
 				DF840DA414D973980022F193 /* Test.fsh */,
+				DFEECA901521CEED00EAD1ED /* Ambient.vsh */,
+				DFEECA931521CEFE00EAD1ED /* Ambient.fsh */,
 			);
 			name = Shaders;
 			sourceTree = "<group>";
@@ -343,6 +351,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFEECA951521D09E00EAD1ED /* Ambient.vsh in Resources */,
+				DFEECA961521D09E00EAD1ED /* Ambient.fsh in Resources */,
 				DF840DAB14D97CAF0022F193 /* Test.vsh in Resources */,
 				DF840DAC14D97CAF0022F193 /* Test.fsh in Resources */,
 				DF840D6314D95C990022F193 /* InfoPlist.strings in Resources */,
@@ -398,6 +408,8 @@
 				DF93A0EF14FE7F5400F201D7 /* Region.m in Sources */,
 				DF35EACA14FF81C000AE8A60 /* ChunkManager.m in Sources */,
 				DF2FD5C11509068B0073E1FF /* Generator.m in Sources */,
+				DFEECA911521CEED00EAD1ED /* Ambient.vsh in Sources */,
+				DFEECA941521CEFE00EAD1ED /* Ambient.fsh in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

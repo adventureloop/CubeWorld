@@ -24,28 +24,15 @@
 {
     Chunk *tmp = [[Chunk alloc] init];
     
-//    float limit = (random()%64) + 30;
-//    
-//    for(double x = 0;x < 16;x++) 
-//        for(double z = 0;z < 16;z++) {
-//            NSLog(@"x:%f\tz:%f\t value:%f",x,z,PerlinNoise2D(x/10.0,z/10.0, 2, 2, 6));
-//            limit = PerlinNoise2D(x/10.0 + 0.1,z/10.0 +0.1, 2, 2, 6);
-//            limit = limit * 128;
-//            limit = (limit > 0) ? limit : -limit;
-//            for(double y = 0;y < 128;y++)
-//                if(y > limit) 
-//                    [tmp updateBlockType:BLOCK_AIR forX:x Y:y Z:z];
-//        }
-    
     float baselimit = PerlinNoise2D((x/10.0) + 0.4,(z/10.0) + 0.4, 2, 2, 6);
     baselimit = baselimit * 128;
     baselimit = (baselimit > 0) ? baselimit : -baselimit;
     
-    float variation = baselimit / 10.0;
+    float variation = baselimit / 5.0;
     
     for(double x = 0;x < 16;x++) 
         for(double z = 0;z < 16;z++) {
-            float limit = PerlinNoise2D(x/10.0,z/10.0, 2, 2, 6);
+            float limit = PerlinNoise2D((x/10.0) + 0.4,(z/10.0) + 0.4, 2, 2, 6);
             limit = limit * variation;
             for(double y = 0;y < 128;y++)
                 if(y > baselimit+limit) 
