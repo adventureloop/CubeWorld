@@ -10,8 +10,6 @@ uniform mat4 cameraToClipMatrix;
 
 uniform vec3 translation;
 
-//uniform mat3 normalMatrix;
-
 void main()
 {
     vec4 temp = position + vec4(translation,1.0);

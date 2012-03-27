@@ -23,25 +23,25 @@
         focusPoint.y = 0.0;
         focusPoint.z = 8.0;
         
-        [chunks addObject:[chunkManager chunkForX:0 Z:0]];
+        [chunks addObject:[chunkManager chunkForX:1 Z:0]];
         [[chunks lastObject] setWorldOrigin:&focusPoint];
         
         focusPoint.x = -8.0;
         focusPoint.z = 8.0;
         
-        [chunks addObject:[chunkManager chunkForX:0 Z:0]];
+        [chunks addObject:[chunkManager chunkForX:1 Z:1]];
         [[chunks lastObject] setWorldOrigin:&focusPoint];
         
         focusPoint.x = 8.0;
         focusPoint.z = -8.0;
         
-        [chunks addObject:[chunkManager chunkForX:0 Z:0]];
+        [chunks addObject:[chunkManager chunkForX:-1 Z:0]];
         [[chunks lastObject] setWorldOrigin:&focusPoint];
         
         focusPoint.x = -8.0;
         focusPoint.z = -8.0;
         
-        [chunks addObject:[chunkManager chunkForX:0 Z:0]];
+        [chunks addObject:[chunkManager chunkForX:-1 Z:-1]];
         [[chunks lastObject] setWorldOrigin:&focusPoint];
         
         modelMatrixUnif = unifLocation;
@@ -53,25 +53,23 @@
 
 -(void)render
 {
+    float renderDistance = 2;
     float width = 8;
     
-    for(Chunk *c in chunks) {
-        glUseProgram(_program);
-        
-        [modelMatrix push];
-      //  [modelMatrix translateByVec3:[c origin]];
-        
-        vec3 *trans = [c worldOrigin];
-//        trans->x *= width;
-//        trans->z *= width;
-        
-        glUniformMatrix4fv(modelMatrixUnif, 1, GL_FALSE, [modelMatrix mat]);
-        glUniform3f(transLationUnif,trans->x,trans->y,trans->z);
-        
-        [c render];
-        
-        [modelMatrix pop];
-        glUseProgram(0);
+    for(float x = renderDistance; x >= -renderDistance;x--) {
+        for(float z = renderDistance;z >= -renderDistance;z--) {
+            if(x == 0 || z == 0)
+                continue;
+            
+            glUseProgram(_program);
+            
+            glUniformMatrix4fv(modelMatrixUnif, 1, GL_FALSE, [modelMatrix mat]);
+            glUniform3f(transLationUnif,x*width,0,z*width);
+            
+            [[chunkManager chunkForX:x Z:z] render];
+            
+            glUseProgram(0);
+        }
     }
 }
 

@@ -250,4 +250,10 @@
 {
     return nodeSize * chunkWidth;
 }
+
+-(void)updateAllToColour:(colour *)colour
+{
+    for(Octnode *o in nodes)
+        [o updateColours:colour];
+}
 @end

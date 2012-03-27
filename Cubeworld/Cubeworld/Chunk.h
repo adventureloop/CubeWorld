@@ -44,4 +44,6 @@
 -(bool)collidesWithPoint:(vec3 *)point;
 
 -(float)chunkDimensions;
+
+-(void)updateAllToColour:(colour *)colour;
 @end
