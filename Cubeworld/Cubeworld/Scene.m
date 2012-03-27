@@ -124,10 +124,8 @@
     _program = glCreateProgram();
     
     // Create and compile vertex shader.
-    vertShaderPathname = [[NSBundle mainBundle] pathForResource:@"Test" ofType:@"vsh"];
-    
     NSBundle *bundle = [NSBundle mainBundle];
-    vertShaderPathname = [bundle  pathForResource:@"Test" ofType:@"vsh"];
+    vertShaderPathname = [bundle  pathForResource:@"Ambient" ofType:@"vsh"];
     
     
     if (![self compileShader:&vertShader type:GL_VERTEX_SHADER file:vertShaderPathname]) {
@@ -136,7 +134,8 @@
     }
     
     // Create and compile fragment shader.
-    fragShaderPathname = [[NSBundle mainBundle] pathForResource:@"Test" ofType:@"fsh"];
+    fragShaderPathname = [[NSBundle mainBundle] pathForResource:@"Ambient" ofType:@"fsh"];
+    
     if (![self compileShader:&fragShader type:GL_FRAGMENT_SHADER file:fragShaderPathname]) {
         NSLog(@"Failed to compile fragment shader");
         return NO;
