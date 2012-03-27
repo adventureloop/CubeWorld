@@ -61,6 +61,8 @@
             [tmp renderElements:tmpIndexArray+indexOffset offset:arrayOffset];
             [nodes addObject:tmp];
             
+            [tmp release];
+            
             memPtr += offset;
         }
         
@@ -255,5 +257,14 @@
 {
     for(Octnode *o in nodes)
         [o updateColours:colour];
+}
+
+-(void)dealloc
+{
+    [nodes release];
+    free(indexArray);
+    free(vertexData);
+
+    [super dealloc];
 }
 @end

@@ -53,7 +53,7 @@
     offsetVec.z = -1.0;
     
     [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
-    [nodes addObject:[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]];
+    [nodes addObject:[[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]autorelease]];
     
     //Adjust the memory pointer to the next 8th of data.
     memPtr += offset;
@@ -64,7 +64,7 @@
     offsetVec.z = -1.0;
     
     [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
-    [nodes addObject:[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]];
+    [nodes addObject:[[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]autorelease]];
     
     memPtr += offset;
     
@@ -74,7 +74,7 @@
     offsetVec.z = 1.0;
     
     [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
-    [nodes addObject:[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]];
+    [nodes addObject:[[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]autorelease]];
     
     memPtr += offset;
     
@@ -84,7 +84,7 @@
     offsetVec.z = 1.0;
     
     [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
-    [nodes addObject:[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]];
+    [nodes addObject:[[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]autorelease]];
     
     //Bottom Nodes
     memPtr += offset;
@@ -95,7 +95,7 @@
     offsetVec.z = -1.0;
     
     [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
-    [nodes addObject:[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]];
+    [nodes addObject:[[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]autorelease]];
     
     memPtr += offset;
     
@@ -105,7 +105,7 @@
     offsetVec.z = -1.0;
     
     [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
-    [nodes addObject:[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]];
+    [nodes addObject:[[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]autorelease]];
     
     memPtr += offset;
     
@@ -115,7 +115,7 @@
     offsetVec.z = 1.0;
     
     [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
-    [nodes addObject:[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]];
+    [nodes addObject:[[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]autorelease]];
         
     memPtr += offset;
     
@@ -125,7 +125,7 @@
     offsetVec.z = 1.0;
     
     [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
-    [nodes addObject:[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]];
+    [nodes addObject:[[[Octnode alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:memPtr]autorelease]];
     return;
 }
 

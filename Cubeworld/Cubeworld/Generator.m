@@ -22,7 +22,7 @@
 
 -(Chunk *)chunkForX:(float)cx Z:(float)cz
 {
-    Chunk *tmp = [[Chunk alloc] init];
+    Chunk *tmp = [[[Chunk alloc] init] autorelease];
     
 //    colour c;
 //    c.red = 0.0;

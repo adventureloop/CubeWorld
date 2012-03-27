@@ -26,7 +26,7 @@
 
 -(Chunk *)chunkForX:(float)x Z:(float)z
 {
-    NSString *key = [NSString stringWithFormat:@"%d:%d",x,z];
+    NSString *key = [NSString stringWithFormat:@"x:%f z:%f",x,z];
     Chunk *res = [chunkStore objectForKey:key];
     
     if(res == nil) {
