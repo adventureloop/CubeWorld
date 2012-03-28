@@ -189,6 +189,8 @@
         return;
     
     int node = (int)y / (int)chunkWidth;
+    if(node > [nodes count]-1)
+       return;
     
     y = (int)y % (int)chunkWidth;
     
@@ -250,6 +252,11 @@
 -(float)chunkDimensions
 {
     return nodeSize * chunkWidth;
+}
+
+-(int)height
+{
+    return trees * chunkWidth;
 }
 
 -(void)updateAllToColour:(colour *)colour
