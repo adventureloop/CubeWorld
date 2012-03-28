@@ -26,7 +26,7 @@
 
 -(void)render
 {
-    float renderDistance = 2;
+    float renderDistance = 1;
     float width = 8;
     
     for(float x = renderDistance; x >= -renderDistance;x--) {
@@ -39,14 +39,7 @@
             glUniformMatrix4fv(modelMatrixUnif, 1, GL_FALSE, [modelMatrix mat]);
             glUniform3f(transLationUnif,x*width,0,z*width);
             
-            NSDate *methodStart = [NSDate date];
-            
             [[chunkManager chunkForX:x Z:z] render];
-            
-            
-            NSDate *methodFinish = [NSDate date];
-            NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:methodStart];
-            NSLog(@"Render time %f",executionTime);
             
             glUseProgram(0);
         }

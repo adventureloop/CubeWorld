@@ -106,14 +106,7 @@
 -(void)render;
 {
     if(needsUpdate) {
-        NSDate *methodStart = [NSDate date];
-        
         [self update];
-        
-        NSDate *methodFinish = [NSDate date];
-        NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:methodStart];
-        NSLog(@"\t\t\t\tUpdate %f",executionTime);
-        
         needsUpdate = NO;
     }
     

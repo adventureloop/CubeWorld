@@ -22,7 +22,7 @@
 
 -(Chunk *)chunkForX:(float)cx Z:(float)cz
 {
-        NSDate *methodStart = [NSDate date];
+    NSDate *methodStart = [NSDate date];
     
     Chunk *tmp = [[[Chunk alloc] init] autorelease];
     
@@ -49,9 +49,10 @@
                 if(y > baselimit+limit) 
                     [tmp updateBlockType:BLOCK_AIR forX:x Y:y Z:z];
         }
+    
     NSDate *methodFinish = [NSDate date];
     NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:methodStart];
-    NSLog(@"\t\tGeneration time %f",executionTime);
+    NSLog(@"Generation time %f for (%.0f x,%.0f z)",executionTime,cx,cz);
     
     return tmp;
 }
