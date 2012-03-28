@@ -7,8 +7,7 @@
 //
 
 #import "WorldScene.h"
-#include <OpenGL/gl.h>
-#import <Carbon/Carbon.h>
+
 
 @implementation WorldScene
 @synthesize bounds;
@@ -20,18 +19,6 @@
         [self setupOpenGL];
     }
     return self;
-}
-
--(void)startAnimating
-{
-}
-
--(void)stopAnimating;
-{
-}
-
--(void)update
-{
 }
 
 -(void)render
@@ -54,7 +41,6 @@
     //Use the model matrix(identity currently)
     glUniformMatrix4fv(modelToWorldMatrixUnif, 1, GL_FALSE, [modelMatrix mat]);
     
-    //  [c render];
     [r render];
     
 	glUseProgram(0);
@@ -94,8 +80,6 @@
     glViewport(0, 0, (GLsizei)w, (GLsizei)h);
     
     r = [[Region alloc]initWithMatrixUnifLocation:modelToWorldMatrixUnif translationLocation:transLocationUnif program:_program];
-    
-    self->animationTimer = [NSTimer scheduledTimerWithTimeInterval:1/30 target:self selector:@selector(render) userInfo:nil repeats:YES];
 }
 
 -(void)didResizeTo:(CGRect)newBounds

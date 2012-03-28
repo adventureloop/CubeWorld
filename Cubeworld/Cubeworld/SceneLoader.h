@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Scene.h"
 
-@interface SceneLoader : NSObject
+@interface SceneLoader : Scene
 
 @end

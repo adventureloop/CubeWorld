@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Scene.h"
+#import "MainScene.h"
+#import "WorldScene.h"
 
 @interface OpenGLView : NSOpenGLView
 {
-    Scene *scene;
+    WorldScene *scene;
     BOOL captureMouse;
 }
 

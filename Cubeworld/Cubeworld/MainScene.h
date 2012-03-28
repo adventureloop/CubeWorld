@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Scene.h"
+#import "WorldScene.h"
 
-@interface MainScene : NSObject
-
+@interface MainScene : Scene
+{
+    WorldScene *world;
+}
 @end

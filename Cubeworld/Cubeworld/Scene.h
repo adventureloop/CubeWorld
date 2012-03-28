@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#include <OpenGL/gl.h>
+#import <Carbon/Carbon.h>
 
 @interface Scene : NSObject
 {

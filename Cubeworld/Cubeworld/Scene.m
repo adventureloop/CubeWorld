@@ -16,18 +16,18 @@
 -(id)initWithBounds:(CGRect)newBounds
 {
     if(self = [super init]) {
-        [self setBounds:newBounds];
-        [self setupOpenGL];
     }
     return self;
 }
 
 -(void)startAnimating
 {
+    animationTimer = [NSTimer scheduledTimerWithTimeInterval:1/30 target:self selector:@selector(render) userInfo:nil repeats:YES];
 }
 
 -(void)stopAnimating;
 {
+    [animationTimer release];
 }
 
 -(void)update
