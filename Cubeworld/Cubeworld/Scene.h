@@ -7,33 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Voxel.h"
-#import "Camera.h"
-#import "Chunk.h"
-#import "MatrixStack.h"
-#import "Region.h"
 
 @interface Scene : NSObject
 {
     NSTimer *animationTimer;
-    
-    GLuint _program;
-    GLuint vertexBufferObject;
-    GLuint vao;
-    
-    //Uniforms for mattrixes
-    GLuint cameraToClipMatrixUnif;
-    GLuint worldToCameraMatrixUnif;
-    GLuint modelToWorldMatrixUnif;
-    
-    GLuint transLocationUnif;
-    
-    Camera *camera;
-    MatrixStack *modelMatrix;
-    
-    Chunk *c;
-
-    Region *r;
 }
 
 -(id)initWithBounds:(CGRect) newBounds;
@@ -49,11 +26,6 @@
 -(void)keyDown:(int)keyCode;
 -(void)keyUp:(int)keyCode;
 -(void)mouseMovedByX:(int)x Y:(int)y;
-
--(BOOL)compileShader:(GLuint *)shader type:(GLenum)type file:(NSString *)file;
--(BOOL)loadShaders;
--(BOOL)linkProgram:(GLuint)prog;
--(BOOL)validateProgram:(GLuint)prog;
 
 @property CGRect bounds;
 @end
