@@ -40,6 +40,10 @@
 		DFEECA941521CEFE00EAD1ED /* Ambient.fsh in Sources */ = {isa = PBXBuildFile; fileRef = DFEECA931521CEFE00EAD1ED /* Ambient.fsh */; };
 		DFEECA951521D09E00EAD1ED /* Ambient.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DFEECA901521CEED00EAD1ED /* Ambient.vsh */; };
 		DFEECA961521D09E00EAD1ED /* Ambient.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DFEECA931521CEFE00EAD1ED /* Ambient.fsh */; };
+		DFF66EA61523224F008C8E63 /* MainScene.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF66EA51523224F008C8E63 /* MainScene.m */; };
+		DFF66EAA15232267008C8E63 /* SceneSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF66EA915232267008C8E63 /* SceneSelector.m */; };
+		DFF66EAD1523227D008C8E63 /* SceneLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF66EAC1523227D008C8E63 /* SceneLoader.m */; };
+		DFF66EB01523228E008C8E63 /* WorldScene.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF66EAF1523228E008C8E63 /* WorldScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +110,14 @@
 		DFAD6C0714E402D0002AB62A /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		DFEECA901521CEED00EAD1ED /* Ambient.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Ambient.vsh; sourceTree = "<group>"; };
 		DFEECA931521CEFE00EAD1ED /* Ambient.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Ambient.fsh; sourceTree = "<group>"; };
+		DFF66EA41523224F008C8E63 /* MainScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScene.h; sourceTree = "<group>"; };
+		DFF66EA51523224F008C8E63 /* MainScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScene.m; sourceTree = "<group>"; };
+		DFF66EA815232267008C8E63 /* SceneSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneSelector.h; sourceTree = "<group>"; };
+		DFF66EA915232267008C8E63 /* SceneSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneSelector.m; sourceTree = "<group>"; };
+		DFF66EAB1523227D008C8E63 /* SceneLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneLoader.h; sourceTree = "<group>"; };
+		DFF66EAC1523227D008C8E63 /* SceneLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneLoader.m; sourceTree = "<group>"; };
+		DFF66EAE1523228D008C8E63 /* WorldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldScene.h; sourceTree = "<group>"; };
+		DFF66EAF1523228E008C8E63 /* WorldScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorldScene.m; sourceTree = "<group>"; };
 		DFFD279C1520F92300A6A812 /* PerlinNoise.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PerlinNoise.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -151,6 +163,14 @@
 			children = (
 				DF073EFD14E12CE900BC506D /* Scene.h */,
 				DF073EFE14E12CE900BC506D /* Scene.m */,
+				DFF66EA41523224F008C8E63 /* MainScene.h */,
+				DFF66EA51523224F008C8E63 /* MainScene.m */,
+				DFF66EA815232267008C8E63 /* SceneSelector.h */,
+				DFF66EA915232267008C8E63 /* SceneSelector.m */,
+				DFF66EAB1523227D008C8E63 /* SceneLoader.h */,
+				DFF66EAC1523227D008C8E63 /* SceneLoader.m */,
+				DFF66EAE1523228D008C8E63 /* WorldScene.h */,
+				DFF66EAF1523228E008C8E63 /* WorldScene.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -418,6 +438,10 @@
 				DF2FD5C11509068B0073E1FF /* Generator.m in Sources */,
 				DFEECA911521CEED00EAD1ED /* Ambient.vsh in Sources */,
 				DFEECA941521CEFE00EAD1ED /* Ambient.fsh in Sources */,
+				DFF66EA61523224F008C8E63 /* MainScene.m in Sources */,
+				DFF66EAA15232267008C8E63 /* SceneSelector.m in Sources */,
+				DFF66EAD1523227D008C8E63 /* SceneLoader.m in Sources */,
+				DFF66EB01523228E008C8E63 /* WorldScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
