@@ -22,15 +22,18 @@
 
 -(Chunk *)chunkForX:(float)cx Z:(float)cz
 {
+        NSDate *methodStart = [NSDate date];
+    
     Chunk *tmp = [[[Chunk alloc] init] autorelease];
     
-//    colour c;
-//    c.red = 0.0;
-//    c.green = 1.0;
-//    c.blue = 0.0;
-//    c.alpha = 1.0;
-//    
-//    [tmp updateAllToColour:&c];
+    colour c;
+    c.red = 0.0;
+    c.green = 1.0;
+    c.blue = 0.0;
+    c.alpha = 1.0;
+    
+    [tmp updateAllToColour:&c];
+
     
     float baselimit = PerlinNoise2D((cx/10.0) + 0.2,(cz/10.0) + 0.2, 2, 2, 6);
     baselimit = baselimit * 64;
@@ -46,6 +49,9 @@
                 if(y > baselimit+limit) 
                     [tmp updateBlockType:BLOCK_AIR forX:x Y:y Z:z];
         }
+    NSDate *methodFinish = [NSDate date];
+    NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:methodStart];
+    NSLog(@"\t\tGeneration time %f",executionTime);
     
     return tmp;
 }

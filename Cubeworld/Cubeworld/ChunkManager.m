@@ -26,13 +26,20 @@
 
 -(Chunk *)chunkForX:(float)x Z:(float)z
 {
+    NSDate *methodStart = [NSDate date];
+    
     NSString *key = [NSString stringWithFormat:@"x:%f z:%f",x,z];
     Chunk *res = [chunkStore objectForKey:key];
     
     if(res == nil) {
-        res = [generator chunkForX:x Z:z];
+        res = [generator chunkForX:x Z:z];  //Spends a ton of time in here, like seconds
         [chunkStore setValue:res forKey:key];
     }
+    
+    NSDate *methodFinish = [NSDate date];
+    NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:methodStart];
+    NSLog(@"\tDictionary and generator time %f",executionTime);
+    
     return res;
 }
 @end

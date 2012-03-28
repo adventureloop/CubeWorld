@@ -31,10 +31,9 @@
         unsigned int numVoxels = trees * ((int)pow(8, treeHeight));
         unsigned int numElements = numVoxels * VOXEL_INDICES_COUNT;
         
-        
-        vertexData = calloc(numVoxels, sizeof(voxelData));
+        vertexData = malloc(numVoxels * sizeof(voxelData));
         indexArray = calloc(numElements, sizeof(unsigned int));
-        tmpIndexArray = calloc(numElements, sizeof(long));
+        tmpIndexArray = malloc(numElements * sizeof(long));
         
         memset(tmpIndexArray, -1, numElements * sizeof(int));
         
@@ -107,7 +106,14 @@
 -(void)render;
 {
     if(needsUpdate) {
+        NSDate *methodStart = [NSDate date];
+        
         [self update];
+        
+        NSDate *methodFinish = [NSDate date];
+        NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:methodStart];
+        NSLog(@"\t\t\t\tUpdate %f",executionTime);
+        
         needsUpdate = NO;
     }
     
@@ -126,7 +132,7 @@
     int offset = ((int)pow(8.0, treeHeight));
     
     if(tmpIndexArray == nil)
-        tmpIndexArray = calloc(numElements, sizeof(long));
+        tmpIndexArray = malloc(numElements * sizeof(long));
         
     memset(tmpIndexArray, -1, numElements * sizeof(int));
     
