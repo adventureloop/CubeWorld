@@ -50,7 +50,7 @@
             limit = limit * variation;
             limit += baselimit;
             for(double y = 0;y < 128;y++)
-                if(y > baselimit+limit) {
+                if(y < limit) {
                     [tmp updateBlockType:BLOCK_SOLID forX:x Y:y Z:z];
                     blocksChanged++;
                 }
