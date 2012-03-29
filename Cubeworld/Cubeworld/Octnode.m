@@ -22,7 +22,7 @@
         origin.z = nodeOrigin->z;
         voxelPtr = mem;
         
-        blockType = BLOCK_SOLID;
+        blockType = BLOCK_AIR;
         
         if(height > 0)
             [self createSubnodes];

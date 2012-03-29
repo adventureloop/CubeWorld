@@ -48,10 +48,10 @@
         for(double z = 0;z < 16;z++) {
             float limit = PerlinNoise2D((cx+x/10.0) + 0.4,(cz+z/10.0) + 0.4, 2, 2, 6);
             limit = limit * variation;
-            //blocksChanged += height - limit;
+            limit += baselimit;
             for(double y = 0;y < 128;y++)
                 if(y > baselimit+limit) {
-                    [tmp updateBlockType:BLOCK_AIR forX:x Y:y Z:z];
+                    [tmp updateBlockType:BLOCK_SOLID forX:x Y:y Z:z];
                     blocksChanged++;
                 }
         }
