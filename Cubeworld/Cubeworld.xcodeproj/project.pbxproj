@@ -36,6 +36,8 @@
 		DF974A1E14ED19EF00147274 /* Octnode.m in Sources */ = {isa = PBXBuildFile; fileRef = DF974A1D14ED19EF00147274 /* Octnode.m */; };
 		DF974A2214ED4DDF00147274 /* Chunk.m in Sources */ = {isa = PBXBuildFile; fileRef = DF974A2114ED4DDF00147274 /* Chunk.m */; };
 		DFAD6C0814E402D0002AB62A /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAD6C0714E402D0002AB62A /* Accelerate.framework */; };
+		DFD701341524C9EF00FA78DD /* OctnodeLowMem.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD701331524C9EF00FA78DD /* OctnodeLowMem.m */; };
+		DFD701371524CA1600FA78DD /* ChunkLowMem.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD701361524CA1600FA78DD /* ChunkLowMem.m */; };
 		DFEECA911521CEED00EAD1ED /* Ambient.vsh in Sources */ = {isa = PBXBuildFile; fileRef = DFEECA901521CEED00EAD1ED /* Ambient.vsh */; };
 		DFEECA941521CEFE00EAD1ED /* Ambient.fsh in Sources */ = {isa = PBXBuildFile; fileRef = DFEECA931521CEFE00EAD1ED /* Ambient.fsh */; };
 		DFEECA951521D09E00EAD1ED /* Ambient.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DFEECA901521CEED00EAD1ED /* Ambient.vsh */; };
@@ -108,6 +110,10 @@
 		DF974A2014ED4DDF00147274 /* Chunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chunk.h; sourceTree = "<group>"; };
 		DF974A2114ED4DDF00147274 /* Chunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chunk.m; sourceTree = "<group>"; };
 		DFAD6C0714E402D0002AB62A /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		DFD701321524C9EF00FA78DD /* OctnodeLowMem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OctnodeLowMem.h; sourceTree = "<group>"; };
+		DFD701331524C9EF00FA78DD /* OctnodeLowMem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OctnodeLowMem.m; sourceTree = "<group>"; };
+		DFD701351524CA1600FA78DD /* ChunkLowMem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChunkLowMem.h; sourceTree = "<group>"; };
+		DFD701361524CA1600FA78DD /* ChunkLowMem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChunkLowMem.m; sourceTree = "<group>"; };
 		DFEECA901521CEED00EAD1ED /* Ambient.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Ambient.vsh; sourceTree = "<group>"; };
 		DFEECA931521CEFE00EAD1ED /* Ambient.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Ambient.fsh; sourceTree = "<group>"; };
 		DFF66EA41523224F008C8E63 /* MainScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScene.h; sourceTree = "<group>"; };
@@ -184,6 +190,10 @@
 				DF974A2114ED4DDF00147274 /* Chunk.m */,
 				DF974A1C14ED19EF00147274 /* Octnode.h */,
 				DF974A1D14ED19EF00147274 /* Octnode.m */,
+				DFD701351524CA1600FA78DD /* ChunkLowMem.h */,
+				DFD701361524CA1600FA78DD /* ChunkLowMem.m */,
+				DFD701321524C9EF00FA78DD /* OctnodeLowMem.h */,
+				DFD701331524C9EF00FA78DD /* OctnodeLowMem.m */,
 				DF2945C014E1938E007D1A15 /* Voxel.h */,
 				DF2945C114E1938E007D1A15 /* Voxel.m */,
 			);
@@ -442,6 +452,8 @@
 				DFF66EAA15232267008C8E63 /* SceneSelector.m in Sources */,
 				DFF66EAD1523227D008C8E63 /* SceneLoader.m in Sources */,
 				DFF66EB01523228E008C8E63 /* WorldScene.m in Sources */,
+				DFD701341524C9EF00FA78DD /* OctnodeLowMem.m in Sources */,
+				DFD701371524CA1600FA78DD /* ChunkLowMem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
