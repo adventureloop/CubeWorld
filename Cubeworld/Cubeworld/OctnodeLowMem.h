@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #include "Structures.h"
+#import "ChunkLowMem.h"
 
 @interface OctnodeLowMem : NSObject
 {
@@ -20,16 +21,18 @@
     int height;
     
     voxelData *voxelPtr;
+    int indexOffset;
+    ChunkLowMem *datasource;
     
     int blockType;
 }
 
--(id)initWithTreeHeight:(unsigned int)nodeHeight nodeSize:(float)nodeSize orign:(vec3 *)nodeOrigin memoryPointer:(void *)mem;
+-(id)initWithTreeHeight:(unsigned int)nodeHeight nodeSize:(float)nodeSize orign:(vec3 *)nodeOrigin dataSource:(id)ndatasource;
 -(void)createSubnodes;
 -(void)addVoxelData;
 -(void)calculateNewOrigin:(vec3 *)v1 OldOrigin:(vec3 *)v2 offsetVec:(vec3 *)offvec scale:(float) scale;
 
--(void)renderElements:(unsigned int *)elements offset:(unsigned int)offset;
+-(void)renderElements:(unsigned int *)elements;
 
 -(int)numberOfVoxels;
 

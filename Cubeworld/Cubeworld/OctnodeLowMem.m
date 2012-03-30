@@ -11,7 +11,7 @@
 
 @implementation OctnodeLowMem
 
--(id)initWithTreeHeight:(unsigned int)nodeHeight nodeSize:(float)nodeSize orign:(vec3 *)nodeOrigin memoryPointer:(void *)mem
+-(id)initWithTreeHeight:(unsigned int)nodeHeight nodeSize:(float)nodeSize orign:(vec3 *)nodeOrigin dataSource:(id)ndatasource
 {
     if(self = [super init]) {
         height = nodeHeight;
@@ -21,6 +21,8 @@
         origin.y = nodeOrigin->y;
         origin.z = nodeOrigin->z;
         voxelPtr = nil;
+        
+        datasource = ndatasource;
         
         blockType = BLOCK_AIR;
         
@@ -32,14 +34,10 @@
 
 -(void)createSubnodes
 {
-    // NSLog(@"Creating subnodes");
-    
     vec3 newOrigin,offsetVec;
     float scale = size/4;
     int newHeight = height-1;
     float newSize = size/2;
-    //voxelData *memPtr = voxelPtr;
-    int offset = ((int)pow(8.0, height)) / 8;
     
     nodes = [[NSMutableArray alloc]init];
     
@@ -50,7 +48,7 @@
     offsetVec.z = -1.0;
     
     [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
-    [nodes addObject:[[[OctnodeLowMem alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:nil]autorelease]];
+    [nodes addObject:[[[OctnodeLowMem alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin dataSource:datasource]autorelease]];
     
     //Back Right
     offsetVec.x = 1.0;
@@ -58,15 +56,14 @@
     offsetVec.z = -1.0;
     
     [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
-    [nodes addObject:[[[OctnodeLowMem alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:nil]autorelease]];
-
+    [nodes addObject:[[[OctnodeLowMem alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin dataSource:datasource]autorelease]];
     //Front left
     offsetVec.x = -1.0;
     offsetVec.y = 1.0;
     offsetVec.z = 1.0;
     
     [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
-    [nodes addObject:[[[OctnodeLowMem alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:nil]autorelease]];
+   [nodes addObject:[[[OctnodeLowMem alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin dataSource:datasource]autorelease]];
 
     
     //Front right
@@ -75,7 +72,7 @@
     offsetVec.z = 1.0;
     
     [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
-    [nodes addObject:[[[OctnodeLowMem alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:nil]autorelease]];
+    [nodes addObject:[[[OctnodeLowMem alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin dataSource:datasource]autorelease]];
     
     //Back left
     offsetVec.x = -1.0;
@@ -83,7 +80,7 @@
     offsetVec.z = -1.0;
     
     [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
-    [nodes addObject:[[[OctnodeLowMem alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:nil]autorelease]];
+    [nodes addObject:[[[OctnodeLowMem alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin dataSource:datasource]autorelease]];
 
     //Front left
     offsetVec.x = 1.0;
@@ -91,7 +88,7 @@
     offsetVec.z = -1.0;
     
     [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
-    [nodes addObject:[[[OctnodeLowMem alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:nil]autorelease]];
+    [nodes addObject:[[[OctnodeLowMem alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin dataSource:datasource]autorelease]];
     
     //Front Right
     offsetVec.x = -1.0;
@@ -99,7 +96,7 @@
     offsetVec.z = 1.0;
     
     [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
-    [nodes addObject:[[[OctnodeLowMem alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:nil]autorelease]];
+    [nodes addObject:[[[OctnodeLowMem alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin dataSource:datasource]autorelease]];
 
     //Back Right
     offsetVec.x = 1.0;
@@ -107,10 +104,9 @@
     offsetVec.z = 1.0;
     
     [self calculateNewOrigin:&newOrigin OldOrigin:&origin offsetVec:&offsetVec scale:scale];
-    [nodes addObject:[[[OctnodeLowMem alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin memoryPointer:nil]autorelease]];
+    [nodes addObject:[[[OctnodeLowMem alloc]initWithTreeHeight:newHeight nodeSize:newSize orign:&newOrigin dataSource:datasource]autorelease]];
     return;
 }
-
 
 //Add the voxel data for this part of the tree to the VBO
 -(void)addVoxelData
@@ -487,25 +483,25 @@
     tmp->face6.vertex4.n.z = 0.0f;
     
     
+    //Get the render meta data
+    [datasource getRenderMetaData:&indexOffset DataPtr:voxelPtr];
+    
     //Copy tmp data into the vbo ptr provided
     memcpy(voxelPtr,tmp,sizeof(voxelData));
 }
 
--(void)renderElements:(unsigned int *)elements offset:(unsigned int)offset
+-(void)renderElements:(unsigned int *)elements
 {
     if(height > 0) {
         unsigned int *memPtr = elements;
         int memOffset = (((int)pow(8.0, height)) / 8) * 36;
-        int indexOffset =  (((int)pow(8.0, height)) / 8) * 24;
         
         for(OctnodeLowMem *n in nodes) {
-            [n renderElements:memPtr offset:offset];
+            [n renderElements:memPtr];
             memPtr += memOffset;
-            offset = offset + indexOffset;
-            
         }
     } else  {
-        if(blockType != BLOCK_SOLID)
+        if(blockType != BLOCK_SOLID || voxelPtr == nil)
             return;
         int i = 0;
         unsigned int *nelements = calloc(36, sizeof(unsigned int));
@@ -566,7 +562,7 @@
         nelements[i++] = 20;
         
         for(i = 0;i < 36;i++)
-            nelements[i] += offset;
+            nelements[i] += indexOffset;
         
         memcpy(elements, nelements, sizeof(unsigned int) * 36);
         
@@ -580,7 +576,7 @@
     if(height > 0) {
         for(OctnodeLowMem *n in nodes)
             [n updateColours:newColour];
-    } else {
+    } else if(voxelPtr != nil){
         voxelPtr->face1.vertex1.c.red = newColour->red;
         voxelPtr->face1.vertex1.c.green = newColour->green;
         voxelPtr->face1.vertex1.c.blue = newColour->blue;
@@ -706,6 +702,9 @@
 -(void)updateType:(int)type
 {
     blockType = type;
+    
+    if(blockType != BLOCK_AIR)
+        [self addVoxelData];
 }
 
 -(bool)updatePoint:(vec3 *)point withColour:(colour *)newColour
