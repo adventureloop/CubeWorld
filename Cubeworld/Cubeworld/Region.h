@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Chunk.h"
+#import "ChunkLowMem.h"
 #import "ChunkManager.h"
 #import "MatrixStack.h"
 #import <OpenGL/gl.h>

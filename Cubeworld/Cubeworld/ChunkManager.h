@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Chunk.h"
+#import "ChunkLowMem.h"
 #import "Generator.h"
 
 @interface ChunkManager : NSObject

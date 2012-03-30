@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Chunk.h"
+#import "ChunkLowMem.h"
 
 @interface Generator : NSObject
 {
 }
 
--(Chunk *)chunkForPoint:(vec3 *)point;
--(Chunk *)chunkForX:(float)x Z:(float)z;
+-(ChunkLowMem *)chunkForPoint:(vec3 *)point;
+-(ChunkLowMem *)chunkForX:(float)x Z:(float)z;
 @end

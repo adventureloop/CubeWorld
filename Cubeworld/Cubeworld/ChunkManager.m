@@ -19,15 +19,15 @@
    
 }
 
--(Chunk *)chunkForPoint:(vec3 *)point
+-(ChunkLowMem *)chunkForPoint:(vec3 *)point
 {
     return nil;//[chunkStore lastObject];
 }
 
--(Chunk *)chunkForX:(float)x Z:(float)z
+-(ChunkLowMem *)chunkForX:(float)x Z:(float)z
 {
     NSString *key = [NSString stringWithFormat:@"x:%f z:%f",x,z];
-    Chunk *res = [chunkStore objectForKey:key];
+    ChunkLowMem *res = [chunkStore objectForKey:key];
     
     if(res == nil) {
         res = [generator chunkForX:x Z:z];  //Spends a ton of time in here, like seconds

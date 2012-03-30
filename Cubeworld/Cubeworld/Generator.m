@@ -20,11 +20,11 @@
     return self;
 }
 
--(Chunk *)chunkForX:(float)cx Z:(float)cz
+-(ChunkLowMem *)chunkForX:(float)cx Z:(float)cz
 {
     NSDate *methodStart = [NSDate date];
     
-    Chunk *tmp = [[[Chunk alloc] init] autorelease];
+    ChunkLowMem *tmp = [[[ChunkLowMem alloc] init] autorelease];
     
     colour c;
     c.red = 0.0;
@@ -63,7 +63,7 @@
     return tmp;
 }
 
--(Chunk *)chunkForPoint:(vec3 *)point
+-(ChunkLowMem *)chunkForPoint:(vec3 *)point
 {
     return nil;
 }
