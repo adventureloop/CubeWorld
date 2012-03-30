@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Octnode.h"
+#import "OctnodeLowMem.h"
+
+#define ALLOC_SIZE 256
 
 @interface ChunkLowMem : NSObject
 {
@@ -19,6 +21,9 @@
     float *vertexData;
     unsigned int *indexArray;
     int *tmpIndexArray;
+    
+    int voxelCounter;
+    int maxVoxels;
     
     int trees;
     int treeHeight;
@@ -34,6 +39,9 @@
 
 -(void)render;
 -(int)voxelsToRender;
+
+-(void)getRenderMetaData:(int *)offset DataPtr:(voxelData *)ptr;
+
 -(vec3 *)worldOrigin;
 -(void)setWorldOrigin:(vec3 *)newOrigin;
 

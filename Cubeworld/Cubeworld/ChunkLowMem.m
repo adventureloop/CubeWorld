@@ -28,10 +28,11 @@
         
         nodes = [[NSMutableArray alloc]initWithCapacity:8];
         
-        unsigned int numVoxels = trees * ((int)pow(8, treeHeight));
-        unsigned int numElements = numVoxels * VOXEL_INDICES_COUNT;
+        maxVoxels = ALLOC_SIZE;
+        unsigned int numElements = trees * ((int)pow(8, treeHeight)) * VOXEL_INDICES_COUNT;
         
-        vertexData = malloc(numVoxels * sizeof(voxelData));
+        vertexData = calloc(maxVoxels, sizeof(voxelData));
+        
         indexArray = calloc(numElements, sizeof(unsigned int));
         tmpIndexArray = malloc(numElements * sizeof(long));
         
@@ -39,7 +40,6 @@
         
         nodeSize = 16.0;
         int offset = ((int)pow(8.0, treeHeight));
-        voxelData *memPtr = (voxelData *)vertexData;
         
         
         localOrigin.x = 0.0;
@@ -51,18 +51,15 @@
             
             int memOffset = i * offset;
             int indexOffset = memOffset * VOXEL_INDICES_COUNT;
-            int arrayOffset = memOffset * 24;
             
-            Octnode *tmp = [[Octnode alloc]initWithTreeHeight:treeHeight 
+            OctnodeLowMem *tmp = [[OctnodeLowMem alloc]initWithTreeHeight:treeHeight 
                                                      nodeSize:nodeSize 
                                                         orign:&localOrigin 
-                                                memoryPointer:memPtr];
-            [tmp renderElements:tmpIndexArray+indexOffset offset:arrayOffset];
+                                                   dataSource:self];
+            [tmp renderElements:tmpIndexArray+indexOffset];
             [nodes addObject:tmp];
             
             [tmp release];
-            
-            memPtr += offset;
         }
         
         for(int i = 0,j = 0;i < numElements;i++) 
@@ -72,7 +69,7 @@
         /* Set up vertex buffer and array objects */
         glGenBuffers(1, &vertexBufferObject);
         glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
-        glBufferData(GL_ARRAY_BUFFER,numVoxels * sizeof(voxelData), vertexData, GL_DYNAMIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER,maxVoxels * sizeof(voxelData), vertexData, GL_DYNAMIC_DRAW);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         
         glGenBuffers(1, &indexBufferObject);
@@ -130,13 +127,11 @@
     memset(tmpIndexArray, -1, numElements * sizeof(int));
     
     for(int i = 0;i < trees;i++) {
-        
         int memOffset = i * offset;
         int indexOffset = memOffset * VOXEL_INDICES_COUNT;
-        int arrayOffset = memOffset * 24;
         
-        Octnode *tmp = [nodes objectAtIndex:i];
-        [tmp renderElements:tmpIndexArray+indexOffset offset:arrayOffset];
+        OctnodeLowMem *tmp = [nodes objectAtIndex:i];
+        [tmp renderElements:tmpIndexArray+indexOffset];
         [nodes addObject:tmp];
     }
     
@@ -152,14 +147,8 @@
     //Update the buffers on the GPU
     glBindVertexArrayAPPLE(vertexArrayObject);
     
-    //    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferObject);
-    //    glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
-    
-    glBufferSubData(GL_ARRAY_BUFFER, 0, numVoxels * sizeof(voxelData), vertexData);
+    glBufferData(GL_ARRAY_BUFFER,voxelCounter * sizeof(voxelData), vertexData, GL_DYNAMIC_DRAW);
     glBufferSubData(GL_ELEMENT_ARRAY_BUFFER,0, numElements * sizeof(unsigned int), indexArray);
-    
-    //    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-    //    glBindBuffer(GL_ARRAY_BUFFER, 0);
     
     glBindVertexArrayAPPLE(0);
 }
@@ -172,13 +161,12 @@
 -(BOOL)updateBlockType:(int)type forPoint:(vec3 *)point
 {
     if([self collidesWithPoint:point])
-        for(Octnode *n in nodes)
+        for(OctnodeLowMem *n in nodes)
             if([n collidesWithPoint:point])
                 return [n updatePoint:point withBlockType:type];
     return NO;
 }
 
-//Probably works
 -(void)updateBlockType:(int)type forX:(float)x Y:(float)y Z:(float)z
 {
     if(x > chunkWidth || x < 0)
@@ -212,7 +200,7 @@
     point.y = origin->y + y;
     point.z = origin->z + z;
     
-    for(Octnode *n in nodes)
+    for(OctnodeLowMem *n in nodes)
         if([n collidesWithPoint:&point]) {
             [n updatePoint:&point withBlockType:type];
             needsUpdate = YES;
@@ -261,8 +249,19 @@
 
 -(void)updateAllToColour:(colour *)colour
 {
-    for(Octnode *o in nodes)
+    for(OctnodeLowMem *o in nodes)
         [o updateColours:colour];
+}
+
+-(void)getRenderMetaData:(int *)offset DataPtr:(voxelData *)ptr
+{
+    if(++voxelCounter > maxVoxels) {
+        realloc(vertexData, (voxelCounter + ALLOC_SIZE) * sizeof(voxelData));
+        maxVoxels += ALLOC_SIZE;
+        NSLog(@"Increasing memory size in chunk to hold %d",maxVoxels);
+    }
+    *offset = voxelCounter * VOXEL_INDICES_COUNT;
+    ptr = (voxelData *)vertexData+voxelCounter;
 }
 
 -(void)dealloc
