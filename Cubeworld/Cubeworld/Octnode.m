@@ -7,7 +7,7 @@
 //
 
 #import "Octnode.h"
-#import "BlockTypes.h"
+#include "BlockTypes.h"
 
 @implementation Octnode
 
@@ -35,7 +35,6 @@
 
 -(void)createSubnodes
 {
-   // NSLog(@"Creating subnodes");
     
     vec3 newOrigin,offsetVec;
     float scale = size/4;
@@ -133,7 +132,6 @@
 //Add the voxel data for this part of the tree to the VBO
 -(void)addVoxelData
 {
-   // NSLog(@"Adding data to voxel array at orign (%f,%f,%f)",origin.x,origin.y,origin.z);
     voxelData *tmp = calloc(1,sizeof(voxelData));
     
     float offset = size/2;

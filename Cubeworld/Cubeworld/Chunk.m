@@ -8,7 +8,6 @@
 
 #import "Chunk.h"
 #import <OpenGL/gl.h>
-#import "BlockTypes.h"
 
 @implementation Chunk
 -(id)init
@@ -152,14 +151,8 @@
     //Update the buffers on the GPU
     glBindVertexArrayAPPLE(vertexArrayObject);
     
-//    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferObject);
-//    glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
-    
     glBufferSubData(GL_ARRAY_BUFFER, 0, numVoxels * sizeof(voxelData), vertexData);
     glBufferSubData(GL_ELEMENT_ARRAY_BUFFER,0, numElements * sizeof(unsigned int), indexArray);
-    
-//    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-//    glBindBuffer(GL_ARRAY_BUFFER, 0);
     
     glBindVertexArrayAPPLE(0);
 }

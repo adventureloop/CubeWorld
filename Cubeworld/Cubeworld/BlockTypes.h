@@ -8,12 +8,18 @@
 
 #ifndef Cubeworld_BlockTypes_h
 #define Cubeworld_BlockTypes_h
-
 enum BLOCK_TYPES
 {
     BLOCK_AIR,
-    BLOCK_SOLID
+    BLOCK_SOLID,
+    BLOCK_GRASS,
+    BLOCK_DIRT,
+    BLOCK_WATER,
+    BLOCK_WOOD,
+    BLOCK_LEAF,
+    BLOCK_SAND,
+    BLOCK_STONE
 };
 
-
+extern float BLOCK_COLOURS[][4];
 #endif

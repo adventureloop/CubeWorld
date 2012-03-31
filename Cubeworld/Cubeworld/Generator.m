@@ -7,9 +7,10 @@
 //
 
 #import "Generator.h"
-#import "BlockTypes.h"
-#include <time.h>
+#include "BlockTypes.h"
 #import "PerlinNoise.h"
+
+#include <time.h>
 
 @implementation Generator
 -(id)init
@@ -26,11 +27,11 @@
     
     ChunkLowMem *tmp = [[[ChunkLowMem alloc] init] autorelease];
     
-    colour c;
-    c.red = 0.0;
-    c.green = 0.6;
-    c.blue = 0.0;
-    c.alpha = 1.0;
+    colour c = {0.0,1.0,0.5,1.0};
+//    c.red = 0.0;
+//    c.green = 0.0;
+//    c.blue = 0.0;
+//    c.alpha = 1.0;
 
     int blocksChanged = 0;
     

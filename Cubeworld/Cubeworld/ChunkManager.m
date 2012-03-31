@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 #import "ChunkManager.h"
-#import "BlockTypes.h"
 
 @implementation ChunkManager
 -(id)init

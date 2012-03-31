@@ -7,7 +7,7 @@
 //
 
 #import "OctnodeLowMem.h"
-#import "BlockTypes.h"
+#include "BlockTypes.h"
 
 @implementation OctnodeLowMem
 
@@ -706,8 +706,10 @@
 {
     blockType = type;
     
-    if(blockType != BLOCK_AIR)
+    if(blockType != BLOCK_AIR) {
         [self addVoxelData];
+        [self updateColours:(colour *)BLOCK_COLOURS[blockType]];
+    }
 }
 
 -(bool)updatePoint:(vec3 *)point withColour:(colour *)newColour
