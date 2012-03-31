@@ -28,11 +28,9 @@
     
     colour c;
     c.red = 0.0;
-    c.green = 1.0;
+    c.green = 0.6;
     c.blue = 0.0;
     c.alpha = 1.0;
-    
-    [tmp updateAllToColour:&c];
 
     int blocksChanged = 0;
     
@@ -44,16 +42,63 @@
     
     float variation = baselimit / 3.0;
     
-    for(double x = 0;x < 16;x++) 
-        for(double z = 0;z < 16;z++) {
+    int heightMap[18][18];
+    
+    memset(heightMap, 0, sizeof(heightMap));
+    
+    for(int x = 1;x < 17;x++) 
+        for(int z = 1;z < 17;z++) {
             float limit = PerlinNoise2D((cx+x/10.0) + 0.4,(cz+z/10.0) + 0.4, 2, 2, 6);
             limit = limit * variation;
             limit += baselimit;
-            for(double y = 0;y < 128;y++)
-                if(y < limit) {
-                    [tmp updateBlockType:BLOCK_SOLID forX:x Y:y Z:z];
-                    blocksChanged++;
-                }
+            heightMap[x][z] = limit;
+         //   [tmp updateBlockType:BLOCK_SOLID forX:x Y:limit Z:z];
+           // blocksChanged++;
+        }
+    
+    //Find edge heights
+    for(int x = 0;x < 18;x++) {
+        float limit = PerlinNoise2D(((cx-1)+x/10.0) + 0.4,(cz/10.0) + 0.4, 2, 2, 6);
+        limit = limit * variation;
+        limit += baselimit;
+        heightMap[x][0] = limit;
+        
+        limit = PerlinNoise2D(((cx-1)+x/10.0) + 0.4,(cz+17/10.0) + 0.4, 2, 2, 6);
+        limit = limit * variation;
+        limit += baselimit;
+        heightMap[x][17] = limit;
+    }
+    
+    for(int z = 0;z < 18;z++){
+        float limit = PerlinNoise2D((cx/10.0) + 0.4,((cz+1)+z/10.0) + 0.4, 2, 2, 6);
+        limit = limit * variation;
+        limit += baselimit;
+        heightMap[0][z] = limit;
+        
+        limit = PerlinNoise2D((cx+17/10.0) + 0.4,((cz-1)+z/10.0) + 0.4, 2, 2, 6);
+        limit = limit * variation;
+        limit += baselimit;
+        heightMap[17][z] = 0;
+    }
+    
+    
+    for(int x = 1;x < 17;x++)
+        for(int z = 1;z < 17; z++) {
+            double min = heightMap[x][z];
+            min = (min > heightMap[x-1][z-1]) ? min : heightMap[x-1][z-1];
+            min = (min > heightMap[x-1][z]) ? min : heightMap[x-1][z];
+            min = (min > heightMap[x-1][z+1]) ? min : heightMap[x-1][z+1];
+            
+            min = (min > heightMap[x+1][z-1]) ? min : heightMap[x+1][z-1];
+            min = (min > heightMap[x+1][z]) ? min : heightMap[x+1][z];
+            min = (min > heightMap[x+1][z+1]) ? min : heightMap[x+1][z+1];
+            
+            min = (min > heightMap[x][z-1]) ? min : heightMap[x-1][z-1];
+            min = (min > heightMap[x][z+1]) ? min : heightMap[x-1][z-1];
+            
+            for(double y = heightMap[x][z];y > min;y--)
+                [tmp updateBlockType:BLOCK_SOLID forX:x-1 Y:y Z:z-1];
+            
         }
     
     NSDate *methodFinish = [NSDate date];
