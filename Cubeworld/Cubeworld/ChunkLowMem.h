@@ -10,7 +10,7 @@
 #import "OctnodeLowMem.h"
 
 #define ALLOC_SIZE 256
-#define INIT_ALLOC_SIZE 1024
+#define INIT_ALLOC_SIZE 2304
 
 @interface ChunkLowMem : NSObject
 {
