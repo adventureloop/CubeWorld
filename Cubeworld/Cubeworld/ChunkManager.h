@@ -16,6 +16,6 @@
     Generator *generator;
 }
 
--(Chunk *)chunkForPoint:(vec3 *)point;
--(Chunk *)chunkForX:(float)x Z:(float)z;
+-(ChunkLowMem *)chunkForPoint:(vec3 *)point;
+-(ChunkLowMem *)chunkForX:(float)x Z:(float)z;
 @end
