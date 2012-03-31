@@ -11,7 +11,7 @@
 
 @implementation OctnodeLowMem
 
--(id)initWithTreeHeight:(unsigned int)nodeHeight nodeSize:(float)nodeSize orign:(vec3 *)nodeOrigin dataSource:(id)ndatasource
+-(id)initWithTreeHeight:(unsigned int)nodeHeight nodeSize:(float)nodeSize orign:(vec3 *)nodeOrigin dataSource:(ChunkLowMem *)ndatasource
 {
     if(self = [super init]) {
         height = nodeHeight;
@@ -484,7 +484,7 @@
     
     
     //Get the render meta data
-    voxelPtr = [datasource getRenderMetaData:&indexOffset DataPtr:&voxelPtr];
+    voxelPtr = [datasource getRenderMetaData:&indexOffset];
     
     //Copy tmp data into the vbo ptr provided
     memcpy(voxelPtr,tmp,sizeof(voxelData));
@@ -577,6 +577,9 @@
         for(OctnodeLowMem *n in nodes)
             [n updateColours:newColour];
     } else if(voxelPtr != nil){
+        voxelPtr = [datasource updateRenderMetaData:indexOffset];
+        
+        
         voxelPtr->face1.vertex1.c.red = newColour->red;
         voxelPtr->face1.vertex1.c.green = newColour->green;
         voxelPtr->face1.vertex1.c.blue = newColour->blue;

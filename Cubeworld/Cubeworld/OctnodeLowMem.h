@@ -27,7 +27,7 @@
     int blockType;
 }
 
--(id)initWithTreeHeight:(unsigned int)nodeHeight nodeSize:(float)nodeSize orign:(vec3 *)nodeOrigin dataSource:(id)ndatasource;
+-(id)initWithTreeHeight:(unsigned int)nodeHeight nodeSize:(float)nodeSize orign:(vec3 *)nodeOrigin dataSource:(id *)ndatasource;
 -(void)createSubnodes;
 -(void)addVoxelData;
 -(void)calculateNewOrigin:(vec3 *)v1 OldOrigin:(vec3 *)v2 offsetVec:(vec3 *)offvec scale:(float) scale;

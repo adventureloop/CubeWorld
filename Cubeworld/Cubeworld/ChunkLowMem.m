@@ -253,7 +253,7 @@
         [o updateColours:colour];
 }
 
--(voxelData *)getRenderMetaData:(int *)offset DataPtr:(voxelData *)ptr
+-(voxelData *)getRenderMetaData:(int *)offset
 {
     if(voxelCounter > maxVoxels-1) {
         maxVoxels += ALLOC_SIZE;
@@ -266,6 +266,13 @@
     *offset = voxelCounter * 24;
     return memPtr+voxelCounter++;
 //    Re allocing memory doesnt work.
+}
+
+-(voxelData *)updateRenderMetaData:(int)offset
+{
+    voxelData *memPtr = (voxelData *)vertexData;
+    
+    return memPtr+(offset/24);
 }
 
 -(void)dealloc

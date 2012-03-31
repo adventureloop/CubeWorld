@@ -101,6 +101,9 @@
             
         }
     
+    [tmp updateAllToColour:&c];
+    
+    
     NSDate *methodFinish = [NSDate date];
     NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:methodStart];
     NSLog(@"Generation time %f for %d changes (%.0f x,%.0f z)",executionTime,blocksChanged,cx,cz);

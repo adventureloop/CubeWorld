@@ -41,7 +41,8 @@
 -(void)render;
 -(int)voxelsToRender;
 
--(voxelData *)getRenderMetaData:(int *)offset DataPtr:(voxelData *)ptr;
+-(voxelData *)getRenderMetaData:(int *)offset;
+-(voxelData *)updateRenderMetaData:(int)offset;
 
 -(vec3 *)worldOrigin;
 -(void)setWorldOrigin:(vec3 *)newOrigin;
