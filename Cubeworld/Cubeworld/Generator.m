@@ -79,20 +79,31 @@
     
     for(int x = 1;x < 17;x++)
         for(int z = 1;z < 17; z++) {
-            double min = heightMap[x][z];
-            min = (min > heightMap[x-1][z-1]) ? min : heightMap[x-1][z-1];
-            min = (min > heightMap[x-1][z]) ? min : heightMap[x-1][z];
-            min = (min > heightMap[x-1][z+1]) ? min : heightMap[x-1][z+1];
+            double y = heightMap[x][z];
+            double min = y;
             
-            min = (min > heightMap[x+1][z-1]) ? min : heightMap[x+1][z-1];
-            min = (min > heightMap[x+1][z]) ? min : heightMap[x+1][z];
-            min = (min > heightMap[x+1][z+1]) ? min : heightMap[x+1][z+1];
+            min = (min < heightMap[x-1][z-1]) ? min : heightMap[x-1][z-1];
+            min = (min < heightMap[x-1][z]) ? min : heightMap[x-1][z];
+            min = (min < heightMap[x-1][z+1]) ? min : heightMap[x-1][z+1];
             
-            min = (min > heightMap[x][z-1]) ? min : heightMap[x-1][z-1];
-            min = (min > heightMap[x][z+1]) ? min : heightMap[x-1][z-1];
+            min = (min < heightMap[x+1][z-1]) ? min : heightMap[x+1][z-1];
+            min = (min < heightMap[x+1][z]) ? min : heightMap[x+1][z];
+            min = (min < heightMap[x+1][z+1]) ? min : heightMap[x+1][z+1];
             
-            for(double y = heightMap[x][z];y > min;y--)
-                [tmp updateBlockType:BLOCK_GRASS forX:x-1 Y:y Z:z-1];
+            min = (min < heightMap[x][z-1]) ? min : heightMap[x][z-1];
+            min = (min < heightMap[x][z+1]) ? min : heightMap[x][z+1];
+            
+            for(double y = heightMap[x][z];y >= min;y--) {
+                if(y < 64)
+                    [tmp updateBlockType:BLOCK_WATER forX:x-1 Y:64 Z:z-1];
+                else if(y > 90)
+                    [tmp updateBlockType:BLOCK_SOLID forX:x-1 Y:y Z:z-1];
+                else if(y > 80)
+                    [tmp updateBlockType:BLOCK_DIRT forX:x-1 Y:y Z:z-1];
+                else
+                    [tmp updateBlockType:BLOCK_GRASS forX:x-1 Y:y Z:z-1];
+                
+            }
             
         }
     
