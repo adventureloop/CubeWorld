@@ -19,8 +19,8 @@ float BLOCK_COLOURS[][4] =
     {0.0,0.2,1.0,1.0},  //Block water
     {0.34,0.15,0.0,1.0},  //Block wood
     {0.0,1.0,0.0,1.0},  //Block leaf
-    {0.6,0.6,0.6,1.0},  //Block sand
-    {0.6,0.6,0.25,1.0},  //Block stone
+    {0.6,0.6,0.25,1.0},  //Block sand
+    {0.6,0.6,0.6,1.0},  //Block stone
     
 };
 
