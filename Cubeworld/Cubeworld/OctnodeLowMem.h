@@ -22,7 +22,7 @@
     
     voxelData *voxelPtr;
     int indexOffset;
-    ChunkLowMem *datasource;
+    id *datasource;
     
     int blockType;
 }

@@ -28,7 +28,7 @@
         
         nodes = [[NSMutableArray alloc]initWithCapacity:8];
         
-        maxVoxels = ALLOC_SIZE;
+        maxVoxels = INIT_ALLOC_SIZE;
         unsigned int numElements = trees * ((int)pow(8, treeHeight)) * VOXEL_INDICES_COUNT;
         
         vertexData = calloc(maxVoxels, sizeof(voxelData));
@@ -253,15 +253,19 @@
         [o updateColours:colour];
 }
 
--(void)getRenderMetaData:(int *)offset DataPtr:(voxelData *)ptr
+-(voxelData *)getRenderMetaData:(int *)offset DataPtr:(voxelData *)ptr
 {
-    if(++voxelCounter > maxVoxels) {
-        realloc(vertexData, (voxelCounter + ALLOC_SIZE) * sizeof(voxelData));
+    if(voxelCounter > maxVoxels-1) {
         maxVoxels += ALLOC_SIZE;
         NSLog(@"Increasing memory size in chunk to hold %d",maxVoxels);
+        vertexData =  realloc(vertexData, (voxelCounter + ALLOC_SIZE) * sizeof(voxelData));
     }
-    *offset = voxelCounter * VOXEL_INDICES_COUNT;
-    ptr = (voxelData *)vertexData+voxelCounter;
+    
+    voxelData *memPtr = (voxelData *)vertexData;
+    
+    *offset = voxelCounter * 24;
+    return memPtr+voxelCounter++;
+//    Re allocing memory doesnt work.
 }
 
 -(void)dealloc

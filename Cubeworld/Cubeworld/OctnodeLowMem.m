@@ -484,7 +484,7 @@
     
     
     //Get the render meta data
-    [datasource getRenderMetaData:&indexOffset DataPtr:voxelPtr];
+    voxelPtr = [datasource getRenderMetaData:&indexOffset DataPtr:&voxelPtr];
     
     //Copy tmp data into the vbo ptr provided
     memcpy(voxelPtr,tmp,sizeof(voxelData));

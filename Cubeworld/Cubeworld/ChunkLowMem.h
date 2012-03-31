@@ -10,6 +10,7 @@
 #import "OctnodeLowMem.h"
 
 #define ALLOC_SIZE 256
+#define INIT_ALLOC_SIZE 1024
 
 @interface ChunkLowMem : NSObject
 {
@@ -40,7 +41,7 @@
 -(void)render;
 -(int)voxelsToRender;
 
--(void)getRenderMetaData:(int *)offset DataPtr:(voxelData *)ptr;
+-(voxelData *)getRenderMetaData:(int *)offset DataPtr:(voxelData *)ptr;
 
 -(vec3 *)worldOrigin;
 -(void)setWorldOrigin:(vec3 *)newOrigin;
