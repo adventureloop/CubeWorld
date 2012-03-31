@@ -169,6 +169,31 @@
 
 -(void)updateBlockType:(int)type forX:(float)x Y:(float)y Z:(float)z
 {
+    vec3 point;
+    [self point:&point forX:x Y:y Z:z];
+    
+    for(OctnodeLowMem *n in nodes)
+        if([n collidesWithPoint:&point]) {
+            [n updatePoint:&point withBlockType:type];
+            needsUpdate = YES;
+            break;
+        }
+    
+}
+
+-(int)blockTypeForX:(float)x Y:(float)y Z:(float)z
+{
+    vec3 point;
+    [self point:&point forX:x Y:y Z:z];
+    
+    for(OctnodeLowMem *n in nodes)
+        if([n collidesWithPoint:&point])
+            return [n typeForPoint:&point];
+    return BLOCK_AIR;
+}
+
+-(void)point:(vec3 *)point forX:(float)x Y:(float)y Z:(float)z
+{
     if(x > chunkWidth || x < 0)
         return;
     if(z > chunkWidth || z < 0)
@@ -195,17 +220,9 @@
     y -= shift;
     z -= shift;
     
-    vec3 point;
-    point.x = origin->x + x;
-    point.y = origin->y + y;
-    point.z = origin->z + z;
-    
-    for(OctnodeLowMem *n in nodes)
-        if([n collidesWithPoint:&point]) {
-            [n updatePoint:&point withBlockType:type];
-            needsUpdate = YES;
-            break;
-        }
+    point->x = origin->x + x;
+    point->y = origin->y + y;
+    point->z = origin->z + z;
 }
 
 -(bool)collidesWithPoint:(vec3 *)point
@@ -273,6 +290,21 @@
     voxelData *memPtr = (voxelData *)vertexData;
     
     return memPtr+(offset/24);
+}
+
+-(NSString *)description
+{
+    NSString *desc = @"<chunk x='0' z='0'>\n";
+    for(int x = 0;x < 16;x++)
+        for(int z = 0;z < 16;z++)
+            for(int y = 0;y < 127;y++) {
+                int type = [self blockTypeForX:x Y:y Z:z];
+                if(type == BLOCK_AIR)
+                    desc = [desc stringByAppendingFormat:@"%@\t<voxel x=%d y=%d z=%d>%d</voxel>\n",desc,x,y,z,type];
+            }
+    desc = [desc stringByAppendingFormat:@"%@</chunk>\n",desc];
+    
+    return @"";
 }
 
 -(void)dealloc

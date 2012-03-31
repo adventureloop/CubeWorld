@@ -43,5 +43,7 @@
 -(void)updateType:(int)type;
 -(bool)updatePoint:(vec3 *)point withBlockType:(int)type;
 
+-(int)typeForPoint:(vec3 *)point;
+
 -(vec3 *)origin;
 @end

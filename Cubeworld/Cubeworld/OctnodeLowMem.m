@@ -776,6 +776,22 @@ float BLOCK_COLOURS[][4] =
     return YES;
 }
 
+-(int)typeForPoint:(vec3 *)point
+{
+    if([self collidesWithPoint:point]) {
+        if(height > 0) {
+            for(OctnodeLowMem *n in nodes)
+                if([n collidesWithPoint:point])
+                    return [n typeForPoint:point];
+        } else {
+            return blockType;
+        }
+    }else {
+        return NO;
+    }
+    return NO;
+}
+
 -(void)calculateNewOrigin:(vec3 *)v1 OldOrigin:(vec3 *)v2 offsetVec:(vec3 *)offvec scale:(float)scale
 {
     v1->x = 0;

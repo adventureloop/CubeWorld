@@ -53,6 +53,9 @@
 -(void)updateBlockType:(int)type forX:(float)x Y:(float)y Z:(float)z;
 -(bool)collidesWithPoint:(vec3 *)point;
 
+-(void)point:(vec3 *)point forX:(float)x Y:(float)y Z:(float)z;
+-(int)blockTypeForX:(float)x Y:(float)y Z:(float)z;
+
 -(float)chunkDimensions;
 -(int)height;
 

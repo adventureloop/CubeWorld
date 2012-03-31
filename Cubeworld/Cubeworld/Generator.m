@@ -96,8 +96,10 @@
             for(double y = heightMap[x][z];y >= min;y--) {
                 if(y < 64)
                     [tmp updateBlockType:BLOCK_WATER forX:x-1 Y:64 Z:z-1];
+                else if(y == 65)
+                    [tmp updateBlockType:BLOCK_SAND forX:x-1 Y:65 Z:z-1];
                 else if(y > 90)
-                    [tmp updateBlockType:BLOCK_SOLID forX:x-1 Y:y Z:z-1];
+                    [tmp updateBlockType:BLOCK_STONE forX:x-1 Y:y Z:z-1];
                 else if(y > 80)
                     [tmp updateBlockType:BLOCK_DIRT forX:x-1 Y:y Z:z-1];
                 else
