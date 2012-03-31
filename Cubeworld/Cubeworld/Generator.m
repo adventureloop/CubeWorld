@@ -26,12 +26,6 @@
     NSDate *methodStart = [NSDate date];
     
     ChunkLowMem *tmp = [[[ChunkLowMem alloc] init] autorelease];
-    
-    colour c = {0.0,1.0,0.5,1.0};
-//    c.red = 0.0;
-//    c.green = 0.0;
-//    c.blue = 0.0;
-//    c.alpha = 1.0;
 
     int blocksChanged = 0;
     
@@ -98,12 +92,9 @@
             min = (min > heightMap[x][z+1]) ? min : heightMap[x-1][z-1];
             
             for(double y = heightMap[x][z];y > min;y--)
-                [tmp updateBlockType:BLOCK_SOLID forX:x-1 Y:y Z:z-1];
+                [tmp updateBlockType:BLOCK_GRASS forX:x-1 Y:y Z:z-1];
             
         }
-    
-    [tmp updateAllToColour:&c];
-    
     
     NSDate *methodFinish = [NSDate date];
     NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:methodStart];

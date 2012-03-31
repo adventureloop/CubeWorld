@@ -9,6 +9,22 @@
 #import "OctnodeLowMem.h"
 #include "BlockTypes.h"
 
+
+float BLOCK_COLOURS[][4] = 
+{
+    {0.0,0.0,0.0,1.0},  //Block air
+    {1.0,1.0,1.0,1.0},  //Block solid
+    {0.12,0.5,0.12,1.0},  //Block grass
+    {0.5,0.25,0.0,1.0},  //Block dirt
+    {0.0,0.2,1.0,1.0},  //Block water
+    {0.34,0.15,0.0,1.0},  //Block wood
+    {0.0,1.0,0.0,1.0},  //Block leaf
+    {0.6,0.6,0.6,1.0},  //Block sand
+    {0.6,0.6,0.25,1.0},  //Block stone
+    
+};
+
+
 @implementation OctnodeLowMem
 
 -(id)initWithTreeHeight:(unsigned int)nodeHeight nodeSize:(float)nodeSize orign:(vec3 *)nodeOrigin dataSource:(ChunkLowMem *)ndatasource
@@ -501,7 +517,7 @@
             memPtr += memOffset;
         }
     } else  {
-        if(blockType != BLOCK_SOLID || voxelPtr == nil)
+        if(blockType < BLOCK_SOLID || voxelPtr == nil)
             return;
         int i = 0;
         unsigned int *nelements = calloc(36, sizeof(unsigned int));

@@ -20,6 +20,4 @@ enum BLOCK_TYPES
     BLOCK_SAND,
     BLOCK_STONE
 };
-
-extern float BLOCK_COLOURS[][4];
 #endif
