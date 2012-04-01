@@ -15,4 +15,6 @@
 
 -(ChunkLowMem *)chunkForPoint:(vec3 *)point;
 -(ChunkLowMem *)chunkForX:(float)x Z:(float)z;
+
+-(void)createHeightMap:(int [18][18])heightMap Alpha:(int)alpha Beta:(int)beta ForHeight:(int)height chunkX:(int)cx chunkZ:(int)cz;
 @end
