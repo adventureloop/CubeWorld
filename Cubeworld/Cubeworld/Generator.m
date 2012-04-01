@@ -28,7 +28,7 @@
     ChunkLowMem *tmp = [[[ChunkLowMem alloc] init] autorelease];
 
     int heightMap[18][18];
-    [self createHeightMap:heightMap Alpha:2 Beta:3 ForHeight:[tmp height] chunkX:cx chunkZ:cz];
+    [self createHeightMap:heightMap Alpha:3 Beta:2 ForHeight:[tmp height] chunkX:cx chunkZ:cz];
     
     for(int x = 1;x < 17;x++)
         for(int z = 1;z < 17; z++) {
@@ -67,13 +67,21 @@
     return tmp;
 }
 
+/*
+ * The alpha value effects the overall height of the chunk, the smaller, the closer to max chunk height
+ * a value of 1 will build a chunk at max height
+ *
+ * Beta effects the variation within the chunk, the larger the value the lower the variation with in the
+ * chunk. 1 is also not good in this situation.
+ */
+
 -(void)createHeightMap:(int [18][18])heightMap Alpha:(int)alpha Beta:(int)beta ForHeight:(int)height chunkX:(int)cx chunkZ:(int)cz
 {
     float baselimit = PerlinNoise2D((cx/10.0) + 0.2,(cz/10.0) + 0.2, 2, 2, 6);
-    baselimit = (baselimit * height/alpha) + height / beta;
+    baselimit = (baselimit * height/alpha) + (height / 3);
     baselimit = (baselimit > 0) ? baselimit : -baselimit;
     
-    float variation = baselimit / 3.0;
+    float variation = baselimit / beta;
     
     for(int x = 1;x < 17;x++) 
         for(int z = 1;z < 17;z++) {
