@@ -787,9 +787,9 @@ float BLOCK_COLOURS[][4] =
             return blockType;
         }
     }else {
-        return NO;
+        return BLOCK_AIR;
     }
-    return NO;
+    return BLOCK_AIR;
 }
 
 -(void)calculateNewOrigin:(vec3 *)v1 OldOrigin:(vec3 *)v2 offsetVec:(vec3 *)offvec scale:(float)scale

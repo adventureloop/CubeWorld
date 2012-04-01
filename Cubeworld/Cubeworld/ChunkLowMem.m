@@ -282,7 +282,6 @@
     
     *offset = voxelCounter * 24;
     return memPtr+voxelCounter++;
-//    Re allocing memory doesnt work.
 }
 
 -(voxelData *)updateRenderMetaData:(int)offset
@@ -295,13 +294,15 @@
 -(NSString *)description
 {
     NSString *desc = @"<chunk x='0' z='0'>\n";
-    for(int x = 0;x < 16;x++)
+    for(int x = 0;x < 16;x++) {
+        NSLog(@"%d",x);
         for(int z = 0;z < 16;z++)
             for(int y = 0;y < 127;y++) {
                 int type = [self blockTypeForX:x Y:y Z:z];
-                if(type == BLOCK_AIR)
+                if(type != BLOCK_AIR)
                     desc = [desc stringByAppendingFormat:@"%@\t<voxel x=%d y=%d z=%d>%d</voxel>\n",desc,x,y,z,type];
             }
+    }
     desc = [desc stringByAppendingFormat:@"%@</chunk>\n",desc];
     
     return @"";
