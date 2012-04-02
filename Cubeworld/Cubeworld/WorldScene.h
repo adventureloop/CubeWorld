@@ -30,8 +30,8 @@
     
     Camera *camera;
     MatrixStack *modelMatrix;
-    
-    Chunk *c;
+
+    Voxel *cameraPosition;
     
     Region *r;
 }

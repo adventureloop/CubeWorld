@@ -23,8 +23,8 @@
 
 -(void)render
 {
-    if(_program == 0)
-        [self setupOpenGL];
+//    if(_program == 0)
+//        [self setupOpenGL];
     [camera update];
     
     //Clear the colour and depth buffers
@@ -42,6 +42,10 @@
     glUniformMatrix4fv(modelToWorldMatrixUnif, 1, GL_FALSE, [modelMatrix mat]);
     
     [r render];
+//    
+//    glUniform3f(transLocationUnif,1,1,1);
+//    
+//    [cameraPosition render];
     
 	glUseProgram(0);
     glSwapAPPLE();
@@ -80,6 +84,7 @@
     glViewport(0, 0, (GLsizei)w, (GLsizei)h);
     
     r = [[Region alloc]initWithMatrixUnifLocation:modelToWorldMatrixUnif translationLocation:transLocationUnif program:_program];
+    cameraPosition = [[Voxel alloc]init];
 }
 
 -(void)didResizeTo:(CGRect)newBounds

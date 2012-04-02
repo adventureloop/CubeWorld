@@ -33,7 +33,6 @@
 -(float *)lookAtMatrix;
 -(float *)perspectiveMatrix;
 
--(void)directXCamera;
 -(void)bookCamera;
 
 -(void)moveCameraUp;
