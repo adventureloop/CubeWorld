@@ -74,7 +74,6 @@
  * Beta effects the variation within the chunk, the larger the value the lower the variation with in the
  * chunk. 1 is also not good in this situation.
  */
-
 -(void)createHeightMap:(int [18][18])heightMap Alpha:(int)alpha Beta:(int)beta ForHeight:(int)height chunkX:(int)cx chunkZ:(int)cz
 {
     float baselimit = PerlinNoise2D((cx/10.0) + 0.2,(cz/10.0) + 0.2, 2, 2, 6);
