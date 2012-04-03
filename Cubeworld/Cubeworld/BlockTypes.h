@@ -18,6 +18,7 @@ enum BLOCK_TYPES
     BLOCK_WOOD,
     BLOCK_LEAF,
     BLOCK_SAND,
-    BLOCK_STONE
+    BLOCK_STONE,
+    BLOCK_SNOW
 };
 #endif
