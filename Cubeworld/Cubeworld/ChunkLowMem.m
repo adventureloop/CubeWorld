@@ -293,19 +293,19 @@
 
 -(NSString *)description
 {
-    NSString *desc = @"<chunk x='0' z='0'>\n";
+    NSMutableString *desc = [@"<chunk x='0' z='0'>\n" mutableCopy];
+    
     for(int x = 0;x < 16;x++) {
-        NSLog(@"%d",x);
         for(int z = 0;z < 16;z++)
             for(int y = 0;y < 127;y++) {
                 int type = [self blockTypeForX:x Y:y Z:z];
                 if(type != BLOCK_AIR)
-                    desc = [desc stringByAppendingFormat:@"%@\t<voxel x=%d y=%d z=%d>%d</voxel>\n",desc,x,y,z,type];
+                    [desc appendFormat:@"\t<voxel x=%d y=%d z=%d>%d</voxel>\n",x,y,z,type];
             }
     }
-    desc = [desc stringByAppendingFormat:@"%@</chunk>\n",desc];
+    [desc appendFormat:@"</chunk>\n"];
     
-    return @"";
+    return desc; 
 }
 
 -(void)dealloc
