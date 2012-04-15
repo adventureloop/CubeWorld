@@ -750,6 +750,7 @@ float BLOCK_COLOURS[][4] =
 {
     if([self collidesWithPoint:point]) {
         if(height > 0) {
+            blockType = type;
             for(OctnodeLowMem *n in nodes)
                 if([n collidesWithPoint:point])
                     return [n updatePoint:point withBlockType:type];
@@ -781,6 +782,8 @@ float BLOCK_COLOURS[][4] =
 {
     if([self collidesWithPoint:point]) {
         if(height > 0) {
+            if(blockType == BLOCK_AIR)
+                return BLOCK_AIR;
             for(OctnodeLowMem *n in nodes)
                 if([n collidesWithPoint:point])
                     return [n typeForPoint:point];
