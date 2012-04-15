@@ -23,12 +23,10 @@
 
 -(void)render
 {
-//    if(_program == 0)
-//        [self setupOpenGL];
     [camera update];
     
     //Clear the colour and depth buffers
-    glClearColor(0.0, 0.0, 0.0, 0.0);
+    glClearColor(0.85, 1.0, 1.0, 0.0);
     glClearDepth(1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
@@ -41,11 +39,12 @@
     //Use the model matrix(identity currently)
     glUniformMatrix4fv(modelToWorldMatrixUnif, 1, GL_FALSE, [modelMatrix mat]);
     
-    [r render];
-//    
-//    glUniform3f(transLocationUnif,1,1,1);
+//    glUniform3f(transLocationUnif,0,0,-5);
 //    
 //    [cameraPosition render];
+    
+    [r render];
+    
     
 	glUseProgram(0);
     glSwapAPPLE();
@@ -291,9 +290,11 @@
             //Move the camera target
         case kVK_UpArrow:
             [camera moveCameraTargetUp];
+            [camera moveCameraUp];
             break;
         case kVK_DownArrow:
             [camera moveCameraTargetDown];
+            [camera moveCameraDown];
             break;
         case kVK_RightArrow:
             [camera moveCameraTargetRight];
@@ -314,14 +315,14 @@
 #pragma mark Mouse handling stuff
 -(void)mouseMovedByX:(int)x Y:(int)y
 {
-    if(x > 0)
-        [camera moveCameraTargetLeft];
-    else if(x < 0)
-        [camera moveCameraTargetRight];
-    
-    if(y > 0)
-        [camera moveCameraTargetUp];
-    else if(y < 0)
-        [camera moveCameraTargetDown];
+//    if(x > 0)
+//        [camera moveCameraTargetLeft];
+//    else if(x < 0)
+//        [camera moveCameraTargetRight];
+//    
+//    if(y > 0)
+//        [camera moveCameraTargetUp];
+//    else if(y < 0)
+//        [camera moveCameraTargetDown];
 }
 @end

@@ -28,7 +28,7 @@
         cameraSpherePos.y = -20.0f;
         cameraSpherePos.z = 66.0f;
         
-        //The directio of up
+        //The direction of up
         upVec.x = 0.0f;
         upVec.y = 1.0f;
         upVec.z = 0.0f;
@@ -151,7 +151,7 @@
 #pragma mark Move the camera and camera target
 -(void)moveCameraUp
 {
-    cameraTarget.x += moveSpeed;
+    cameraTarget.y += moveSpeed;
 }
 
 -(void)moveCameraDown
@@ -171,12 +171,12 @@
 
 -(void)moveCameraForward
 {
-    cameraTarget.z += moveSpeed;
+    cameraTarget.x += moveSpeed;
 }
 
 -(void)moveCameraBack
 {
-    cameraTarget.z -= moveSpeed;
+    cameraTarget.x -= moveSpeed;
 }
 
 -(void)moveCameraTargetUp

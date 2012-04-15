@@ -51,9 +51,9 @@
                     [tmp updateBlockType:BLOCK_WATER forX:x-1 Y:55 Z:z-1];
                 else if(y == 56)
                     [tmp updateBlockType:BLOCK_SAND forX:x-1 Y:56 Z:z-1];
-                else if(y > 90)
-                    [tmp updateBlockType:BLOCK_STONE forX:x-1 Y:y Z:z-1];
                 else if(y > 80)
+                    [tmp updateBlockType:BLOCK_STONE forX:x-1 Y:y Z:z-1];
+                else if(y > 70)
                     [tmp updateBlockType:BLOCK_DIRT forX:x-1 Y:y Z:z-1];
                 else
                     [tmp updateBlockType:BLOCK_GRASS forX:x-1 Y:y Z:z-1];
