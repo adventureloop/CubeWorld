@@ -40,7 +40,7 @@
             glUniform3f(transLationUnif,x*width,0,z*width);
             
             [[chunkManager chunkForX:x Z:z] render];
-            //NSLog(@"%@",[[chunkManager chunkForX:x Z:z] description]);
+           // NSLog(@"%@",[[chunkManager chunkForX:x Z:z] description]);
 
             glUseProgram(0);
         }

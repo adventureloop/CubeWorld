@@ -46,6 +46,7 @@
 		DFF66EAA15232267008C8E63 /* SceneSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF66EA915232267008C8E63 /* SceneSelector.m */; };
 		DFF66EAD1523227D008C8E63 /* SceneLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF66EAC1523227D008C8E63 /* SceneLoader.m */; };
 		DFF66EB01523228E008C8E63 /* WorldScene.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF66EAF1523228E008C8E63 /* WorldScene.m */; };
+		DFF93A20153AFD8F00098FF2 /* ResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF93A1F153AFD8F00098FF2 /* ResourceManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +125,8 @@
 		DFF66EAC1523227D008C8E63 /* SceneLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneLoader.m; sourceTree = "<group>"; };
 		DFF66EAE1523228D008C8E63 /* WorldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldScene.h; sourceTree = "<group>"; };
 		DFF66EAF1523228E008C8E63 /* WorldScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorldScene.m; sourceTree = "<group>"; };
+		DFF93A1E153AFD8E00098FF2 /* ResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceManager.h; sourceTree = "<group>"; };
+		DFF93A1F153AFD8F00098FF2 /* ResourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceManager.m; sourceTree = "<group>"; };
 		DFFD279C1520F92300A6A812 /* PerlinNoise.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PerlinNoise.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -311,6 +314,8 @@
 		DF93A0EC14FE7B5100F201D7 /* World Generation */ = {
 			isa = PBXGroup;
 			children = (
+				DFF93A1E153AFD8E00098FF2 /* ResourceManager.h */,
+				DFF93A1F153AFD8F00098FF2 /* ResourceManager.m */,
 				DF35EAC814FF81C000AE8A60 /* ChunkManager.h */,
 				DF35EAC914FF81C000AE8A60 /* ChunkManager.m */,
 				DF2FD5BF1509068B0073E1FF /* Generator.h */,
@@ -454,6 +459,7 @@
 				DFF66EB01523228E008C8E63 /* WorldScene.m in Sources */,
 				DFD701341524C9EF00FA78DD /* OctnodeLowMem.m in Sources */,
 				DFD701371524CA1600FA78DD /* ChunkLowMem.m in Sources */,
+				DFF93A20153AFD8F00098FF2 /* ResourceManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

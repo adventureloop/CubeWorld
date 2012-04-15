@@ -18,11 +18,6 @@
    
 }
 
--(ChunkLowMem *)chunkForPoint:(vec3 *)point
-{
-    return nil;//[chunkStore lastObject];
-}
-
 -(ChunkLowMem *)chunkForX:(float)x Z:(float)z
 {
     NSString *key = [NSString stringWithFormat:@"x:%f z:%f",x,z];
@@ -35,4 +30,6 @@
     
     return res;
 }
+
+
 @end

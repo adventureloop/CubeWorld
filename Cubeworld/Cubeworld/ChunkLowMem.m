@@ -293,7 +293,7 @@
 
 -(NSString *)description
 {
-    NSMutableString *desc = [@"<chunk x='0' z='0'>\n" mutableCopy];
+    NSMutableString *desc = [[[NSMutableString alloc]init] autorelease];//[@"<chunk x='0' z='0'>\n" mutableCopy];
     
     for(int x = 0;x < 16;x++) {
         for(int z = 0;z < 16;z++)
@@ -303,7 +303,7 @@
                     [desc appendFormat:@"\t<voxel x=%d y=%d z=%d>%d</voxel>\n",x,y,z,type];
             }
     }
-    [desc appendFormat:@"</chunk>\n"];
+//    [desc appendFormat:@"</chunk>\n"];
     
     return desc; 
 }
