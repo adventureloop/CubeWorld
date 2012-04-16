@@ -282,16 +282,21 @@
             [camera moveCameraDown];
             break;
         case kVK_ANSI_D:      
-            [camera moveCameraRight];
+            //[camera moveCameraRight];
+            [r moveX:1 Z:0];
             break;
         case kVK_ANSI_A:      
-            [camera moveCameraLeft];
+            //[camera moveCameraLeft];
+            [r moveX:-1 Z:0];
             break;
         case kVK_ANSI_W:
-            [camera moveCameraForward];
+            //[camera moveCameraForward];
+            [r moveX:0 Z:1];
             break;
         case kVK_ANSI_S:
-            [camera moveCameraBack];
+            //[camera moveCameraBack];
+            [r moveX:0 Z:-1];
+            break;
             
             //Move the camera target
         case kVK_UpArrow:

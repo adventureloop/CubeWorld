@@ -13,8 +13,18 @@
 {
 }
 
--(ChunkLowMem *)chunkForPoint:(vec3 *)point;
 -(ChunkLowMem *)chunkForX:(float)x Z:(float)z;
 
 -(void)createHeightMap:(int [18][18])heightMap Alpha:(int)alpha Beta:(int)beta ForHeight:(int)height chunkX:(int)cx chunkZ:(int)cz;
+
+
+-(ChunkLowMem *)islandBiomeChunkForX:(float) cx Z:(float)cz;
+-(ChunkLowMem *)forestBiomeChunkForX:(float) cx Z:(float)cz;
+-(ChunkLowMem *)grasslandBiomeChunkForX:(float) cx Z:(float)cz;
+-(ChunkLowMem *)desertBiomeChunkForX:(float) cx Z:(float)cz;
+
+-(ChunkLowMem *)tundraBiomeChunkForX:(float) cx Z:(float)cz;
+-(ChunkLowMem *)taigaBiomeChunkForX:(float) cx Z:(float)cz;
+
+-(void)addTreeToChunk:(ChunkLowMem *)chunk forX:(float)x Y:(float)y Z:(float)z;
 @end

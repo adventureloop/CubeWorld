@@ -20,11 +20,23 @@
 
 -(ChunkLowMem *)chunkForX:(float)x Z:(float)z
 {
+    if([chunkStore count] > 25) {
+        [chunkStore removeAllObjects];
+    }
+    
+    
     NSString *key = [NSString stringWithFormat:@"x:%f z:%f",x,z];
     ChunkLowMem *res = [chunkStore objectForKey:key];
     
     if(res == nil) {
-        res = [generator chunkForX:x Z:z];  //Spends a ton of time in here, like seconds
+        NSDate *methodStart = [NSDate date];
+
+        res = [generator chunkForX:x Z:z]; 
+        
+        NSDate *methodFinish = [NSDate date];
+        NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:methodStart];
+        NSLog(@"Generation time %f for (%.0f x,%.0f z)",executionTime,x,z);
+        
         [chunkStore setValue:res forKey:key];
     }
     

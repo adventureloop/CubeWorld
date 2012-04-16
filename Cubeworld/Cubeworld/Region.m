@@ -20,6 +20,8 @@
         modelMatrixUnif = unifLocation;
         transLationUnif = transLoc;
         _program = programLocation;
+        
+        offsetX = offsetZ = 0;
     }
     return self;
 }
@@ -39,8 +41,7 @@
             glUniformMatrix4fv(modelMatrixUnif, 1, GL_FALSE, [modelMatrix mat]);
             glUniform3f(transLationUnif,x*width,0,z*width);
             
-            [[chunkManager chunkForX:x Z:z] render];
-           // NSLog(@"%@",[[chunkManager chunkForX:x Z:z] description]);
+            [[chunkManager chunkForX:x+offsetX Z:z+offsetZ] render];
 
             glUseProgram(0);
         }
@@ -52,5 +53,11 @@
     focusPoint.x = point->x;
     focusPoint.y = point->y;
     focusPoint.z = point->z;
+}
+
+-(void)moveX:(float)x Z:(float)z
+{
+    offsetX += x;
+    offsetZ += z;
 }
 @end

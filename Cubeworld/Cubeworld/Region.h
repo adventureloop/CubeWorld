@@ -25,8 +25,13 @@
     GLuint _program;
     GLuint modelMatrixUnif;
     GLuint transLationUnif;
+    
+    float offsetX,offsetZ;
+    
 }
 -(id)initWithMatrixUnifLocation:(GLuint) unifLocation translationLocation:(GLuint) transLoc program:(GLuint) programLocation;
 -(void)render;
 -(void)updateWithFocusPoint:(vec3 *)point;
+
+-(void)moveX:(float)x Z:(float)z;
 @end
