@@ -35,6 +35,8 @@
     
     vec3 localOrigin;
     vec3 worldOrigin;
+    
+    vec3 chunkLocation;
 }
 -(id)initWithNumberOfTrees:(int)ntrees treeHeight:(int)ntreeHeight;
 
@@ -60,4 +62,9 @@
 -(int)height;
 
 -(void)updateAllToColour:(colour *)colour;
+
+-(void)setChunkLocationForX:(float)x Z:(float)z;
+-(vec3 *)chunkLocation;
+
+@property BOOL readyToRender;
 @end

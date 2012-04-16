@@ -14,10 +14,13 @@
 {
     NSMutableDictionary *chunkStore;
     Generator *generator;
+    
+    vec3 focusPoint;
 }
 
 
 -(ChunkLowMem *)chunkForX:(float)x Z:(float)z;
-
+-(void)setFocusPoint:(vec3 *)point;
+-(float)distanceBetweenA:(vec3 *)a B:(vec3 *)b;
 
 @end

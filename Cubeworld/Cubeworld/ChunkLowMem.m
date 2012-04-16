@@ -11,6 +11,8 @@
 #import "BlockTypes.h"
 
 @implementation ChunkLowMem
+@synthesize readyToRender;
+
 -(id)init
 {
     return [self initWithNumberOfTrees:8 treeHeight:4];
@@ -19,6 +21,8 @@
 -(id)initWithNumberOfTrees:(int)ntrees treeHeight:(int)ntreeHeight
 {        
     if(self = [super init]) {
+        [self setReadyToRender:NO];
+        
         trees = ntrees;
         treeHeight = ntreeHeight;
         
@@ -102,6 +106,9 @@
 
 -(void)render;
 {
+    if(!readyToRender)
+        return;
+    
     if(needsUpdate) {
         [self update];
         needsUpdate = NO;
@@ -306,6 +313,17 @@
 //    [desc appendFormat:@"</chunk>\n"];
     
     return desc; 
+}
+
+-(void)setChunkLocationForX:(float)x Z:(float)z
+{
+    chunkLocation.x = x;
+    chunkLocation.z = z;
+}
+
+-(vec3 *)chunkLocation
+{
+    return &chunkLocation;
 }
 
 -(void)dealloc
