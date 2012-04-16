@@ -817,4 +817,10 @@ float BLOCK_COLOURS[][4] =
 {
     return &origin;
 }
+
+-(void)dealloc
+{
+    [nodes removeAllObjects];
+    [super dealloc];
+}
 @end

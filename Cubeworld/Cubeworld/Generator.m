@@ -348,10 +348,6 @@
         limit = limit * variation;
         limit += baselimit;
         heightMap[0][z] = limit;
-        
-        limit = PerlinNoise2D((cx+17/10.0) + 0.4,((cz-1)+z/10.0) + 0.4, 2, 2, 6);
-        limit = limit * variation;
-        limit += baselimit;
         heightMap[17][z] = 0;
     }
 }
