@@ -49,6 +49,8 @@
 
 -(void)updateWithFocusPoint:(vec3 *)point
 {
-    
+    focusPoint.x = point->x;
+    focusPoint.y = point->y;
+    focusPoint.z = point->z;
 }
 @end

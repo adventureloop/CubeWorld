@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Voxel.h"
 #import "Camera.h"
-#import "Chunk.h"
+#import "ChunkLowMem.h"
 #import "MatrixStack.h"
 #import "Region.h"
 
@@ -31,7 +31,7 @@
     Camera *camera;
     MatrixStack *modelMatrix;
 
-    Voxel *cameraPosition;
+    ChunkLowMem *cameraPosition;
     
     Region *r;
 }

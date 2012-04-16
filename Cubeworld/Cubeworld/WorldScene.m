@@ -40,12 +40,16 @@
     //Use the model matrix(identity currently)
     glUniformMatrix4fv(modelToWorldMatrixUnif, 1, GL_FALSE, [modelMatrix mat]);
     
-//    glUniform3f(transLocationUnif,0,0,-5);
-//    
-//    [cameraPosition render];
+//   
+//  
+    
     
     [r render];
     
+//    glUseProgram(_program);
+//    glUniform3f(transLocationUnif,0,0,-5);
+//    [cameraPosition render];
+
     
 	glUseProgram(0);
     glSwapAPPLE();
@@ -84,7 +88,8 @@
     glViewport(0, 0, (GLsizei)w, (GLsizei)h);
     
     r = [[Region alloc]initWithMatrixUnifLocation:modelToWorldMatrixUnif translationLocation:transLocationUnif program:_program];
-    cameraPosition = [[Voxel alloc]init];
+   
+    cameraPosition = [[ChunkLowMem alloc]initWithNumberOfTrees:1 treeHeight:0];
 }
 
 -(void)didResizeTo:(CGRect)newBounds

@@ -90,7 +90,7 @@
     addV3(&camPos, &cameraTarget, &camPos);
     
     //Calculate Look At Matrix
-    subtractV3(&cameraTarget, &camPos, &lookDir);
+    subtractV3(&cameraTarget, &camPos, &lookDir);  
     normalizeV3(&lookDir, &lookDir);
     
     normalizeV3(&upVec, &upDir);
@@ -201,7 +201,7 @@
 
 -(void)moveCameraTargetForward
 {
-    cameraSpherePos.x += angleMoveSpeed;
+    cameraSpherePos.z += angleMoveSpeed;
 }
 
 -(void)moveCameraTargetBack
