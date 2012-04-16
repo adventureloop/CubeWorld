@@ -13,6 +13,13 @@
 #import <OpenGL/gl.h>
 #import "ChunkManager.h"
 
+
+/*!
+ * @class Region
+ * @abstract Rendering management of on screen view
+ * @discussion Region Class controls the definition of the on screen view space 
+ * renders only the immediate area around the users position.
+ */
 @interface Region : NSObject
 {
     NSMutableArray *chunks;
@@ -29,9 +36,26 @@
     float offsetX,offsetZ;
     
 }
+
+/*!
+ * @function initWithMatrixUnifLocation
+ * @discussion initialise the region with the required shader locations.
+ */
 -(id)initWithMatrixUnifLocation:(GLuint) unifLocation translationLocation:(GLuint) transLoc program:(GLuint) programLocation;
+
+/*!
+ * @function render
+ * @discussion Translates and requests chunks around the users location.
+ */
 -(void)render;
+
+/*!
+ * @discussion Updates the focus position.
+ */
 -(void)updateWithFocusPoint:(vec3 *)point;
 
+/*!
+ * @discussion Moves the focus position by x and z offset values.
+ */
 -(void)moveX:(float)x Z:(float)z;
 @end
