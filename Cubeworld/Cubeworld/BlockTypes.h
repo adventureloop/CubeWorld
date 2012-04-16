@@ -19,6 +19,9 @@ enum BLOCK_TYPES
     BLOCK_LEAF,
     BLOCK_SAND,
     BLOCK_STONE,
-    BLOCK_SNOW
+    BLOCK_SNOW,
+    BLOCK_ICE
 };
+
+#define WATER_LEVEL 40
 #endif
