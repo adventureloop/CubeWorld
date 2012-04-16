@@ -12,7 +12,6 @@
 
 @interface OctnodeLowMem : NSObject
 {
-    //    id nodes[8];
     NSMutableArray *nodes;
     
     vec3 origin;
