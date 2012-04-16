@@ -166,6 +166,11 @@
             }
         }
     
+    for(int x = 1; x < 17;x++)
+        for(int z = 1; z < 17;z++)
+            if(heightMap[x][z] > 50  && (x%(6 + rand()%10)) == 0)
+                [self addTreeToChunk:tmp forX:x Y:heightMap[x][z] Z:z];
+    
     return tmp;
 }
 
