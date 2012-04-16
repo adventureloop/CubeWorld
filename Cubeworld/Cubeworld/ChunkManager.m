@@ -24,12 +24,19 @@
 
 -(ChunkLowMem *)chunkForX:(float)x Z:(float)z
 {
-    if([chunkStore count] > 30) {
+    if([chunkStore count] > 25) {
+        NSLog(@"\t\t\tCulling Chunk store, %lu chunks in memory",[chunkStore count]);
+        
+        NSMutableArray *removeList = [[NSMutableArray alloc]init ];
+        
         for(id key in chunkStore) {
             ChunkLowMem *c = [chunkStore objectForKey:key];
             if([self distanceBetweenA:&focusPoint B:[c chunkLocation]] > 2)
-                [chunkStore removeObjectForKey:key];
+                [removeList addObject:key];
         }
+        
+        for(id key in removeList)
+            [chunkStore removeObjectForKey:key];
     }
     
     NSString *key = [NSString stringWithFormat:@"x:%f z:%f",x,z];
@@ -45,7 +52,7 @@
         NSLog(@"Generation time %f for (%.0f x,%.0f z)",executionTime,x,z);
         
         [chunkStore setValue:res forKey:key];
-        
+        [res setChunkLocationForX:x Z:z];
         [res setReadyToRender:YES];
     }
     

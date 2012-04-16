@@ -23,26 +23,17 @@
 
 -(ChunkLowMem *)chunkForX:(float)cx Z:(float)cz
 {
-//    NSDate *methodStart = [NSDate date];
-//
-//    ChunkLowMem *tmp = [self forestBiomeChunkForX:cx Z:cz];
-//    
-//    NSDate *methodFinish = [NSDate date];
-//    NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:methodStart];
-//    NSLog(@"Generation time %f for (%.0f x,%.0f z)",executionTime,cx,cz);
-//    
-//    return tmp;
-    float noise = PerlinNoise2D(cx, cz, 2, 2, 6);
+    float noise = PerlinNoise2D(cx+0.1, cz+0.1, 2, 2, 6);
     
-    if(noise > 0.6)
+    if(noise > 0.25)
         return [self taigaBiomeChunkForX:cx Z:cz];
-    if(noise > 0.3)
+    if(noise > 0.18)
         return [self tundraBiomeChunkForX:cx Z:cz];
     if(noise > 0.0)
         return [self forestBiomeChunkForX:cx Z:cz];
-    if(noise > -0.3)
+    if(noise > -0.1)
         return [self grasslandBiomeChunkForX:cx Z:cz];
-    if(noise > -0.6)
+    if(noise > -0.2)
         return [self islandBiomeChunkForX:cx Z:cz];
     if(noise > -1.0)
         return [self desertBiomeChunkForX:cx Z:cz];
@@ -51,6 +42,8 @@
 
 -(ChunkLowMem *)islandBiomeChunkForX:(float)cx Z:(float)cz
 {
+    NSLog(@"\tIsland Biome");
+    
     ChunkLowMem *tmp = [[[ChunkLowMem alloc] init] autorelease];
     
     int heightMap[18][18];
@@ -90,6 +83,7 @@
 
 -(ChunkLowMem *)forestBiomeChunkForX:(float)cx Z:(float)cz
 {
+    NSLog(@"\tForest Biome");
     
     ChunkLowMem *tmp = [[[ChunkLowMem alloc] init] autorelease];
     
@@ -135,6 +129,7 @@
 
 -(ChunkLowMem *)grasslandBiomeChunkForX:(float)cx Z:(float)cz
 {
+    NSLog(@"\tGrassland Biome");
     
     ChunkLowMem *tmp = [[[ChunkLowMem alloc] init] autorelease];
     
@@ -176,6 +171,8 @@
 
 -(ChunkLowMem *)desertBiomeChunkForX:(float)cx Z:(float)cz
 {
+    NSLog(@"\tDesert Biome");
+    
     ChunkLowMem *tmp = [[[ChunkLowMem alloc] init] autorelease];
     
     int heightMap[18][18];
@@ -211,6 +208,8 @@
 
 -(ChunkLowMem *)tundraBiomeChunkForX:(float)cx Z:(float)cz
 {
+    NSLog(@"\tTundra Biome");
+    
     ChunkLowMem *tmp = [[[ChunkLowMem alloc] init] autorelease];
     
     int heightMap[18][18];
@@ -246,6 +245,8 @@
 
 -(ChunkLowMem *)taigaBiomeChunkForX:(float)cx Z:(float)cz
 {
+    NSLog(@"\tTaiga Biome");
+    
     ChunkLowMem *tmp = [[[ChunkLowMem alloc] init] autorelease];
     
     int heightMap[18][18];
