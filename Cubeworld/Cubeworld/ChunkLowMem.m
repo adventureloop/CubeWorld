@@ -10,6 +10,10 @@
 #import <OpenGL/gl.h>
 #import "BlockTypes.h"
 
+
+#define ALLOC_SIZE 256
+#define INIT_ALLOC_SIZE 2304
+
 @implementation ChunkLowMem
 @synthesize readyToRender;
 

@@ -98,7 +98,7 @@
 -(float)chunkDimensions;
 
 /*!
- * @discussion Calculcates the height of the chunk, errrrrr.... I think
+ * @discussion Calculcates the height of the chunk in voxels.
  */
 -(int)height;
 
