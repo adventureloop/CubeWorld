@@ -67,7 +67,12 @@
             
             for(double y = heightMap[x][z];y >= min;y--) {
                 if(y < WATER_LEVEL)
-                    [tmp updateBlockType:BLOCK_WATER forX:x-1 Y:WATER_LEVEL Z:z-1];
+                    if(y < WATER_LEVEL - 5)
+                        [tmp updateBlockType:BLOCK_WATER_DEEP forX:x-1 Y:WATER_LEVEL Z:z-1];
+                    else if(y < WATER_LEVEL -3)
+                        [tmp updateBlockType:BLOCK_WATER_MID forX:x-1 Y:WATER_LEVEL Z:z-1];
+                    else 
+                        [tmp updateBlockType:BLOCK_WATER_SHALLOW forX:x-1 Y:WATER_LEVEL Z:z-1];
                 else if(y == WATER_LEVEL+1)
                     [tmp updateBlockType:BLOCK_SAND forX:x-1 Y:WATER_LEVEL+1 Z:z-1];
                 else if(y > 80)
@@ -108,7 +113,12 @@
             
             for(double y = heightMap[x][z];y >= min;y--) {
                 if(y < WATER_LEVEL)
-                    [tmp updateBlockType:BLOCK_WATER forX:x-1 Y:WATER_LEVEL Z:z-1];
+                    if(y < WATER_LEVEL - 5)
+                        [tmp updateBlockType:BLOCK_WATER_DEEP forX:x-1 Y:WATER_LEVEL Z:z-1];
+                    else if(y < WATER_LEVEL -3)
+                        [tmp updateBlockType:BLOCK_WATER_MID forX:x-1 Y:WATER_LEVEL Z:z-1];
+                    else 
+                        [tmp updateBlockType:BLOCK_WATER_SHALLOW forX:x-1 Y:WATER_LEVEL Z:z-1];
                 else if(y == WATER_LEVEL+1)
                     [tmp updateBlockType:BLOCK_SAND forX:x-1 Y:WATER_LEVEL+1 Z:z-1];
                 else if(y > 80)
@@ -154,7 +164,12 @@
             
             for(double y = heightMap[x][z];y >= min;y--) {
                 if(y < WATER_LEVEL)
-                    [tmp updateBlockType:BLOCK_WATER forX:x-1 Y:WATER_LEVEL Z:z-1];
+                    if(y < WATER_LEVEL - 5)
+                        [tmp updateBlockType:BLOCK_WATER_DEEP forX:x-1 Y:WATER_LEVEL Z:z-1];
+                    else if(y < WATER_LEVEL -3)
+                        [tmp updateBlockType:BLOCK_WATER_MID forX:x-1 Y:WATER_LEVEL Z:z-1];
+                    else 
+                        [tmp updateBlockType:BLOCK_WATER_SHALLOW forX:x-1 Y:WATER_LEVEL Z:z-1];
                 else if(y == WATER_LEVEL+1)
                     [tmp updateBlockType:BLOCK_SAND forX:x-1 Y:WATER_LEVEL+1 Z:z-1];
                 else if(y > 80)
@@ -201,7 +216,12 @@
             
             for(double y = heightMap[x][z];y >= min;y--) {
                 if(y < WATER_LEVEL)
-                    [tmp updateBlockType:BLOCK_WATER forX:x-1 Y:WATER_LEVEL Z:z-1];
+                    if(y < WATER_LEVEL - 5)
+                        [tmp updateBlockType:BLOCK_WATER_DEEP forX:x-1 Y:WATER_LEVEL Z:z-1];
+                    else if(y < WATER_LEVEL -3)
+                        [tmp updateBlockType:BLOCK_WATER_MID forX:x-1 Y:WATER_LEVEL Z:z-1];
+                    else 
+                        [tmp updateBlockType:BLOCK_WATER_SHALLOW forX:x-1 Y:WATER_LEVEL Z:z-1];
                 else if(y > 80)
                     [tmp updateBlockType:BLOCK_STONE forX:x-1 Y:y Z:z-1];
                 else
@@ -238,7 +258,12 @@
             
             for(double y = heightMap[x][z];y >= min;y--) {
                 if(y < WATER_LEVEL)
-                    [tmp updateBlockType:BLOCK_WATER forX:x-1 Y:WATER_LEVEL Z:z-1];
+                    if(y < WATER_LEVEL - 5)
+                        [tmp updateBlockType:BLOCK_WATER_DEEP forX:x-1 Y:WATER_LEVEL Z:z-1];
+                    else if(y < WATER_LEVEL -3)
+                        [tmp updateBlockType:BLOCK_WATER_MID forX:x-1 Y:WATER_LEVEL Z:z-1];
+                    else 
+                        [tmp updateBlockType:BLOCK_WATER_SHALLOW forX:x-1 Y:WATER_LEVEL Z:z-1];
                 else if(y > 80)
                     [tmp updateBlockType:BLOCK_STONE forX:x-1 Y:y Z:z-1];
                 else
@@ -275,7 +300,12 @@
             
             for(double y = heightMap[x][z];y >= min;y--) {
                 if(y < WATER_LEVEL)
-                    [tmp updateBlockType:BLOCK_WATER forX:x-1 Y:WATER_LEVEL Z:z-1];
+                    if(y < WATER_LEVEL - 5)
+                        [tmp updateBlockType:BLOCK_WATER_DEEP forX:x-1 Y:WATER_LEVEL Z:z-1];
+                    else if(y < WATER_LEVEL -3)
+                        [tmp updateBlockType:BLOCK_WATER_MID forX:x-1 Y:WATER_LEVEL Z:z-1];
+                    else 
+                        [tmp updateBlockType:BLOCK_WATER_SHALLOW forX:x-1 Y:WATER_LEVEL Z:z-1];
                 else if(y > 80)
                     [tmp updateBlockType:BLOCK_STONE forX:x-1 Y:y Z:z-1];
                 else

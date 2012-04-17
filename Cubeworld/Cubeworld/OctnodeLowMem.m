@@ -16,7 +16,9 @@ float BLOCK_COLOURS[][4] =
     {1.0,1.0,1.0,1.0},  //Block solid
     {0.12,0.5,0.12,1.0},  //Block grass
     {0.5,0.25,0.0,1.0},  //Block dirt
-    {0.0,0.2,1.0,1.0},  //Block water
+    {0.0,0.2,0.70,1.0},  //Block water deep
+    {0.0,0.2,0.75,1.0},  //Block water mid
+    {0.0,0.2,0.9,1.0},  //Block water shallow
     {0.34,0.15,0.0,1.0},  //Block wood
     {0.0,1.0,0.0,1.0},  //Block leaf
     {0.6,0.6,0.25,1.0},  //Block sand
