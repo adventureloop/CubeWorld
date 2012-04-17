@@ -15,6 +15,9 @@
 
 #import "Scene.h"
 
+/*!
+ * @abstract World Scene, creates and manages a scene with a single region.
+ */
 @interface WorldScene : Scene
 {
     GLuint _program;
