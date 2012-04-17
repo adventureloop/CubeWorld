@@ -354,7 +354,10 @@
         limit = limit * variation;
         limit += baselimit;
         heightMap[0][z] = limit;
-        heightMap[17][z] = 0;
+        
+        limit = limit * variation;
+        limit += baselimit;
+        heightMap[17][z] = limit;
     }
 }
 @end
