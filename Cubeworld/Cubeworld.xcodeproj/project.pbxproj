@@ -47,6 +47,7 @@
 		DFF66EAD1523227D008C8E63 /* SceneLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF66EAC1523227D008C8E63 /* SceneLoader.m */; };
 		DFF66EB01523228E008C8E63 /* WorldScene.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF66EAF1523228E008C8E63 /* WorldScene.m */; };
 		DFF93A20153AFD8F00098FF2 /* ResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF93A1F153AFD8F00098FF2 /* ResourceManager.m */; };
+		DFF93A25153DB59300098FF2 /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF93A24153DB59300098FF2 /* Entity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +128,8 @@
 		DFF66EAF1523228E008C8E63 /* WorldScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorldScene.m; sourceTree = "<group>"; };
 		DFF93A1E153AFD8E00098FF2 /* ResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceManager.h; sourceTree = "<group>"; };
 		DFF93A1F153AFD8F00098FF2 /* ResourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceManager.m; sourceTree = "<group>"; };
+		DFF93A23153DB59300098FF2 /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
+		DFF93A24153DB59300098FF2 /* Entity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entity.m; sourceTree = "<group>"; };
 		DFFD279C1520F92300A6A812 /* PerlinNoise.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PerlinNoise.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -259,6 +262,7 @@
 				DF840D9114D95E860022F193 /* OpenGLView.m */,
 				DF29471014E1A50D007D1A15 /* Camera.h */,
 				DF29471114E1A50D007D1A15 /* Camera.m */,
+				DFF93A22153DB57400098FF2 /* Entites */,
 				DF03640D152313A10089F9D9 /* Scenes */,
 				DF2945BE14E19377007D1A15 /* World Elements */,
 				DF93A0EC14FE7B5100F201D7 /* World Generation */,
@@ -322,6 +326,15 @@
 				DF2FD5C01509068B0073E1FF /* Generator.m */,
 			);
 			name = "World Generation";
+			sourceTree = "<group>";
+		};
+		DFF93A22153DB57400098FF2 /* Entites */ = {
+			isa = PBXGroup;
+			children = (
+				DFF93A23153DB59300098FF2 /* Entity.h */,
+				DFF93A24153DB59300098FF2 /* Entity.m */,
+			);
+			name = Entites;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -460,6 +473,7 @@
 				DFD701341524C9EF00FA78DD /* OctnodeLowMem.m in Sources */,
 				DFD701371524CA1600FA78DD /* ChunkLowMem.m in Sources */,
 				DFF93A20153AFD8F00098FF2 /* ResourceManager.m in Sources */,
+				DFF93A25153DB59300098FF2 /* Entity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
