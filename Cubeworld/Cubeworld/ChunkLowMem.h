@@ -10,7 +10,6 @@
 #import "OctnodeLowMem.h"
 
 /*!
- * @class ChunkLowMem
  * @abstract Low Memory implementation of Chunk
  * @discussion The Original Chunk implementation suffered performance issues to the massive number
  * of elements it contain. This ReImplementation uses a memory manager approach to handle the memory
