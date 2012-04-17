@@ -40,16 +40,13 @@
     //Use the model matrix(identity currently)
     glUniformMatrix4fv(modelToWorldMatrixUnif, 1, GL_FALSE, [modelMatrix mat]);
     
-//   
-//  
-    
-    
+    //Draw the world region
     [r render];
     
-//    glUseProgram(_program);
-//    glUniform3f(transLocationUnif,0,0,-5);
-//    [cameraPosition render];
-
+    //Draw a camera indicator, though it doesnt look right to me.
+    glUseProgram(_program);
+    glUniform3f(transLocationUnif,0,0,0);
+    [cameraPosition render];
     
 	glUseProgram(0);
     glSwapAPPLE();
@@ -90,6 +87,8 @@
     r = [[Region alloc]initWithMatrixUnifLocation:modelToWorldMatrixUnif translationLocation:transLocationUnif program:_program];
    
     cameraPosition = [[ChunkLowMem alloc]initWithNumberOfTrees:1 treeHeight:0];
+    [cameraPosition updateBlockType:1 forX:0 Y:0 Z:0];
+    [cameraPosition setReadyToRender:YES];
 }
 
 -(void)didResizeTo:(CGRect)newBounds
@@ -282,30 +281,30 @@
             [camera moveCameraDown];
             break;
         case kVK_ANSI_D:      
-            //[camera moveCameraRight];
-            [r moveX:1 Z:0];
+            [camera moveCameraRight];
+           // [r moveX:1 Z:0];
             break;
         case kVK_ANSI_A:      
-            //[camera moveCameraLeft];
-            [r moveX:-1 Z:0];
+            [camera moveCameraLeft];
+            //[r moveX:-1 Z:0];
             break;
         case kVK_ANSI_W:
-            //[camera moveCameraForward];
-            [r moveX:0 Z:-1];
+            [camera moveCameraBack];
+            //[r moveX:0 Z:-1];
             break;
         case kVK_ANSI_S:
-            //[camera moveCameraBack];
-            [r moveX:0 Z:1];
+            [camera moveCameraForward];
+            //[r moveX:0 Z:1];
             break;
             
             //Move the camera target
         case kVK_UpArrow:
             [camera moveCameraTargetUp];
-            [camera moveCameraUp];
+           // [camera moveCameraUp];
             break;
         case kVK_DownArrow:
             [camera moveCameraTargetDown];
-            [camera moveCameraDown];
+            //[camera moveCameraDown];
             break;
         case kVK_RightArrow:
             [camera moveCameraTargetRight];

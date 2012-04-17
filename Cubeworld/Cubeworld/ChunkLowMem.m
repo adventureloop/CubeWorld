@@ -11,8 +11,8 @@
 #import "BlockTypes.h"
 
 
-#define ALLOC_SIZE 256
-#define INIT_ALLOC_SIZE 2304
+#define ALLOC_SIZE 128
+#define INIT_ALLOC_SIZE 512
 
 @implementation ChunkLowMem
 @synthesize readyToRender;

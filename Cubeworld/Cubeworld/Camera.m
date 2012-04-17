@@ -16,17 +16,17 @@
         perspectiveMatrix = calloc(16, sizeof(float));
         
         frustumScale = 2.4f;
-        zNear = 0.5f; 
+        zNear = 1.0f; 
         zFar = 100.0f;
         
         //Look at the origin
         cameraTarget.x = 0.0f;
-        cameraTarget.y = 10.0f;
-        cameraTarget.z = -5.0f;
+        cameraTarget.y = 15.0f;
+        cameraTarget.z = 0.0f;
         
-        cameraSpherePos.x = 87.0f;
-        cameraSpherePos.y = -20.0f;
-        cameraSpherePos.z = 66.0f;
+        cameraSpherePos.x = 81.0f;
+        cameraSpherePos.y = -21.0f;
+        cameraSpherePos.z = 66.0f;  //The diameter or distance to the target point.
         
         //The direction of up
         upVec.x = 0.0f;
@@ -171,12 +171,12 @@
 
 -(void)moveCameraForward
 {
-    cameraTarget.x += moveSpeed;
+    cameraTarget.z += moveSpeed;
 }
 
 -(void)moveCameraBack
 {
-    cameraTarget.x -= moveSpeed;
+    cameraTarget.z -= moveSpeed;
 }
 
 -(void)moveCameraTargetUp
