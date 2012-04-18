@@ -14,15 +14,15 @@
 #import "Region.h"
 
 #import "Scene.h"
+#import "ResourceManager.h"
 
 /*!
  * @abstract World Scene, creates and manages a scene with a single region.
  */
 @interface WorldScene : Scene
 {
+    ResourceManager *resourceManager;
     GLuint _program;
-    GLuint vertexBufferObject;
-    GLuint vao;
     
     //Uniforms for mattrixes
     GLuint cameraToClipMatrixUnif;

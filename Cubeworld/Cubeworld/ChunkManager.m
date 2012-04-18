@@ -24,7 +24,7 @@
 
 -(ChunkLowMem *)chunkForX:(float)x Z:(float)z
 {
-    if([chunkStore count] > 56) {
+    if([chunkStore count] > 80) {
         NSLog(@"\t\t\tCulling Chunk store, %lu chunks in memory",[chunkStore count]);
         
         NSMutableArray *removeList = [[NSMutableArray alloc]init ];
