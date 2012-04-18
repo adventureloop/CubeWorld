@@ -18,9 +18,11 @@
         chunkManager = [[ChunkManager alloc]init];
         modelMatrix = [MatrixStack sharedMatrixStack];
         
-        modelMatrixUnif = unifLocation;
-        transLationUnif = transLoc;
-        _program = programLocation;
+        resourceManager = [ResourceManager sharedResourceManager];
+        program = [resourceManager getProgramLocation:@"Ambient"];
+        
+        modelMatrixUnif = glGetUniformLocation(program, "modelToWorldMatrix");
+        transLocationUnif = glGetUniformLocation(program, "translation");
         
         offsetX = offsetZ = 0;
     }
@@ -29,7 +31,7 @@
 
 -(void)render
 {
-    float renderDistance = 4;
+    float renderDistance = 2;
     float width = 8;
     
     for(float x = renderDistance; x >= -renderDistance;x--) {
@@ -37,10 +39,10 @@
             if(x == 0 || z == 0)
                 continue;
             
-            glUseProgram(_program);
+            glUseProgram(program);
             
             glUniformMatrix4fv(modelMatrixUnif, 1, GL_FALSE, [modelMatrix mat]);
-            glUniform3f(transLationUnif,x*width,0,z*width);
+            glUniform3f(transLocationUnif,x*width,0,z*width);
             
             [[chunkManager chunkForX:x+offsetX Z:z+offsetZ] render];
 

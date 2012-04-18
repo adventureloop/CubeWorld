@@ -13,6 +13,7 @@
 #import <OpenGL/gl.h>
 #import "ChunkManager.h"
 
+#import "ResourceManager.h"
 
 /*!
  * @class Region
@@ -29,12 +30,13 @@
     
     MatrixStack *modelMatrix;
     
-    GLuint _program;
+    GLuint program;
     GLuint modelMatrixUnif;
-    GLuint transLationUnif;
+    GLuint transLocationUnif;
     
     float offsetX,offsetZ;
     
+    ResourceManager *resourceManager;
 }
 
 /*!
