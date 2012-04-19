@@ -33,7 +33,7 @@ static ResourceManager *sharedManager;
 
 -(GLuint)getProgramLocation:(NSString *)name
 {
-    NSNumber *res;
+    NSNumber *res = nil;
     if((res = [programs valueForKey:name]) != nil)
         return [res intValue];
     else {

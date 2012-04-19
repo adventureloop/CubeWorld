@@ -44,7 +44,7 @@
     
     //Draw the world region
     [r render];
-    [s render];
+//    [s render];
 //    
 //    //Draw a camera indicator, though it doesnt look right to me.
 //    glUseProgram(_program);
@@ -97,11 +97,11 @@
     
     r = [[Region alloc]initWithMatrixUnifLocation:modelToWorldMatrixUnif translationLocation:transLocationUnif program:_program];
    
-    cameraPosition = [[ChunkLowMem alloc]initWithNumberOfTrees:1 treeHeight:0];
-    [cameraPosition updateBlockType:1 forX:0 Y:0 Z:0];
-    [cameraPosition setReadyToRender:YES];
-    
-    s = [[SkyBox alloc]initWithSize:48];
+//    cameraPosition = [[ChunkLowMem alloc]initWithNumberOfTrees:1 treeHeight:0];
+//    [cameraPosition updateBlockType:1 forX:0 Y:0 Z:0];
+//    [cameraPosition setReadyToRender:YES];
+//    
+//    s = [[SkyBox alloc]initWithSize:48];
 }
 
 -(void)didResizeTo:(CGRect)newBounds

@@ -71,7 +71,7 @@
         
         //Grab the program to use
         resourceManager = [ResourceManager sharedResourceManager];
-        program = [resourceManager getProgramLocation:@"Ambient"];
+        program = [resourceManager getProgramLocation:@"Test"];
         
         glUseProgram(program);
         transLocationUnif = glGetUniformLocation(program, "translation");
