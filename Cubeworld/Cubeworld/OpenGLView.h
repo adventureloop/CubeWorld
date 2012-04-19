@@ -12,7 +12,7 @@
 
 @interface OpenGLView : NSOpenGLView
 {
-    WorldScene *scene;
+    MainScene *scene;
     BOOL captureMouse;
 }
 

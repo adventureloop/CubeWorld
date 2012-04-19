@@ -31,7 +31,7 @@
     [scene render];
     
     if(scene == nil) {
-        scene = [[WorldScene alloc]initWithBounds:[self bounds]];
+        scene = [[MainScene alloc]initWithBounds:[self bounds]];
         [scene startAnimating];
     }
     [scene render];

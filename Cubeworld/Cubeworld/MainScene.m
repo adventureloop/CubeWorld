@@ -26,12 +26,12 @@
 
 -(void)startAnimating
 {
-    self->animationTimer = [NSTimer scheduledTimerWithTimeInterval:1/30 target:self selector:@selector(render) userInfo:nil repeats:YES];
+    [world startAnimating];
 }
 
 -(void)stopAnimating;
 {
-    [animationTimer release];
+    [world stopAnimating];
 }
 
 -(void)didResizeTo:(CGRect)newBounds
