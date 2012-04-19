@@ -722,6 +722,30 @@ float BLOCK_COLOURS[][4] =
     }
 }
 
+-(void)invertNormals
+{
+    if(height > 0) {
+        for(OctnodeLowMem *n in nodes)
+            [n invertNormals];
+    } else if(voxelPtr != nil){
+        voxelPtr = [datasource updateRenderMetaData:indexOffset];
+        
+        face *tmp = (face *)voxelPtr;
+        
+        for(int i = 0;i < 6;i++) {
+            colouredNormalVertex *v = (colouredNormalVertex *)tmp;
+            for(int j = 0;j < 6;j++) {
+                v->n.x = (v->n.x != 0) ? ((v->n.x > 0) ? - 1 : 1) : 0;
+                v->n.y = (v->n.y != 0) ? ((v->n.y > 0) ? - 1 : 1) : 0;
+                v->n.z = (v->n.z != 0) ? ((v->n.z > 0) ? - 1 : 1) : 0;
+                
+                v += 1;//sizeof(colouredNormalVertex);
+            }
+            tmp += 1;//sizeof(face);    //Get next face
+        }
+    }
+}
+
 -(void)updateType:(int)type
 {
     blockType = type;

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "Octnode.h"
+#import "OctnodeLowMem.h"
 #import "Structures.h"
 #import "ResourceManager.h"
 
@@ -27,7 +27,7 @@
     float *vertexData;
     unsigned int *indexArray;
     float size;
-    Octnode *box;
+    OctnodeLowMem *box;
 }
 
 -(id)initWithSize:(float)asize;

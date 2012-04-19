@@ -16,9 +16,13 @@
 {
     if(self = [super init]) {
         size = asize;
+        
         vertexData = malloc(sizeof(voxelData));
+        
         indexArray = malloc(VOXEL_INDICES_COUNT * sizeof(unsigned int));
         int *tmpIndexArray = malloc(VOXEL_INDICES_COUNT * sizeof(long));
+        
+        memset(tmpIndexArray, -1, VOXEL_INDICES_COUNT * sizeof(int));
         
         //Create the sky box        
         vec3 localOrigin;
@@ -26,25 +30,18 @@
         localOrigin.y = 0.0;
         localOrigin.z = 0.0;
         
-        voxelData *memPtr = (voxelData *)vertexData;
-        
-        box =  [[Octnode alloc]initWithTreeHeight:0
+        box =  [[OctnodeLowMem alloc]initWithTreeHeight:0
                                          nodeSize:size
                                             orign:&localOrigin 
-                                    memoryPointer:memPtr];
-        [box renderElements:tmpIndexArray offset:0];
-        
-        colour boxColour;
-        boxColour.red = 1.0;
-        boxColour.blue = 1.0;
-        boxColour.green = 1.0;
-        boxColour.alpha = 1.0;
-        
-        [box updateColours:&boxColour];
+                                    dataSource:self];
+        [box updateType:1]; //Set to solid
+        [box invertNormals];
+        [box renderElements:tmpIndexArray];
         
         for(int i = 0,j = 0;i < VOXEL_INDICES_COUNT;i++) 
             if(tmpIndexArray[i] >= 0)
                 indexArray[j++] = tmpIndexArray[i];
+
         
         //Create VAO
         glGenVertexArraysAPPLE(1, &vertexArrayObject);
@@ -90,11 +87,26 @@
     
     glUseProgram(program);
     glUniformMatrix4fv(modelMatrixUnif, 1, GL_FALSE,[[MatrixStack sharedMatrixStack] mat]);
-    glUniform3f(transLocationUnif,0,0,0);
+    glUniform3f(transLocationUnif,0,50,0);
     glDrawElements(GL_TRIANGLES, VOXEL_INDICES_COUNT, GL_UNSIGNED_INT, 0);
     
     glUseProgram(0);
     glBindVertexArrayAPPLE(0);
+}
+
+-(voxelData *)getRenderMetaData:(int *)offset
+{
+    voxelData *memPtr = (voxelData *)vertexData;
+    
+    *offset = 0;
+    return memPtr;
+}
+
+-(voxelData *)updateRenderMetaData:(int)offset
+{
+    voxelData *memPtr = (voxelData *)vertexData;
+    
+    return memPtr;
 }
 
 -(void)dealloc

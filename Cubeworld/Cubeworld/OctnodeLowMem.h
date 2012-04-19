@@ -73,6 +73,11 @@
 -(void)updateColours:(colour *)newColour;
 
 /*!
+ * @discussion Invert the normals for the voxel, turns the outside in or the inside out.
+ */
+-(void)invertNormals;
+
+/*!
  * @discussion Checks to see whether the point lies within the octree.
  */
 -(bool)collidesWithPoint:(vec3 *)point;
