@@ -101,7 +101,7 @@
 //    [cameraPosition updateBlockType:1 forX:0 Y:0 Z:0];
 //    [cameraPosition setReadyToRender:YES];
 //    
-    s = [[SkyBox alloc]initWithSize:48];
+    s = [[SkyBox alloc]initWithSize:96];
 }
 
 -(void)didResizeTo:(CGRect)newBounds

@@ -8,9 +8,9 @@ void main()
     gl_FragColor = outColor;
     
 ////Do fog
-    vec3 fogColor = vec3(1.0,1.0,1.0);
+    vec3 fogColor = vec3(0.9,0.9,0.9);
     
-    float fogNear = 60.0;
+    float fogNear = 25.0;
     float fogFar = 150.0;
     
     

@@ -24,9 +24,9 @@
         cameraTarget.y = 15.0f;
         cameraTarget.z = 0.0f;
         
-        cameraSpherePos.x = 81.0f;
-        cameraSpherePos.y = -21.0f;
-        cameraSpherePos.z = 66.0f;  //The diameter or distance to the target point.
+        cameraSpherePos.x = 88.0f;
+        cameraSpherePos.y = -20.0f;
+        cameraSpherePos.z = 38.0f;  //The diameter or distance to the target point.
         
         //The direction of up
         upVec.x = 0.0f;
