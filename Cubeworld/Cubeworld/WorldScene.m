@@ -95,13 +95,8 @@
 	glUseProgram(0);
     glViewport(0, 0, (GLsizei)w, (GLsizei)h);
     
-    r = [[Region alloc]initWithMatrixUnifLocation:modelToWorldMatrixUnif translationLocation:transLocationUnif program:_program];
-   
-//    cameraPosition = [[ChunkLowMem alloc]initWithNumberOfTrees:1 treeHeight:0];
-//    [cameraPosition updateBlockType:1 forX:0 Y:0 Z:0];
-//    [cameraPosition setReadyToRender:YES];
-//    
-    s = [[SkyBox alloc]initWithSize:96];
+    r = [[Region alloc]initWithMatrixUnifLocation:modelToWorldMatrixUnif translationLocation:transLocationUnif program:_program];    
+    s = [[SkyBox alloc]initWithSize:48];
 }
 
 -(void)didResizeTo:(CGRect)newBounds
