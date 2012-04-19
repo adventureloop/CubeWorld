@@ -114,7 +114,7 @@ static ResourceManager *sharedManager;
         glDetachShader(_program, fragShader);
         glDeleteShader(fragShader);
     }
-    return YES;
+    return _program;
 }
 
 
