@@ -85,11 +85,14 @@
 {
     glBindVertexArrayAPPLE(vertexArrayObject);
     
+    glFrontFace(GL_CCW);
+    
     glUseProgram(program);
     glUniformMatrix4fv(modelMatrixUnif, 1, GL_FALSE,[[MatrixStack sharedMatrixStack] mat]);
-    glUniform3f(transLocationUnif,0,50,0);
+    glUniform3f(transLocationUnif,0,56,0);
     glDrawElements(GL_TRIANGLES, VOXEL_INDICES_COUNT, GL_UNSIGNED_INT, 0);
     
+    glFrontFace(GL_CW);
     glUseProgram(0);
     glBindVertexArrayAPPLE(0);
 }
