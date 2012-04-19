@@ -39,5 +39,5 @@
  * how far away chunks are from the focus.
  */
 -(float)distanceBetweenA:(vec3 *)a B:(vec3 *)b;
-
++(ChunkManager *)sharedChunkManager;
 @end

@@ -15,7 +15,7 @@
 -(id)initWithMatrixUnifLocation:(GLuint)unifLocation translationLocation:(GLuint)transLoc program:(GLuint)programLocation
 {
     if(self = [super init]) {
-        chunkManager = [[ChunkManager alloc]init];
+        chunkManager = [ChunkManager sharedChunkManager];
         modelMatrix = [MatrixStack sharedMatrixStack];
         
         resourceManager = [ResourceManager sharedResourceManager];

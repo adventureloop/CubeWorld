@@ -22,6 +22,17 @@
    
 }
 
++(ChunkManager *)sharedChunkManager
+{
+    static ChunkManager *shared;
+    @synchronized(self)
+    {
+        if (!shared)
+            shared = [[ChunkManager alloc] init];
+        return shared;
+    }
+}
+
 -(ChunkLowMem *)chunkForX:(float)x Z:(float)z
 {
     if([chunkStore count] > 80) {
