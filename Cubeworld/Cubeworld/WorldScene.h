@@ -12,9 +12,9 @@
 #import "ChunkLowMem.h"
 #import "MatrixStack.h"
 #import "Region.h"
-
 #import "Scene.h"
 #import "ResourceManager.h"
+#import "SkyBox.h"
 
 /*!
  * @abstract World Scene, creates and manages a scene with a single region.
@@ -37,5 +37,7 @@
     ChunkLowMem *cameraPosition;
     
     Region *r;
+    SkyBox *s;
+    
 }
 @end

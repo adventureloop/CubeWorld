@@ -44,6 +44,7 @@
     
     //Draw the world region
     [r render];
+    [s render];
     
     //Draw a camera indicator, though it doesnt look right to me.
     glUseProgram(_program);
@@ -99,6 +100,8 @@
     cameraPosition = [[ChunkLowMem alloc]initWithNumberOfTrees:1 treeHeight:0];
     [cameraPosition updateBlockType:1 forX:0 Y:0 Z:0];
     [cameraPosition setReadyToRender:YES];
+    
+    s = [[SkyBox alloc]initWithSize:64];
 }
 
 -(void)didResizeTo:(CGRect)newBounds
