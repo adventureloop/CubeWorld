@@ -734,14 +734,14 @@ float BLOCK_COLOURS[][4] =
         
         for(int i = 0;i < 6;i++) {
             colouredNormalVertex *v = (colouredNormalVertex *)tmp;
-            for(int j = 0;j < 6;j++) {
+            for(int j = 0;j < 4;j++) { //This should be 4, but looks a lot better with an off by two
                 v->n.x = (v->n.x != 0) ? ((v->n.x > 0) ? - 1 : 1) : 0;
                 v->n.y = (v->n.y != 0) ? ((v->n.y > 0) ? - 1 : 1) : 0;
                 v->n.z = (v->n.z != 0) ? ((v->n.z > 0) ? - 1 : 1) : 0;
                 
-                v += 1;//sizeof(colouredNormalVertex);
+                v += 1; //Get the next vertex
             }
-            tmp += 1;//sizeof(face);    //Get next face
+            tmp += 1;    //Get next face
         }
     }
 }
