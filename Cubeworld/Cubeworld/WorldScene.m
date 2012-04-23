@@ -95,9 +95,17 @@
     ambientIntensityUnif = glGetUniformLocation(_program, "ambientIntensity");
     dirToLightUnif = glGetUniformLocation(_program, "lightDirection");
     
+    fogColourUnif = glGetUniformLocation(_program, "fogColour");
+    fogNearUnif = glGetUniformLocation(_program, "fogNear");
+    fogFarUnif = glGetUniformLocation(_program, "fogFar");
+    
     glUniform4f(lightIntensityUnif,0.9, 0.9, 0.9, 1.0);
     glUniform4f(ambientIntensityUnif, 0.8, 0.8, 0.8, 1.0);
     glUniform3f(dirToLightUnif, 0.5, 0.5, 0.5);
+    
+    glUniform3f(fogColourUnif, 1.0, 1.0, 1.0);
+    glUniform1f(fogFarUnif, 60);
+    glUniform1f(fogNearUnif, 20);
     
 	glUniformMatrix4fv(cameraToClipMatrixUnif, 1, GL_FALSE,[camera perspectiveMatrix]);
     glUniformMatrix4fv(worldToCameraMatrixUnif, 1, GL_FALSE,[camera lookAtMatrix]);

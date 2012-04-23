@@ -3,19 +3,17 @@
 
 varying vec4 outColor;
 
+uniform vec3 fogColour;
+uniform float fogNear;
+uniform float fogFar;
+
 void main()
 {
     gl_FragColor = outColor;
     
 ////Do fog
-    vec3 fogColor = vec3(0.9,0.9,0.9);
-    
-    float fogNear = 25.0;
-    float fogFar = 150.0;
-    
-    
     float depth = gl_FragCoord.z / gl_FragCoord.w;
     float fogFactor = smoothstep(fogNear, fogFar, depth);
-    gl_FragColor = mix(gl_FragColor, vec4(fogColor, gl_FragColor.w), fogFactor);
+    gl_FragColor = mix(gl_FragColor, vec4(fogColour, gl_FragColor.w), fogFactor);
 
 }

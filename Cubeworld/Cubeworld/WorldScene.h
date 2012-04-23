@@ -35,6 +35,10 @@
     GLuint ambientIntensityUnif;
     GLuint dirToLightUnif;
     
+    GLuint fogColourUnif;
+    GLuint fogNearUnif;
+    GLuint fogFarUnif;
+    
     Camera *camera;
     MatrixStack *modelMatrix;
 
