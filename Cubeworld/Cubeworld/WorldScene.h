@@ -31,6 +31,10 @@
     
     GLuint transLocationUnif;
     
+    GLuint lightIntensityUnif;
+    GLuint ambientIntensityUnif;
+    GLuint dirToLightUnif;
+    
     Camera *camera;
     MatrixStack *modelMatrix;
 
