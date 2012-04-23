@@ -9,6 +9,7 @@
 #import "SkyBox.h"
 #import <OpenGL/gl.h>
 #import "MatrixStack.h"
+#import "BlockTypes.h"
 
 @implementation SkyBox
 
@@ -34,7 +35,7 @@
                                          nodeSize:size
                                             orign:&localOrigin 
                                     dataSource:self];
-        [box updateType:1]; //Set to solid
+        [box updateType:BLOCK_SKY_DAY]; //Set to block sky
         [box invertNormals];
         [box renderElements:tmpIndexArray];
         

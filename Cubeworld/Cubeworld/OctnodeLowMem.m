@@ -24,7 +24,8 @@ float BLOCK_COLOURS[][4] =
     {0.6,0.6,0.25,1.0},  //Block sand
     {0.6,0.6,0.6,1.0},  //Block stone
     {0.75,0.75,0.8,1.0},   //Block snow
-    {0.85,0.93,0.93}      //Block ICE
+    {0.85,0.93,0.93,1.0},      //Block ICE
+    {0.5,0.5,0.7,1.0}      //Block Sky day    
     
 };
 

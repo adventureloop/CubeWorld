@@ -103,7 +103,7 @@
     glUniform4f(ambientIntensityUnif, 0.8, 0.8, 0.8, 1.0);
     glUniform3f(dirToLightUnif, 0.5, 0.5, 0.5);
     
-    glUniform3f(fogColourUnif, 1.0, 1.0, 1.0);
+    glUniform3f(fogColourUnif, 0.5, 0.5, 0.7);
     glUniform1f(fogFarUnif, 60);
     glUniform1f(fogNearUnif, 20);
     
