@@ -36,7 +36,7 @@
     if(noise > -0.2)
         return [self islandBiomeChunkForX:cx Z:cz];
     if(noise > -1.0)
-        return [self desertBiomeChunkForXChunkForX:cx Z:cz];
+        return [self desertBiomeChunkForX:cx Z:cz];
     return [self grasslandBiomeChunkForX:cx Z:cz];
 }
 

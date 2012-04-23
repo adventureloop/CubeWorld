@@ -61,6 +61,8 @@
 	glCullFace(GL_BACK);
 	glFrontFace(GL_CW);
     
+    glEnable(GL_BLEND);
+    glEnable(GL_POLYGON_SMOOTH);
     camera = [[Camera alloc]init];
     
     modelMatrix = [MatrixStack sharedMatrixStack];
