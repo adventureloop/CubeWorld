@@ -104,8 +104,8 @@
     glUniform3f(dirToLightUnif, 0.5, 0.5, 0.5);
     
     glUniform3f(fogColourUnif, 0.5, 0.5, 0.7);
-    glUniform1f(fogFarUnif, 60);
-    glUniform1f(fogNearUnif, 20);
+    glUniform1f(fogFarUnif, 80);
+    glUniform1f(fogNearUnif, 15);
     
 	glUniformMatrix4fv(cameraToClipMatrixUnif, 1, GL_FALSE,[camera perspectiveMatrix]);
     glUniformMatrix4fv(worldToCameraMatrixUnif, 1, GL_FALSE,[camera lookAtMatrix]);
@@ -114,7 +114,7 @@
     glViewport(0, 0, (GLsizei)w, (GLsizei)h);
     
     r = [[Region alloc]initWithMatrixUnifLocation:modelToWorldMatrixUnif translationLocation:transLocationUnif program:_program];    
-    s = [[SkyBox alloc]initWithSize:48];
+    s = [[SkyBox alloc]initWithSize:96];
 }
 
 -(void)didResizeTo:(CGRect)newBounds
@@ -158,7 +158,6 @@
             //[camera moveCameraForward];
             [r moveX:0 Z:1];
             break;
-            
             //Move the camera target
         case kVK_UpArrow:
             [camera moveCameraTargetUp];

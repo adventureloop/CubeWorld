@@ -31,7 +31,7 @@
 
 -(void)render
 {
-    float renderDistance = 2;
+    float renderDistance = 3;
     float width = 8;
     
     for(float x = renderDistance; x >= -renderDistance;x--) {
