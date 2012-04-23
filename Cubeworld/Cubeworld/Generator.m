@@ -36,7 +36,7 @@
     if(noise > -0.2)
         return [self islandBiomeChunkForX:cx Z:cz];
     if(noise > -1.0)
-        return [self desertBiomeChunkForX:cx Z:cz];
+        return [self desertBiomeChunkForXChunkForX:cx Z:cz];
     return [self grasslandBiomeChunkForX:cx Z:cz];
 }
 
@@ -89,46 +89,12 @@
 -(ChunkLowMem *)forestBiomeChunkForX:(float)cx Z:(float)cz
 {
     NSLog(@"\tForest Biome");
-    
-    ChunkLowMem *tmp = [[[ChunkLowMem alloc] init] autorelease];
-    
     int heightMap[18][18];
+
+    ChunkLowMem *tmp = [self grasslandBiomeChunkForX:cx Z:cz];
+
     [self createHeightMap:heightMap Alpha:5 Beta:10 ForHeight:[tmp height] chunkX:cx chunkZ:cz];
     
-    for(int x = 1;x < 17;x++)
-        for(int z = 1;z < 17; z++) {
-            double y = heightMap[x][z];
-            double min = y;
-            
-            min = (min < heightMap[x-1][z-1]) ? min : heightMap[x-1][z-1];
-            min = (min < heightMap[x-1][z]) ? min : heightMap[x-1][z];
-            min = (min < heightMap[x-1][z+1]) ? min : heightMap[x-1][z+1];
-            
-            min = (min < heightMap[x+1][z-1]) ? min : heightMap[x+1][z-1];
-            min = (min < heightMap[x+1][z]) ? min : heightMap[x+1][z];
-            min = (min < heightMap[x+1][z+1]) ? min : heightMap[x+1][z+1];
-            
-            min = (min < heightMap[x][z-1]) ? min : heightMap[x][z-1];
-            min = (min < heightMap[x][z+1]) ? min : heightMap[x][z+1];
-            
-            for(double y = heightMap[x][z];y >= min;y--) {
-                if(y < WATER_LEVEL)
-                    if(y < WATER_LEVEL - 5)
-                        [tmp updateBlockType:BLOCK_WATER_DEEP forX:x-1 Y:WATER_LEVEL Z:z-1];
-                    else if(y < WATER_LEVEL -3)
-                        [tmp updateBlockType:BLOCK_WATER_MID forX:x-1 Y:WATER_LEVEL Z:z-1];
-                    else 
-                        [tmp updateBlockType:BLOCK_WATER_SHALLOW forX:x-1 Y:WATER_LEVEL Z:z-1];
-                else if(y == WATER_LEVEL+1)
-                    [tmp updateBlockType:BLOCK_SAND forX:x-1 Y:WATER_LEVEL+1 Z:z-1];
-                else if(y > 80)
-                    [tmp updateBlockType:BLOCK_STONE forX:x-1 Y:y Z:z-1];
-                else if(y > 70)
-                    [tmp updateBlockType:BLOCK_DIRT forX:x-1 Y:y Z:z-1];
-                else
-                    [tmp updateBlockType:BLOCK_GRASS forX:x-1 Y:y Z:z-1];
-            }
-        }
     for(int x = 1; x < 17;x++)
         for(int z = 1; z < 17;z++)
             if(heightMap[x][z] > 50  && (x%(6 + rand()%5)) == 0)
