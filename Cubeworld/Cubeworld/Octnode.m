@@ -141,7 +141,7 @@
     tmp->face1.vertex1.v.x = origin.x - offset;
     tmp->face1.vertex1.v.y = origin.y + offset;
     tmp->face1.vertex1.v.z = origin.z + offset;
-    tmp->face1.vertex1.v.w = 1.0f;
+//    tmp->face1.vertex1. 
     
     tmp->face1.vertex1.c.red = 1.0f;
     tmp->face1.vertex1.c.green = 1.0f;
@@ -156,7 +156,7 @@
     tmp->face1.vertex2.v.x = origin.x + offset;
     tmp->face1.vertex2.v.y = origin.y + offset;
     tmp->face1.vertex2.v.z = origin.z + offset;
-    tmp->face1.vertex2.v.w = 1.0f;
+//    tmp->face1.vertex2.v.w = 1.0f;
     
     tmp->face1.vertex2.c.red = 1.0f;
     tmp->face1.vertex2.c.green = 1.0f;
@@ -171,7 +171,7 @@
     tmp->face1.vertex3.v.x = origin.x + offset;
     tmp->face1.vertex3.v.y = origin.y - offset;
     tmp->face1.vertex3.v.z = origin.z + offset;
-    tmp->face1.vertex3.v.w = 1.0f;
+  //  tmp->face1.vertex3.v.w = 1.0f;
     
     tmp->face1.vertex3.c.red = 1.0f;
     tmp->face1.vertex3.c.green = 1.0f;
@@ -186,7 +186,7 @@
     tmp->face1.vertex4.v.x = origin.x - offset;
     tmp->face1.vertex4.v.y = origin.y - offset;
     tmp->face1.vertex4.v.z = origin.z + offset;
-    tmp->face1.vertex4.v.w = 1.0f;
+//    tmp->face1.vertex4.v.w = 1.0f;
     
     tmp->face1.vertex4.c.red = 1.0f;
     tmp->face1.vertex4.c.green = 1.0f;
@@ -202,7 +202,7 @@
     tmp->face2.vertex1.v.x = origin.x - offset;
     tmp->face2.vertex1.v.y = origin.y - offset;
     tmp->face2.vertex1.v.z = origin.z - offset;
-    tmp->face2.vertex1.v.w = 1.0f;
+//    tmp->face2.vertex1.v.w = 1.0f;
     
     tmp->face2.vertex1.c.red = 1.0f;
     tmp->face2.vertex1.c.green = 1.0f;
@@ -217,7 +217,7 @@
     tmp->face2.vertex2.v.x = origin.x + offset;
     tmp->face2.vertex2.v.y = origin.y - offset;
     tmp->face2.vertex2.v.z = origin.z - offset;
-    tmp->face2.vertex2.v.w = 1.0f;
+//    tmp->face2.vertex2.v.w = 1.0f;
     
     tmp->face2.vertex2.c.red = 1.0f;
     tmp->face2.vertex2.c.green = 1.0f;
@@ -232,7 +232,7 @@
     tmp->face2.vertex3.v.x = origin.x + offset;
     tmp->face2.vertex3.v.y = origin.y + offset;
     tmp->face2.vertex3.v.z = origin.z - offset;
-    tmp->face2.vertex3.v.w = 1.0f;
+//    tmp->face2.vertex3.v.w = 1.0f;
     
     tmp->face2.vertex3.c.red = 1.0f;
     tmp->face2.vertex3.c.green = 1.0f;
@@ -247,7 +247,7 @@
     tmp->face2.vertex4.v.x = origin.x - offset;
     tmp->face2.vertex4.v.y = origin.y + offset;
     tmp->face2.vertex4.v.z = origin.z - offset;
-    tmp->face2.vertex4.v.w = 1.0f;
+//    tmp->face2.vertex4.v.w = 1.0f;
     
     tmp->face2.vertex4.c.red = 1.0f;
     tmp->face2.vertex4.c.green = 1.0f;
@@ -263,7 +263,7 @@
     tmp->face3.vertex1.v.x = origin.x - offset;
     tmp->face3.vertex1.v.y = origin.y + offset;
     tmp->face3.vertex1.v.z = origin.z - offset;
-    tmp->face3.vertex1.v.w = 1.0f;
+//    tmp->face3.vertex1.v.w = 1.0f;
     
     tmp->face3.vertex1.c.red = 1.0f;
     tmp->face3.vertex1.c.green = 1.0f;
@@ -278,7 +278,7 @@
     tmp->face3.vertex2.v.x = origin.x - offset;
     tmp->face3.vertex2.v.y = origin.y + offset;
     tmp->face3.vertex2.v.z = origin.z + offset;
-    tmp->face3.vertex2.v.w = 1.0f;
+//    tmp->face3.vertex2.v.w = 1.0f;
     
     tmp->face3.vertex2.c.red = 1.0f;
     tmp->face3.vertex2.c.green = 1.0f;
@@ -293,7 +293,7 @@
     tmp->face3.vertex3.v.x = origin.x - offset;
     tmp->face3.vertex3.v.y = origin.y - offset;
     tmp->face3.vertex3.v.z = origin.z + offset;
-    tmp->face3.vertex3.v.w = 1.0f;
+ //   tmp->face3.vertex3.v.w = 1.0f;
     
     tmp->face3.vertex3.c.red = 1.0f;
     tmp->face3.vertex3.c.green = 1.0f;
@@ -308,7 +308,7 @@
     tmp->face3.vertex4.v.x = origin.x - offset;
     tmp->face3.vertex4.v.y = origin.y - offset;
     tmp->face3.vertex4.v.z = origin.z - offset;
-    tmp->face3.vertex4.v.w = 1.0f;
+ //   tmp->face3.vertex4.v.w = 1.0f;
     
     tmp->face3.vertex4.c.red = 1.0f;
     tmp->face3.vertex4.c.green = 1.0f;
@@ -324,7 +324,7 @@
     tmp->face4.vertex1.v.x = origin.x + offset;
     tmp->face4.vertex1.v.y = origin.y + offset;
     tmp->face4.vertex1.v.z = origin.z + offset;
-    tmp->face4.vertex1.v.w = 1.0f;
+ //   tmp->face4.vertex1.v.w = 1.0f;
     
     tmp->face4.vertex1.c.red = 1.0f;
     tmp->face4.vertex1.c.green = 1.0f;
@@ -339,7 +339,7 @@
     tmp->face4.vertex2.v.x = origin.x + offset;
     tmp->face4.vertex2.v.y = origin.y + offset;
     tmp->face4.vertex2.v.z = origin.z - offset;
-    tmp->face4.vertex2.v.w = 1.0f;
+//    tmp->face4.vertex2.v.w = 1.0f;
     
     tmp->face4.vertex2.c.red = 1.0f;
     tmp->face4.vertex2.c.green = 1.0f;
@@ -354,7 +354,7 @@
     tmp->face4.vertex3.v.x = origin.x + offset;
     tmp->face4.vertex3.v.y = origin.y - offset;
     tmp->face4.vertex3.v.z = origin.z - offset;
-    tmp->face4.vertex3.v.w = 1.0f;
+//    tmp->face4.vertex3.v.w = 1.0f;
     
     tmp->face4.vertex3.c.red = 1.0f;
     tmp->face4.vertex3.c.green = 1.0f;
@@ -369,7 +369,7 @@
     tmp->face4.vertex4.v.x = origin.x + offset;
     tmp->face4.vertex4.v.y = origin.y - offset;
     tmp->face4.vertex4.v.z = origin.z + offset;
-    tmp->face4.vertex4.v.w = 1.0f;
+ //   tmp->face4.vertex4.v.w = 1.0f;
     
     tmp->face4.vertex4.c.red = 1.0f;
     tmp->face4.vertex4.c.green = 1.0f;
@@ -385,7 +385,7 @@
     tmp->face5.vertex1.v.x = origin.x - offset;
     tmp->face5.vertex1.v.y = origin.y + offset;
     tmp->face5.vertex1.v.z = origin.z - offset;
-    tmp->face5.vertex1.v.w = 1.0f;
+ //   tmp->face5.vertex1.v.w = 1.0f;
     
     tmp->face5.vertex1.c.red = 1.0f;
     tmp->face5.vertex1.c.green = 1.0f;
@@ -400,7 +400,7 @@
     tmp->face5.vertex2.v.x = origin.x + offset;
     tmp->face5.vertex2.v.y = origin.y + offset;
     tmp->face5.vertex2.v.z = origin.z - offset;
-    tmp->face5.vertex2.v.w = 1.0f;
+//    tmp->face5.vertex2.v.w = 1.0f;
     
     tmp->face5.vertex2.c.red = 1.0f;
     tmp->face5.vertex2.c.green = 1.0f;
@@ -415,7 +415,7 @@
     tmp->face5.vertex3.v.x = origin.x + offset;
     tmp->face5.vertex3.v.y = origin.y + offset;
     tmp->face5.vertex3.v.z = origin.z + offset;
-    tmp->face5.vertex3.v.w = 1.0f;
+//    tmp->face5.vertex3.v.w = 1.0f;
     
     tmp->face5.vertex3.c.red = 1.0f;
     tmp->face5.vertex3.c.green = 1.0f;
@@ -430,7 +430,7 @@
     tmp->face5.vertex4.v.x = origin.x - offset;
     tmp->face5.vertex4.v.y = origin.y + offset;
     tmp->face5.vertex4.v.z = origin.z + offset;
-    tmp->face5.vertex4.v.w = 1.0f;
+ //   tmp->face5.vertex4.v.w = 1.0f;
     
     tmp->face5.vertex4.c.red = 1.0f;
     tmp->face5.vertex4.c.green = 1.0f;
@@ -446,7 +446,7 @@
     tmp->face6.vertex1.v.x = origin.x - offset;
     tmp->face6.vertex1.v.y = origin.y - offset;
     tmp->face6.vertex1.v.z = origin.z + offset;
-    tmp->face6.vertex1.v.w = 1.0f;
+//    tmp->face6.vertex1.v.w = 1.0f;
     
     tmp->face6.vertex1.c.red = 1.0f;
     tmp->face6.vertex1.c.green = 1.0f;
@@ -461,7 +461,7 @@
     tmp->face6.vertex2.v.x = origin.x + offset;
     tmp->face6.vertex2.v.y = origin.y - offset;
     tmp->face6.vertex2.v.z = origin.z + offset;
-    tmp->face6.vertex2.v.w = 1.0f;
+//    tmp->face6.vertex2.v.w = 1.0f;
     
     tmp->face6.vertex2.c.red = 1.0f;
     tmp->face6.vertex2.c.green = 1.0f;
@@ -476,7 +476,7 @@
     tmp->face6.vertex3.v.x = origin.x + offset;
     tmp->face6.vertex3.v.y = origin.y - offset;
     tmp->face6.vertex3.v.z = origin.z - offset;
-    tmp->face6.vertex3.v.w = 1.0f;
+//    tmp->face6.vertex3.v.w = 1.0f;
     
     tmp->face6.vertex3.c.red = 1.0f;
     tmp->face6.vertex3.c.green = 1.0f;
@@ -491,7 +491,7 @@
     tmp->face6.vertex4.v.x = origin.x - offset;
     tmp->face6.vertex4.v.y = origin.y - offset;
     tmp->face6.vertex4.v.z = origin.z - offset;
-    tmp->face6.vertex4.v.w = 1.0f;
+//    tmp->face6.vertex4.v.w = 1.0f;
     
     tmp->face6.vertex4.c.red = 1.0f;
     tmp->face6.vertex4.c.green = 1.0f;

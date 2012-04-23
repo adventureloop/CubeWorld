@@ -1,4 +1,4 @@
-attribute vec4 position;
+attribute vec3 position;
 attribute vec4 inColor;
 attribute vec3 normal;
 
@@ -14,7 +14,7 @@ uniform vec3 translation;
 
 void main()
 {
-    vec4 temp = position + vec4(translation,1.0);
+    vec4 temp = vec4(position,1.0) + vec4(translation,1.0);
     temp = worldToCameraMatrix * temp;
     gl_Position = cameraToClipMatrix * temp;
     

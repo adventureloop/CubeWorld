@@ -90,22 +90,18 @@
     outlineBox->vertex1.v.x = 0.1;
     outlineBox->vertex1.v.y = 0.4;
     outlineBox->vertex1.v.z = 0.0;
-    outlineBox->vertex1.v.w = 0.0;
     
     outlineBox->vertex2.v.x = 0.1;
     outlineBox->vertex2.v.y = 0.6;
     outlineBox->vertex2.v.z = 0.0;
-    outlineBox->vertex2.v.w = 0.0;
     
     outlineBox->vertex3.v.x = 0.9;
     outlineBox->vertex3.v.y = 0.4;
     outlineBox->vertex3.v.z = 0.0;
-    outlineBox->vertex3.v.w = 0.0;
     
     outlineBox->vertex4.v.x = 0.9;
     outlineBox->vertex4.v.y = 0.6;
     outlineBox->vertex4.v.z = 0.0;
-    outlineBox->vertex4.v.w = 0.0;
     
     colouredNormalVertex *v = (colouredNormalVertex *)outlineBox;
     for(int j = 0;j < 4;j++) { //This should be 4, but looks a lot better with an off by two

@@ -62,9 +62,9 @@
         glEnableVertexAttribArray(1);
         glEnableVertexAttribArray(2);
         
-        glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(colouredNormalVertex), 0);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(colouredNormalVertex), 0);
         glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(colouredNormalVertex), (void*)sizeof(vertex));
-        glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(colouredNormalVertex), (void *) ( sizeof(vertex) + sizeof(colour)));
+        glVertexAttribPointer(2, 3, GL_SHORT, GL_FALSE, sizeof(colouredNormalVertex), (void *) ( sizeof(vertex) + sizeof(colour)));
         
         //Unbind the VAO to avoid someone making a mess
         glBindVertexArrayAPPLE(0);

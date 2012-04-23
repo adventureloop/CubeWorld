@@ -14,7 +14,7 @@ typedef struct
     float x;
     float y;
     float z;
-    float w;
+//    float w;
 } vertex;
 
 typedef struct 
@@ -27,9 +27,9 @@ typedef struct
 
 typedef struct 
 {
-    float x;
-    float y;
-    float z;
+    short int x;
+    short int y;
+    short int z;
 } vertexNormal;
 
 typedef struct 
