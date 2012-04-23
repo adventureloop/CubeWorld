@@ -17,6 +17,8 @@
 		DF2FD5C11509068B0073E1FF /* Generator.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2FD5C01509068B0073E1FF /* Generator.m */; };
 		DF35EACA14FF81C000AE8A60 /* ChunkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DF35EAC914FF81C000AE8A60 /* ChunkManager.m */; };
 		DF3E4A3C153F76310017D5F6 /* SkyBox.m in Sources */ = {isa = PBXBuildFile; fileRef = DF3E4A3B153F76310017D5F6 /* SkyBox.m */; };
+		DF6F17201541945B00FBC540 /* UIShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DF740061154083D4003E5FE6 /* UIShader.vsh */; };
+		DF6F17211541945B00FBC540 /* UIShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DF74005E154083C6003E5FE6 /* UIShader.fsh */; };
 		DF74005F154083C6003E5FE6 /* UIShader.fsh in Sources */ = {isa = PBXBuildFile; fileRef = DF74005E154083C6003E5FE6 /* UIShader.fsh */; };
 		DF740062154083D4003E5FE6 /* UIShader.vsh in Sources */ = {isa = PBXBuildFile; fileRef = DF740061154083D4003E5FE6 /* UIShader.vsh */; };
 		DF840D5914D95C990022F193 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF840D5814D95C990022F193 /* Cocoa.framework */; };
@@ -418,6 +420,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF6F17201541945B00FBC540 /* UIShader.vsh in Resources */,
+				DF6F17211541945B00FBC540 /* UIShader.fsh in Resources */,
 				DFEECA951521D09E00EAD1ED /* Ambient.vsh in Resources */,
 				DFEECA961521D09E00EAD1ED /* Ambient.fsh in Resources */,
 				DF840DAB14D97CAF0022F193 /* Test.vsh in Resources */,

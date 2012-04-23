@@ -8,7 +8,24 @@
 
 #import <Foundation/Foundation.h>
 #import "Scene.h"
+#import "ChunkManager.h"
+#import "ResourceManager.h"
 
 @interface SceneLoader : Scene
-
+{
+    ChunkManager *chunkManager;    
+    ResourceManager *resourceManager;
+    
+    GLuint program;
+    GLuint vertexArrayObject;
+    
+    GLuint vertexBufferObject;
+    GLuint indexBufferObject;
+    
+    float *vertexData;
+    unsigned int *indexArray;
+    
+    face *outlineBox;
+    face *progressBox;
+}
 @end

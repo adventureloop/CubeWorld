@@ -13,6 +13,7 @@
 -(id)initWithBounds:(CGRect)newBounds
 {
     if(self = [super initWithBounds:newBounds]){
+        //loader = [[SceneLoader alloc] initWithBounds:newBounds];
         world = [[WorldScene alloc]initWithBounds:newBounds];
         [self startAnimating];
     }
@@ -26,6 +27,7 @@
 
 -(void)startAnimating
 {
+    [loader startAnimating];
     [world startAnimating];
 }
 

@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "Scene.h"
 #import "WorldScene.h"
+#import "SceneLoader.h"
 
 @interface MainScene : Scene
 {
     WorldScene *world;
+    SceneLoader *loader;
 }
 @end
