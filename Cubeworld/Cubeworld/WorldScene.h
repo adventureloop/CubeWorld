@@ -15,6 +15,7 @@
 #import "Scene.h"
 #import "ResourceManager.h"
 #import "SkyBox.h"
+#import "TimeCycle.h"
 
 /*!
  * @abstract World Scene, creates and manages a scene with a single region.
@@ -43,6 +44,7 @@
     MatrixStack *modelMatrix;
 
     ChunkLowMem *cameraPosition;
+    TimeCycle *time;
     
     Region *r;
     SkyBox *s;

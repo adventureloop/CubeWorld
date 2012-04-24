@@ -33,6 +33,8 @@
     glClearDepth(1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
+    [time render];
+    
 	glUseProgram(_program);
     
     //Set the camera matrix
@@ -64,6 +66,7 @@
     glEnable(GL_BLEND);
     glEnable(GL_POLYGON_SMOOTH);
     camera = [[Camera alloc]init];
+
     
     modelMatrix = [MatrixStack sharedMatrixStack];
     [modelMatrix loadIndentity];
@@ -99,9 +102,11 @@
     fogNearUnif = glGetUniformLocation(_program, "fogNear");
     fogFarUnif = glGetUniformLocation(_program, "fogFar");
     
+    
+    //Initialise these values to ensure there is something useful in the shader
     glUniform4f(lightIntensityUnif,0.9, 0.9, 0.9, 1.0);
     glUniform4f(ambientIntensityUnif, 0.8, 0.8, 0.8, 1.0);
-    glUniform3f(dirToLightUnif, 0.5, 0.5, 0.5);
+    glUniform3f(dirToLightUnif, 0.5, 0.9, 0.5);
     
     glUniform3f(fogColourUnif, 0.5, 0.5, 0.7);
     glUniform1f(fogFarUnif, 80);
@@ -115,6 +120,8 @@
     
     r = [[Region alloc]initWithMatrixUnifLocation:modelToWorldMatrixUnif translationLocation:transLocationUnif program:_program];    
     s = [[SkyBox alloc]initWithSize:96];
+    
+    time = [[TimeCycle alloc]init];
 }
 
 -(void)didResizeTo:(CGRect)newBounds
@@ -172,6 +179,12 @@
             break;
         case kVK_LeftArrow:
             [camera moveCameraTargetLeft];
+            break;
+        case kVK_ANSI_Minus:
+            [time decreaseTime];
+            break;
+        case kVK_ANSI_Equal:
+            [time increaseTime];
             break;
         default:
             break;

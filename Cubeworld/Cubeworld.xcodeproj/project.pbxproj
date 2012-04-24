@@ -19,6 +19,7 @@
 		DF3E4A3C153F76310017D5F6 /* SkyBox.m in Sources */ = {isa = PBXBuildFile; fileRef = DF3E4A3B153F76310017D5F6 /* SkyBox.m */; };
 		DF6F17201541945B00FBC540 /* UIShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DF740061154083D4003E5FE6 /* UIShader.vsh */; };
 		DF6F17211541945B00FBC540 /* UIShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DF74005E154083C6003E5FE6 /* UIShader.fsh */; };
+		DF6F17251546B7C700FBC540 /* TimeCycle.m in Sources */ = {isa = PBXBuildFile; fileRef = DF6F17241546B7C600FBC540 /* TimeCycle.m */; };
 		DF74005F154083C6003E5FE6 /* UIShader.fsh in Sources */ = {isa = PBXBuildFile; fileRef = DF74005E154083C6003E5FE6 /* UIShader.fsh */; };
 		DF740062154083D4003E5FE6 /* UIShader.vsh in Sources */ = {isa = PBXBuildFile; fileRef = DF740061154083D4003E5FE6 /* UIShader.vsh */; };
 		DF840D5914D95C990022F193 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF840D5814D95C990022F193 /* Cocoa.framework */; };
@@ -86,6 +87,8 @@
 		DF3E4A3A153F76310017D5F6 /* SkyBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkyBox.h; sourceTree = "<group>"; };
 		DF3E4A3B153F76310017D5F6 /* SkyBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkyBox.m; sourceTree = "<group>"; };
 		DF64F3AA14E55A870003630A /* VectorMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VectorMath.h; sourceTree = "<group>"; };
+		DF6F17231546B7C500FBC540 /* TimeCycle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeCycle.h; sourceTree = "<group>"; };
+		DF6F17241546B7C600FBC540 /* TimeCycle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeCycle.m; sourceTree = "<group>"; };
 		DF74005E154083C6003E5FE6 /* UIShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = UIShader.fsh; sourceTree = "<group>"; };
 		DF740061154083D4003E5FE6 /* UIShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = UIShader.vsh; sourceTree = "<group>"; };
 		DF840D5414D95C990022F193 /* Cubeworld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cubeworld.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -273,6 +276,8 @@
 				DF840D9114D95E860022F193 /* OpenGLView.m */,
 				DF29471014E1A50D007D1A15 /* Camera.h */,
 				DF29471114E1A50D007D1A15 /* Camera.m */,
+				DF6F17231546B7C500FBC540 /* TimeCycle.h */,
+				DF6F17241546B7C600FBC540 /* TimeCycle.m */,
 				DF03640D152313A10089F9D9 /* Scenes */,
 				DFF93A22153DB57400098FF2 /* Entites */,
 				DF2945BE14E19377007D1A15 /* World Elements */,
@@ -492,6 +497,7 @@
 				DF3E4A3C153F76310017D5F6 /* SkyBox.m in Sources */,
 				DF74005F154083C6003E5FE6 /* UIShader.fsh in Sources */,
 				DF740062154083D4003E5FE6 /* UIShader.vsh in Sources */,
+				DF6F17251546B7C700FBC540 /* TimeCycle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
