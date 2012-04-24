@@ -22,7 +22,7 @@
     GLuint vertexBufferObject;
     GLuint indexBufferObject;
     
-    float *vertexData;
+    face *vertexData;
     unsigned int *indexArray;
     
     face *outlineBox;

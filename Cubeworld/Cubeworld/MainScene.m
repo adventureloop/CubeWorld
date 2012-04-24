@@ -22,18 +22,8 @@
 
 -(void)render
 {
+    //[loader render];
     [world render];
-}
-
--(void)startAnimating
-{
-    [loader startAnimating];
-    [world startAnimating];
-}
-
--(void)stopAnimating;
-{
-    [world stopAnimating];
 }
 
 -(void)didResizeTo:(CGRect)newBounds
