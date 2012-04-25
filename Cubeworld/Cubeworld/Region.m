@@ -10,7 +10,7 @@
 #import "Region.h"
 
 @implementation Region
-
+@synthesize renderDistance;
 
 -(id)initWithMatrixUnifLocation:(GLuint)unifLocation translationLocation:(GLuint)transLoc program:(GLuint)programLocation
 {
@@ -25,13 +25,13 @@
         transLocationUnif = glGetUniformLocation(program, "translation");
         
         offsetX = offsetZ = 0;
+        renderDistance = 2;
     }
     return self;
 }
 
 -(void)render
 {
-    float renderDistance = 2;
     float width = 8;
     
     for(float x = renderDistance; x >= -renderDistance;x--) {
@@ -62,5 +62,10 @@
 {
     offsetX += x;
     offsetZ += z;
+}
+
+-(float)distanceBetweenA:(vec3 *)a B:(vec3 *)b
+{
+    return sqrtf(powf((a->x - b->x),2) + powf((a->z - b->z), 2));
 }
 @end

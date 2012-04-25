@@ -38,7 +38,7 @@
     
     ResourceManager *resourceManager;
 }
-
+@property float renderDistance;
 /*!
  * @function initWithMatrixUnifLocation
  * @discussion initialise the region with the required shader locations.
