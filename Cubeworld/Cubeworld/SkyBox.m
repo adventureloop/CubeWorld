@@ -121,7 +121,7 @@
     fogColour.blue = 0.7;
     
     fogFar = size + size/3;
-    fogNear = size * 0.2;
+    fogNear = fogFar * 0.2;
     
     glUseProgram(program);
     glUniform3f(fogColourUnif, fogColour.red,fogColour.green, fogColour.blue);

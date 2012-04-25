@@ -15,13 +15,13 @@
         generator = [[Generator alloc]init];
         
         generationQueue = [[NSOperationQueue alloc]init];
+        [generationQueue setMaxConcurrentOperationCount:1];
         
         focusPoint.x = 0;
         focusPoint.z = 0;
         focusPoint.y = 0;
     }
     return self;
-   
 }
 
 +(ChunkManager *)sharedChunkManager
