@@ -14,6 +14,8 @@
         chunkStore = [[NSMutableDictionary alloc]init];
         generator = [[Generator alloc]init];
         
+        generationQueue = [[NSOperationQueue alloc]init];
+        
         focusPoint.x = 0;
         focusPoint.z = 0;
         focusPoint.y = 0;
@@ -54,17 +56,16 @@
     ChunkLowMem *res = [chunkStore objectForKey:key];
     
     if(res == nil) {
-        NSDate *methodStart = [NSDate date];
-
-        res = [generator chunkForX:x Z:z]; 
-        
-        NSDate *methodFinish = [NSDate date];
-        NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:methodStart];
-        NSLog(@"Generation time %f for (%.0f x,%.0f z)",executionTime,x,z);
+        res = [[ChunkLowMem alloc]init];
+        [res setChunkLocationForX:x Z:z];
         
         [chunkStore setValue:res forKey:key];
-        [res setChunkLocationForX:x Z:z];
-        [res setReadyToRender:YES];
+        
+        NSInvocationOperation* theOp = [[[NSInvocationOperation alloc] initWithTarget:generator
+                                                                             selector:@selector(generateChunk:) object:res] autorelease];
+        
+        [theOp start];
+        //[generationQueue addOperation:theOp];
     }
     
     return res;

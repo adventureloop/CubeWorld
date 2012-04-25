@@ -19,7 +19,7 @@
 /*!
  * @discussion Returns the generated chunk for given x and z.
  */
--(ChunkLowMem *)chunkForX:(float)x Z:(float)z;
+-(void)generateChunk:(ChunkLowMem *)chunk;
 
 /*!
  * @discussion  Creates a noise based height map.
@@ -32,14 +32,13 @@
 -(void)createHeightMap:(int[18][18])heightMap Alpha:(int)alpha Beta:(int)beta ForHeight:(int)height chunkX:(int)cx chunkZ:(int)cz;
 
 
--(ChunkLowMem *)islandBiomeChunkForX:(float) cx Z:(float)cz;
--(ChunkLowMem *)forestBiomeChunkForX:(float) cx Z:(float)cz;
--(ChunkLowMem *)grasslandBiomeChunkForX:(float) cx Z:(float)cz;
--(ChunkLowMem *)desertBiomeChunkForX:(float) cx Z:(float)cz;
+-(void)islandBiomeChunk:(ChunkLowMem *)chunk ForX:(float) cx Z:(float)cz;
+-(void)forestBiomeChunk:(ChunkLowMem *)chunk ForX:(float) cx Z:(float)cz;
+-(void)grasslandBiomeChunk:(ChunkLowMem *)chunk ForX:(float) cx Z:(float)cz;
+-(void)desertBiomeChunk:(ChunkLowMem *)chunk ForX:(float) cx Z:(float)cz;
 
--(ChunkLowMem *)tundraBiomeChunkForX:(float) cx Z:(float)cz;
--(ChunkLowMem *)taigaBiomeChunkForX:(float) cx Z:(float)cz;
-
+-(void)tundraBiomeChunk:(ChunkLowMem *)chunk ForX:(float) cx Z:(float)cz;
+-(void)taigaBiomeChunk:(ChunkLowMem *)chunk ForX:(float) cx Z:(float)cz;
 /*!
  * @discussion Adds a random tree(from static list) to the chunk at given indexes
  */

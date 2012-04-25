@@ -21,33 +21,41 @@
     return self;
 }
 
--(ChunkLowMem *)chunkForX:(float)cx Z:(float)cz
+-(void)generateChunk:(ChunkLowMem *)chunk;
 {
+    vec3 *chunkLoc = [chunk chunkLocation];
+    float cx,cz;
+    cx = chunkLoc->x;
+    cz = chunkLoc->z;
+    
     float noise = PerlinNoise2D(cx+0.1, cz+0.1, 2, 2, 6);
     
     if(noise > 0.25)
-        return [self taigaBiomeChunkForX:cx Z:cz];
-    if(noise > 0.18)
-        return [self tundraBiomeChunkForX:cx Z:cz];
-    if(noise > 0.0)
-        return [self forestBiomeChunkForX:cx Z:cz];
-    if(noise > -0.1)
-        return [self grasslandBiomeChunkForX:cx Z:cz];
-    if(noise > -0.2)
-        return [self islandBiomeChunkForX:cx Z:cz];
-    if(noise > -1.0)
-        return [self desertBiomeChunkForX:cx Z:cz];
-    return [self grasslandBiomeChunkForX:cx Z:cz];
+        [self taigaBiomeChunk:chunk ForX:cx Z:cz];
+    else if(noise > 0.18)
+        [self tundraBiomeChunk:chunk ForX:cx Z:cz];
+    else if(noise > 0.0)
+        [self forestBiomeChunk:chunk ForX:cx Z:cz];
+    else if(noise > -0.1)
+        [self grasslandBiomeChunk:chunk ForX:cx Z:cz];
+    else if(noise > -0.2)
+        [self islandBiomeChunk:chunk ForX:cx Z:cz];
+    else if(noise > -1.0)
+        [self desertBiomeChunk:chunk ForX:cx Z:cz];
+    else 
+        [self grasslandBiomeChunk:chunk ForX:cx Z:cz];
+    
+    // mark ready to render
+    //[chunk update];
+    [chunk setReadyToRender:YES];
 }
 
--(ChunkLowMem *)islandBiomeChunkForX:(float)cx Z:(float)cz
+-(void)islandBiomeChunk:(ChunkLowMem *)chunk ForX:(float)cx Z:(float)cz
 {
-    NSLog(@"\tIsland Biome");
-    
-    ChunkLowMem *tmp = [[[ChunkLowMem alloc] init] autorelease];
+    NSLog(@"\tIsland Biome in chunk %f,%f",cx,cz);
     
     int heightMap[18][18];
-    [self createHeightMap:heightMap Alpha:3 Beta:2 ForHeight:[tmp height] chunkX:cx chunkZ:cz];
+    [self createHeightMap:heightMap Alpha:3 Beta:2 ForHeight:[ chunk height] chunkX:cx chunkZ:cz];
     
     for(int x = 1;x < 17;x++)
         for(int z = 1;z < 17; z++) {
@@ -68,49 +76,46 @@
             for(double y = heightMap[x][z];y >= min;y--) {
                 if(y < WATER_LEVEL)
                     if(y < WATER_LEVEL - 5)
-                        [tmp updateBlockType:BLOCK_WATER_DEEP forX:x-1 Y:WATER_LEVEL Z:z-1];
+                        [ chunk updateBlockType:BLOCK_WATER_DEEP forX:x-1 Y:WATER_LEVEL Z:z-1];
                     else if(y < WATER_LEVEL -3)
-                        [tmp updateBlockType:BLOCK_WATER_MID forX:x-1 Y:WATER_LEVEL Z:z-1];
+                        [ chunk updateBlockType:BLOCK_WATER_MID forX:x-1 Y:WATER_LEVEL Z:z-1];
                     else 
-                        [tmp updateBlockType:BLOCK_WATER_SHALLOW forX:x-1 Y:WATER_LEVEL Z:z-1];
+                        [ chunk updateBlockType:BLOCK_WATER_SHALLOW forX:x-1 Y:WATER_LEVEL Z:z-1];
                 else if(y == WATER_LEVEL+1)
-                    [tmp updateBlockType:BLOCK_SAND forX:x-1 Y:WATER_LEVEL+1 Z:z-1];
+                    [ chunk updateBlockType:BLOCK_SAND forX:x-1 Y:WATER_LEVEL+1 Z:z-1];
                 else if(y > 80)
-                    [tmp updateBlockType:BLOCK_STONE forX:x-1 Y:y Z:z-1];
+                    [ chunk updateBlockType:BLOCK_STONE forX:x-1 Y:y Z:z-1];
                 else if(y > 70)
-                    [tmp updateBlockType:BLOCK_DIRT forX:x-1 Y:y Z:z-1];
+                    [ chunk updateBlockType:BLOCK_DIRT forX:x-1 Y:y Z:z-1];
                 else
-                    [tmp updateBlockType:BLOCK_GRASS forX:x-1 Y:y Z:z-1];
+                    [ chunk updateBlockType:BLOCK_GRASS forX:x-1 Y:y Z:z-1];
             }
         }
-    return tmp;
+        [chunk setReadyToRender:YES];
 }
 
--(ChunkLowMem *)forestBiomeChunkForX:(float)cx Z:(float)cz
+-(void)forestBiomeChunk:(ChunkLowMem *)chunk ForX:(float)cx Z:(float)cz
 {
-    NSLog(@"\tForest Biome");
+    NSLog(@"\tForest Biome in chunk %f,%f",cx,cz);
     int heightMap[18][18];
 
-    ChunkLowMem *tmp = [self grasslandBiomeChunkForX:cx Z:cz];
+    [self grasslandBiomeChunk:chunk ForX:cx Z:cz];
 
-    [self createHeightMap:heightMap Alpha:5 Beta:10 ForHeight:[tmp height] chunkX:cx chunkZ:cz];
+    [self createHeightMap:heightMap Alpha:5 Beta:10 ForHeight:[ chunk height] chunkX:cx chunkZ:cz];
     
     for(int x = 1; x < 17;x++)
         for(int z = 1; z < 17;z++)
             if(heightMap[x][z] > 50  && (x%(6 + rand()%5)) == 0)
-                [self addTreeToChunk:tmp forX:x Y:heightMap[x][z] Z:z];
-    
-    return tmp;
+                [self addTreeToChunk: chunk forX:x Y:heightMap[x][z] Z:z];
+        [chunk setReadyToRender:YES];
 }
 
--(ChunkLowMem *)grasslandBiomeChunkForX:(float)cx Z:(float)cz
+-(void)grasslandBiomeChunk:(ChunkLowMem *)chunk ForX:(float)cx Z:(float)cz
 {
-    NSLog(@"\tGrassland Biome");
-    
-    ChunkLowMem *tmp = [[[ChunkLowMem alloc] init] autorelease];
+    NSLog(@"\tGrassland Biome in chunk %f,%f",cx,cz);
     
     int heightMap[18][18];
-    [self createHeightMap:heightMap Alpha:5 Beta:10 ForHeight:[tmp height] chunkX:cx chunkZ:cz];
+    [self createHeightMap:heightMap Alpha:5 Beta:10 ForHeight:[ chunk height] chunkX:cx chunkZ:cz];
     
     for(int x = 1;x < 17;x++)
         for(int z = 1;z < 17; z++) {
@@ -131,38 +136,35 @@
             for(double y = heightMap[x][z];y >= min;y--) {
                 if(y < WATER_LEVEL)
                     if(y < WATER_LEVEL - 5)
-                        [tmp updateBlockType:BLOCK_WATER_DEEP forX:x-1 Y:WATER_LEVEL Z:z-1];
+                        [ chunk updateBlockType:BLOCK_WATER_DEEP forX:x-1 Y:WATER_LEVEL Z:z-1];
                     else if(y < WATER_LEVEL -3)
-                        [tmp updateBlockType:BLOCK_WATER_MID forX:x-1 Y:WATER_LEVEL Z:z-1];
+                        [ chunk updateBlockType:BLOCK_WATER_MID forX:x-1 Y:WATER_LEVEL Z:z-1];
                     else 
-                        [tmp updateBlockType:BLOCK_WATER_SHALLOW forX:x-1 Y:WATER_LEVEL Z:z-1];
+                        [ chunk updateBlockType:BLOCK_WATER_SHALLOW forX:x-1 Y:WATER_LEVEL Z:z-1];
                 else if(y == WATER_LEVEL+1)
-                    [tmp updateBlockType:BLOCK_SAND forX:x-1 Y:WATER_LEVEL+1 Z:z-1];
+                    [ chunk updateBlockType:BLOCK_SAND forX:x-1 Y:WATER_LEVEL+1 Z:z-1];
                 else if(y > 80)
-                    [tmp updateBlockType:BLOCK_STONE forX:x-1 Y:y Z:z-1];
+                    [ chunk updateBlockType:BLOCK_STONE forX:x-1 Y:y Z:z-1];
                 else if(y > 70)
-                    [tmp updateBlockType:BLOCK_DIRT forX:x-1 Y:y Z:z-1];
+                    [ chunk updateBlockType:BLOCK_DIRT forX:x-1 Y:y Z:z-1];
                 else
-                    [tmp updateBlockType:BLOCK_GRASS forX:x-1 Y:y Z:z-1];
+                    [ chunk updateBlockType:BLOCK_GRASS forX:x-1 Y:y Z:z-1];
             }
         }
     
     for(int x = 1; x < 17;x++)
         for(int z = 1; z < 17;z++)
             if(heightMap[x][z] > 50  && (x%(6 + rand()%10)) == 0)
-                [self addTreeToChunk:tmp forX:x Y:heightMap[x][z] Z:z];
-    
-    return tmp;
+                [self addTreeToChunk: chunk forX:x Y:heightMap[x][z] Z:z];
+        [chunk setReadyToRender:YES];
 }
 
--(ChunkLowMem *)desertBiomeChunkForX:(float)cx Z:(float)cz
+-(void)desertBiomeChunk:(ChunkLowMem *)chunk ForX:(float)cx Z:(float)cz
 {
-    NSLog(@"\tDesert Biome");
-    
-    ChunkLowMem *tmp = [[[ChunkLowMem alloc] init] autorelease];
-    
+    NSLog(@"\tDesert Biome in chunk %f,%f",cx,cz);
+
     int heightMap[18][18];
-    [self createHeightMap:heightMap Alpha:3 Beta:4 ForHeight:[tmp height] chunkX:cx chunkZ:cz];
+    [self createHeightMap:heightMap Alpha:3 Beta:4 ForHeight:[ chunk height] chunkX:cx chunkZ:cz];
     
     for(int x = 1;x < 17;x++)
         for(int z = 1;z < 17; z++) {
@@ -183,28 +185,26 @@
             for(double y = heightMap[x][z];y >= min;y--) {
                 if(y < WATER_LEVEL)
                     if(y < WATER_LEVEL - 5)
-                        [tmp updateBlockType:BLOCK_WATER_DEEP forX:x-1 Y:WATER_LEVEL Z:z-1];
+                        [ chunk updateBlockType:BLOCK_WATER_DEEP forX:x-1 Y:WATER_LEVEL Z:z-1];
                     else if(y < WATER_LEVEL -3)
-                        [tmp updateBlockType:BLOCK_WATER_MID forX:x-1 Y:WATER_LEVEL Z:z-1];
+                        [ chunk updateBlockType:BLOCK_WATER_MID forX:x-1 Y:WATER_LEVEL Z:z-1];
                     else 
-                        [tmp updateBlockType:BLOCK_WATER_SHALLOW forX:x-1 Y:WATER_LEVEL Z:z-1];
+                        [ chunk updateBlockType:BLOCK_WATER_SHALLOW forX:x-1 Y:WATER_LEVEL Z:z-1];
                 else if(y > 80)
-                    [tmp updateBlockType:BLOCK_STONE forX:x-1 Y:y Z:z-1];
+                    [ chunk updateBlockType:BLOCK_STONE forX:x-1 Y:y Z:z-1];
                 else
-                    [tmp updateBlockType:BLOCK_SAND forX:x-1 Y:y Z:z-1];
+                    [ chunk updateBlockType:BLOCK_SAND forX:x-1 Y:y Z:z-1];
             }
         }
-    return tmp;
+        [chunk setReadyToRender:YES];
 }
 
--(ChunkLowMem *)tundraBiomeChunkForX:(float)cx Z:(float)cz
+-(void)tundraBiomeChunk:(ChunkLowMem *)chunk ForX:(float)cx Z:(float)cz
 {
-    NSLog(@"\tTundra Biome");
-    
-    ChunkLowMem *tmp = [[[ChunkLowMem alloc] init] autorelease];
-    
+    NSLog(@"\tTundra Biome in chunk %f,%f",cx,cz);
+
     int heightMap[18][18];
-    [self createHeightMap:heightMap Alpha:5 Beta:10 ForHeight:[tmp height] chunkX:cx chunkZ:cz];
+    [self createHeightMap:heightMap Alpha:5 Beta:10 ForHeight:[ chunk height] chunkX:cx chunkZ:cz];
     
     for(int x = 1;x < 17;x++)
         for(int z = 1;z < 17; z++) {
@@ -225,28 +225,26 @@
             for(double y = heightMap[x][z];y >= min;y--) {
                 if(y < WATER_LEVEL)
                     if(y < WATER_LEVEL - 5)
-                        [tmp updateBlockType:BLOCK_WATER_DEEP forX:x-1 Y:WATER_LEVEL Z:z-1];
+                        [ chunk updateBlockType:BLOCK_WATER_DEEP forX:x-1 Y:WATER_LEVEL Z:z-1];
                     else if(y < WATER_LEVEL -3)
-                        [tmp updateBlockType:BLOCK_WATER_MID forX:x-1 Y:WATER_LEVEL Z:z-1];
+                        [ chunk updateBlockType:BLOCK_WATER_MID forX:x-1 Y:WATER_LEVEL Z:z-1];
                     else 
-                        [tmp updateBlockType:BLOCK_WATER_SHALLOW forX:x-1 Y:WATER_LEVEL Z:z-1];
+                        [ chunk updateBlockType:BLOCK_WATER_SHALLOW forX:x-1 Y:WATER_LEVEL Z:z-1];
                 else if(y > 80)
-                    [tmp updateBlockType:BLOCK_STONE forX:x-1 Y:y Z:z-1];
+                    [ chunk updateBlockType:BLOCK_STONE forX:x-1 Y:y Z:z-1];
                 else
-                    [tmp updateBlockType:BLOCK_SNOW forX:x-1 Y:y Z:z-1];
+                    [ chunk updateBlockType:BLOCK_SNOW forX:x-1 Y:y Z:z-1];
             }
         }
-    return tmp;
+        [chunk setReadyToRender:YES];
 }
 
--(ChunkLowMem *)taigaBiomeChunkForX:(float)cx Z:(float)cz
+-(void)taigaBiomeChunk:(ChunkLowMem *)chunk ForX:(float)cx Z:(float)cz
 {
-    NSLog(@"\tTaiga Biome");
-    
-    ChunkLowMem *tmp = [[[ChunkLowMem alloc] init] autorelease];
+    NSLog(@"\tTaiga Biome in chunk %f,%f",cx,cz);
     
     int heightMap[18][18];
-    [self createHeightMap:heightMap Alpha:5 Beta:6 ForHeight:[tmp height] chunkX:cx chunkZ:cz];
+    [self createHeightMap:heightMap Alpha:5 Beta:6 ForHeight:[ chunk height] chunkX:cx chunkZ:cz];
     
     for(int x = 1;x < 17;x++)
         for(int z = 1;z < 17; z++) {
@@ -267,23 +265,23 @@
             for(double y = heightMap[x][z];y >= min;y--) {
                 if(y < WATER_LEVEL)
                     if(y < WATER_LEVEL - 5)
-                        [tmp updateBlockType:BLOCK_WATER_DEEP forX:x-1 Y:WATER_LEVEL Z:z-1];
+                        [ chunk updateBlockType:BLOCK_WATER_DEEP forX:x-1 Y:WATER_LEVEL Z:z-1];
                     else if(y < WATER_LEVEL -3)
-                        [tmp updateBlockType:BLOCK_WATER_MID forX:x-1 Y:WATER_LEVEL Z:z-1];
+                        [ chunk updateBlockType:BLOCK_WATER_MID forX:x-1 Y:WATER_LEVEL Z:z-1];
                     else 
-                        [tmp updateBlockType:BLOCK_WATER_SHALLOW forX:x-1 Y:WATER_LEVEL Z:z-1];
+                        [ chunk updateBlockType:BLOCK_WATER_SHALLOW forX:x-1 Y:WATER_LEVEL Z:z-1];
                 else if(y > 80)
-                    [tmp updateBlockType:BLOCK_STONE forX:x-1 Y:y Z:z-1];
+                    [ chunk updateBlockType:BLOCK_STONE forX:x-1 Y:y Z:z-1];
                 else
-                    [tmp updateBlockType:BLOCK_SNOW forX:x-1 Y:y Z:z-1];
+                    [ chunk updateBlockType:BLOCK_SNOW forX:x-1 Y:y Z:z-1];
             }
         }
     
     for(int x = 1; x < 17;x++)
         for(int z = 1; z < 17;z++)
             if(heightMap[x][z] > 50  && (x%(4 + rand()%2)) == 0)
-                [self addTreeToChunk:tmp forX:x Y:heightMap[x][z] Z:z];
-    return tmp;
+                [self addTreeToChunk: chunk forX:x Y:heightMap[x][z] Z:z];
+        [chunk setReadyToRender:YES];
 }
 
 
