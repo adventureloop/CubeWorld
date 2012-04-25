@@ -24,12 +24,21 @@
     GLuint transLocationUnif;
     GLuint modelMatrixUnif;
     
+    GLuint fogColourUnif;
+    GLuint fogNearUnif;
+    GLuint fogFarUnif;
+    
     float *vertexData;
     unsigned int *indexArray;
     float size;
     OctnodeLowMem *box;
+    
+    colour fogColour;
+    float fogNear;
+    float fogFar;
 }
 
 -(id)initWithSize:(float)asize;
 -(void)render;
+-(void)setSize:(float)size;
 @end

@@ -42,7 +42,7 @@
         for(int i = 0,j = 0;i < VOXEL_INDICES_COUNT;i++) 
             if(tmpIndexArray[i] >= 0)
                 indexArray[j++] = tmpIndexArray[i];
-
+        free(tmpIndexArray);
         
         //Create VAO
         glGenVertexArraysAPPLE(1, &vertexArrayObject);
@@ -52,6 +52,7 @@
         glGenBuffers(1, &vertexBufferObject);
         glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
         glBufferData(GL_ARRAY_BUFFER,sizeof(voxelData), vertexData, GL_DYNAMIC_DRAW);
+        
         
         //Create element array
         glGenBuffers(1, &indexBufferObject);
@@ -77,6 +78,21 @@
         glUseProgram(program);
         transLocationUnif = glGetUniformLocation(program, "translation");
         modelMatrixUnif = glGetUniformLocation(program, "modelToWorldMatrix");
+        
+        fogColourUnif = glGetUniformLocation(program, "fogColour");
+        fogNearUnif = glGetUniformLocation(program, "fogNear");
+        fogFarUnif = glGetUniformLocation(program, "fogFar");
+        
+        fogColour.red = 0.5;
+        fogColour.green = 0.5;
+        fogColour.blue = 0.7;
+        
+        fogFar = size + size/3;
+        fogNear = size * 0.2;
+        
+        glUniform3f(fogColourUnif, fogColour.red,fogColour.green, fogColour.blue);
+        glUniform1f(fogFarUnif, fogFar);
+        glUniform1f(fogNearUnif, fogNear);
         glUseProgram(0);
     }
     return self;
@@ -96,6 +112,61 @@
     glFrontFace(GL_CW);
     glUseProgram(0);
     glBindVertexArrayAPPLE(0);
+}
+
+-(void)update
+{
+    fogColour.red = 0.5;
+    fogColour.green = 0.5;
+    fogColour.blue = 0.7;
+    
+    fogFar = size + size/3;
+    fogNear = size * 0.2;
+    
+    glUseProgram(program);
+    glUniform3f(fogColourUnif, fogColour.red,fogColour.green, fogColour.blue);
+    glUniform1f(fogFarUnif, fogFar);
+    glUniform1f(fogNearUnif, fogNear);
+    glUseProgram(0);
+    
+    [box release];
+    
+    int *tmpIndexArray = malloc(VOXEL_INDICES_COUNT * sizeof(long));
+    
+    memset(tmpIndexArray, -1, VOXEL_INDICES_COUNT * sizeof(int));
+    
+    //Create the sky box        
+    vec3 localOrigin;
+    localOrigin.x = 0.0;
+    localOrigin.y = 0.0;
+    localOrigin.z = 0.0;
+    
+    box =  [[OctnodeLowMem alloc]initWithTreeHeight:0
+                                           nodeSize:size
+                                              orign:&localOrigin 
+                                         dataSource:self];
+    [box updateType:BLOCK_SKY_DAY]; //Set to block sky
+    [box invertNormals];
+    [box renderElements:tmpIndexArray];
+    
+    for(int i = 0,j = 0;i < VOXEL_INDICES_COUNT;i++) 
+        if(tmpIndexArray[i] >= 0)
+            indexArray[j++] = tmpIndexArray[i];
+    free(tmpIndexArray);
+    
+    //Update the buffers on the GPU
+    glBindVertexArrayAPPLE(vertexArrayObject);
+    
+    glBufferData(GL_ARRAY_BUFFER,sizeof(voxelData), vertexData, GL_DYNAMIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER,VOXEL_INDICES_COUNT * sizeof(unsigned int), indexArray, GL_DYNAMIC_DRAW);
+    
+    glBindVertexArrayAPPLE(0);
+}
+
+-(void)setSize:(float)asize
+{
+    size = asize;
+    [self update];
 }
 
 -(voxelData *)getRenderMetaData:(int *)offset

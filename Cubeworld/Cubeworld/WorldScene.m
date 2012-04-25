@@ -117,8 +117,9 @@
 	glUseProgram(0);
     glViewport(0, 0, (GLsizei)w, (GLsizei)h);
     
-    r = [[Region alloc]initWithMatrixUnifLocation:modelToWorldMatrixUnif translationLocation:transLocationUnif program:_program];    
-    s = [[SkyBox alloc]initWithSize:96];
+    r = [[Region alloc]initWithMatrixUnifLocation:modelToWorldMatrixUnif translationLocation:transLocationUnif program:_program]; 
+    [r setRenderDistance:2];
+    s = [[SkyBox alloc]initWithSize:48];
     
     time = [[TimeCycle alloc]init];
 }
@@ -187,16 +188,20 @@
             break;
         case kVK_ANSI_1:
             [r setRenderDistance:1];
+            [s setSize:32];
             break;
         case kVK_ANSI_2:
             [r setRenderDistance:2];
+            [s setSize:48];
             break;
         case kVK_ANSI_3:
             [r setRenderDistance:3];
-            break;
-        case kVK_ANSI_4:
-            [r setRenderDistance:4];
-            break;
+            [s setSize:72];
+//            break;
+//        case kVK_ANSI_4:
+//            [r setRenderDistance:4];
+//            [s setSize:1000];
+//            break;
         default:
             break;
     }
