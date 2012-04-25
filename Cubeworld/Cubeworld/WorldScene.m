@@ -185,6 +185,18 @@
         case kVK_ANSI_Equal:
             [time increaseTime];
             break;
+        case kVK_ANSI_1:
+            [r setRenderDistance:1];
+            break;
+        case kVK_ANSI_2:
+            [r setRenderDistance:2];
+            break;
+        case kVK_ANSI_3:
+            [r setRenderDistance:3];
+            break;
+        case kVK_ANSI_4:
+            [r setRenderDistance:4];
+            break;
         default:
             break;
     }

@@ -33,6 +33,11 @@
 -(void)render
 {
     float width = 8;
+    float userX = (int)focusPoint.x % 16;
+    float userZ = (int)focusPoint.z % 16;
+    
+    offsetX = (int)focusPoint.x / 16;
+    offsetZ = (int)focusPoint.z / 16;
     
     for(float x = renderDistance; x >= -renderDistance;x--) {
         for(float z = renderDistance;z >= -renderDistance;z--) {
@@ -42,7 +47,7 @@
             glUseProgram(program);
             
             glUniformMatrix4fv(modelMatrixUnif, 1, GL_FALSE, [modelMatrix mat]);
-            glUniform3f(transLocationUnif,x*width,0,z*width);
+            glUniform3f(transLocationUnif,x*width-userX,0,z*width-userZ);
             
             [[chunkManager chunkForX:x+offsetX Z:z+offsetZ] render];
 
@@ -60,8 +65,8 @@
 
 -(void)moveX:(float)x Z:(float)z
 {
-    offsetX += x;
-    offsetZ += z;
+    focusPoint.x += x;
+    focusPoint.z += z;
 }
 
 -(float)distanceBetweenA:(vec3 *)a B:(vec3 *)b
