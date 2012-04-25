@@ -205,7 +205,7 @@
         default:
             break;
     }
-    NSLog(@"%@",[camera description]);
+//    NSLog(@"%@",[camera description]);
 }
 
 -(void)keyUp:(int)keyCode

@@ -9,6 +9,20 @@
 #import "TimeCycle.h"
 #include <OpenGL/gl.h>
 
+#define NOON 720
+#define DAWN 360
+#define SUNSET 1000
+#define NIGHT 1120
+#define DAY 480
+
+#define MAX_LIGHT_INTENSITY 0.7
+#define MAX_AMBIENT_INTENSITY 0.6
+
+#define MIN_LIGHT_INTENSITY 0.3
+#define MIN_AMBIENT_INTENSITY 0.2
+
+#define MIN_PERCENT 0.3
+
 @implementation TimeCycle
 
 -(id)init
@@ -36,7 +50,7 @@
         ambientIntensity.blue = 0.5;
         ambientIntensity.alpha = 1.0;
         
-        time = 12;
+        time = 360;
         
         [self update];
         [self render];
@@ -47,54 +61,56 @@
 -(void)update
 {
     NSLog(@"Time %f",time);
-    if(time < 6 || time > 18) { //Night time
-        lightDirecton.x = 0.0;
+    if(time < DAWN || time > NIGHT) { //Night time
+        float intensity;
+        if(time > NOON)
+            intensity = time / NOON;
+        else 
+            intensity = 1-((time - NOON)/NOON);            
+        intensity = (intensity < MIN_PERCENT) ? MIN_PERCENT : intensity;
+        
+        lightDirecton.x = 0.3;
         lightDirecton.y = 1.0;
         
-        lightIntensity.red = 0.2;
-        lightIntensity.green = 0.2;
-        lightIntensity.blue = 0.2;
+        lightIntensity.red = intensity * MIN_LIGHT_INTENSITY;
+        lightIntensity.green = intensity * MIN_LIGHT_INTENSITY;
+        lightIntensity.blue = intensity * MIN_LIGHT_INTENSITY;
+        
+        ambientIntensity.red = intensity * MIN_AMBIENT_INTENSITY;
+        ambientIntensity.green = intensity * MIN_AMBIENT_INTENSITY;
+        ambientIntensity.blue = intensity * MIN_AMBIENT_INTENSITY;
+        
+        return;
+    } else if((time > DAWN && time < DAY )|| (time > SUNSET && time < NIGHT)){ //Sun rise low light
+        lightDirecton.x = 0.3;
+        lightDirecton.y = 1.0;
+        
+        lightIntensity.red = 0.3;
+        lightIntensity.green = 0.3;
+        lightIntensity.blue = 0.3;
         
         ambientIntensity.red = 0.3;
         ambientIntensity.green = 0.3;
         ambientIntensity.blue = 0.3;
-        
         return;
-    } else if(time > 6){ //Sun rise low light
-        lightDirecton.x = 1.0;
+    } else {                                //Must be day time
+        float intensity;
+        if(time > NOON)
+            intensity = 1-((time - NOON)/NOON);
+        else 
+            intensity = time / NOON;
+        intensity = (intensity < MIN_PERCENT) ? MIN_PERCENT : intensity;
+        
+        lightDirecton.x = (intensity < MIN_PERCENT) ? MIN_PERCENT : 1 - (intensity * 1.0);
         lightDirecton.y = 1.0;
         
-        lightIntensity.red = 0.6;
-        lightIntensity.green = 0.6;
-        lightIntensity.blue = 0.9;
+        lightIntensity.red = intensity * MAX_LIGHT_INTENSITY;
+        lightIntensity.green = intensity * MAX_LIGHT_INTENSITY;
+        lightIntensity.blue = intensity * MAX_LIGHT_INTENSITY;
         
-        ambientIntensity.red = 0.5;
-        ambientIntensity.green = 0.5;
-        ambientIntensity.blue = 0.5;
-        
-        return;
-    } else if (time > 11 || time < 14) {    //Noon
-        lightDirecton.x = 1.0;
-        lightDirecton.y = 1.0;
-        
-        lightIntensity.red = 0.8;
-        lightIntensity.green = 0.8;
-        lightIntensity.blue = 0.9;
-        
-        ambientIntensity.red = 0.6;
-        ambientIntensity.green = 0.6;
-        ambientIntensity.blue = 0.6;
-    } else if(time > 14) {
-        lightDirecton.x = -1.0;
-        lightDirecton.y = 1.0;
-        
-        lightIntensity.red = 0.6;
-        lightIntensity.green = 0.6;
-        lightIntensity.blue = 0.7;
-        
-        ambientIntensity.red = 0.25;
-        ambientIntensity.green = 0.25;
-        ambientIntensity.blue = 0.25;
+        ambientIntensity.red = intensity * MAX_AMBIENT_INTENSITY;
+        ambientIntensity.green = intensity * MAX_AMBIENT_INTENSITY;
+        ambientIntensity.blue = intensity * MAX_AMBIENT_INTENSITY;
     }
 }
 
@@ -111,19 +127,19 @@
 
 -(void)increaseTime
 {
-    if(time+3 > 24)
+    if(time+30 > 1440)
         time = 0;
     else 
-        time += 3;
+        time += 30;
     [self update];
 }
 
 -(void)decreaseTime
 {
-    if(time-3 < 0)
-        time = 24;
+    if(time-30 < 0)
+        time = 1440;
     else 
-        time -= 3;
+        time -= 30;
     [self update];
 }
 @end
