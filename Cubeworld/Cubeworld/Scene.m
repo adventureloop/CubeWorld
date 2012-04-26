@@ -22,7 +22,7 @@
 
 -(void)startAnimating
 {
-    animationTimer = [NSTimer scheduledTimerWithTimeInterval:1/30 target:self selector:@selector(render) userInfo:nil repeats:YES];
+    animationTimer = [NSTimer scheduledTimerWithTimeInterval:1/20 target:self selector:@selector(render) userInfo:nil repeats:YES];
 }
 
 -(void)stopAnimating;

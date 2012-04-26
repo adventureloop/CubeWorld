@@ -42,6 +42,7 @@
 		DF974A1E14ED19EF00147274 /* Octnode.m in Sources */ = {isa = PBXBuildFile; fileRef = DF974A1D14ED19EF00147274 /* Octnode.m */; };
 		DF974A2214ED4DDF00147274 /* Chunk.m in Sources */ = {isa = PBXBuildFile; fileRef = DF974A2114ED4DDF00147274 /* Chunk.m */; };
 		DFAD6C0814E402D0002AB62A /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAD6C0714E402D0002AB62A /* Accelerate.framework */; };
+		DFD2ED441549FC90002AA40A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFD2ED431549FC90002AA40A /* QuartzCore.framework */; };
 		DFD701341524C9EF00FA78DD /* OctnodeLowMem.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD701331524C9EF00FA78DD /* OctnodeLowMem.m */; };
 		DFD701371524CA1600FA78DD /* ChunkLowMem.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD701361524CA1600FA78DD /* ChunkLowMem.m */; };
 		DFEECA911521CEED00EAD1ED /* Ambient.vsh in Sources */ = {isa = PBXBuildFile; fileRef = DFEECA901521CEED00EAD1ED /* Ambient.vsh */; };
@@ -124,6 +125,7 @@
 		DF974A2014ED4DDF00147274 /* Chunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chunk.h; sourceTree = "<group>"; };
 		DF974A2114ED4DDF00147274 /* Chunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chunk.m; sourceTree = "<group>"; };
 		DFAD6C0714E402D0002AB62A /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		DFD2ED431549FC90002AA40A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DFD701321524C9EF00FA78DD /* OctnodeLowMem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OctnodeLowMem.h; sourceTree = "<group>"; };
 		DFD701331524C9EF00FA78DD /* OctnodeLowMem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OctnodeLowMem.m; sourceTree = "<group>"; };
 		DFD701351524CA1600FA78DD /* ChunkLowMem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChunkLowMem.h; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFD2ED441549FC90002AA40A /* QuartzCore.framework in Frameworks */,
 				DF01127E14F3AD350041F25A /* Carbon.framework in Frameworks */,
 				DFAD6C0814E402D0002AB62A /* Accelerate.framework in Frameworks */,
 				DF840D9414D95EAA0022F193 /* OpenGL.framework in Frameworks */,
@@ -223,6 +226,7 @@
 		DF840D4914D95C990022F193 = {
 			isa = PBXGroup;
 			children = (
+				DFD2ED431549FC90002AA40A /* QuartzCore.framework */,
 				DF01127D14F3AD350041F25A /* Carbon.framework */,
 				DFAD6C0714E402D0002AB62A /* Accelerate.framework */,
 				DF840D9314D95EAA0022F193 /* OpenGL.framework */,

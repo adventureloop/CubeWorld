@@ -17,7 +17,6 @@
  */
 @interface ChunkManager : NSObject
 {
-    NSOperationQueue *generationQueue;
     NSMutableDictionary *chunkStore;
     Generator *generator;
     

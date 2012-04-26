@@ -28,8 +28,6 @@
 
 -(void)drawRect:(NSRect)bounds
 {
-    [scene render];
-    
     if(scene == nil) {
         scene = [[MainScene alloc]initWithBounds:[self bounds]];
         [scene startAnimating];

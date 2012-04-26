@@ -314,8 +314,6 @@
                     [desc appendFormat:@"\t<voxel x=%d y=%d z=%d>%d</voxel>\n",x,y,z,type];
             }
     }
-//    [desc appendFormat:@"</chunk>\n"];
-    
     return desc; 
 }
 
