@@ -13,8 +13,9 @@
 -(id)initWithBounds:(CGRect)newBounds
 {
     if(self = [super initWithBounds:newBounds]){
-        //loader = [[SceneLoader alloc] initWithBounds:newBounds];
+        loader = [[SceneLoader alloc] initWithBounds:newBounds];
         world = [[WorldScene alloc]initWithBounds:newBounds];
+        loaded = YES;
         [self startAnimating];
     }
     return self;
@@ -22,8 +23,10 @@
 
 -(void)render
 {
-    //[loader render];
-    [world render];
+    if(loaded)
+        [world render];
+    else
+        [loader render];
 }
 
 -(void)didResizeTo:(CGRect)newBounds
@@ -33,7 +36,10 @@
 
 -(void)keyDown:(int)keyCode
 {
-    [world keyDown:keyCode];
+    if(keyCode == kVK_Escape)
+        loaded = YES;
+    else 
+        [world keyDown:keyCode];
 }
 
 -(void)keyUp:(int)keyCode

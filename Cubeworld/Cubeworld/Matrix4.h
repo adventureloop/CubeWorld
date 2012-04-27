@@ -22,6 +22,5 @@
 
 -(void)rotateByAngle:(float) angle axisX:(float)x Y:(float)y Z:(float)z;
 
--(void)translateByFloat:(float *)vec;
 -(void)loadIndentity;
 @end

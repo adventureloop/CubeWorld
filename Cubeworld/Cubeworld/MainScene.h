@@ -15,5 +15,6 @@
 {
     WorldScene *world;
     SceneLoader *loader;
+    BOOL loaded;
 }
 @end

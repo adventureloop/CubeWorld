@@ -58,7 +58,8 @@
         
         [chunkStore setValue:res forKey:key];   
         
-        [generator performSelectorInBackground:@selector(generateChunk:) withObject:res];
+        [generator generateChunk:res];
+        //[generator performSelectorInBackground:@selector(generateChunk:) withObject:res];
     }
     
     return res;

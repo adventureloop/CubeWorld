@@ -118,7 +118,7 @@
     glViewport(0, 0, (GLsizei)w, (GLsizei)h);
     
     r = [[Region alloc]initWithMatrixUnifLocation:modelToWorldMatrixUnif translationLocation:transLocationUnif program:_program]; 
-    [r setRenderDistance:2];
+    [r setRenderDistance:1];
     s = [[SkyBox alloc]initWithSize:48];
     
     time = [[TimeCycle alloc]init];

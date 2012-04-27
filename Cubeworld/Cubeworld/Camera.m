@@ -21,11 +21,11 @@
         
         //Look at the origin
         cameraTarget.x = 0.0f;
-        cameraTarget.y = 15.0f;
+        cameraTarget.y = 28.0f;
         cameraTarget.z = 0.0f;
         
-        cameraSpherePos.x = 88.0f;
-        cameraSpherePos.y = -20.0f;
+        cameraSpherePos.x = 0.0f;
+        cameraSpherePos.y = 0.0f;
         cameraSpherePos.z = 38.0f;  //The diameter or distance to the target point.
         
         //The direction of up
@@ -59,10 +59,75 @@
 
 -(void)resolveCameraPosition
 {
-    [self bookCamera];
+    [self firstPersonCamera];
 }
 
--(void)bookCamera
+-(void)firstPersonCamera
+{    
+    //Calculate Position for the camera
+    float phi = degToRad(cameraSpherePos.x);
+    float theta = degToRad(cameraSpherePos.y + 90.0f);
+    
+    float fSinTheta = sinf(theta);
+	float fCosTheta = cosf(theta);
+	float fCosPhi = cosf(phi);
+	float fSinPhi = sinf(phi);
+    
+    vec3 camPos;    
+    vec3 lookDir;
+    vec3 upDir;
+    vec3 rightDir;
+    vec3 perpUpDir;
+    
+    camPos.x = fSinTheta * fCosPhi;
+    camPos.y = fCosTheta;
+    camPos.z = fSinTheta * fSinPhi;
+    
+    //Translate by z, this does a radial placement for the look point
+    //vecByScalarV3(&camPos, cameraSpherePos.z, &camPos);
+    
+    addV3(&camPos, &cameraTarget, &camPos);
+    
+    //Calculates the look at position
+    
+    //Calculate Look At Matrix
+    subtractV3(&camPos,&cameraTarget, &lookDir);  //Find the look direction vector and normalise
+    normalizeV3(&lookDir, &lookDir);
+    
+    normalizeV3(&upVec, &upDir);
+    
+    crossV3(&lookDir, &upDir, &rightDir);
+    normalizeV3(&rightDir, &rightDir);
+    
+    crossV3(&rightDir, &lookDir, &perpUpDir);
+    
+    vecByScalarV3(&lookDir, -1.0f, &lookDir);
+    
+    float *rotMat = calloc(16,sizeof(float));
+    matrixLoadIdentity(rotMat);
+    
+    matrixSetVectorV3M4(rotMat, &rightDir, 0);
+    matrixSetVectorV3M4(rotMat, &perpUpDir, 1);
+    matrixSetVectorV3M4(rotMat, &lookDir, 2);
+    
+    transposeMatM4(rotMat);
+    
+    float *transMat = calloc(16,sizeof(float));
+    
+    matrixLoadIdentity(transMat);
+    vecByScalarV3(&camPos, -1.0f, &camPos);
+    matrixSetVectorV3M4(transMat, &camPos, 3);
+    
+    float *mat = [lookAtMatrix mat];
+    
+    multiplyMatM4(rotMat, transMat, mat);
+    
+    //Release the vectors and matracies used in the calculation
+    free(transMat);
+    free(rotMat);
+}
+
+-(void)thirdPersonCamera
 {    
     //Calculate Position for the camera
     float phi = degToRad(cameraSpherePos.x);
@@ -90,7 +155,7 @@
     addV3(&camPos, &cameraTarget, &camPos);
     
     //Calculate Look At Matrix
-    subtractV3(&cameraTarget, &camPos, &lookDir);  
+    subtractV3(&cameraTarget,&camPos, &lookDir);  //Find the look direction vector and normalise
     normalizeV3(&lookDir, &lookDir);
     
     normalizeV3(&upVec, &upDir);
