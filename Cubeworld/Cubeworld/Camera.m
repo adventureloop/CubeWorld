@@ -21,11 +21,11 @@
         
         //Look at the origin
         cameraTarget.x = 0.0f;
-        cameraTarget.y = 28.0f;
+        cameraTarget.y = 15.0f;
         cameraTarget.z = 0.0f;
         
-        cameraSpherePos.x = 0.0f;
-        cameraSpherePos.y = 0.0f;
+        cameraSpherePos.x = 81.0f;
+        cameraSpherePos.y = -20.0f;
         cameraSpherePos.z = 38.0f;  //The diameter or distance to the target point.
         
         //The direction of up
@@ -59,7 +59,7 @@
 
 -(void)resolveCameraPosition
 {
-    [self firstPersonCamera];
+    [self thirdPersonCamera];
 }
 
 -(void)firstPersonCamera
