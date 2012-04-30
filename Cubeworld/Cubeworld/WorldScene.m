@@ -199,11 +199,12 @@
         case kVK_ANSI_3:
             [r setRenderDistance:3];
             [s setSize:72];
-//            break;
-//        case kVK_ANSI_4:
-//            [r setRenderDistance:4];
-//            [s setSize:1000];
-//            break;
+        case kVK_ANSI_T:
+            [camera setThirdPerson];
+            break;
+        case kVK_ANSI_F:
+            [camera setFirstPerson];
+            break;
         default:
             break;
     }

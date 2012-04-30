@@ -40,6 +40,8 @@
         moveSpeed = 5.0;
         angleMoveSpeed = 1.0;
         
+        [self setFirstPerson];
+        
         [self update];
     }
     return self;
@@ -59,7 +61,10 @@
 
 -(void)resolveCameraPosition
 {
-    [self thirdPersonCamera];
+    if(firstPerson)
+        [self firstPersonCamera];
+    else 
+        [self thirdPersonCamera];
 }
 
 -(void)firstPersonCamera
@@ -191,6 +196,22 @@
     //Release the vectors and matracies used in the calculation
     free(transMat);
     free(rotMat);
+}
+
+-(void)setThirdPerson
+{
+    thirdPerson = YES;
+    firstPerson = NO;
+    
+    cameraTarget.y = 15.0f;
+}
+
+-(void)setFirstPerson
+{
+    thirdPerson = NO;
+    firstPerson = YES;
+    
+    cameraTarget.y = 25.0f;
 }
 
 -(void)resolvePerspectiveForWidth:(int)width Height:(int)height

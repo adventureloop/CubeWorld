@@ -24,6 +24,9 @@
     
     float moveSpeed;
     float angleMoveSpeed;
+    
+    BOOL firstPerson;
+    BOOL thirdPerson;
 }
 
 -(void)update;
@@ -49,4 +52,7 @@
 -(void)moveCameraTargetRight;
 -(void)moveCameraTargetForward;
 -(void)moveCameraTargetBack;
+
+-(void)setThirdPerson;
+-(void)setFirstPerson;
 @end
