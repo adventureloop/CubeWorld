@@ -50,7 +50,7 @@
         ambientIntensity.blue = 0.5;
         ambientIntensity.alpha = 1.0;
         
-        time = 360;
+        time = 720;
         
         [self update];
         [self render];

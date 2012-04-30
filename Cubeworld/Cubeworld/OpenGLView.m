@@ -29,6 +29,8 @@
 -(void)drawRect:(NSRect)bounds
 {
     if(scene == nil) {
+        GLint swapInt = 1;
+        [[self openGLContext] setValues:&swapInt forParameter:NSOpenGLCPSwapInterval];
         scene = [[MainScene alloc]initWithBounds:[self bounds]];
         [scene startAnimating];
     }
