@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ChunkLowMem.h"
 #import "Generator.h"
+#import "ResourceManager.h"
 
 /*!
  * @abstract Handles management over the loading and generation of chunks.
@@ -18,6 +19,7 @@
 @interface ChunkManager : NSObject
 {
     NSMutableDictionary *chunkStore;
+    ResourceManager *resourceManager;
     Generator *generator;
     
     vec3 focusPoint;
@@ -39,5 +41,8 @@
  * how far away chunks are from the focus.
  */
 -(float)distanceBetweenA:(vec3 *)a B:(vec3 *)b;
-+(ChunkManager *)sharedChunkManagerWithSeed:(NSString *)seed;
+
+-(void)storeAllChunks;
+-(id)initWithSeed:(NSString *)seed worldName:(NSString *)worldName;
++(ChunkManager *)sharedChunkManagerWithSeed:(NSString *)seed worldName:(NSString *)worldName;
 @end

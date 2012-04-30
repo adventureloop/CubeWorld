@@ -9,13 +9,12 @@
 #import "ResourceManager.h"
 
 @implementation ResourceManager
-
-static ResourceManager *sharedManager;
-
 -(id)init
 {
     if(self = [super init]){
         programs = [[NSMutableDictionary alloc]init];
+        path = @"/Users/jones/cubeworld/";
+        world = @"World";
     }
     return self;
 }
@@ -28,6 +27,86 @@ static ResourceManager *sharedManager;
         if (!shared)
             shared = [[ResourceManager alloc] init];
         return shared;
+    }
+}
+
+-(void)storeChunk:(ChunkLowMem *)chunk
+{
+    vec3 *chunkLocation = [chunk chunkLocation];
+    NSString *chunkName = [NSString stringWithFormat:@"x%fz%f",chunkLocation->x,chunkLocation->z];
+
+    NSData *data = [[chunk description] dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    
+    if([data writeToFile:[NSString stringWithFormat:@"%@%@/%@",path,world,chunkName] options:NSDataWritingAtomic error:&error])
+        NSLog(@"Wrote chunk %@ to disk",chunkName);
+    else 
+        NSLog(@"Error %@",[error description]);
+    
+}
+
+-(ChunkLowMem *)getChunkForXZ:(NSString *)chunk
+{
+    NSURL *chunkData = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/%@",path,world,chunk]];
+    if(parser == nil)
+        parser = [[NSXMLParser alloc]initWithContentsOfURL:chunkData];
+    else {
+        NSLog(@"Already parsing gonna block");
+        return nil;
+    }
+    
+    if(parser == nil)
+        return nil;
+    
+    [parser setDelegate:self];
+    [parser parse];
+    
+    [parser release];
+    parser = nil;
+    return result;
+}
+
+-(BOOL)chunkExistsForString:(NSString *)chunk
+{
+    NSString *chunkName =[NSString stringWithFormat:@"%@%@/%@",path,world,chunk];
+    
+    return [[NSFileManager defaultManager] fileExistsAtPath:chunkName];
+}
+
+#pragma mark Handle XML data loading
+-(void)parser:(NSXMLParser *)parser 
+didStartElement:(NSString *)elementName 
+ namespaceURI:(NSString *)namespaceURI 
+qualifiedName:(NSString *)qName 
+   attributes:(NSDictionary *)attributeDict
+{
+    NSLog(@"Name %@",elementName);
+    if([elementName isEqualToString:@"chunk"]) {
+        result = [[ChunkLowMem alloc]init];
+        return;
+    }
+    
+    if([elementName isEqualToString:@"voxel"] && result != nil) {
+        int type;
+        float x,y,z;
+        type = [[attributeDict valueForKey:@"type"] intValue];
+        x = [[attributeDict valueForKey:@"x"] floatValue];
+        y = [[attributeDict valueForKey:@"y"] floatValue];
+        z = [[attributeDict valueForKey:@"z"] floatValue];
+        
+        [result updateBlockType:type forX:x Y:y Z:z];
+    }
+}
+
+-(void)parser:(NSXMLParser *)parser 
+didEndElement:(NSString *)elementName 
+ namespaceURI:(NSString *)namespaceURI 
+qualifiedName:(NSString *)qName
+{
+    if([elementName isEqualToString:@"chunk"]) {
+        [result setReadyToRender:YES];
+        NSLog(@"Finished chunk");
+        return;
     }
 }
 

@@ -47,11 +47,6 @@
     //Draw the world region
     [r render];
     [s render];
-//    
-//    //Draw a camera indicator, though it doesnt look right to me.
-//    glUseProgram(_program);
-//    glUniform3f(transLocationUnif,0,0,0);
-//    [cameraPosition render];
     
 	glUseProgram(0);
     glSwapAPPLE();

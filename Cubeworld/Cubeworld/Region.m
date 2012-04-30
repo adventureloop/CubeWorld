@@ -15,7 +15,7 @@
 -(id)initWithMatrixUnifLocation:(GLuint)unifLocation translationLocation:(GLuint)transLoc program:(GLuint)programLocation
 {
     if(self = [super init]) {
-        chunkManager = [ChunkManager sharedChunkManagerWithSeed:@"adventureloop"];
+        chunkManager = [ChunkManager sharedChunkManagerWithSeed:@"adventureloop" worldName:@"nil"];
         modelMatrix = [MatrixStack sharedMatrixStack];
         
         resourceManager = [ResourceManager sharedResourceManager];

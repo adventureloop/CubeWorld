@@ -13,9 +13,10 @@
 -(id)initWithBounds:(CGRect)newBounds
 {
     if(self = [super initWithBounds:newBounds]) {
-        chunkManager = [ChunkManager sharedChunkManagerWithSeed:@"adventureloop"];
+        chunkManager = [ChunkManager sharedChunkManagerWithSeed:@"adventureloop" worldName:@"New World"];
         resourceManager = [ResourceManager sharedResourceManager];
         
+        //[resourceManager storeChunk:[chunkManager chunkForX:1 Z:1] forWorld:@"World"];
         [self setupOpenGL];
     }
     return self;
@@ -83,8 +84,7 @@
     
     glSwapAPPLE();
     
-    float renderDistance = 3;
-    float width = 8;
+    float renderDistance = 1;
     
     for(float x = renderDistance; x >= -renderDistance;x--) {
         for(float z = renderDistance;z >= -renderDistance;z--) {

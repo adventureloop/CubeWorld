@@ -48,6 +48,5 @@
     
     Region *r;
     SkyBox *s;
-    
 }
 @end

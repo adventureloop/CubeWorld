@@ -27,5 +27,7 @@
     
     face *outlineBox;
     face *progressBox;
+    
+    ChunkLowMem *tmp;
 }
 @end

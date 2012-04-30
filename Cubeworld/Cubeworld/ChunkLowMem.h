@@ -144,5 +144,7 @@
  * @discussion Returns the chunks index location in world space.
  */
 -(vec3 *)chunkLocation;
+
+-(NSString *)voxelMetaData;
 @property BOOL readyToRender;
 @end

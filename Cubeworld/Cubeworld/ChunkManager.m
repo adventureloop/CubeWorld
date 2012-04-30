@@ -8,11 +8,12 @@
 #import "ChunkManager.h"
 
 @implementation ChunkManager
--(id)initWithSeed:(NSString *)seed
+-(id)initWithSeed:(NSString *)seed worldName:(NSString *)worldName
 {
     if(self = [super init]) {
-        chunkStore = [[NSMutableDictionary alloc]init];
         generator = [[Generator alloc]initWithSeed:seed];
+        resourceManager = [ResourceManager sharedResourceManager];
+        chunkStore = [[NSMutableDictionary alloc]init];
         
         focusPoint.x = 0;
         focusPoint.z = 0;
@@ -21,13 +22,13 @@
     return self;
 }
 
-+(ChunkManager *)sharedChunkManagerWithSeed:(NSString *)seed
++(ChunkManager *)sharedChunkManagerWithSeed:(NSString *)seed worldName:(NSString *)worldName
 {
     static ChunkManager *shared;
     @synchronized(self)
     {
         if (!shared)
-            shared = [[ChunkManager alloc] initWithSeed:seed];
+            shared = [[ChunkManager alloc] initWithSeed:(NSString *)seed worldName:(NSString *)worldName];
         return shared;
     }
 }
@@ -41,16 +42,24 @@
         
         for(id key in chunkStore) {
             ChunkLowMem *c = [chunkStore objectForKey:key];
-            if([self distanceBetweenA:&focusPoint B:[c chunkLocation]] > 2)
+            if([self distanceBetweenA:&focusPoint B:[c chunkLocation]] > 2) {
                 [removeList addObject:key];
+                [resourceManager storeChunk:c];
+            }
         }
         
-        for(id key in removeList)
+        for(id key in removeList) 
             [chunkStore removeObjectForKey:key];
     }
     
-    NSString *key = [NSString stringWithFormat:@"x:%f z:%f",x,z];
-    ChunkLowMem *res = [chunkStore objectForKey:key];
+    NSString *key = [NSString stringWithFormat:@"x%fz%f",x,z];
+    ChunkLowMem *res;
+    res = [chunkStore objectForKey:key];
+    
+    if(res == nil && [resourceManager chunkExistsForString:key]) {
+        NSLog(@"Getting chunk from disk");
+        res = [resourceManager getChunkForXZ:key];
+    }
     
     if(res == nil) {
         res = [[ChunkLowMem alloc]init];
@@ -62,6 +71,13 @@
         //[generator performSelectorInBackground:@selector(generateChunk:) withObject:res];
     }
     return res;
+}
+
+-(void)storeAllChunks
+{
+    NSLog(@"Saving all active chunks");
+    for(id key in chunkStore)
+        [resourceManager storeChunk:[chunkStore objectForKey:key]];
 }
 
 -(void)setFocusPoint:(vec3 *)point

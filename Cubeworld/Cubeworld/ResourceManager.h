@@ -12,16 +12,20 @@
 
 #define MAX_PROGRAMS 16
 
-@interface ResourceManager : NSObject
+@interface ResourceManager : NSObject <NSXMLParserDelegate>
 {
     NSMutableDictionary *programs;
+    NSString *path;
+    NSString *world;
+    NSXMLParser *parser;
 
+    ChunkLowMem *result;
 }
-
-//-(BOOL)chunkExistsFor:(float)x Z:(float)z;
-//-(ChunkLowMem *)loadChunkForX:(float)x Z:(float)z;
-
 -(GLuint)loadShaders:(NSString *)name;
 -(GLuint)getProgramLocation:(NSString *)name;
 +(ResourceManager *)sharedResourceManager;
+
+-(void)storeChunk:(ChunkLowMem *)chunk;
+-(ChunkLowMem *)getChunkForXZ:(NSString *)chunk;
+-(BOOL)chunkExistsForString:(NSString *)chunk;
 @end
