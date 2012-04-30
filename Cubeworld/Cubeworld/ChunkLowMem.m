@@ -112,7 +112,7 @@
 {
     if(!readyToRender)
         return;
-    
+
     if(needsUpdate) {
         [self update];
         needsUpdate = NO;
@@ -128,6 +128,8 @@
 
 -(void)update
 {
+    NSLog(@"Updating chunk (%f,%f)",chunkLocation.x,chunkLocation.z);
+    
     unsigned int numVoxels = trees * ((int)pow(8, treeHeight));
     unsigned int numElements = numVoxels * VOXEL_INDICES_COUNT;
     int offset = ((int)pow(8.0, treeHeight));
@@ -159,7 +161,7 @@
     glBindVertexArrayAPPLE(vertexArrayObject);
     
     glBufferData(GL_ARRAY_BUFFER,voxelCounter * sizeof(voxelData), vertexData, GL_DYNAMIC_DRAW);
-    glBufferSubData(GL_ELEMENT_ARRAY_BUFFER,0, numElements * sizeof(unsigned int), indexArray);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, numElements * sizeof(unsigned int), indexArray, GL_DYNAMIC_DRAW);
     
     glBindVertexArrayAPPLE(0);
 }

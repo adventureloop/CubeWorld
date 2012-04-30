@@ -16,6 +16,8 @@
 {
 }
 
+-(id)initWithSeed:(NSString *)seed;
+
 /*!
  * @discussion Returns the generated chunk for given x and z.
  */

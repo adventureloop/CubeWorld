@@ -16,7 +16,18 @@
 -(id)init
 {
     if(self = [super init]) {
-        //srandom(time(NULL));
+        srandom(time(NULL));
+    }
+    return self;
+}
+
+-(id)initWithSeed:(NSString *)seed
+{
+    if(self = [super init]) {
+        if([seed length] < 1)
+            srandom(time(NULL));
+        else 
+            srandom([seed hash]);
     }
     return self;
 }
@@ -44,9 +55,7 @@
         [self desertBiomeChunk:chunk ForX:cx Z:cz];
     else 
         [self grasslandBiomeChunk:chunk ForX:cx Z:cz];
-    
-    // mark ready to render
-    //[chunk update];
+
     [chunk setReadyToRender:YES];
 }
 
@@ -91,7 +100,7 @@
                     [ chunk updateBlockType:BLOCK_GRASS forX:x-1 Y:y Z:z-1];
             }
         }
-        [chunk setReadyToRender:YES];
+    [chunk setReadyToRender:YES];
 }
 
 -(void)forestBiomeChunk:(ChunkLowMem *)chunk ForX:(float)cx Z:(float)cz
@@ -107,7 +116,7 @@
         for(int z = 1; z < 17;z++)
             if(heightMap[x][z] > 50  && (x%(6 + rand()%5)) == 0)
                 [self addTreeToChunk: chunk forX:x Y:heightMap[x][z] Z:z];
-        [chunk setReadyToRender:YES];
+    [chunk setReadyToRender:YES];
 }
 
 -(void)grasslandBiomeChunk:(ChunkLowMem *)chunk ForX:(float)cx Z:(float)cz
@@ -156,7 +165,7 @@
         for(int z = 1; z < 17;z++)
             if(heightMap[x][z] > 50  && (x%(6 + rand()%10)) == 0)
                 [self addTreeToChunk: chunk forX:x Y:heightMap[x][z] Z:z];
-        [chunk setReadyToRender:YES];
+    [chunk setReadyToRender:YES];
 }
 
 -(void)desertBiomeChunk:(ChunkLowMem *)chunk ForX:(float)cx Z:(float)cz
@@ -196,7 +205,7 @@
                     [ chunk updateBlockType:BLOCK_SAND forX:x-1 Y:y Z:z-1];
             }
         }
-        [chunk setReadyToRender:YES];
+    [chunk setReadyToRender:YES];
 }
 
 -(void)tundraBiomeChunk:(ChunkLowMem *)chunk ForX:(float)cx Z:(float)cz
@@ -236,7 +245,7 @@
                     [ chunk updateBlockType:BLOCK_SNOW forX:x-1 Y:y Z:z-1];
             }
         }
-        [chunk setReadyToRender:YES];
+    [chunk setReadyToRender:YES];
 }
 
 -(void)taigaBiomeChunk:(ChunkLowMem *)chunk ForX:(float)cx Z:(float)cz
@@ -281,7 +290,7 @@
         for(int z = 1; z < 17;z++)
             if(heightMap[x][z] > 50  && (x%(4 + rand()%2)) == 0)
                 [self addTreeToChunk: chunk forX:x Y:heightMap[x][z] Z:z];
-        [chunk setReadyToRender:YES];
+    [chunk setReadyToRender:YES];
 }
 
 

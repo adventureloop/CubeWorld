@@ -8,11 +8,11 @@
 #import "ChunkManager.h"
 
 @implementation ChunkManager
--(id)init
+-(id)initWithSeed:(NSString *)seed
 {
     if(self = [super init]) {
         chunkStore = [[NSMutableDictionary alloc]init];
-        generator = [[Generator alloc]init];
+        generator = [[Generator alloc]initWithSeed:seed];
         
         focusPoint.x = 0;
         focusPoint.z = 0;
@@ -21,13 +21,13 @@
     return self;
 }
 
-+(ChunkManager *)sharedChunkManager
++(ChunkManager *)sharedChunkManagerWithSeed:(NSString *)seed
 {
     static ChunkManager *shared;
     @synchronized(self)
     {
         if (!shared)
-            shared = [[ChunkManager alloc] init];
+            shared = [[ChunkManager alloc] initWithSeed:seed];
         return shared;
     }
 }
@@ -61,7 +61,6 @@
         [generator generateChunk:res];
         //[generator performSelectorInBackground:@selector(generateChunk:) withObject:res];
     }
-    
     return res;
 }
 

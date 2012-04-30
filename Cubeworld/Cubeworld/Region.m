@@ -15,7 +15,7 @@
 -(id)initWithMatrixUnifLocation:(GLuint)unifLocation translationLocation:(GLuint)transLoc program:(GLuint)programLocation
 {
     if(self = [super init]) {
-        chunkManager = [ChunkManager sharedChunkManager];
+        chunkManager = [ChunkManager sharedChunkManagerWithSeed:@"adventureloop"];
         modelMatrix = [MatrixStack sharedMatrixStack];
         
         resourceManager = [ResourceManager sharedResourceManager];
@@ -25,7 +25,7 @@
         transLocationUnif = glGetUniformLocation(program, "translation");
         
         offsetX = offsetZ = 0;
-        renderDistance = 2;
+        renderDistance = 1;
     }
     return self;
 }
@@ -46,21 +46,9 @@
             
             glUseProgram(program);
             
-            
-//            vec3 trans;
-//            trans.x = 8;
-//            trans.z = 8;
-//            trans.y = 0;
-//            [modelMatrix push];
-//            [modelMatrix translateByVec3:&focusPoint];
-//            glUniformMatrix4fv(modelMatrixUnif, 1, GL_FALSE, [modelMatrix mat]);
-           // glUniform3f(transLocationUnif,0,0,0);
-            
             glUniform3f(transLocationUnif,x*width-userX,0,z*width-userZ);
             
             [[chunkManager chunkForX:x+offsetX Z:z+offsetZ] render];
-
-            [modelMatrix pop];
             
             glUseProgram(0);
         }
