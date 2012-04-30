@@ -21,7 +21,7 @@
 #define MIN_LIGHT_INTENSITY 0.3
 #define MIN_AMBIENT_INTENSITY 0.2
 
-#define MIN_PERCENT 0.3
+#define MIN_PERCENT 0.2
 
 @implementation TimeCycle
 
