@@ -200,6 +200,9 @@
         case kVK_ANSI_F:
             [camera setFirstPerson];
             break;
+        case kVK_ANSI_0:
+            [r serialize];
+            break;
         default:
             break;
     }

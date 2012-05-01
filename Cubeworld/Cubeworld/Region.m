@@ -72,4 +72,9 @@
 {
     return sqrtf(powf((a->x - b->x),2) + powf((a->z - b->z), 2));
 }
+
+-(void)serialize
+{
+    [chunkManager storeAllChunks];
+}
 @end

@@ -87,13 +87,13 @@ didStartElement:(NSString *)elementName
 qualifiedName:(NSString *)qName 
    attributes:(NSDictionary *)attributeDict
 {
-    NSLog(@"Name %@",elementName);
     if([elementName isEqualToString:@"chunk"]) {
         result = [[[ChunkLowMem alloc]init] autorelease];
         return;
     }
     
     if([elementName isEqualToString:@"voxel"] && result != nil) {
+       // NSLog(@"Started Voxel");
         int type;
         float x,y,z;
         type = [[attributeDict valueForKey:@"type"] intValue];
@@ -115,6 +115,9 @@ qualifiedName:(NSString *)qName
         NSLog(@"Finished chunk");
         return;
     }
+//    
+//    if([elementName isEqualToString:@"voxel"])
+//      //  NSLog(@"Finised Voxel");
 }
 
 -(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError

@@ -60,4 +60,6 @@
  * @discussion Moves the focus position by x and z offset values.
  */
 -(void)moveX:(float)x Z:(float)z;
+
+-(void)serialize;
 @end
