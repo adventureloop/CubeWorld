@@ -13,8 +13,8 @@
 {
     if(self = [super init]){
         programs = [[NSMutableDictionary alloc]init];
-        path = @"/Users/jones/cubeworld/";
-        world = @"World";
+        path = @"Users/jones/cubeworld/World/";
+        
     }
     return self;
 }
@@ -38,7 +38,7 @@
     NSData *data = [[chunk description] dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error;
     
-    if([data writeToFile:[NSString stringWithFormat:@"%@%@/%@",path,world,chunkName] options:NSDataWritingAtomic error:&error])
+    if([data writeToFile:[NSString stringWithFormat:@"/%@%@",path,chunkName] options:NSDataWritingAtomic error:&error])
         NSLog(@"Wrote chunk %@ to disk",chunkName);
     else 
         NSLog(@"Error %@",[error description]);
@@ -47,29 +47,36 @@
 
 -(ChunkLowMem *)getChunkForXZ:(NSString *)chunk
 {
-    NSURL *chunkData = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/%@",path,world,chunk]];
-    if(parser == nil)
-        parser = [[NSXMLParser alloc]initWithContentsOfURL:chunkData];
-    else {
-        NSLog(@"Already parsing gonna block");
-        return nil;
-    }
+    NSError *error;
+    NSURL *url = [[NSURL alloc]initWithString:[NSString stringWithFormat:@"file://%@/%@",path,chunk]];
+    
+    NSData *data = [[NSData alloc]initWithContentsOfFile:[NSString stringWithFormat:@"/%@/%@",path,chunk] 
+                                                 options:NSDataReadingUncached 
+                                                   error:&error];
+    if(error != nil)
+        ;
     
     if(parser == nil)
-        return nil;
+        parser = [[NSXMLParser alloc]initWithData:data];
     
     [parser setDelegate:self];
+    [parser setShouldProcessNamespaces:NO];
+    [parser setShouldReportNamespacePrefixes:NO];
+    [parser setShouldResolveExternalEntities:NO];
+    
     [parser parse];
     
     [parser release];
     parser = nil;
+    
+    if(result == nil)
+        NSLog(@"Failed to load chunk");
     return result;
 }
 
 -(BOOL)chunkExistsForString:(NSString *)chunk
 {
-    NSString *chunkName =[NSString stringWithFormat:@"%@%@/%@",path,world,chunk];
-    
+    NSString *chunkName =[NSString stringWithFormat:@"/%@/%@",path,chunk];
     return [[NSFileManager defaultManager] fileExistsAtPath:chunkName];
 }
 
@@ -82,7 +89,7 @@ qualifiedName:(NSString *)qName
 {
     NSLog(@"Name %@",elementName);
     if([elementName isEqualToString:@"chunk"]) {
-        result = [[ChunkLowMem alloc]init];
+        result = [[[ChunkLowMem alloc]init] autorelease];
         return;
     }
     
@@ -91,7 +98,7 @@ qualifiedName:(NSString *)qName
         float x,y,z;
         type = [[attributeDict valueForKey:@"type"] intValue];
         x = [[attributeDict valueForKey:@"x"] floatValue];
-        y = [[attributeDict valueForKey:@"y"] floatValue];
+        y = [[attributeDict valueForKey:@"y"] floatValue]; 
         z = [[attributeDict valueForKey:@"z"] floatValue];
         
         [result updateBlockType:type forX:x Y:y Z:z];
@@ -108,6 +115,21 @@ qualifiedName:(NSString *)qName
         NSLog(@"Finished chunk");
         return;
     }
+}
+
+-(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
+{
+    NSLog(@"Error %@",[parseError description]);
+}
+
+-(void)parserDidStartDocument:(NSXMLParser *)parser
+{
+    NSLog(@"Started document");
+}
+
+-(void)parserDidEndDocument:(NSXMLParser *)parser
+{
+    NSLog(@"Ended document");
 }
 
 -(GLuint)getProgramLocation:(NSString *)name

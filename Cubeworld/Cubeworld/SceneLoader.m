@@ -16,7 +16,7 @@
         chunkManager = [ChunkManager sharedChunkManagerWithSeed:@"adventureloop" worldName:@"New World"];
         resourceManager = [ResourceManager sharedResourceManager];
         
-        //[resourceManager storeChunk:[chunkManager chunkForX:1 Z:1] forWorld:@"World"];
+       // [resourceManager storeChunk:[chunkManager chunkForX:1 Z:1]];
         [self setupOpenGL];
     }
     return self;

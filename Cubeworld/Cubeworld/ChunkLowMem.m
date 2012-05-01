@@ -308,7 +308,7 @@
 {
     NSMutableString *desc = [[[NSMutableString alloc]init] autorelease];//
     
-    [desc appendFormat:@"<chunk x='%f' z='%f'>\n",chunkLocation.x,chunkLocation.z];
+    [desc appendFormat:@"<chunk x=\"%f\" z=\"%f\">\n",chunkLocation.x,chunkLocation.z];
 
     [desc appendFormat:[self voxelMetaData]];
     
@@ -325,7 +325,7 @@
             for(int y = 0;y < 127;y++) {
                 int type = [self blockTypeForX:x Y:y Z:z];
                 if(type != BLOCK_AIR)
-                    [desc appendFormat:@"\t<voxel x=%d y=%d z=%d type=%d></voxel>\n",x,y,z,type];
+                    [desc appendFormat:@"\t<voxel x=\"%d\" y=\"%d\" z=\"%d\" type=\"%d\"></voxel>\n",x,y,z,type];
             }
     }
     return desc; 
