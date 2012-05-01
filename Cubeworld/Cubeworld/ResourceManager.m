@@ -33,7 +33,7 @@
 -(void)storeChunk:(ChunkLowMem *)chunk
 {
     vec3 *chunkLocation = [chunk chunkLocation];
-    NSString *chunkName = [NSString stringWithFormat:@"x%fz%f",chunkLocation->x,chunkLocation->z];
+    NSString *chunkName = [NSString stringWithFormat:@"x%dz%d",(int)chunkLocation->x,(int)chunkLocation->z];
 
     NSData *data = [[chunk description] dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error;
@@ -48,14 +48,9 @@
 -(ChunkLowMem *)getChunkForXZ:(NSString *)chunk
 {
     NSError *error;
-    NSURL *url = [[NSURL alloc]initWithString:[NSString stringWithFormat:@"file://%@/%@",path,chunk]];
-    
     NSData *data = [[NSData alloc]initWithContentsOfFile:[NSString stringWithFormat:@"/%@/%@",path,chunk] 
                                                  options:NSDataReadingUncached 
                                                    error:&error];
-    if(error != nil)
-        ;
-    
     if(parser == nil)
         parser = [[NSXMLParser alloc]initWithData:data];
     

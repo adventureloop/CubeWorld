@@ -52,7 +52,7 @@
             [chunkStore removeObjectForKey:key];
     }
     
-    NSString *key = [NSString stringWithFormat:@"x%fz%f",x,z];
+    NSString *key = [NSString stringWithFormat:@"x%dz%d",(int)x,(int)z];
     ChunkLowMem *res;
     res = [chunkStore objectForKey:key];
     
