@@ -59,6 +59,10 @@
     if(res == nil && [resourceManager chunkExistsForString:key]) {
         NSLog(@"Getting chunk from disk");
         res = [resourceManager getChunkForXZ:key];
+        
+        [chunkStore setValue:res forKey:key];   
+        
+        [res setChunkLocationForX:x Z:z];
     }
     
     if(res == nil) {
