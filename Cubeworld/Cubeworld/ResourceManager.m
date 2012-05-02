@@ -13,8 +13,10 @@
 {
     if(self = [super init]){
         programs = [[NSMutableDictionary alloc]init];
-        path = @"Users/jones/cubeworld/World/";
+        meshes = [[NSMutableDictionary alloc]init];
         
+        path = @"Users/jones/cubeworld/World/";
+        resourcepath = @"Users/jones/cubeworld/World/";        
     }
     return self;
 }
@@ -45,10 +47,35 @@
     
 }
 
+#pragma mark get Chunk
 -(ChunkLowMem *)getChunkForXZ:(NSString *)chunk
+{  
+    [self parseFileForString:[NSString stringWithFormat:@"/%@/%@",path,chunk]];
+    
+    if(result == nil)
+        NSLog(@"Failed to load chunk");
+    return result;
+}
+
+#pragma mark Get mesh for entity
+-(RenderEntity *)renderEntityForString:(NSString *)name
 {
+    result = [meshes valueForKey:name];
+    
+    if(result == nil) 
+        [self parseFileForString:[NSString stringWithFormat:@"/%@/%@",resourcepath,name]];
+    if(result != nil)
+        return result;
+    else
+        return nil;
+}
+
+-(void)parseFileForString:(NSString *)filePath
+{
+    if(![self fileExistsForString:filePath])
+        return;
     NSError *error;
-    NSData *data = [[NSData alloc]initWithContentsOfFile:[NSString stringWithFormat:@"/%@/%@",path,chunk] 
+    NSData *data = [[NSData alloc]initWithContentsOfFile:filePath
                                                  options:NSDataReadingUncached 
                                                    error:&error];
     if(parser == nil)
@@ -63,10 +90,11 @@
     
     [parser release];
     parser = nil;
-    
-    if(result == nil)
-        NSLog(@"Failed to load chunk");
-    return result;
+}
+
+-(BOOL)fileExistsForString:(NSString *)file
+{
+    return [[NSFileManager defaultManager] fileExistsAtPath:file];
 }
 
 -(BOOL)chunkExistsForString:(NSString *)chunk
@@ -84,6 +112,11 @@ qualifiedName:(NSString *)qName
 {
     if([elementName isEqualToString:@"chunk"]) {
         result = [[[ChunkLowMem alloc]init] autorelease];
+        return;
+    }
+    
+    if([elementName isEqualToString:@"entity"]) {
+        result = [[[RenderEntity alloc]init] autorelease];
         return;
     }
     
@@ -110,9 +143,6 @@ qualifiedName:(NSString *)qName
         NSLog(@"Finished chunk");
         return;
     }
-//    
-//    if([elementName isEqualToString:@"voxel"])
-//      //  NSLog(@"Finised Voxel");
 }
 
 -(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
@@ -129,6 +159,8 @@ qualifiedName:(NSString *)qName
 {
     NSLog(@"Ended document");
 }
+
+#pragma mark Get program location
 
 -(GLuint)getProgramLocation:(NSString *)name
 {

@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "OctnodeLowMem.h"
-#import "ResourceManager.h"
 
 /*!
  * @abstract Handles rendering and storage of the mesh for an Entity
@@ -16,7 +15,6 @@
 @interface RenderEntity : NSObject
 {
     GLuint program;
-    ResourceManager *resourceManager;
     
     GLuint vertexBufferObject;
     GLuint vertexArrayObject;

@@ -9,6 +9,8 @@
 #import "RenderEntity.h"
 #import "BlockTypes.h"
 
+#import <OpenGL/gl.h>
+
 @implementation RenderEntity
 
 
