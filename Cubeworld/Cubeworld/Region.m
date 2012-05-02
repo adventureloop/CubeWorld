@@ -42,6 +42,8 @@
     for(float x = renderDistance; x >= -renderDistance;x--) {
         for(float z = renderDistance;z >= -renderDistance;z--) {
             
+            if([self distanceBetweenAX:0 AZ:0 BX:x BZ:z] > renderDistance+0.5)
+                continue;
             glUseProgram(program);
             
             glUniform3f(transLocationUnif,x*width-userX,0,z*width-userZ);
@@ -66,9 +68,9 @@
     focusPoint.z += z;
 }
 
--(float)distanceBetweenA:(vec3 *)a B:(vec3 *)b
+-(float)distanceBetweenAX:(float)ax AZ:(float)az BX:(float)bx BZ:(float)bz
 {
-    return sqrtf(powf((a->x - b->x),2) + powf((a->z - b->z), 2));
+    return sqrtf(powf((ax - bx),2) + powf((az - bz), 2));
 }
 
 -(void)serialize

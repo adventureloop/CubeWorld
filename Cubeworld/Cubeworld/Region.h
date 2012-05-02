@@ -62,4 +62,6 @@
 -(void)moveX:(float)x Z:(float)z;
 
 -(void)serialize;
+
+-(float)distanceBetweenAX:(float)ax AZ:(float)az BX:(float)bx BZ:(float)bz;
 @end
