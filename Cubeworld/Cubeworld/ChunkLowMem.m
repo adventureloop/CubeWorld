@@ -10,7 +10,6 @@
 #import <OpenGL/gl.h>
 #import "BlockTypes.h"
 
-
 #define ALLOC_SIZE 128
 #define INIT_ALLOC_SIZE 512
 

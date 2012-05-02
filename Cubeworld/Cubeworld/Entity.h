@@ -7,30 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OctnodeLowMem.h"
+#import "ResourceManager.h"
+#import "RenderEntity.h"
 
 /*!
- * @abstract Handles the Management of the data required to draw an Entity
+ * @abstract Handles the Management an Entities logic
  */
 @interface Entity : NSObject
 {
+    GLuint program;
+    ResourceManager *resourceManager;
+    
+    GLuint transLocationUnif;
+    
+    RenderEntity *renderEntity;
 }
 
-/*!
- * @abstract Memory management for voxelData Structures.
- * @discussion This method provides an initial meta data management for the
- * rendering system. This method returns a pointer to a valid voxelData struct
- * and fills the offset index. The offest index represents where in the giant 
- * array of memory the voxel data struct is. This is used in elemented render
- * by the octree.
- */
--(voxelData *)getRenderMetaData:(int *)offset;
-
-/*!
- * @discussion Whenever a voxel needs to change the data around it, the voxels
- * data struct needs to be updated. The previously provided pointer can become]
- * invalid in a realloc.
- */
--(voxelData *)updateRenderMetaData:(int)offset;
-
+-(void)updateWithDelta:(NSTimeInterval)delta;
+-(void)render;
+-(BOOL)collidesWithPoint:(vec3 *)point;
 @end
