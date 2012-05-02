@@ -11,8 +11,19 @@
 
 @implementation TreeEntity
 
+-(id)initWithChunk:(ChunkLowMem *)achunk
+{
+    if(self = [super initWithChunk:achunk])
+        grown = NO;
+    return self;
+}
+
 -(void)updateWithDelta:(NSTimeInterval)delta
 {
+    if(!grown) {
+        [self grow];
+        grown = YES;
+    }
 
 }
 
