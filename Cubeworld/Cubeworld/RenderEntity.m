@@ -27,8 +27,6 @@
         //this gives the x and z widths of the chunk
         entityWidth = pow(pow(8,treeHeight),1.0/3.0);
         
-        nodes = [[NSMutableArray alloc]initWithCapacity:8];
-        
         maxVoxels = INIT_ALLOC_SIZE;
         unsigned int numElements = trees * ((int)pow(8, treeHeight)) * VOXEL_INDICES_COUNT;
         
@@ -40,28 +38,18 @@
         memset(tmpIndexArray, -1, numElements * sizeof(int));
         
         nodeSize = 16.0;
-        int offset = ((int)pow(8.0, treeHeight));
         
         vec3 localOrigin;
         localOrigin.x = 0.0;
         localOrigin.y = 0.0;
         localOrigin.z = 0.0;
         
-        for(int i = 0;i < trees;i++) {
-            localOrigin.y = (i * nodeSize) + (nodeSize/2);
-            
-            int memOffset = i * offset;
-            int indexOffset = memOffset * VOXEL_INDICES_COUNT;
-            
-            OctnodeLowMem *tmp = [[OctnodeLowMem alloc]initWithTreeHeight:treeHeight 
-                                                                 nodeSize:nodeSize 
-                                                                    orign:&localOrigin 
-                                                               dataSource:self];
-            [tmp renderElements:tmpIndexArray+indexOffset];
-            [nodes addObject:tmp];
-            
-            [tmp release];
-        }
+        node = [[OctnodeLowMem alloc]initWithTreeHeight:treeHeight 
+                                                             nodeSize:nodeSize 
+                                                                orign:&localOrigin 
+                                                           dataSource:self];
+        [node renderElements:tmpIndexArray];
+        
         
         for(int i = 0,j = 0;i < numElements;i++) 
             if(tmpIndexArray[i] >= 0)
@@ -143,16 +131,12 @@
         return;
     if(z > entityWidth || z < 0)
         return;
-    if(y > (entityWidth * trees) || y < 0)
-        return;
-    
-    int node = (int)y / (int)entityWidth;
-    if(node > [nodes count]-1)
+    if(y > entityWidth || y < 0)
         return;
     
     y = (int)y % (int)entityWidth;
     
-    vec3 *origin = [[nodes objectAtIndex:node] origin];
+    vec3 *origin = [node origin];
     
     float voxelSize = (nodeSize /entityWidth);
     float shift = 0.5 *entityWidth * voxelSize;
@@ -175,13 +159,8 @@
     vec3 point;
     [self point:&point forX:x Y:y Z:z];
     
-    for(OctnodeLowMem *n in nodes)
-        if([n collidesWithPoint:&point]) {
-            [n updatePoint:&point withBlockType:type];
-            needsUpdate = YES;
-            break;
-        }
-    
+    if([node collidesWithPoint:&point]) 
+        [node updatePoint:&point withBlockType:type];
 }
 
 -(int)blockTypeForX:(float)x Y:(float)y Z:(float)z
@@ -189,9 +168,8 @@
     vec3 point;
     [self point:&point forX:x Y:y Z:z];
     
-    for(OctnodeLowMem *n in nodes)
-        if([n collidesWithPoint:&point])
-            return [n typeForPoint:&point];
+    if([node collidesWithPoint:&point])
+        return [node typeForPoint:&point];
     return BLOCK_AIR;
 }
 @end

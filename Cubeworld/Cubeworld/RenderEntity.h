@@ -19,7 +19,6 @@
     GLuint vertexBufferObject;
     GLuint vertexArrayObject;
     GLuint indexBufferObject;
-    NSMutableArray *nodes;
     
     float *vertexData;
     unsigned int *indexArray;
@@ -33,7 +32,7 @@
     float nodeSize;
     float entityWidth;
     
-    OctnodeLowMem *box;
+    OctnodeLowMem *node;
     
     BOOL needsUpdate;
 }

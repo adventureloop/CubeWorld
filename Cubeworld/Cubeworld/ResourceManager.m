@@ -16,7 +16,7 @@
         meshes = [[NSMutableDictionary alloc]init];
         
         path = @"Users/jones/cubeworld/World/";
-        resourcepath = @"Users/jones/cubeworld/World/";        
+        resourcepath = @"Users/jones/cubeworld/data";        
     }
     return self;
 }
@@ -116,12 +116,14 @@ qualifiedName:(NSString *)qName
     }
     
     if([elementName isEqualToString:@"entity"]) {
-        result = [[[RenderEntity alloc]init] autorelease];
+        int height = [[attributeDict valueForKey:@"height"] intValue];
+        float size = [[attributeDict valueForKey:@"size"] floatValue];
+        result = [[[RenderEntity alloc]initWithTreeHeight:height size:size] autorelease];
+        
         return;
     }
     
     if([elementName isEqualToString:@"voxel"] && result != nil) {
-       // NSLog(@"Started Voxel");
         int type;
         float x,y,z;
         type = [[attributeDict valueForKey:@"type"] intValue];
@@ -143,21 +145,16 @@ qualifiedName:(NSString *)qName
         NSLog(@"Finished chunk");
         return;
     }
+    
+    if([elementName isEqualToString:@"entity"]) {
+        NSLog(@"Finished entity");
+        return;
+    }
 }
 
 -(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
 {
     NSLog(@"Error %@",[parseError description]);
-}
-
--(void)parserDidStartDocument:(NSXMLParser *)parser
-{
-    NSLog(@"Started document");
-}
-
--(void)parserDidEndDocument:(NSXMLParser *)parser
-{
-    NSLog(@"Ended document");
 }
 
 #pragma mark Get program location
