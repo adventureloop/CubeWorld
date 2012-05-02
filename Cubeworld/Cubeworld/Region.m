@@ -32,7 +32,7 @@
 
 -(void)render
 {
-    float width = 8;
+    float width = 16;
     float userX = (int)focusPoint.x % 16;
     float userZ = (int)focusPoint.z % 16;
     
@@ -41,8 +41,6 @@
     
     for(float x = renderDistance; x >= -renderDistance;x--) {
         for(float z = renderDistance;z >= -renderDistance;z--) {
-            if(x == 0 || z == 0)
-                continue;
             
             glUseProgram(program);
             
