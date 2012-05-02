@@ -9,6 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "ChunkLowMem.h"
 
+enum BIOMES_TYPES
+{
+    TUNDRA,
+    TAIGA,
+    DESERT,
+    ISLAND,
+    GRASSLAND,
+    FOREST
+};
+
 /*!
  * @abstract Handles noise based generation of terrain for chunks.
  */
@@ -25,13 +35,8 @@
 
 /*!
  * @discussion  Creates a noise based height map.
- * The alpha value effects the overall height of the chunk, the smaller, the closer to max chunk height
- * a value of 1 will build a chunk at max height
- *
- * Beta effects the variation within the chunk, the larger the value the lower the variation with in the
- * chunk. 1 is also not good in this situation.
  */
--(void)createHeightMap:(int[18][18])heightMap Alpha:(int)alpha Beta:(int)beta ForHeight:(int)height chunkX:(int)cx chunkZ:(int)cz;
+-(void)createHeightMap:(int [18][18])heightMap ForHeight:(int)height chunkX:(int)cx chunkZ:(int)cz;
 
 
 -(void)islandBiomeChunk:(ChunkLowMem *)chunk ForX:(float) cx Z:(float)cz;
@@ -45,4 +50,6 @@
  * @discussion Adds a random tree(from static list) to the chunk at given indexes
  */
 -(void)addTreeToChunk:(ChunkLowMem *)chunk forX:(float)x Y:(float)y Z:(float)z;
+
+-(int)biomeForChunkX:(float)cx Z:(float)cz;
 @end
