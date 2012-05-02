@@ -42,6 +42,7 @@
 		DF974A1E14ED19EF00147274 /* Octnode.m in Sources */ = {isa = PBXBuildFile; fileRef = DF974A1D14ED19EF00147274 /* Octnode.m */; };
 		DF974A2214ED4DDF00147274 /* Chunk.m in Sources */ = {isa = PBXBuildFile; fileRef = DF974A2114ED4DDF00147274 /* Chunk.m */; };
 		DFA8694F1551740600BA0E19 /* RenderEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA8694E1551740600BA0E19 /* RenderEntity.m */; };
+		DFA8695315519D4D00BA0E19 /* TreeEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA8695215519D4C00BA0E19 /* TreeEntity.m */; };
 		DFAD6C0814E402D0002AB62A /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAD6C0714E402D0002AB62A /* Accelerate.framework */; };
 		DFD2ED441549FC90002AA40A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFD2ED431549FC90002AA40A /* QuartzCore.framework */; };
 		DFD701341524C9EF00FA78DD /* OctnodeLowMem.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD701331524C9EF00FA78DD /* OctnodeLowMem.m */; };
@@ -127,6 +128,8 @@
 		DF974A2114ED4DDF00147274 /* Chunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chunk.m; sourceTree = "<group>"; };
 		DFA8694D1551740600BA0E19 /* RenderEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderEntity.h; sourceTree = "<group>"; };
 		DFA8694E1551740600BA0E19 /* RenderEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenderEntity.m; sourceTree = "<group>"; };
+		DFA8695115519D4C00BA0E19 /* TreeEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TreeEntity.h; sourceTree = "<group>"; };
+		DFA8695215519D4C00BA0E19 /* TreeEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TreeEntity.m; sourceTree = "<group>"; };
 		DFAD6C0714E402D0002AB62A /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		DFD2ED431549FC90002AA40A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DFD701321524C9EF00FA78DD /* OctnodeLowMem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OctnodeLowMem.h; sourceTree = "<group>"; };
@@ -360,6 +363,8 @@
 				DFF93A24153DB59300098FF2 /* Entity.m */,
 				DFA8694D1551740600BA0E19 /* RenderEntity.h */,
 				DFA8694E1551740600BA0E19 /* RenderEntity.m */,
+				DFA8695115519D4C00BA0E19 /* TreeEntity.h */,
+				DFA8695215519D4C00BA0E19 /* TreeEntity.m */,
 			);
 			name = Entites;
 			sourceTree = "<group>";
@@ -508,6 +513,7 @@
 				DF740062154083D4003E5FE6 /* UIShader.vsh in Sources */,
 				DF6F17251546B7C700FBC540 /* TimeCycle.m in Sources */,
 				DFA8694F1551740600BA0E19 /* RenderEntity.m in Sources */,
+				DFA8695315519D4D00BA0E19 /* TreeEntity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

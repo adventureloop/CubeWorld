@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ResourceManager.h"
 #import "RenderEntity.h"
+#import "ChunkLowMem.h"
 
 /*!
  * @abstract Handles the Management an Entities logic
@@ -21,9 +22,18 @@
     GLuint transLocationUnif;
     
     RenderEntity *renderEntity;
+    ChunkLowMem *chunk;
+    
+    vec3 location;  //Location within chunk;
 }
+-(id)initWithChunk:(ChunkLowMem *)achunk;
 
 -(void)updateWithDelta:(NSTimeInterval)delta;
 -(void)render;
 -(BOOL)collidesWithPoint:(vec3 *)point;
+
+-(void)setChunk:(ChunkLowMem *)achunk;
+
+-(vec3 *)entityLocation;
+-(void)setLocation:(vec3 *)newLocation;
 @end

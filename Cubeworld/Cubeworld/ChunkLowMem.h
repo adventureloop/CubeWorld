@@ -40,6 +40,8 @@
     vec3 worldOrigin;
     
     vec3 chunkLocation;
+    
+    NSMutableArray *entities;
 }
 /*!
  * @discussion Creates a new chunk with the specified number of trees 
@@ -146,5 +148,8 @@
 -(vec3 *)chunkLocation;
 
 -(NSString *)voxelMetaData;
+
+-(void)addEntity:(id)entity;
+
 @property BOOL readyToRender;
 @end

@@ -34,6 +34,7 @@
         chunkWidth = pow(pow(8,treeHeight),1.0/3.0);
         
         nodes = [[NSMutableArray alloc]initWithCapacity:8];
+        entities = [[NSMutableArray alloc]init];
         
         maxVoxels = INIT_ALLOC_SIZE;
         unsigned int numElements = trees * ((int)pow(8, treeHeight)) * VOXEL_INDICES_COUNT;
@@ -339,6 +340,11 @@
 -(vec3 *)chunkLocation
 {
     return &chunkLocation;
+}
+
+-(void)addEntity:(id)entity
+{
+    [entities addObject:entity];
 }
 
 -(void)dealloc

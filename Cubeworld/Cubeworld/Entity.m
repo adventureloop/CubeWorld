@@ -9,10 +9,12 @@
 #import "Entity.h"
 
 @implementation Entity
--(id)init
+
+-(id)initWithChunk:(ChunkLowMem *)achunk
 {
     if(self = [super init]) {
         resourceManager = [ResourceManager sharedResourceManager];
+        chunk = achunk;
     }
     return self;
 }
@@ -25,4 +27,15 @@
     return NO;
 }
 
+-(void)setLocation:(vec3 *)newLocation
+{
+    location.x = newLocation->x;
+    location.y = newLocation->y;
+    location.z = newLocation->z;
+}
+
+-(vec3 *)entityLocation
+{
+    return &location;
+}
 @end
