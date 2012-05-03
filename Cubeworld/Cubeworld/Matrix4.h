@@ -20,7 +20,9 @@
 -(void)translateByVec3:(vec3 *)vec;
 -(void)uniformScale:(float) scale;
 
--(void)rotateByAngle:(float) angle axisX:(float)x Y:(float)y Z:(float)z;
+-(void)rotateXByAngle:(float)angle;
+-(void)rotateYByAngle:(float)angle;
+-(void)rotateZByAngle:(float)angle;
 
 -(void)loadIndentity;
 @end

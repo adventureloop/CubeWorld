@@ -165,11 +165,9 @@
             //Move the camera target
         case kVK_UpArrow:
             [camera moveCameraTargetUp];
-           // [camera moveCameraUp];
             break;
         case kVK_DownArrow:
             [camera moveCameraTargetDown];
-            //[camera moveCameraDown];
             break;
         case kVK_RightArrow:
             [camera moveCameraTargetRight];
@@ -206,7 +204,7 @@
         default:
             break;
     }
-//    NSLog(@"%@",[camera description]);
+    NSLog(@"%@",[camera description]);
 }
 
 -(void)keyUp:(int)keyCode

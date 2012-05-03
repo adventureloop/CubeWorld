@@ -41,28 +41,55 @@
     matrixLoadIdentity(mat);
 }
 
--(void)rotateByAngle:(float)angle axisX:(float)x Y:(float)y Z:(float)z
+-(void)rotateXByAngle:(float)angle
 {
-    vec3 axis;
-    axis.x = x;
-    axis.y = y;
-    axis.z = z;
+    float rads = degToRad(angle);
+    float *tmp = calloc(16, sizeof(float));
     
-    float c = cosf(angle);
-    float s = sinf(angle);
-    float ac = 1 - c;
+    matrixLoadIdentity(tmp);
+    
+    tmp[5] = cosf(rads);
+    tmp[6] = -sinf(rads);
+    tmp[9] = sinf(rads);
+    tmp[10] = cosf(rads);
+    
+    multiplyMatM4(tmp, mat, mat);
+    
+    free(tmp);
+}
 
-    mat[0] = axis.x * axis.x * ac + c;
-    mat[1] = axis.x * axis.y * ac + axis.z * s;
-    mat[2] = axis.x * axis.z * ac - axis.y * s;
+-(void)rotateYByAngle:(float)angle
+{
+    float rads = degToRad(angle);
+    float *tmp = calloc(16, sizeof(float));
+    
+    matrixLoadIdentity(tmp);
+    
+    tmp[0] = cosf(rads);
+    tmp[2] = sinf(rads);
+    tmp[8] = -sinf(rads);
+    tmp[10] = cosf(rads);
+    
+    multiplyMatM4(tmp, mat, mat);
+    
+    free(tmp);
+}
 
-    mat[4] = axis.y * axis.x * ac - axis.z * s;
-    mat[5] = axis.y * axis.y * ac + c;
-    mat[6] = axis.y * axis.z * ac + axis.x * s;
-
-    mat[8] = axis.z * axis.x * ac + axis.y * s;
-    mat[9] = axis.z * axis.y * ac - axis.x * s;
-    mat[10] = axis.z * axis.z * ac + c;
+-(void)rotateZByAngle:(float)angle
+{
+    float rads = degToRad(angle);
+    float *tmp = calloc(16, sizeof(float));
+    
+    matrixLoadIdentity(tmp);
+    
+    tmp[0] = cosf(rads);
+    tmp[1] = -sinf(rads);
+    tmp[4] = sinf(rads);
+    tmp[5] = cosf(rads);
+    
+    multiplyMatM4(tmp, mat, mat);
+    
+    free(tmp);
 }
 
 -(float *)mat
