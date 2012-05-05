@@ -150,6 +150,8 @@
 -(NSString *)voxelMetaData;
 
 -(void)addEntity:(id)entity;
+-(void)removeEntity:(id)entity;
+-(NSMutableArray *)entities;
 
 @property BOOL readyToRender;
 @end

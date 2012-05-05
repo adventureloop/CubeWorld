@@ -9,6 +9,7 @@
 #import "Generator.h"
 #include "BlockTypes.h"
 #import "PerlinNoise.h"
+#import "TreeEntity.h"
 
 #include <time.h>
 
@@ -141,9 +142,9 @@ int BIOME_BETA[] =
 
     [self createHeightMap:heightMap ForHeight:[chunk height] chunkX:cx chunkZ:cz];
     
-    for(int x = 1; x < 17;x++)
-        for(int z = 1; z < 17;z++)
-            if(heightMap[x][z] > 50  && (x%(6 + rand()%5)) == 0)
+    for(int x = 2; x < 16;x++)
+        for(int z = 2; z < 16;z++)
+            if(heightMap[x][z] > WATER_LEVEL+2  && (x%(6 + rand()%5)) == 0)
                 [self addTreeToChunk: chunk forX:x Y:heightMap[x][z] Z:z];
     [chunk setReadyToRender:YES];
 }
@@ -190,9 +191,9 @@ int BIOME_BETA[] =
             }
         }
     
-    for(int x = 1; x < 17;x++)
-        for(int z = 1; z < 17;z++)
-            if(heightMap[x][z] > 50  && (x%(6 + rand()%10)) == 0)
+    for(int x = 2; x < 16;x++)
+        for(int z = 2; z < 16;z++)
+            if(heightMap[x][z] > WATER_LEVEL+3  && (x%(6 + rand()%10)) == 0)
                 [self addTreeToChunk: chunk forX:x Y:heightMap[x][z] Z:z];
     [chunk setReadyToRender:YES];
 }
@@ -315,9 +316,9 @@ int BIOME_BETA[] =
             }
         }
     
-    for(int x = 1; x < 17;x++)
-        for(int z = 1; z < 17;z++)
-            if(heightMap[x][z] > 50  && (x%(4 + rand()%2)) == 0)
+    for(int x = 2; x < 16;x++)
+        for(int z = 2; z < 16;z++)
+            if(heightMap[x][z] > WATER_LEVEL+3  && (x%(4 + rand()%2)) == 0)
                 [self addTreeToChunk: chunk forX:x Y:heightMap[x][z] Z:z];
     [chunk setReadyToRender:YES];
 }
@@ -325,23 +326,18 @@ int BIOME_BETA[] =
 
 -(void)addTreeToChunk:(ChunkLowMem *)chunk forX:(float)x Y:(float)y Z:(float)z
 {
-    [chunk updateBlockType:BLOCK_WOOD forX:x Y:y++ Z:z];
-    [chunk updateBlockType:BLOCK_WOOD forX:x Y:y++ Z:z];
-    [chunk updateBlockType:BLOCK_WOOD forX:x Y:y++ Z:z];
+    vec3 location;
+    location.x = x;
+    location.y = y;
+    location.z = z;
     
-    [chunk updateBlockType:BLOCK_LEAF forX:x-1 Y:y Z:z-1];
-    [chunk updateBlockType:BLOCK_LEAF forX:x Y:y Z:z+1];
-    [chunk updateBlockType:BLOCK_LEAF forX:x+1 Y:y Z:z+1];
-
-    [chunk updateBlockType:BLOCK_LEAF forX:x-1 Y:y Z:z];
-    [chunk updateBlockType:BLOCK_LEAF forX:x Y:y Z:z];
-    [chunk updateBlockType:BLOCK_LEAF forX:x+1 Y:y Z:z];
-
-    [chunk updateBlockType:BLOCK_LEAF forX:x-1 Y:y Z:z-1];
-    [chunk updateBlockType:BLOCK_LEAF forX:x Y:y Z:z-1];
-    [chunk updateBlockType:BLOCK_LEAF forX:x-1 Y:y++ Z:z+1];
+    TreeEntity *tree = [[TreeEntity alloc]init];
+    [tree setLocation:&location];
     
-    [chunk updateBlockType:BLOCK_LEAF forX:x Y:y Z:z];
+    [chunk addEntity:tree];
+    
+    [tree grow];
+    
 }
 
 /*

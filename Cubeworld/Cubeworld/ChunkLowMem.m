@@ -344,7 +344,19 @@
 
 -(void)addEntity:(id)entity
 {
+    [entity setChunk:self];
     [entities addObject:entity];
+}
+
+-(void)removeEntity:(id)entity
+{
+    [entities removeObject:entity];
+    [entity setChunk:nil];
+}
+
+-(NSMutableArray *)entities
+{
+    return entities;
 }
 
 -(void)dealloc

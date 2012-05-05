@@ -10,11 +10,10 @@
 
 @implementation Entity
 
--(id)initWithChunk:(ChunkLowMem *)achunk
+-(id)init
 {
     if(self = [super init]) {
         resourceManager = [ResourceManager sharedResourceManager];
-        chunk = achunk;
     }
     return self;
 }
@@ -37,5 +36,10 @@
 -(vec3 *)entityLocation
 {
     return &location;
+}
+
+-(void)setChunk:(ChunkLowMem *)achunk
+{
+    chunk = achunk;
 }
 @end

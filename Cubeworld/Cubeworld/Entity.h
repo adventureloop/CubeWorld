@@ -26,7 +26,6 @@
     
     vec3 location;  //Location within chunk;
 }
--(id)initWithChunk:(ChunkLowMem *)achunk;
 
 -(void)updateWithDelta:(NSTimeInterval)delta;
 -(void)render;
