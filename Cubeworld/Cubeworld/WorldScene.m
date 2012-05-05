@@ -201,6 +201,8 @@
         case kVK_ANSI_0:
             [r serialize];
             break;
+        case kVK_ANSI_J:
+            [s toggleFog];
         default:
             break;
     }

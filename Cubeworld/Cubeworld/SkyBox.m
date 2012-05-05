@@ -82,6 +82,7 @@
         fogColourUnif = glGetUniformLocation(program, "fogColour");
         fogNearUnif = glGetUniformLocation(program, "fogNear");
         fogFarUnif = glGetUniformLocation(program, "fogFar");
+        fogUnif = glGetUniformLocation(program, "fog");
         
         fogColour.red = 0.5;
         fogColour.green = 0.5;
@@ -90,9 +91,12 @@
         fogFar = size + size/3;
         fogNear = size * 0.2;
         
+        fog = NO;
+        
         glUniform3f(fogColourUnif, fogColour.red,fogColour.green, fogColour.blue);
         glUniform1f(fogFarUnif, fogFar);
         glUniform1f(fogNearUnif, fogNear);
+        glUniform1i(fogUnif, 0);
         glUseProgram(0);
     }
     return self;
@@ -182,6 +186,21 @@
     voxelData *memPtr = (voxelData *)vertexData;
     
     return memPtr;
+}
+
+-(void)toggleFog
+{
+    glUseProgram(program);
+    
+    if(fog)
+        glUniform1i(fogUnif, 1);
+    else 
+        glUniform1i(fogUnif, 0);
+    
+    fog = !fog;
+    
+    glUseProgram(0);
+    
 }
 
 -(void)dealloc

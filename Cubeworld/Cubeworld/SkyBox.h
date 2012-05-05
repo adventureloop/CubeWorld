@@ -27,6 +27,9 @@
     GLuint fogColourUnif;
     GLuint fogNearUnif;
     GLuint fogFarUnif;
+    GLboolean fogUnif;
+    
+    BOOL fog;
     
     float *vertexData;
     unsigned int *indexArray;
@@ -41,4 +44,6 @@
 -(id)initWithSize:(float)asize;
 -(void)render;
 -(void)setSize:(float)size;
+
+-(void)toggleFog;
 @end
