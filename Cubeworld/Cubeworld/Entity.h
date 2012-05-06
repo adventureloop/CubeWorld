@@ -27,6 +27,8 @@
     vec3 location;  //Location within chunk;
 }
 
+-(id)initWithMesh:(NSString *)mesh;
+
 -(void)updateWithDelta:(NSTimeInterval)delta;
 -(void)render;
 -(BOOL)collidesWithPoint:(vec3 *)point;

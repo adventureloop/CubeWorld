@@ -10,10 +10,13 @@
 
 @implementation Entity
 
--(id)init
+-(id)initWithMesh:(NSString *)mesh
 {
     if(self = [super init]) {
         resourceManager = [ResourceManager sharedResourceManager];
+        
+        if(mesh != nil) 
+            renderEntity = [resourceManager renderEntityForString:mesh];
     }
     return self;
 }

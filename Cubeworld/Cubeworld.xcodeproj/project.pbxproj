@@ -57,6 +57,7 @@
 		DFF66EB01523228E008C8E63 /* WorldScene.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF66EAF1523228E008C8E63 /* WorldScene.m */; };
 		DFF93A20153AFD8F00098FF2 /* ResourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF93A1F153AFD8F00098FF2 /* ResourceManager.m */; };
 		DFF93A25153DB59300098FF2 /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF93A24153DB59300098FF2 /* Entity.m */; };
+		DFFE5ABF155700520032DA4D /* YakEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFE5ABE155700520032DA4D /* YakEntity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,6 +152,8 @@
 		DFF93A23153DB59300098FF2 /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
 		DFF93A24153DB59300098FF2 /* Entity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entity.m; sourceTree = "<group>"; };
 		DFFD279C1520F92300A6A812 /* PerlinNoise.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PerlinNoise.h; sourceTree = "<group>"; };
+		DFFE5ABD155700510032DA4D /* YakEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YakEntity.h; sourceTree = "<group>"; };
+		DFFE5ABE155700520032DA4D /* YakEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YakEntity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -365,6 +368,8 @@
 				DFA8694E1551740600BA0E19 /* RenderEntity.m */,
 				DFA8695115519D4C00BA0E19 /* TreeEntity.h */,
 				DFA8695215519D4C00BA0E19 /* TreeEntity.m */,
+				DFFE5ABD155700510032DA4D /* YakEntity.h */,
+				DFFE5ABE155700520032DA4D /* YakEntity.m */,
 			);
 			name = Entites;
 			sourceTree = "<group>";
@@ -514,6 +519,7 @@
 				DF6F17251546B7C700FBC540 /* TimeCycle.m in Sources */,
 				DFA8694F1551740600BA0E19 /* RenderEntity.m in Sources */,
 				DFA8695315519D4D00BA0E19 /* TreeEntity.m in Sources */,
+				DFFE5ABF155700520032DA4D /* YakEntity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

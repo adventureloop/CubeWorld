@@ -11,10 +11,10 @@
 
 @implementation TreeEntity
 
--(id)initWithChunk:(ChunkLowMem *)achunk
+-(id)init
 {
-    if(self = [super initWithChunk:achunk])
-        grown = NO;
+    if(self = [super initWithMesh:nil])
+        ;
     return self;
 }
 

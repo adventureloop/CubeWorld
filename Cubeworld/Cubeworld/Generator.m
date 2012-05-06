@@ -10,6 +10,7 @@
 #include "BlockTypes.h"
 #import "PerlinNoise.h"
 #import "TreeEntity.h"
+#import "YakEntity.h"
 
 #include <time.h>
 
@@ -195,6 +196,9 @@ int BIOME_BETA[] =
         for(int z = 2; z < 16;z++)
             if(heightMap[x][z] > WATER_LEVEL+3  && (x%(6 + rand()%10)) == 0)
                 [self addTreeToChunk: chunk forX:x Y:heightMap[x][z] Z:z];
+    
+    [chunk addEntity:[[YakEntity alloc]init]];
+     
     [chunk setReadyToRender:YES];
 }
 
