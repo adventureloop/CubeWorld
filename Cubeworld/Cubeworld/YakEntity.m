@@ -13,17 +13,14 @@
 {
     if(self = [super initWithMesh:nil]) {
         if(renderEntity == nil) {
-            NSLog(@"Failed to load mesh");
-            assert(NO);
+            NSLog(@"Yak:\tFailed to load mesh");
         }
-        NSLog(@"Created yak");
     };
     return self;
 }
 
 -(void)render
 {
-    NSLog(@"MMMMOOOOOOO Drawing yak");
     [renderEntity render];
 }
 @end

@@ -124,6 +124,9 @@
     
     glDrawElements(GL_TRIANGLES, numElements, GL_UNSIGNED_INT, 0);
     glBindVertexArrayAPPLE(0);
+    
+    for(id e in entities)
+        [e render];
 }
 
 -(void)update
@@ -164,6 +167,7 @@
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, numElements * sizeof(unsigned int), indexArray, GL_DYNAMIC_DRAW);
     
     glBindVertexArrayAPPLE(0);
+
 }
 
 -(int)voxelsToRender

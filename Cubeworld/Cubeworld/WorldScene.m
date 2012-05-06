@@ -43,7 +43,7 @@
     
     //Use the model matrix(identity currently)
     glUniformMatrix4fv(modelToWorldMatrixUnif, 1, GL_FALSE, [modelMatrix mat]);
-    
+
     //Draw the world region
     [r render];
     [s render];
