@@ -142,12 +142,10 @@ qualifiedName:(NSString *)qName
 {
     if([elementName isEqualToString:@"chunk"]) {
         [result setReadyToRender:YES];
-        NSLog(@"Finished chunk");
         return;
     }
     
     if([elementName isEqualToString:@"entity"]) {
-        NSLog(@"Finished entity");
         return;
     }
 }

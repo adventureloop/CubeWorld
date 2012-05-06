@@ -16,6 +16,7 @@
 #import "ResourceManager.h"
 #import "SkyBox.h"
 #import "TimeCycle.h"
+#import "Entity.h"
 
 
 /*!
@@ -49,5 +50,6 @@
     
     Region *r;
     SkyBox *s;
+    Entity *e;
 }
 @end

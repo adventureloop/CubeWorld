@@ -14,8 +14,7 @@
 @implementation RenderEntity
 
 
-#define ALLOC_SIZE 128
-#define INIT_ALLOC_SIZE 512
+#define ALLOC_SIZE 8
 
 -(id)initWithTreeHeight:(int)height size:(float)asize
 {        
@@ -27,8 +26,9 @@
         //this gives the x and z widths of the chunk
         entityWidth = pow(pow(8,treeHeight),1.0/3.0);
         
-        maxVoxels = INIT_ALLOC_SIZE;
-        unsigned int numElements = trees * ((int)pow(8, treeHeight)) * VOXEL_INDICES_COUNT;
+        maxVoxels = pow(8,treeHeight);
+        
+        unsigned int numElements = ((int)pow(8, treeHeight)) * VOXEL_INDICES_COUNT;
         
         vertexData = calloc(maxVoxels, sizeof(voxelData));
         
@@ -37,7 +37,7 @@
         
         memset(tmpIndexArray, -1, numElements * sizeof(int));
         
-        nodeSize = 16.0;
+        nodeSize = asize;
         
         vec3 localOrigin;
         localOrigin.x = 0.0;
@@ -91,6 +91,9 @@
 
 -(void)render
 {
+    if(needsUpdate)
+        [self update];
+    
     int numElements = [self voxelsToRender] * VOXEL_INDICES_COUNT;
     
     glBindVertexArrayAPPLE(vertexArrayObject);
@@ -154,6 +157,30 @@
     point->z = origin->z + z;
 }
 
+-(void)update
+{
+    tmpIndexArray = malloc(VOXEL_INDICES_COUNT * sizeof(long));
+    
+    memset(tmpIndexArray, -1, VOXEL_INDICES_COUNT * sizeof(int));
+    
+    [node renderElements:tmpIndexArray];
+    
+    for(int i = 0,j = 0;i < VOXEL_INDICES_COUNT;i++) 
+        if(tmpIndexArray[i] >= 0)
+            indexArray[j++] = tmpIndexArray[i];
+    free(tmpIndexArray);
+    
+    //Update the buffers on the GPU
+    glBindVertexArrayAPPLE(vertexArrayObject);
+    
+    glBufferData(GL_ARRAY_BUFFER,sizeof(voxelData), vertexData, GL_DYNAMIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER,VOXEL_INDICES_COUNT * sizeof(unsigned int), indexArray, GL_DYNAMIC_DRAW);
+    
+    glBindVertexArrayAPPLE(0);
+    
+    needsUpdate = NO;
+}
+
 -(void)updateBlockType:(int)type forX:(float)x Y:(float)y Z:(float)z
 {
     vec3 point;
@@ -161,6 +188,7 @@
     
     if([node collidesWithPoint:&point]) 
         [node updatePoint:&point withBlockType:type];
+    needsUpdate = YES;
 }
 
 -(int)blockTypeForX:(float)x Y:(float)y Z:(float)z

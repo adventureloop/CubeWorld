@@ -27,7 +27,6 @@
     int voxelCounter;
     int maxVoxels;
     
-    int trees;
     int treeHeight;
     float nodeSize;
     float entityWidth;

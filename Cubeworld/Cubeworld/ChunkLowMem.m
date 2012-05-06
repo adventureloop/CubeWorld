@@ -9,6 +9,8 @@
 #import "ChunkLowMem.h"
 #import <OpenGL/gl.h>
 #import "BlockTypes.h"
+#import "Entity.h"
+
 
 #define ALLOC_SIZE 128
 #define INIT_ALLOC_SIZE 512
@@ -125,7 +127,7 @@
     glDrawElements(GL_TRIANGLES, numElements, GL_UNSIGNED_INT, 0);
     glBindVertexArrayAPPLE(0);
     
-    for(id e in entities)
+    for(Entity *e in entities)
         [e render];
 }
 

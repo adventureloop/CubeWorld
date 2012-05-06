@@ -45,8 +45,12 @@
     glUniformMatrix4fv(modelToWorldMatrixUnif, 1, GL_FALSE, [modelMatrix mat]);
 
     //Draw the world region
-    [r render];
-    [s render];
+//    [r render];
+//    [s render];
+    
+    glUniform3f(transLocationUnif, 0.0, 0.0, 0.0);
+    
+    [e render];
     
 	glUseProgram(0);
     glSwapAPPLE();
@@ -119,6 +123,8 @@
     s = [[SkyBox alloc]initWithSize:48];
     
     time = [[TimeCycle alloc]init];
+    
+    e = [[Entity alloc]initWithMesh:@"test"];
 }
 
 -(void)didResizeTo:(CGRect)newBounds

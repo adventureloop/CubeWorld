@@ -21,7 +21,11 @@
     return self;
 }
 
--(void)render {}
+-(void)render 
+{
+    [renderEntity render];
+}
+
 -(void)updateWithDelta:(NSTimeInterval)delta {}
 
 -(BOOL)collidesWithPoint:(vec3 *)point
