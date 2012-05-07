@@ -124,6 +124,8 @@
     time = [[TimeCycle alloc]init];
     
     e = [[Entity alloc]initWithMesh:@"lowtest"];
+    
+    mouse = YES;
 }
 
 -(void)didResizeTo:(CGRect)newBounds
@@ -208,6 +210,9 @@
             break;
         case kVK_ANSI_J:
             [s toggleFog];
+        case kVK_ANSI_Q:
+            mouse = -mouse;
+            break; 
         default:
             break;
     }
@@ -221,14 +226,16 @@
 #pragma mark Mouse handling stuff
 -(void)mouseMovedByX:(int)x Y:(int)y
 {
-//    if(x > 0)
-//        [camera moveCameraTargetLeft];
-//    else if(x < 0)
-//        [camera moveCameraTargetRight];
-//    
-//    if(y > 0)
-//        [camera moveCameraTargetUp];
-//    else if(y < 0)
-//        [camera moveCameraTargetDown];
+    if(!mouse)
+        return;
+    if(x > 0)
+        [camera moveCameraLeft];
+    else if(x < 0)
+        [camera moveCameraRight];
+    
+    if(y > 0)
+        [camera moveCameraUp];
+    else if(y < 0)
+        [camera moveCameraDown];
 }
 @end

@@ -24,9 +24,17 @@
 
 -(void)translateByVec3:(vec3 *)vec
 {
-    mat[3] = vec->x;
-    mat[7] = vec->y;
-    mat[11] = vec->z;
+    float *tmp = calloc(16, sizeof(float));
+    
+    matrixLoadIdentity(tmp);
+    
+    tmp[3] = vec->x;
+    tmp[7] = vec->y;
+    tmp[11] = vec->z;
+    
+    multiplyMatM4(tmp, mat, mat);
+    
+    free(tmp);
 }
 
 -(void)uniformScale:(float)scale

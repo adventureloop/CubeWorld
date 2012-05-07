@@ -21,7 +21,7 @@
         
         //Look at the origin
         cameraTarget.x = 0.0f;
-        cameraTarget.y = 15.0f;
+        cameraTarget.y = 90.0f;
         cameraTarget.z = 0.0f;
         
         cameraSpherePos.x = 85.0f;
@@ -37,10 +37,10 @@
         lookAtMatrix = [[Matrix4 alloc]init];
         [lookAtMatrix loadIndentity];
         
-        moveSpeed = 5.0;
-        angleMoveSpeed = 0.1;
+        moveSpeed = 2.0;
+        angleMoveSpeed = 5.0;
         
-        [self setThirdPerson];
+        [self setFirstPerson];
         
         [self update];
     }
@@ -71,14 +71,15 @@
 {    
     vec3 translation;
     translation.x = 0.0;
-    translation.y = cameraSpherePos.y;
+    translation.y = -30.0;
     translation.z = 0.0;
     
     [lookAtMatrix loadIndentity];
+    
     [lookAtMatrix translateByVec3:&translation];
     
-    [lookAtMatrix rotateXByAngle:cameraSpherePos.x];
-    [lookAtMatrix rotateYByAngle:cameraSpherePos.y];
+    [lookAtMatrix rotateYByAngle:cameraSpherePos.x];
+    [lookAtMatrix rotateXByAngle:cameraSpherePos.y];
 }
 
 -(void)thirdPersonCamera
@@ -160,7 +161,10 @@
     thirdPerson = NO;
     firstPerson = YES;
     
-    cameraTarget.y = 25.0f;
+    cameraTarget.y = 0.0f;
+    
+    cameraSpherePos.x = 0.0;
+    cameraSpherePos.y = 90.0;
 }
 
 -(void)resolvePerspectiveForWidth:(int)width Height:(int)height

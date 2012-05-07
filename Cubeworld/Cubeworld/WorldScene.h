@@ -51,5 +51,7 @@
     Region *r;
     SkyBox *s;
     Entity *e;
+    
+    BOOL mouse;
 }
 @end
