@@ -28,7 +28,6 @@
     [camera update];
     
     //Clear the colour and depth buffers
-    //glClearColor(0.85, 1.0, 1.0, 0.0);
     glClearColor(0.0, 0.0, 0.0, 0.0);
     glClearDepth(1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -45,12 +44,12 @@
     glUniformMatrix4fv(modelToWorldMatrixUnif, 1, GL_FALSE, [modelMatrix mat]);
 
     //Draw the world region
-//    [r render];
-//    [s render];
+    [r render];
+    [s render];
     
     glUniform3f(transLocationUnif, 0.0, 0.0, 0.0);
     
-    [e render];
+//    [e render];
     
 	glUseProgram(0);
     glSwapAPPLE();
@@ -124,7 +123,7 @@
     
     time = [[TimeCycle alloc]init];
     
-    e = [[Entity alloc]initWithMesh:@"test"];
+    e = [[Entity alloc]initWithMesh:@"lowtest"];
 }
 
 -(void)didResizeTo:(CGRect)newBounds

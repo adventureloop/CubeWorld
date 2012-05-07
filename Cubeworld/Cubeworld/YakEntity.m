@@ -11,7 +11,7 @@
 @implementation YakEntity 
 -(id)init
 {
-    if(self = [super initWithMesh:@"yak"]) {
+    if(self = [super initWithMesh:nil]) {
         if(renderEntity == nil) {
             NSLog(@"Yak:\tFailed to load mesh");
         }

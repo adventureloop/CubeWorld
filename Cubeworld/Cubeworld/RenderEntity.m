@@ -14,7 +14,7 @@
 @implementation RenderEntity
 
 
-#define ALLOC_SIZE 8
+#define ALLOC_SIZE 1
 
 -(id)initWithTreeHeight:(int)height size:(float)asize
 {        
@@ -54,23 +54,24 @@
         for(int i = 0,j = 0;i < numElements;i++) 
             if(tmpIndexArray[i] >= 0)
                 indexArray[j++] = tmpIndexArray[i];
+        free(tmpIndexArray);
+        tmpIndexArray = nil;
         
-        /* Set up vertex buffer and array objects */
-        glGenBuffers(1, &vertexBufferObject);
-        glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
-        glBufferData(GL_ARRAY_BUFFER,maxVoxels * sizeof(voxelData), vertexData, GL_DYNAMIC_DRAW);
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
-        
-        glGenBuffers(1, &indexBufferObject);
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferObject);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, numElements * sizeof(unsigned int), indexArray, GL_DYNAMIC_DRAW);
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-        
+        //Create VAO
         glGenVertexArraysAPPLE(1, &vertexArrayObject);
         glBindVertexArrayAPPLE(vertexArrayObject);
         
+        //Create VBO
+        glGenBuffers(1, &vertexBufferObject);
         glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
+        glBufferData(GL_ARRAY_BUFFER,sizeof(voxelData), vertexData, GL_DYNAMIC_DRAW);
         
+        //Create element array
+        glGenBuffers(1, &indexBufferObject);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferObject);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER,VOXEL_INDICES_COUNT * sizeof(unsigned int), indexArray, GL_DYNAMIC_DRAW);
+        
+        //Enable Attributes and configure the memory layout
         glEnableVertexAttribArray(0);
         glEnableVertexAttribArray(1);
         glEnableVertexAttribArray(2);
@@ -79,12 +80,8 @@
         glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(colouredNormalVertex), (void*)sizeof(vertex));
         glVertexAttribPointer(2, 3, GL_SHORT, GL_FALSE, sizeof(colouredNormalVertex), (void *) ( sizeof(vertex) + sizeof(colour)));
         
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferObject);
-        
-        glBindVertexArrayAPPLE(0);
-        
-        free(tmpIndexArray);
-        tmpIndexArray = nil;
+        //Unbind the VAO to avoid someone making a mess
+        glBindVertexArrayAPPLE(0);        
     }
     return self;
 }
@@ -125,7 +122,7 @@
 
 -(int)voxelsToRender
 {
-    return ((int)pow(8, treeHeight));
+    return maxVoxels;
 }
 
 -(void)point:(vec3 *)point forX:(float)x Y:(float)y Z:(float)z
@@ -173,7 +170,7 @@
     //Update the buffers on the GPU
     glBindVertexArrayAPPLE(vertexArrayObject);
     
-    glBufferData(GL_ARRAY_BUFFER,sizeof(voxelData), vertexData, GL_DYNAMIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER,sizeof(voxelData) * voxelCounter, vertexData, GL_DYNAMIC_DRAW);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER,VOXEL_INDICES_COUNT * sizeof(unsigned int), indexArray, GL_DYNAMIC_DRAW);
     
     glBindVertexArrayAPPLE(0);
