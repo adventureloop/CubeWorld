@@ -191,9 +191,9 @@
 
 -(void)setCameraPosition:(vec3 *)pos
 {
-    cameraPosition.x = pos->x;
-    cameraPosition.y = pos->y;
-    cameraPosition.z = pos->z;
+    cameraPosition.x = -pos->x;
+    cameraPosition.y = -pos->y;
+    cameraPosition.z = -pos->z;
 }
 
 -(void)setCameraRotations:(vec3 *)rot
