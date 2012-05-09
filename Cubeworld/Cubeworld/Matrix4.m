@@ -51,7 +51,7 @@
 
 -(void)rotateXByAngle:(float)angle
 {
-    float rads = degToRad(angle);
+    float rads = [self degToRad:angle];
     float *tmp = calloc(16, sizeof(float));
     
     matrixLoadIdentity(tmp);
@@ -68,7 +68,7 @@
 
 -(void)rotateYByAngle:(float)angle
 {
-    float rads = degToRad(angle);
+    float rads = [self degToRad:angle];
     float *tmp = calloc(16, sizeof(float));
     
     matrixLoadIdentity(tmp);
@@ -85,7 +85,7 @@
 
 -(void)rotateZByAngle:(float)angle
 {
-    float rads = degToRad(angle);
+    float rads = [self degToRad:angle];
     float *tmp = calloc(16, sizeof(float));
     
     matrixLoadIdentity(tmp);
@@ -111,6 +111,12 @@
                                                                                             mat[4],mat[5],mat[6],mat[7],
             mat[8],mat[9],mat[10],mat[11],
             mat[12],mat[13],mat[14],mat[15]];
+}
+
+-(float)degToRad:(float) fAngDeg
+{
+    const float fDegToRad = 3.14159f * 2.0f / 360.0f;
+    return fAngDeg * fDegToRad;
 }
 
 -(void)dealloc

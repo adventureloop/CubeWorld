@@ -71,15 +71,18 @@
 {    
     vec3 translation;
     translation.x = 0.0;
-    translation.y = -30.0;
+    translation.y = -25.0;
     translation.z = 0.0;
     
     [lookAtMatrix loadIndentity];
     
-    [lookAtMatrix translateByVec3:&translation];
     
     [lookAtMatrix rotateYByAngle:cameraSpherePos.x];
     [lookAtMatrix rotateXByAngle:cameraSpherePos.y];
+    
+
+    
+    [lookAtMatrix translateByVec3:&translation];
 }
 
 -(void)thirdPersonCamera
@@ -153,7 +156,13 @@
     thirdPerson = YES;
     firstPerson = NO;
     
+    cameraTarget.x = 4.0f;
     cameraTarget.y = 15.0f;
+    cameraTarget.z = 0.0f;
+    
+    cameraSpherePos.x = 95.0f;
+    cameraSpherePos.y = -20.0f;
+    cameraSpherePos.z = 38.0f;
 }
 
 -(void)setFirstPerson
@@ -163,8 +172,8 @@
     
     cameraTarget.y = 0.0f;
     
-    cameraSpherePos.x = 0.0;
-    cameraSpherePos.y = 90.0;
+    cameraSpherePos.x = 90.0;
+    cameraSpherePos.y = 0.0;
 }
 
 -(void)resolvePerspectiveForWidth:(int)width Height:(int)height

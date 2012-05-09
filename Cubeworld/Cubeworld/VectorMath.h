@@ -9,6 +9,7 @@
 #include <Accelerate/Accelerate.h>
 
 float degToRad(float);
+float radToDeg(float);
 float magnitudeV3(vec3 *);
 void normalizeV3(vec3 *, vec3 *);
 void subtractV3(vec3 *, vec3 *, vec3 *);
@@ -30,6 +31,12 @@ float degToRad(float fAngDeg)
 {
     const float fDegToRad = 3.14159f * 2.0f / 360.0f;
     return fAngDeg * fDegToRad;
+}
+
+float radToDeg(float rad)
+{
+    const float fRadToDeg = (180 / 3.14159f);
+    return rad * fRadToDeg;
 }
 
 float magnitudeV3(vec3 *invec)

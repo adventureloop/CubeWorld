@@ -230,13 +230,13 @@
     if(!mouse)
         return;
     if(x > 0)
-        [camera moveCameraLeft];
+        [camera moveCameraTargetRight];
     else if(x < 0)
-        [camera moveCameraRight];
+        [camera moveCameraTargetLeft];
     
     if(y > 0)
-        [camera moveCameraUp];
+        [camera moveCameraTargetDown];
     else if(y < 0)
-        [camera moveCameraDown];
+        [camera moveCameraTargetUp];
 }
 @end
