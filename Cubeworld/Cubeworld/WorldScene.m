@@ -175,11 +175,11 @@
            // [r moveX:-1 Z:0];
             break;
         case kVK_ANSI_W:
-            [player moveBackward];
+            [player moveForward];
             //[r moveX:0 Z:-1];
             break;
         case kVK_ANSI_S:
-            [player moveForward];
+            [player moveBackward];
            // [r moveX:0 Z:1];
             break;
             //Move the camera target
