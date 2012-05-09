@@ -17,6 +17,7 @@
 #import "SkyBox.h"
 #import "TimeCycle.h"
 #import "Entity.h"
+#import "PlayerEntity.h"
 
 
 /*!
@@ -51,6 +52,8 @@
     Region *r;
     SkyBox *s;
     Entity *e;
+    
+    PlayerEntity *player;
     
     BOOL mouse;
 }

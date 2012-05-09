@@ -24,7 +24,7 @@
     RenderEntity *renderEntity;
     ChunkLowMem *chunk;
     
-    vec3 location;  //Location within chunk;
+    vec3 location;  //Location within the world
 }
 
 -(id)initWithMesh:(NSString *)mesh;

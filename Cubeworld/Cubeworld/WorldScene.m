@@ -25,6 +25,9 @@
 
 -(void)render
 {
+    [camera setCameraPosition:[player entityLocation]];
+    [camera setCameraRotations:[player playerRotation]];
+    
     [camera update];
     
     //Clear the colour and depth buffers
@@ -44,6 +47,8 @@
     glUniformMatrix4fv(modelToWorldMatrixUnif, 1, GL_FALSE, [modelMatrix mat]);
 
     //Draw the world region
+    [r updateWithFocusPoint:[player entityLocation]];
+    
     [r render];
     [s render];
     
@@ -125,6 +130,14 @@
     
     e = [[Entity alloc]initWithMesh:@"lowtest"];
     
+    vec3 loc;
+    loc.x = 0.0;
+    loc.y = 25.0;
+    loc.z = 0.0;
+    
+    player = [[PlayerEntity alloc]init];
+    [player setLocation:&loc];
+    
     mouse = YES;
 }
 
@@ -148,10 +161,10 @@
 {
     switch( keyCode ) {
         case kVK_Space:       
-            [camera moveCameraUp];
+            [player moveUp];
             break;
         case kVK_ANSI_Z:       
-            [camera moveCameraDown];
+            [player moveDown];
             break;
         case kVK_ANSI_D:      
             //[camera moveCameraRight];
@@ -171,16 +184,16 @@
             break;
             //Move the camera target
         case kVK_UpArrow:
-            [camera moveCameraTargetUp];
+            [player lookUp];
             break;
         case kVK_DownArrow:
-            [camera moveCameraTargetDown];
+            [player lookDown];
             break;
         case kVK_RightArrow:
-            [camera moveCameraTargetRight];
+            [player lookRight];
             break;
         case kVK_LeftArrow:
-            [camera moveCameraTargetLeft];
+            [player lookLeft];
             break;
         case kVK_ANSI_Minus:
             [time decreaseTime];
@@ -230,13 +243,13 @@
     if(!mouse)
         return;
     if(x > 0)
-        [camera moveCameraTargetRight];
+        [player lookRight];
     else if(x < 0)
-        [camera moveCameraTargetLeft];
+        [player lookLeft];
     
     if(y > 0)
-        [camera moveCameraTargetDown];
+        [player lookDown];
     else if(y < 0)
-        [camera moveCameraTargetUp];
+        [player lookUp];
 }
 @end

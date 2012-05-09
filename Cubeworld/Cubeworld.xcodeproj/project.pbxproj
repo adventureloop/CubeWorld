@@ -41,6 +41,7 @@
 		DF93A0EF14FE7F5400F201D7 /* Region.m in Sources */ = {isa = PBXBuildFile; fileRef = DF93A0EE14FE7F5400F201D7 /* Region.m */; };
 		DF974A1E14ED19EF00147274 /* Octnode.m in Sources */ = {isa = PBXBuildFile; fileRef = DF974A1D14ED19EF00147274 /* Octnode.m */; };
 		DF974A2214ED4DDF00147274 /* Chunk.m in Sources */ = {isa = PBXBuildFile; fileRef = DF974A2114ED4DDF00147274 /* Chunk.m */; };
+		DF99A4F7155A92F000AE0980 /* PlayerEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DF99A4F6155A92F000AE0980 /* PlayerEntity.m */; };
 		DFA8694F1551740600BA0E19 /* RenderEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA8694E1551740600BA0E19 /* RenderEntity.m */; };
 		DFA8695315519D4D00BA0E19 /* TreeEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA8695215519D4C00BA0E19 /* TreeEntity.m */; };
 		DFAD6C0814E402D0002AB62A /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAD6C0714E402D0002AB62A /* Accelerate.framework */; };
@@ -127,6 +128,8 @@
 		DF974A1F14ED1C7F00147274 /* Structures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Structures.h; sourceTree = "<group>"; };
 		DF974A2014ED4DDF00147274 /* Chunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chunk.h; sourceTree = "<group>"; };
 		DF974A2114ED4DDF00147274 /* Chunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chunk.m; sourceTree = "<group>"; };
+		DF99A4F5155A92F000AE0980 /* PlayerEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerEntity.h; sourceTree = "<group>"; };
+		DF99A4F6155A92F000AE0980 /* PlayerEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerEntity.m; sourceTree = "<group>"; };
 		DFA8694D1551740600BA0E19 /* RenderEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderEntity.h; sourceTree = "<group>"; };
 		DFA8694E1551740600BA0E19 /* RenderEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenderEntity.m; sourceTree = "<group>"; };
 		DFA8695115519D4C00BA0E19 /* TreeEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TreeEntity.h; sourceTree = "<group>"; };
@@ -366,6 +369,8 @@
 				DFF93A24153DB59300098FF2 /* Entity.m */,
 				DFA8694D1551740600BA0E19 /* RenderEntity.h */,
 				DFA8694E1551740600BA0E19 /* RenderEntity.m */,
+				DF99A4F5155A92F000AE0980 /* PlayerEntity.h */,
+				DF99A4F6155A92F000AE0980 /* PlayerEntity.m */,
 				DFA8695115519D4C00BA0E19 /* TreeEntity.h */,
 				DFA8695215519D4C00BA0E19 /* TreeEntity.m */,
 				DFFE5ABD155700510032DA4D /* YakEntity.h */,
@@ -520,6 +525,7 @@
 				DFA8694F1551740600BA0E19 /* RenderEntity.m in Sources */,
 				DFA8695315519D4D00BA0E19 /* TreeEntity.m in Sources */,
 				DFFE5ABF155700520032DA4D /* YakEntity.m in Sources */,
+				DF99A4F7155A92F000AE0980 /* PlayerEntity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

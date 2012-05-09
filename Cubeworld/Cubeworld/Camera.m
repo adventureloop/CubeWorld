@@ -71,8 +71,8 @@
 {    
     [lookAtMatrix loadIndentity];
     
-    [lookAtMatrix rotateYByAngle:cameraRotations.x];
-    [lookAtMatrix rotateXByAngle:cameraRotations.y];
+    [lookAtMatrix rotateYByAngle:cameraRotations.y];
+    [lookAtMatrix rotateXByAngle:cameraRotations.x];
     
     [lookAtMatrix translateByVec3:&cameraPosition];
 }
