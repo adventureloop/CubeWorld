@@ -69,20 +69,12 @@
 
 -(void)firstPersonCamera
 {    
-    vec3 translation;
-    translation.x = 0.0;
-    translation.y = -25.0;
-    translation.z = 0.0;
-    
     [lookAtMatrix loadIndentity];
     
+    [lookAtMatrix rotateYByAngle:cameraRotations.x];
+    [lookAtMatrix rotateXByAngle:cameraRotations.y];
     
-    [lookAtMatrix rotateYByAngle:cameraSpherePos.x];
-    [lookAtMatrix rotateXByAngle:cameraSpherePos.y];
-    
-
-    
-    [lookAtMatrix translateByVec3:&translation];
+    [lookAtMatrix translateByVec3:&cameraPosition];
 }
 
 -(void)thirdPersonCamera
@@ -196,65 +188,19 @@
     return perspectiveMatrix;
 }
 
-#pragma mark Move the camera and camera target
--(void)moveCameraUp
+
+-(void)setCameraPosition:(vec3 *)pos
 {
-    cameraTarget.y += moveSpeed;
+    cameraPosition.x = pos->x;
+    cameraPosition.y = pos->y;
+    cameraPosition.z = pos->z;
 }
 
--(void)moveCameraDown
+-(void)setCameraRotations:(vec3 *)rot
 {
-    cameraTarget.y -= moveSpeed;
-}
-
--(void)moveCameraLeft
-{
-    cameraTarget.x -= moveSpeed;
-}
-
--(void)moveCameraRight
-{
-    cameraTarget.x += moveSpeed;
-}
-
--(void)moveCameraForward
-{
-    cameraTarget.z += moveSpeed;
-}
-
--(void)moveCameraBack
-{
-    cameraTarget.z -= moveSpeed;
-}
-
--(void)moveCameraTargetUp
-{
-    cameraSpherePos.y += angleMoveSpeed;
-}
-
--(void)moveCameraTargetDown
-{
-    cameraSpherePos.y -= angleMoveSpeed;
-}
-
--(void)moveCameraTargetLeft
-{
-    cameraSpherePos.x -= angleMoveSpeed;
-}
-
--(void)moveCameraTargetRight
-{
-    cameraSpherePos.x += angleMoveSpeed;
-}
-
--(void)moveCameraTargetForward
-{
-    cameraSpherePos.z += angleMoveSpeed;
-}
-
--(void)moveCameraTargetBack
-{
-    cameraSpherePos.z -= angleMoveSpeed;
+    cameraRotations.x = rot->x;
+    cameraRotations.y = rot->y;
+    cameraRotations.z = rot->z;
 }
 
 -(NSString *)description

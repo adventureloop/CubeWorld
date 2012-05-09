@@ -13,6 +13,9 @@
 {
     vec3 cameraSpherePos;
     vec3 cameraTarget;
+    vec3 cameraPosition;
+    vec3 cameraRotations;
+    
     vec3 upVec;
     
     Matrix4 *lookAtMatrix;
@@ -39,20 +42,9 @@
 -(void)thirdPersonCamera;
 -(void)firstPersonCamera;
 
--(void)moveCameraUp;
--(void)moveCameraDown;
--(void)moveCameraLeft;
--(void)moveCameraRight;
--(void)moveCameraForward;
--(void)moveCameraBack;
-
--(void)moveCameraTargetUp;
--(void)moveCameraTargetDown;
--(void)moveCameraTargetLeft;
--(void)moveCameraTargetRight;
--(void)moveCameraTargetForward;
--(void)moveCameraTargetBack;
-
 -(void)setThirdPerson;
 -(void)setFirstPerson;
+
+-(void)setCameraPosition:(vec3 *)pos;
+-(void)setCameraRotations:(vec3 *)rot;
 @end
