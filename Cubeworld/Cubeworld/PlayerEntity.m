@@ -40,19 +40,26 @@
 
 -(void)moveForward
 {
-    
+    [self setOldLocation:&location];
+    location.z += moveSpeed;
 }
 
 -(void)moveBackward
 {
+    [self setOldLocation:&location];
+    location.z -= moveSpeed;
 }
 
 -(void)moveRight
-{
+{ 
+    [self setOldLocation:&location];
+    location.x += moveSpeed;
 }
 
 -(void)moveLeft
-{
+{ 
+    [self setOldLocation:&location];
+    location.x -= moveSpeed;
 }
 
 -(void)moveUp

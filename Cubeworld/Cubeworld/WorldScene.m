@@ -167,20 +167,20 @@
             [player moveDown];
             break;
         case kVK_ANSI_D:      
-            //[camera moveCameraRight];
-            [r moveX:1 Z:0];
+            [player moveRight];
+            //[r moveX:1 Z:0];
             break;
         case kVK_ANSI_A:      
-            //[camera moveCameraLeft];
-            [r moveX:-1 Z:0];
+            [player moveLeft];
+           // [r moveX:-1 Z:0];
             break;
         case kVK_ANSI_W:
-            //[camera moveCameraBack];
-            [r moveX:0 Z:-1];
+            [player moveBackward];
+            //[r moveX:0 Z:-1];
             break;
         case kVK_ANSI_S:
-            //[camera moveCameraForward];
-            [r moveX:0 Z:1];
+            [player moveForward];
+           // [r moveX:0 Z:1];
             break;
             //Move the camera target
         case kVK_UpArrow:
@@ -230,7 +230,6 @@
         default:
             break;
     }
-    NSLog(@"%@",[camera description]);
 }
 
 -(void)keyUp:(int)keyCode

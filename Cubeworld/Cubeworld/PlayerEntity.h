@@ -13,6 +13,7 @@
 {
     vec3 rotation;
     vec3 oldLocation;
+    vec3 lookVec;
     
     float moveSpeed;
     float lookSpeed;
@@ -35,4 +36,6 @@
 
 -(void)unmove;
 -(void)setOldLocation:(vec3 *)old;
+
+-(void)calculateLookVec;
 @end
