@@ -88,8 +88,8 @@
         fogColour.green = 0.5;
         fogColour.blue = 0.7;
         
-        fogFar = size + size/3;
-        fogNear = size * 0.2;
+        fogFar = 30;
+        fogNear = 10;
         
         fog = NO;
         
@@ -120,19 +120,6 @@
 
 -(void)update
 {
-    fogColour.red = 0.5;
-    fogColour.green = 0.5;
-    fogColour.blue = 0.7;
-    
-    fogFar = size + size/3;
-    fogNear = fogFar * 0.2;
-    
-    glUseProgram(program);
-    glUniform3f(fogColourUnif, fogColour.red,fogColour.green, fogColour.blue);
-    glUniform1f(fogFarUnif, fogFar);
-    glUniform1f(fogNearUnif, fogNear);
-    glUseProgram(0);
-    
     [box release];
     
     int *tmpIndexArray = malloc(VOXEL_INDICES_COUNT * sizeof(long));
@@ -201,6 +188,30 @@
     
     glUseProgram(0);
     
+}
+
+-(void)firstPersonFog
+{
+    fogFar = 30;
+    fogNear = 10;
+    
+    glUseProgram(program);
+    glUniform3f(fogColourUnif, fogColour.red,fogColour.green, fogColour.blue);
+    glUniform1f(fogFarUnif, fogFar);
+    glUniform1f(fogNearUnif, fogNear);
+    glUseProgram(0);
+}
+
+-(void)thirdPersonFog
+{
+    fogFar = size + size/5;
+    fogNear = size * 0.2;
+    
+    glUseProgram(program);
+    glUniform3f(fogColourUnif, fogColour.red,fogColour.green, fogColour.blue);
+    glUniform1f(fogFarUnif, fogFar);
+    glUniform1f(fogNearUnif, fogNear);
+    glUseProgram(0);
 }
 
 -(void)dealloc

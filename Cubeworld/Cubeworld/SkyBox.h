@@ -46,4 +46,6 @@
 -(void)setSize:(float)size;
 
 -(void)toggleFog;
+-(void)thirdPersonFog;
+-(void)firstPersonFog;
 @end

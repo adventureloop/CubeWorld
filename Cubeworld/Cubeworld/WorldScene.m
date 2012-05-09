@@ -124,7 +124,7 @@
     
     r = [[Region alloc]initWithMatrixUnifLocation:modelToWorldMatrixUnif translationLocation:transLocationUnif program:_program]; 
     [r setRenderDistance:1];
-    s = [[SkyBox alloc]initWithSize:48];
+    s = [[SkyBox alloc]initWithSize:72];
     
     time = [[TimeCycle alloc]init];
     
@@ -207,16 +207,18 @@
             break;
         case kVK_ANSI_2:
             [r setRenderDistance:2];
-            [s setSize:48];
+            [s setSize:72];
             break;
         case kVK_ANSI_3:
             [r setRenderDistance:3];
             [s setSize:72];
         case kVK_ANSI_T:
             [camera setThirdPerson];
+            [s thirdPersonFog];
             break;
         case kVK_ANSI_F:
             [camera setFirstPerson];
+            [s firstPersonFog];
             break;
         case kVK_ANSI_0:
             [r serialize];
