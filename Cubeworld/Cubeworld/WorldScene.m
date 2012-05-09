@@ -210,6 +210,7 @@
             break;
         case kVK_ANSI_J:
             [s toggleFog];
+            break;
         case kVK_ANSI_Q:
             mouse = -mouse;
             break; 
