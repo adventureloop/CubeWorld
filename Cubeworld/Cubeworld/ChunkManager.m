@@ -8,6 +8,7 @@
 #import "ChunkManager.h"
 
 @implementation ChunkManager
+@synthesize serialize;
 -(id)initWithSeed:(NSString *)seed worldName:(NSString *)worldName
 {
     if(self = [super init]) {
@@ -18,6 +19,8 @@
         focusPoint.x = 0;
         focusPoint.z = 0;
         focusPoint.y = 0;
+        
+        serialize = YES;
     }
     return self;
 }
@@ -35,7 +38,7 @@
 
 -(ChunkLowMem *)chunkForX:(float)x Z:(float)z
 {
-    if([chunkStore count] > 80) {
+    if([chunkStore count] > 64) {
         NSLog(@"\t\t\tCulling Chunk store, %lu chunks in memory",[chunkStore count]);
         
         NSMutableArray *removeList = [[NSMutableArray alloc]init ];
@@ -44,12 +47,16 @@
             ChunkLowMem *c = [chunkStore objectForKey:key];
             if([self distanceBetweenA:&focusPoint B:[c chunkLocation]] > 2) {
                 [removeList addObject:key];
-                [resourceManager storeChunk:c];
             }
         }
         
-        for(id key in removeList) 
+        for(id key in removeList) {
+            if(serialize) {
+                ChunkLowMem *c = [chunkStore objectForKey:key];
+                [resourceManager storeChunk:c];
+            }
             [chunkStore removeObjectForKey:key];
+        }
     }
     
     NSString *key = [NSString stringWithFormat:@"x%dz%d",(int)x,(int)z];

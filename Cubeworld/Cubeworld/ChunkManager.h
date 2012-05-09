@@ -24,6 +24,8 @@
     
     vec3 focusPoint;
 }
+@property BOOL serialize;
+
 
 /*!
  * @discussion Returns the chunk for the given x and y indexes.

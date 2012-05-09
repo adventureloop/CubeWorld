@@ -113,8 +113,6 @@
 {
     lookVec.x = sinf([self degToRad:rotation.y]);
     lookVec.z = cosf([self degToRad:rotation.y]);
-    
-    NSLog(@"Look vec %f,%f",lookVec.x,lookVec.y);
 }
 
 -(float)degToRad:(float) fAngDeg
