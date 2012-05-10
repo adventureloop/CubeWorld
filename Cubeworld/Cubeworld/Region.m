@@ -62,6 +62,11 @@
     focusPoint.z = point->z;
 }
 
+-(vec3 *)focusPoint
+{
+    return &focusPoint;
+}
+
 -(void)moveX:(float)x Z:(float)z
 {
     focusPoint.x += x;

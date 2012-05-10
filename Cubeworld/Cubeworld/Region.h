@@ -64,4 +64,5 @@
 -(void)serialize;
 
 -(float)distanceBetweenAX:(float)ax AZ:(float)az BX:(float)bx BZ:(float)bz;
+-(vec3 *)focusPoint;
 @end
