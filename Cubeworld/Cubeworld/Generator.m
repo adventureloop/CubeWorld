@@ -52,7 +52,7 @@ int BIOME_BETA[] =
             srandom((unsigned int)time(NULL));
         else  {
             NSLog(@"Creating Generator with seed: %@",seed);
-            srandom((unsigned int)time(NULL));
+            srandom((unsigned int)[seed hash]);
         }
     }
     return self;
