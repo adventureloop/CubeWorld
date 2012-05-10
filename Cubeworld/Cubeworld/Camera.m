@@ -69,16 +69,31 @@
 
 -(void)firstPersonCamera
 {    
+    vec3 translate;
+    translate.x = 0.0;
+    translate.y = cameraPosition.y;
+    translate.z = 0.0;
+    
     [lookAtMatrix loadIndentity];
     
     [lookAtMatrix rotateYByAngle:cameraRotations.y];
     [lookAtMatrix rotateXByAngle:cameraRotations.x];
     
-    [lookAtMatrix translateByVec3:&cameraPosition];
+    [lookAtMatrix translateByVec3:&translate];
 }
 
 -(void)thirdPersonCamera
 {    
+    //Set values  for fix camera
+    cameraTarget.x = 4.0f;
+    cameraTarget.y = 15.0f;
+    cameraTarget.z = 0.0f;
+    
+    cameraSpherePos.x = 95.0f;
+    cameraSpherePos.y = -20.0f;
+    cameraSpherePos.z = 38.0f;
+    
+    
     //Calculate Position for the camera
     float phi = degToRad(cameraSpherePos.x);
     float theta = degToRad(cameraSpherePos.y + 90.0f);
@@ -201,6 +216,16 @@
     cameraRotations.x = rot->x;
     cameraRotations.y = rot->y;
     cameraRotations.z = rot->z;
+}
+
+-(BOOL)firstPerson
+{
+    return firstPerson;
+}
+
+-(BOOL)thirdPerson
+{
+    return thirdPerson;
 }
 
 -(NSString *)description

@@ -66,6 +66,8 @@
 {
     focusPoint.x += x;
     focusPoint.z += z;
+    
+    NSLog(@"Focus %f,%f",focusPoint.x,focusPoint.z);
 }
 
 -(float)distanceBetweenAX:(float)ax AZ:(float)az BX:(float)bx BZ:(float)bz

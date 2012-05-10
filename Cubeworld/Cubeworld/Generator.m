@@ -48,10 +48,12 @@ int BIOME_BETA[] =
 -(id)initWithSeed:(NSString *)seed
 {
     if(self = [super init]) {
-        if([seed length] < 1)
-            srandom(time(NULL));
-        else 
-            srandom([seed hash]);
+        if(seed == nil || [seed length] < 1)
+            srandom((unsigned int)time(NULL));
+        else  {
+            NSLog(@"Creating Generator with seed: %@",seed);
+            srandom((unsigned int)time(NULL));
+        }
     }
     return self;
 }

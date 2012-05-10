@@ -13,11 +13,8 @@
 -(id)initWithBounds:(CGRect)newBounds
 {
     if(self = [super initWithBounds:newBounds]) {
-        chunkManager = [ChunkManager sharedChunkManagerWithSeed:@"adventureloop" worldName:@"New World"];
+        chunkManager = [ChunkManager sharedChunkManagerWithSeed:@"test" worldName:@"New World"];
         resourceManager = [ResourceManager sharedResourceManager];
-        
-       // [resourceManager storeChunk:[chunkManager chunkForX:1 Z:1]];
-        //[resourceManager renderEntityForString:@"test"];
          [self setupOpenGL];
     }
     return self;

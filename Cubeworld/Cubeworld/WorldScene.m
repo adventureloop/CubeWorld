@@ -25,6 +25,7 @@
 
 -(void)render
 {
+
     [camera setCameraPosition:[player entityLocation]];
     [camera setCameraRotations:[player playerRotation]];
     
@@ -47,14 +48,13 @@
     glUniformMatrix4fv(modelToWorldMatrixUnif, 1, GL_FALSE, [modelMatrix mat]);
 
     //Draw the world region
-    [r updateWithFocusPoint:[player entityLocation]];
+    if([camera firstPerson]) 
+        [r updateWithFocusPoint:[player entityLocation]];
     
     [r render];
     [s render];
     
     glUniform3f(transLocationUnif, 0.0, 0.0, 0.0);
-    
-//    [e render];
     
 	glUseProgram(0);
     glSwapAPPLE();
@@ -163,24 +163,35 @@
         case kVK_Space:       
             [player moveUp];
             break;
-        case kVK_ANSI_Z:       
-            [player moveDown];
+        case kVK_ANSI_Z:
+            if([camera thirdPerson])
+                [r moveX:0 Z:-1];
+            else
+                [player moveDown];
             break;
-        case kVK_ANSI_D:      
-            [player moveRight];
-            //[r moveX:1 Z:0];
+        case kVK_ANSI_D:  
+            if([camera thirdPerson])
+                [r moveX:1 Z:0];
+            else
+                [player moveRight];
             break;
         case kVK_ANSI_A:      
-            [player moveLeft];
-           // [r moveX:-1 Z:0];
+            if([camera thirdPerson])
+                [r moveX:-1 Z:0];
+            else
+                [player moveLeft];
             break;
         case kVK_ANSI_W:
-            [player moveForward];
-            //[r moveX:0 Z:-1];
+            if([camera thirdPerson])
+                [r moveX:0 Z:-1];
+            else
+                [player moveForward];
             break;
         case kVK_ANSI_S:
-            [player moveBackward];
-           // [r moveX:0 Z:1];
+            if([camera thirdPerson])
+                [r moveX:0 Z:1];
+            else
+                [player moveBackward];
             break;
             //Move the camera target
         case kVK_UpArrow:

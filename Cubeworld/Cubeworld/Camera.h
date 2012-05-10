@@ -47,4 +47,7 @@
 
 -(void)setCameraPosition:(vec3 *)pos;
 -(void)setCameraRotations:(vec3 *)rot;
+
+-(BOOL)thirdPerson;
+-(BOOL)firstPerson;
 @end
